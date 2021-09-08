@@ -78,7 +78,8 @@ class AppEngineController extends Controller
     {
         $this->validate($request, [
             'project_id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'password' => 'required|alpha_dash'
         ]);
 
         $project_id = $request->project_id;
@@ -142,6 +143,7 @@ class AppEngineController extends Controller
                 'mem' => $lxdTemplate_data->mem,
                 'disk' => $lxdTemplate_data->disk,
                 'image' => $lxdTemplate_data->image,
+                'password' => $request->password,
                 'method' => 'init'
             ];
 

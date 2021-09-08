@@ -128,6 +128,13 @@
         </div>
 
         <br /> <br />
+        <span class="mdui-typo-headline">Root密码("只允许字母、数字，短破折号（-）和下划线（_），可到容器内再次修改。")</span>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">密码</label>
+            <input class="mdui-textfield-input" type="password" name="password" value="{{ old('password') }}" required />
+        </div>
+
+        <br /> <br />
         <span class="mdui-typo-headline">最后，设置容器名称</span>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">名称</label>
@@ -139,6 +146,6 @@
         <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
 
         <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。所有模板的默认SSH密码均为123456，建立后请第一时间修改密码。</small></div>
+        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。</small></div>
     </form>
 @endsection

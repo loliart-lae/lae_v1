@@ -42,7 +42,7 @@ class LxdJob implements ShouldQueue
 
         switch ($this->config['method']) {
             case 'init':
-                $result = Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$this->config['cpu']}&mem={$this->config['mem']}&image={$this->config['image']}&disk=2&download=10&upload=10&token={$this->config['token']}");
+                $result = Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$this->config['cpu']}&mem={$this->config['mem']}&image={$this->config['image']}&disk={$this->config['disk']}&password={$this->config['password']}&download=10&upload=10&token={$this->config['token']}");
 
                 $lxd->where('id', $this->config['inst_id'])->update([
                     'status' => 'running',
