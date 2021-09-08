@@ -141,7 +141,7 @@ class ForwardController extends Controller
     {
         $member = new ProjectMember();
         $forward = new Forward();
-        // $lxd_id = $request->route('lxd_id');
+        $lxd_id = $request->route('lxd_id');
         $id = $request->route('forward');
 
         $forward_data = $forward->where('id', $id)->with('server')->firstOrFail();
@@ -155,7 +155,7 @@ class ForwardController extends Controller
             // 调度删除任务
             $config = [
                 'forward_id' => $id,
-                'inst_id' => $id,
+                'inst_id' => $lxd_id,
                 'method' => 'forward_delete',
                 'to' => $forward_data->to,
                 'token' => $server_where_id->token,
