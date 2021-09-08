@@ -98,6 +98,7 @@
                         <th>名称</th>
                         <th>CPU</th>
                         <th>内存</th>
+                        <th>硬盘</th>
                         <th>价格</th>
                         <th>选择</th>
                     </tr>
@@ -112,6 +113,7 @@
 
 
                             <td>{{ $template->mem }} M</td>
+                            <td>{{ $template->disk }} G</td>
                             <td>{{ $template->price }}</td>
                             <td>
                                 <label class="mdui-radio">

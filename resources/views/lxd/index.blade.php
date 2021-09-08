@@ -14,6 +14,7 @@
                     <th>名称</th>
                     <th>CPU</th>
                     <th>内存</th>
+                    <th>硬盘</th>
                     <th>内部IP</th>
                     <th>模板</th>
                     <th>属于服务器</th>
@@ -25,7 +26,7 @@
             </thead>
             <tbody class="mdui-typo">
                 <tr>
-                    <td colspan="12" class="mdui-text-center">
+                    <td colspan="13" class="mdui-text-center">
                         <a href="{{ route('lxd.create') }}">新建 Linux 容器</a>
                     </td>
                 </tr>
@@ -37,6 +38,7 @@
                         <td>{{ $lxd->name }}</td>
                         <td>{{ $lxd->template->cpu }} Core</td>
                         <td>{{ $lxd->template->mem }}M</td>
+                        <td>{{ $lxd->template->disk }} G</td>
                         <td>{{ $lxd->lan_ip }}</td>
                         <td>{{ $lxd->template->name }}</td>
                         <td>{{ $lxd->server->name }}</td>
