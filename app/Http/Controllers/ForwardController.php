@@ -90,6 +90,7 @@ class ForwardController extends Controller
             'address' => $lxd_data->server->address,
             'from' => $request->from,
             'to' => $request->to,
+            'user' => Auth::id()
         ];
 
         dispatch(new LxdJob($config));
@@ -160,6 +161,7 @@ class ForwardController extends Controller
                 'to' => $forward_data->to,
                 'token' => $server_where_id->token,
                 'address' => $server_where_id->address,
+                'user' => Auth::id()
             ];
             dispatch(new LxdJob($config));
 
