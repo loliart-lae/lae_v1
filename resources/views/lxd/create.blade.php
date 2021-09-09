@@ -45,9 +45,8 @@
 
         <br />
         <br />
-        <span class="mdui-typo-headline">选择地区服务器</span>&nbsp;<span
-            class="mdui-typo-subheading">地区服务器影响着访问速度以及连通性,稳定性,以及基础价格。</span>
-        <br />
+        <span class="mdui-typo-headline">选择地区服务器</span>
+        <p class="mdui-typo-subheading">地区服务器影响着访问速度以及连通性,稳定性,以及基础价格。</p>
         <br />
 
         <div class="mdui-table-fluid">
@@ -90,8 +89,8 @@
         <br />
         <br />
         <br />
-        <span class="mdui-typo-headline">选择镜像</span>&nbsp;<span class="mdui-typo-subheading">不同镜像拥有着不同操作系统以及操作方式</span>
-        <br />
+        <span class="mdui-typo-headline">选择镜像</span>
+        <p class="mdui-typo-subheading">不同镜像拥有着不同操作系统以及操作方式。</p>
         <br />
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
@@ -128,8 +127,8 @@
         <br />
         <br />
         <br />
-        <span class="mdui-typo-headline">选择容器模板</span>&nbsp;<span class="mdui-typo-subheading">容器模板影响着计费。计费每1分钟进行一次。</span>
-        <br />
+        <span class="mdui-typo-headline">选择容器模板</span>
+        <p class="mdui-typo-subheading">容器模板影响着计费。计费每1分钟进行一次。</p>
         <br />
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
@@ -171,7 +170,8 @@
         </div>
 
         <br /> <br />
-        <span class="mdui-typo-headline">Root密码("只允许字母、数字，短破折号（-）和下划线（_），可到容器内再次修改。")</span>
+        <span class="mdui-typo-headline">Root 密码</span>
+        <p>只允许字母、数字，短破折号（-）和下划线（_），可到容器内再次修改。</p>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">密码</label>
             <input class="mdui-textfield-input" type="password" name="password" value="{{ old('password') }}" required />
@@ -189,6 +189,6 @@
         <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
 
         <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器为无特权容易，不支持Docker。</small></div>
+        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器为无特权容器，不支持Docker。</small></div>
     </form>
 @endsection
