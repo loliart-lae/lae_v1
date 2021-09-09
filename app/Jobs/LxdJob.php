@@ -55,7 +55,7 @@ class LxdJob implements ShouldQueue
                     'status' => 'running',
                     'lan_ip' => $result['lan_ip'],
                 ]);
-                dispatch(new SendEmailJob($email, "容器 {$this->config['inst_id']} 调度成功。"));
+                dispatch(new SendEmailJob($email, "容器 {$this->config['inst_id']} 调度成功。"))->onQueue('mail');
                 break;
             case 'delete':
                 Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&token={$this->config['token']}");
@@ -114,7 +114,8 @@ class LxdJob implements ShouldQueue
 
                 if ($server_data_memory <= 1024 || $server_data_disk <= 5) {
                     // 通知用户执行失败
-                    dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'));
+                    dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
+
                 } else {
                     Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$new_template->cpu}&mem={$new_template->mem}&disk={$new_template->disk}&token={$this->config['token']}");
                     $server_query->update([

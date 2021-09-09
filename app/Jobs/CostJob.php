@@ -54,7 +54,7 @@ class CostJob implements ShouldQueue
 
             if ($current_project_balance - $need_pay >= 95 || $current_project_balance - $need_pay <= 100) {
                 // 积分不足，提醒用户
-                dispatch(new SendEmailJob(User::find($project_where->user_id)->email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'));
+                dispatch(new SendEmailJob(User::find($project_where->user_id)->email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
             }
 
             if ($current_project_balance - $need_pay <= 0) {
