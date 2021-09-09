@@ -41,7 +41,7 @@
                         <td>{{ $lxd->template->mem }}M</td>
                         <td>{{ $lxd->template->disk }} G</td>
                         <td>{{ $lxd->lan_ip }}</td>
-                        <td>{{ $lxd->server->network_limit }}</td>
+                        <td>{{ $lxd->server->network_limit }} Mbps</td>
                         <td>
                             @if ($lxd->status == 'running')
                                 <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
