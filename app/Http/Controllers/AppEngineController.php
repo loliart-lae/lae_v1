@@ -224,7 +224,7 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $lxdTemplate = new LxdTemplate();
 
-        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template')->firstOrFail();
+        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template',' server')->firstOrFail();
 
         if (!$member->where('user_id', Auth::id())->where('project_id', $lxd->project_id)->exists()) {
             return redirect()->back()->with('status', '你不在项目中。');
@@ -252,7 +252,9 @@ class AppEngineController extends Controller
             'server_id' => $lxdContainer_data->server_id,
             'old_template' => $lxdContainer_data->template_id,
             'new_template' => $request->template_id,
-            'user' => Auth::id()
+            'user' => Auth::id(),
+            'address' => $lxd->server->address,
+            'token' => $lxd->server->token,
         ];
 
         dispatch(new LxdJob($config));
