@@ -13,13 +13,13 @@ class UserBalanceLog extends Model
 
     public function cost($user_id, $value, $reason = null) {
         $user = new User();
-        $user_balance = $user->find($user_id)->first()->balance;
+        $user_balance = $user->where('id', $user_id)->first()->balance;
         $current_balance = $user_balance - $value;
-
 
         if ($current_balance <= 0) {
             return false;
         }
+
         $result = $user->where('id', $user_id)->update(['balance' => $current_balance]);
 
         $this->user_id = $user_id;
@@ -35,7 +35,7 @@ class UserBalanceLog extends Model
     public function charge($user_id, $value, $reason = null) {
 
         $user = new User();
-        $user_balance = $user->find($user_id)->first()->balance;
+        $user_balance = $user->where('id', $user_id)->first()->balance;
 
         $current_balance = $user_balance + $value;
 
