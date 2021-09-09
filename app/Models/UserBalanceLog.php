@@ -35,7 +35,7 @@ class UserBalanceLog extends Model
     public function charge($user_id, $value, $reason = null) {
 
         $user = new User();
-        $user_balance = $user->find($user_id)->first()->value;
+        $user_balance = $user->find($user_id)->first()->balance;
 
         $current_balance = $user_balance + $value;
 
