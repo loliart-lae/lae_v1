@@ -42,7 +42,7 @@ class LxdJob implements ShouldQueue
 
         $lxd = new LxdContainer();
         $forward = new Forward();
-        if ($this->config['user']) {
+        if (isset($this->config['user'])) {
             $email = User::find($this->config['user'])->email;
         }
 
