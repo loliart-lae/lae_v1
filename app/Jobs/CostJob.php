@@ -37,7 +37,7 @@ class CostJob implements ShouldQueue
     {
         // 挨个获取容器并计算扣费
 
-        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->where('status', 'resizing')->get();
+        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
         $project = new Project();
         $forward = new Forward();
         // $server = new Server();
