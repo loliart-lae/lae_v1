@@ -10,8 +10,6 @@
         @method('PUT')
 
         <br />
-        <br />
-        <br />
         <span class="mdui-typo-headline">选择容器模板</span>&nbsp;<span class="mdui-typo-subheading">容器模板影响着计费。计费每1分钟进行一次。</span>
         <br />
         <br />
