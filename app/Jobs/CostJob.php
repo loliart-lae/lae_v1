@@ -7,6 +7,7 @@ use App\Models\Forward;
 use App\Models\Project;
 use App\Models\LxdContainer;
 use Illuminate\Bus\Queueable;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -36,23 +37,24 @@ class CostJob implements ShouldQueue
     {
         // 挨个获取容器并计算扣费
 
-        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
+        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->where('status', 'resizing')->get();
         $project = new Project();
         $forward = new Forward();
-        $server = new Server();
+        // $server = new Server();
 
 
         foreach ($lxdContainers as $lxd) {
             // 金额
             $project_id = $lxd->project->id;
-            $project_where =  $project->where('id', $project_id);
+            $project_where = $project->where('id', $project_id);
 
             $need_pay = $lxd->server->price + $lxd->template->price + (count($lxd->forward) * $lxd->server->forward_price);
 
             $current_project_balance = $project_where->firstOrFail()->balance;
 
-            if ($current_project_balance - $need_pay <= 100) {
+            if ($current_project_balance - $need_pay >= 95 || $current_project_balance - $need_pay <= 100) {
                 // 积分不足，提醒用户
+                dispatch(new SendEmailJob(User::find($project_where->user_id)->email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'));
             }
 
             if ($current_project_balance - $need_pay <= 0) {

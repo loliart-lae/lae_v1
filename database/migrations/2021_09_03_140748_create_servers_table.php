@@ -26,6 +26,8 @@ class CreateServersTable extends Migration
             $table->integer('free_mem')->index();
             $table->integer('free_disk')->index();
 
+            $table->string('domain')->nullable()->index();
+
             $table->timestamps();
         });
     }

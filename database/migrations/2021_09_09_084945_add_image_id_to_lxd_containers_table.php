@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColsToLxdTemplatesTable extends Migration
+class AddImageIdToLxdContainersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddColsToLxdTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::table('lxd_templates', function (Blueprint $table) {
-            $table->integer('cpu')->index();
-            $table->integer('mem')->index();
-            $table->integer('disk')->index();
+        Schema::table('lxd_containers', function (Blueprint $table) {
+            $table->unsignedBigInteger('image_id')->index();
+            $table->foreign('image_id')->references('id')->on('lxd_images');
         });
     }
 
@@ -27,7 +26,7 @@ class AddColsToLxdTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::table('lxd_templates', function (Blueprint $table) {
+        Schema::table('lxd_containers', function (Blueprint $table) {
             //
         });
     }

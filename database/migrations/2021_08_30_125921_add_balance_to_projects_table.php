@@ -14,7 +14,7 @@ class AddBalanceToProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->float('balance')->default(0.0)->index();
+            $table->float('balance', 60, 4)->default(0.0)->index();
         });
     }
 

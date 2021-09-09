@@ -63,3 +63,14 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
 });
 
+
+
+Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
+    Route::get('/', function () {
+        return 'admin.index';
+    })->name('admin.index');
+
+    Route::resource('/balance', Controllers\Admin\BalanceController::class);
+    Route::get('/balance/user/search', [Controllers\Admin\BalanceController::class, 'find'])->name('admin.balance.user.find');
+});
+

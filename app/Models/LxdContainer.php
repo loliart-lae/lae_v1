@@ -32,6 +32,10 @@ class LxdContainer extends Model
         return $this->hasOne(LxdTemplate::class, 'id', 'template_id');
     }
 
+    public function image() {
+        return $this->hasOne(LxdImage::class, 'id', 'image_id');
+    }
+
     public function forward() {
         return $this->hasMany(Forward::class, 'lxd_id', 'id');
     }

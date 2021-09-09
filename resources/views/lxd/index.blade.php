@@ -40,7 +40,13 @@
                         <td>{{ $lxd->template->mem }}M</td>
                         <td>{{ $lxd->template->disk }} G</td>
                         <td>{{ $lxd->lan_ip }}</td>
-                        <td>{{ $lxd->template->name }}</td>
+                        <td>
+                            @if ($lxd->status == 'running')
+                                <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
+                            @else
+                                {{ $lxd->template->name }}
+                            @endif
+                        </td>
                         <td>{{ $lxd->server->name }}</td>
                         <td><a href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
                         </td>
@@ -54,7 +60,8 @@
 
 
                         </td>
-                        <td>{{ $lxd->server->price + $lxd->template->price + ($forwards * $lxd->server->forward_price) }}/m</td>
+                        <td>{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                        </td>
 
                         <td>
                             @if ($lxd->status == 'running')

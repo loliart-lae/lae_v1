@@ -17,7 +17,9 @@ class CreateLxdTemplatesTable extends Migration
             $table->id();
 
             $table->string('name')->index();
-            $table->string('image')->index();
+            $table->integer('cpu')->index();
+            $table->integer('mem')->index();
+            $table->integer('disk')->index();
 
             $table->timestamps();
         });

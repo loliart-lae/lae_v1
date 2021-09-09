@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('enter-admin', function ($user) {
+            return in_array($user->email, [
+                'im@ivampiresp.com'
+            ]);
+        });
     }
 }

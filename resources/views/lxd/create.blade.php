@@ -84,6 +84,45 @@
             </table>
         </div>
 
+
+        <br />
+        <br />
+        <br />
+        <span class="mdui-typo-headline">选择镜像</span>&nbsp;<span class="mdui-typo-subheading">不同镜像拥有着不同操作系统以及操作方式</span>
+        <br />
+        <br />
+        <div class="mdui-table-fluid">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>名称</th>
+                        <th>系统</th>
+                        <th>选择</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php($i = 1)
+                    @foreach ($images as $image)
+                        <tr>
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $image->name }}</td>
+                            <td>{{ $image->image }}</td>
+
+                            <td>
+                                <label class="mdui-radio">
+                                    <input type="radio" value="{{ $image->id }}" name="image_id" @if ($i == 2) checked @endif required />
+                                    <i class="mdui-radio-icon"></i>
+
+                                </label>
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
         <br />
         <br />
         <br />

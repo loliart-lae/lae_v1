@@ -6,10 +6,12 @@ use App\Jobs\LxdJob;
 use App\Models\Server;
 use App\Models\Forward;
 use App\Models\Project;
+use App\Models\LxdImage;
 use App\Models\LxdTemplate;
 use App\Models\LxdContainer;
 use Illuminate\Http\Request;
 use App\Models\ProjectMember;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
 class AppEngineController extends Controller
@@ -21,8 +23,7 @@ class AppEngineController extends Controller
      */
     public function index()
     {
-
-        $lxdContainers = LxdContainer::with(['template', 'server', 'forward'])->whereHas('member', function ($query) {
+        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'image'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
         // $lxdContainers = LxdContainer::with(['template', 'server', 'forward'])->has('project', function ($query) {
@@ -40,7 +41,7 @@ class AppEngineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate)
+    public function create(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate, LxdImage $lxdImage)
     {
         // 列出项目
         $projects = $member->where('user_id', Auth::id())->with('project')->get();
@@ -50,23 +51,27 @@ class AppEngineController extends Controller
         // 列出模板
         $templates = $lxdTemplate->get();
 
-        return view('lxd.create', compact('servers', 'templates', 'projects'));
+        // 列出镜像
+        $images = $lxdImage->get();
+
+
+        return view('lxd.create', compact('servers', 'templates', 'projects', 'images'));
     }
 
-    public function create_in_project(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate)
-    {
-        // 在选定的项目中新建容器
-        if ($member->where('user_id', Auth::id())->where('project_id', $request->route('project_id'))->exists()) {
-            // 选择服务器
-            $servers = $server->where('free_disk', '>', '5')->where('free_mem', '>', '1024')->get();
-            // 列出模板
-            $templates = $lxdTemplate->get();
+    // public function create_in_project(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate)
+    // {
+    //     // 在选定的项目中新建容器
+    //     if ($member->where('user_id', Auth::id())->where('project_id', $request->route('project_id'))->exists()) {
+    //         // 选择服务器
+    //         $servers = $server->where('free_disk', '>', '5')->where('free_mem', '>', '1024')->get();
+    //         // 列出模板
+    //         $templates = $lxdTemplate->get();
 
 
 
-            return view('lxd.create_in_project', compact('servers', 'templates'));
-        }
-    }
+    //         return view('lxd.create_in_project', compact('servers', 'templates'));
+    //     }
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -74,12 +79,14 @@ class AppEngineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate, LxdContainer $lxdContainer)
+    public function store(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate, LxdContainer $lxdContainer, LxdImage $lxdImage)
     {
         $this->validate($request, [
             'project_id' => 'required',
             'name' => 'required',
-            'password' => 'required|alpha_dash'
+            'password' => 'required|alpha_dash',
+            'image_id' => 'required',
+            'server_id' => 'required'
         ]);
 
         $project_id = $request->project_id;
@@ -99,6 +106,13 @@ class AppEngineController extends Controller
 
             if (!$lxdTemplate->where('id', $request->template_id)->exists()) {
                 return redirect()->back()->with('status', '模板不存在。');
+            }
+
+            $lxdImage_where = $lxdImage->where('id', $request->image_id);
+            if (!$lxdImage_where->exists()) {
+                return redirect()->back()->with('status', '镜像不存在。');
+            } else {
+                $image_name = $lxdImage_where->first()->image;
             }
 
             // 检测内存是否足够
@@ -133,6 +147,7 @@ class AppEngineController extends Controller
             $lxdContainer->project_id = $project_id;
             $lxdContainer->template_id = $request->template_id;
             $lxdContainer->server_id = $request->server_id;
+            $lxdContainer->image_id = $request->image_id;
             $lxdContainer->save();
 
             $config = [
@@ -142,19 +157,19 @@ class AppEngineController extends Controller
                 'cpu' => $lxdTemplate_data->cpu,
                 'mem' => $lxdTemplate_data->mem,
                 'disk' => $lxdTemplate_data->disk,
-                'image' => $lxdTemplate_data->image,
+                'image' => $image_name,
                 'password' => $request->password,
-                'method' => 'init'
+                'method' => 'init',
+                'user' => Auth::id(),
             ];
-
 
 
             // 入列
             dispatch(new LxdJob($config));
 
-            return redirect()->route('lxd.index')->with('status', 'success');
+            return redirect()->route('lxd.index')->with('status', '新建成功，正在调度。');
         } else {
-            return 0;
+            return redirect()->back()->with('status', '项目不存在。');
         }
     }
 
@@ -177,7 +192,23 @@ class AppEngineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $member = new ProjectMember();
+        $lxdContainer = new LxdContainer();
+        $lxdTemplate = new LxdTemplate();
+
+        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template')->firstOrFail();
+
+        if (!$member->where('user_id', Auth::id())->where('project_id', $lxd->project_id)->exists()) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        $selected_template = $lxd->template_id;
+        // 列出模板
+        $templates = $lxdTemplate->get();
+
+
+        // 获取已启用的项目模板
+        return view('lxd.update', compact('selected_template', 'templates', 'id'));
     }
 
     /**
@@ -189,7 +220,44 @@ class AppEngineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $member = new ProjectMember();
+        $lxdContainer = new LxdContainer();
+        $lxdTemplate = new LxdTemplate();
+
+        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template')->firstOrFail();
+
+        if (!$member->where('user_id', Auth::id())->where('project_id', $lxd->project_id)->exists()) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        if (!$lxdTemplate->where('id', $request->template_id)->exists()) {
+            return redirect()->back()->with('status', '模板不存在。');
+        }
+
+        $lxdContainer_where = $lxdContainer->where('id', $id);
+        $lxdContainer_data = $lxdContainer_where->firstOrFail();
+
+        // 检查修改前修改后是否相同
+        if ($request->template_id == $lxdContainer_data->template_id) {
+            return redirect()->back()->with('status', '修改了个寂寞。');
+        }
+
+
+        // 将容器标记为 resizing
+        $lxdContainer_where->update(['status' => 'resizing']);
+
+        $config = [
+            'method' => 'resize',
+            'inst_id' => $id,
+            'server_id' => $lxdContainer_data->server_id,
+            'old_template' => $lxdContainer_data->template_id,
+            'new_template' => $request->template_id,
+            'user' => Auth::id()
+        ];
+
+        dispatch(new LxdJob($config));
+
+        return redirect()->route('lxd.index')->with('status', '正在调整容器');
     }
 
     /**
@@ -223,6 +291,7 @@ class AppEngineController extends Controller
                 'server_id' => $server_where_id->id,
                 'mem' => $lxdContainer_data->template->mem,
                 'disk' => $lxdContainer_data->template->disk
+
             ];
             dispatch(new LxdJob($config));
 
