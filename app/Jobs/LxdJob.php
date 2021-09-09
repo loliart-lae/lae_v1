@@ -49,7 +49,7 @@ class LxdJob implements ShouldQueue
 
         switch ($this->config['method']) {
             case 'init':
-                $result = Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$this->config['cpu']}&mem={$this->config['mem']}&image={$this->config['image']}&disk={$this->config['disk']}&password={$this->config['password']}&download=10&upload=10&token={$this->config['token']}");
+                $result = Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$this->config['cpu']}&mem={$this->config['mem']}&image={$this->config['image']}&disk={$this->config['disk']}&password={$this->config['password']}&download=10&upload=10&token={$this->config['token']}");
 
                 $lxd->where('id', $this->config['inst_id'])->update([
                     'status' => 'running',
@@ -58,7 +58,7 @@ class LxdJob implements ShouldQueue
                 dispatch(new SendEmailJob($email, "容器 {$this->config['inst_id']} 调度成功。"))->onQueue('mail');
                 break;
             case 'delete':
-                Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&token={$this->config['token']}");
+                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&token={$this->config['token']}");
                 // 归还服务器配额
                 $server_id = $this->config['server_id'];
                 $server_query = Server::where('id', $server_id);
@@ -74,18 +74,18 @@ class LxdJob implements ShouldQueue
                 break;
 
             case 'start':
-                Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&token={$this->config['token']}");
+                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&token={$this->config['token']}");
                 break;
 
             case 'forward':
-                Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&from={$this->config['from']}&to={$this->config['to']}&token={$this->config['token']}");
+                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&from={$this->config['from']}&to={$this->config['to']}&token={$this->config['token']}");
                 $forward->where('lxd_id', $this->config['inst_id'])->update([
                     'status' => 'active',
                 ]);
                 break;
 
             case 'forward_delete':
-                Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&to={$this->config['to']}&token={$this->config['token']}");
+                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&to={$this->config['to']}&token={$this->config['token']}");
                 break;
 
             case 'resize':
@@ -120,7 +120,7 @@ class LxdJob implements ShouldQueue
                     // 通知用户执行失败
                     dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
                 } else {
-                    Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$new_template->cpu}&mem={$new_template->mem}&disk={$new_template->disk}&token={$this->config['token']}");
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$new_template->cpu}&mem={$new_template->mem}&disk={$new_template->disk}&token={$this->config['token']}");
                     $server_query->update([
                         'free_mem' => $server_data_memory,
                         'free_disk' => $server_data_disk,
