@@ -70,7 +70,7 @@
                             <td>{{ $server->name }}</td>
                             <td>{{ $server->price }}</td>
                             <td>{{ $server->forward_price }}</td>
-                            <td>{{ $server->network_limit }}</td>
+                            <td>{{ $server->network_limit }} Mbps</td>
 
                             <td>
                                 <label class="mdui-radio">
