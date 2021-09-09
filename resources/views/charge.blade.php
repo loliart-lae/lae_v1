@@ -4,11 +4,11 @@
 
 @section('content')
     <h1 class="mdui-text-color-theme">充值</h1>
-    <p>汇率：1人民币 = 100积分</p>
+    <p>汇率：1 人民币 = 100 积分</p>
     <form method="post" action="{{ route('billing.store') }}">
         @csrf
         <br /> <br />
-        <span class="mdui-typo-headline">输入 RMB</span>
+        <span class="mdui-typo-headline">输入充值金额</span>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">输入 RMB</label>
             <input class="mdui-textfield-input" type="number" name="balance" value="{{ old('balance') }}" required />
