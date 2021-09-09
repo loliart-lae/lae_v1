@@ -16,6 +16,7 @@
                     <th>内存</th>
                     <th>硬盘</th>
                     <th>内部IP</th>
+                    <th>带宽限制</th>
                     <th>模板</th>
                     <th>属于服务器</th>
                     <th>属于项目</th>
@@ -40,6 +41,7 @@
                         <td>{{ $lxd->template->mem }}M</td>
                         <td>{{ $lxd->template->disk }} G</td>
                         <td>{{ $lxd->lan_ip }}</td>
+                        <td>{{ $lxd->server->network_limit }}</td>
                         <td>
                             @if ($lxd->status == 'running')
                                 <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>

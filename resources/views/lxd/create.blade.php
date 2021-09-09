@@ -46,7 +46,7 @@
         <br />
         <br />
         <span class="mdui-typo-headline">选择地区服务器</span>&nbsp;<span
-            class="mdui-typo-subheading">地区服务器影响着访问速度已经连通性,稳定性,以及基础价格。</span>
+            class="mdui-typo-subheading">地区服务器影响着访问速度以及连通性,稳定性,以及基础价格。</span>
         <br />
         <br />
 
@@ -58,6 +58,7 @@
                         <th>名称</th>
                         <th>基础价格</th>
                         <th>转发价格</th>
+                        <th>带宽限制</th>
                         <th>选择</th>
                     </tr>
                 </thead>
@@ -69,6 +70,7 @@
                             <td>{{ $server->name }}</td>
                             <td>{{ $server->price }}</td>
                             <td>{{ $server->forward_price }}</td>
+                            <td>{{ $server->network_limit }}</td>
 
                             <td>
                                 <label class="mdui-radio">
