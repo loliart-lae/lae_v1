@@ -11,7 +11,7 @@
         <span class="mdui-typo-headline">输入 RMB</span>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">输入 RMB</label>
-            <input class="mdui-textfield-input" type="text" name="balance" value="{{ old('balance') }}" required />
+            <input class="mdui-textfield-input" type="number" name="balance" value="{{ old('balance') }}" required />
         </div>
 
         <label class="mdui-radio">
