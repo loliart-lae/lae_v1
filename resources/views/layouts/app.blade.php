@@ -41,7 +41,7 @@
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('doing') }}" class="mdui-ripple mdui-ripple-white">Windows 工作站</a>
                 <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
-                <a href="" class="mdui-ripple mdui-ripple-white">剩余积分: {{ Auth::user()->balance }}</a>
+                <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分: {{ Auth::user()->balance }}</a>
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                     class="mdui-ripple mdui-ripple-white">退出登录</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
