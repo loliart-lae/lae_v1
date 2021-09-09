@@ -27,7 +27,7 @@
             </thead>
             <tbody class="mdui-typo">
                 <tr>
-                    <td colspan="13" class="mdui-text-center">
+                    <td colspan="14" class="mdui-text-center">
                         <a href="{{ route('lxd.create') }}">新建 Linux 容器</a>
                     </td>
                 </tr>
