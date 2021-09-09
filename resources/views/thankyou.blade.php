@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '非常感谢')
+@section('title', '充值成功')
 
 @section('content')
 
