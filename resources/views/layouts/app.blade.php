@@ -11,7 +11,6 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
         integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
-    <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
 
     <title>@yield('title') - {{ config('app.name') }}</title>
     <style>
@@ -24,6 +23,15 @@
         }
 
     </style>
+
+    <!-- JavaScripts -->
+    <script src="/js/mdui.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <script src="/editor.md/lib/marked.min.js"></script>
+    <script src="/editor.md/editormd.min.js"></script>
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
@@ -41,7 +49,8 @@
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('doing') }}" class="mdui-ripple mdui-ripple-white">Windows 工作站</a>
                 <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
-                <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分: {{ Auth::user()->balance }}</a>
+                <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
+                    {{ Auth::user()->balance }}</a>
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                     class="mdui-ripple mdui-ripple-white">退出登录</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -56,12 +65,7 @@
                 class="mdui-icon material-icons">arrow_back</i>返回</a>
         @yield('content')
     </div>
-    <script src="/js/mdui.js"></script>
-    <!-- JavaScripts -->
-    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="/js/scrollspy.js"></script>
+
     <script>
         $(document).pjax('a', '.pjax-container')
 
@@ -69,40 +73,6 @@
         $(document).on('pjax:clicked', function() {
             $("#pre_btn").fadeIn()
         })
-
-        if ($.cookie('at') == 'appbar' || $.cookie('at') == undefined) {
-            $("html, body").animate({
-                scrollTop: '0px'
-            }, 10)
-        } else {
-            try {
-                $("html, body").animate({
-                    scrollTop: ($('#' + $.cookie('at')).offset().top - 55) + 'px'
-                }, 10)
-            } catch (e) {
-                console.log('Element not found.');
-            }
-
-        }
-
-
-        $('.scroll_listen').on('scrollSpy:enter', function() {
-            console.log('at:' + $(this).attr('id'));
-            $.cookie('at', $(this).attr('id'), {
-                expires: 7,
-                path: '/'
-            })
-        });
-
-        $('.scroll_listen').on('scrollSpy:exit', function() {
-            console.log('exit:' + $(this).attr('id'));
-            $.cookie('at', 'appbar', {
-                expires: 7,
-                path: '/'
-            })
-        });
-
-        $('.scroll_listen').scrollSpy()
     </script>
     @yield('script')
     <script>
