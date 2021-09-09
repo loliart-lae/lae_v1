@@ -126,60 +126,70 @@ class UserBalanceController extends Controller
     {
         // 检查订单是否存在
         $order_where = $order->where('order_id', $request->payId);
+
         $order_data = $order->where('order_id', $request->payId)->firstOrFail();
+
         if (!$order_where->exists()) {
-            return 'error_sign';
+            return 'not found';
         }
+
         $sign = md5(config('billing.mid') . $request->payId . $request->param . $request->type . $request->price . $request->reallyPrice .  config('billing.key'));
 
         if ($sign != $request->sign) {
+            return 'error_sign';
+        } else {
             if ($order_data->status == 'paid') {
                 // 不做任何操作
                 return 'success';
-            }
-        } else {
-            // 验证实付金额和需付金额是否相等
-            if ($order_data->balance == $request->reallyPrice) {
-                // 充值
-                $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
-            }
+            } else {
+                // 验证实付金额和需付金额是否相等
+                if ($order_data->balance == $request->reallyPrice) {
+                    // 充值
+                    $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
+                }
 
-            // 标记订单为成功
-            $order_where->update([
-                'status' => 'paid'
-            ]);
-            return 'success';
+                // 标记订单为成功
+                $order_where->update([
+                    'status' => 'paid'
+                ]);
+                return 'success';
+            }
         }
     }
 
     public function return(Request $request, Order $order, UserBalanceLog $userBalanceLog)
     {
-       // 检查订单是否存在
-       $order_where = $order->where('order_id', $request->payId);
-       $order_data = $order->where('order_id', $request->payId)->firstOrFail();
-       if (!$order_where->exists()) {
-           return 'error_sign';
-       }
-       $sign = md5(config('billing.mid') . $request->payId . $request->param . $request->type . $request->price . $request->reallyPrice .  config('billing.key'));
+      // 检查订单是否存在
+      $order_where = $order->where('order_id', $request->payId);
 
-       if ($sign != $request->sign) {
-           if ($order_data->status == 'paid') {
-               // 不做任何操作
-               return 'success';
-           }
-       } else {
-           // 验证实付金额和需付金额是否相等
-           if ($order_data->balance == $request->reallyPrice) {
-               // 充值
-               $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
-           }
+      $order_data = $order->where('order_id', $request->payId)->firstOrFail();
 
-           // 标记订单为成功
-           $order_where->update([
-               'status' => 'paid'
-           ]);
-           return view('thankyou');
-       }
+      if (!$order_where->exists()) {
+          return 'not found';
+      }
+
+      $sign = md5(config('billing.mid') . $request->payId . $request->param . $request->type . $request->price . $request->reallyPrice .  config('billing.key'));
+
+      if ($sign != $request->sign) {
+        return redirect()->route('billing.index')->with('status', 'Error: 订单验证失败。');
+      } else {
+          if ($order_data->status == 'paid') {
+              // 不做任何操作
+              return view('thankyou');
+          } else {
+              // 验证实付金额和需付金额是否相等
+              if ($order_data->balance == $request->reallyPrice) {
+                  // 充值
+                  $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
+              }
+
+              // 标记订单为成功
+              $order_where->update([
+                  'status' => 'paid'
+              ]);
+              return view('thankyou');
+          }
+      }
     }
 
     public function thankyou(Request $request, Order $order)
