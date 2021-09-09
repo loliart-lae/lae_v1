@@ -19,7 +19,7 @@ class AuthController extends Controller
             $name = $oauth_user->getName();
             $email = $oauth_user->getEmail();
             $password = Str::random(8);
-            $email_verified_at = $oauth_user->email_verified_at;
+            $email_verified_at = $oauth_user->user['email_verified_at'];
             $user = User::create(compact('name', 'email', 'password', 'email_verified_at'));
         }
 
