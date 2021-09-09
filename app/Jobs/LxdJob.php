@@ -57,14 +57,15 @@ class LxdJob implements ShouldQueue
                 ]);
                 dispatch(new SendEmailJob($email, "容器 {$this->config['inst_id']} 调度成功。"))->onQueue('mail');
                 break;
+
             case 'delete':
                 Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&token={$this->config['token']}");
                 // 归还服务器配额
                 $server_id = $this->config['server_id'];
                 $server_query = Server::where('id', $server_id);
                 $server_data = $server_query->firstOrFail();
-                $old_memory = $server_data->mem;
-                $old_disk = $server_data->disk;
+                $old_memory = $server_data->free_mem;
+                $old_disk = $server_data->free_disk;
 
                 $server_query->update([
                     'free_mem' => $old_memory + $this->config['mem'],
