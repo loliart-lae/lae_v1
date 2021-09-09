@@ -113,9 +113,12 @@ class LxdJob implements ShouldQueue
                 $server_data_disk += $new_template->disk;
 
                 if ($server_data_memory <= 1024 || $server_data_disk <= 5) {
+                    $lxd->where('id', $this->config['inst_id'])->update([
+                        'status' => 'running',
+                        'template_id' => $this->config['old_template']
+                    ]);
                     // 通知用户执行失败
                     dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
-
                 } else {
                     Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$new_template->cpu}&mem={$new_template->mem}&disk={$new_template->disk}&token={$this->config['token']}");
                     $server_query->update([

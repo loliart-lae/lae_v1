@@ -224,7 +224,7 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $lxdTemplate = new LxdTemplate();
 
-        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template',' server')->firstOrFail();
+        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template', 'server')->firstOrFail();
 
         if (!$member->where('user_id', Auth::id())->where('project_id', $lxd->project_id)->exists()) {
             return redirect()->back()->with('status', '你不在项目中。');
@@ -244,7 +244,7 @@ class AppEngineController extends Controller
 
 
         // 将容器标记为 resizing
-        $lxdContainer_where->update(['status' => 'resizing']);
+        $lxdContainer_where->update(['status' => 'resizing', 'template_id' => $request->template_id]);
 
         $config = [
             'method' => 'resize',
