@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Server;
 use App\Models\Forward;
 use App\Models\Project;
+use App\Jobs\SendEmailJob;
 use App\Models\LxdContainer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Auth\User;
@@ -54,7 +55,9 @@ class CostJob implements ShouldQueue
 
             if ($current_project_balance - $need_pay >= 95 || $current_project_balance - $need_pay <= 100) {
                 // 积分不足，提醒用户
-                dispatch(new SendEmailJob(User::find($project_where->user_id)->email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
+                // User email
+                $email = User::where('id', $project_where->first()->user_id)->first()->email;
+                dispatch(new SendEmailJob($email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
             }
 
             if ($current_project_balance - $need_pay <= 0) {
@@ -74,6 +77,7 @@ class CostJob implements ShouldQueue
                         'to' => $lxd_forward->to,
                         'token' => $lxd->server->token,
                         'address' => $lxd->server->address,
+                        'user' => $lxd->project->user_id,
                     ];
                     dispatch(new LxdJob($config));
                 }
@@ -86,6 +90,7 @@ class CostJob implements ShouldQueue
                     'method' => 'delete',
                     'address' => $lxd->server->address,
                     'token' => $lxd->server->token,
+                    'user' => $lxd->project->user_id,
                 ];
                 dispatch(new LxdJob($config));
             } else {
@@ -94,8 +99,11 @@ class CostJob implements ShouldQueue
                     'method' => 'start',
                     'address' => $lxd->server->address,
                     'token' => $lxd->server->token,
+                    'user' => $lxd->project->user_id,
                 ];
                 dispatch(new LxdJob($config));
+
+                // 扣费
                 $project_where->update(['balance' => $current_project_balance - $need_pay]);
             }
 
