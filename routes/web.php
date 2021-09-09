@@ -46,7 +46,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
         return view('main');
     })->name('main');
 
-    Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);
+
     Route::get('/billing/return', [Controllers\UserBalanceController::class, 'return']);
     Route::get('/billing/thankyou', [Controllers\UserBalanceController::class, 'thankyou'])->name('billing.thankyou');
     Route::resource('/billing', Controllers\UserBalanceController::class);
@@ -68,6 +68,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
 });
 
+Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);
 
 
 Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
