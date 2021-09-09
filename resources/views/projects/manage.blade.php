@@ -6,9 +6,9 @@
     <h1 class="mdui-text-color-theme">有关{{ $project_info->name }}</h1>
     项目所有者: {{ $project_info->user->name }}
     <br />
-    项目积分: {{ $project_info->balance }}
+    项目积分: {{ $project_info->balance }} 
     @if ($project_info->balance < 100)
-        <a class="mdui-btn mdui-ripple" onclick="balance_low()"><i class="mdui-icon material-icons">error</i>项目积分过少</a>
+        <a class="mdui-btn mdui-ripple" onclick="balance_low()"><i class="mdui-icon material-icons">error</i> 项目积分过少</a>
     @endif
     <br />
     <br />
