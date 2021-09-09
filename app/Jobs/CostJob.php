@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Server;
 use App\Models\Forward;
 use App\Models\Project;
+use App\Jobs\SendEmailJob;
 use App\Models\LxdContainer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Auth\User;
@@ -37,7 +38,7 @@ class CostJob implements ShouldQueue
     {
         // 挨个获取容器并计算扣费
 
-        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->where('status', 'resizing')->get();
+        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
         $project = new Project();
         $forward = new Forward();
         // $server = new Server();
@@ -52,10 +53,12 @@ class CostJob implements ShouldQueue
 
             $current_project_balance = $project_where->firstOrFail()->balance;
 
-            if ($current_project_balance - $need_pay >= 95 || $current_project_balance - $need_pay <= 100) {
-                // 积分不足，提醒用户
-                dispatch(new SendEmailJob(User::find($project_where->user_id)->email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
-            }
+            // if ($current_project_balance - $need_pay >= 99.50 || $current_project_balance - $need_pay <= 100) {
+            //     // 积分不足，提醒用户
+            //     // User email
+            //     $email = User::where('id', $project_where->first()->user_id)->first()->email;
+            //     dispatch(new SendEmailJob($email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
+            // }
 
             if ($current_project_balance - $need_pay <= 0) {
                 // 扣费失败，删除容器
@@ -74,6 +77,7 @@ class CostJob implements ShouldQueue
                         'to' => $lxd_forward->to,
                         'token' => $lxd->server->token,
                         'address' => $lxd->server->address,
+                        'user' => $lxd->project->user_id,
                     ];
                     dispatch(new LxdJob($config));
                 }
@@ -86,6 +90,7 @@ class CostJob implements ShouldQueue
                     'method' => 'delete',
                     'address' => $lxd->server->address,
                     'token' => $lxd->server->token,
+                    'user' => $lxd->project->user_id,
                 ];
                 dispatch(new LxdJob($config));
             } else {
@@ -94,8 +99,11 @@ class CostJob implements ShouldQueue
                     'method' => 'start',
                     'address' => $lxd->server->address,
                     'token' => $lxd->server->token,
+                    'user' => $lxd->project->user_id,
                 ];
                 dispatch(new LxdJob($config));
+
+                // 扣费
                 $project_where->update(['balance' => $current_project_balance - $need_pay]);
             }
 

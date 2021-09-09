@@ -123,7 +123,7 @@ class LxdJob implements ShouldQueue
                     Http::timeout(300)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}?id={$this->config['inst_id']}&cpu={$new_template->cpu}&mem={$new_template->mem}&disk={$new_template->disk}&token={$this->config['token']}");
                     $server_query->update([
                         'free_mem' => $server_data_memory,
-                        'free_disk' => $server_data_memory,
+                        'free_disk' => $server_data_disk,
                     ]);
 
                     $lxd->where('id', $this->config['inst_id'])->update([
