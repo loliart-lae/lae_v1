@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="mdui-text-color-theme">容器管理</h1>
 
-    <div class="mdui-table-fluid">
+    <div class="mdui-table-fluid mdui-typo">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
@@ -25,7 +25,7 @@
                     <th>操作</th>
                 </tr>
             </thead>
-            <tbody class="mdui-typo">
+            <tbody>
                 <tr>
                     <td colspan="14" class="mdui-text-center">
                         <a href="{{ route('lxd.create') }}">新建 Linux 容器</a>
