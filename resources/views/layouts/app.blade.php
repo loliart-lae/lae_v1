@@ -50,7 +50,6 @@
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="https://f.lightart.top/" class="mdui-btn mdui-ripple mdui-ripple-white">社区</a>
-                <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
                     {{ Auth::user()->balance }}</a>
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
