@@ -6,7 +6,7 @@
     <h1 class="mdui-text-color-theme">我所在的项目</h1>
     <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建项目</a> &nbsp; <a href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请列表</a>
     <div class="mdui-row mdui-m-t-2">
-        <div class="mdui-col-xs-6">
+        <div class="mdui-col-sm-6">
 
             @foreach ($projects as $project)
                 <div>
