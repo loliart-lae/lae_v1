@@ -7,6 +7,7 @@ use App\Models\Forward;
 use App\Models\Project;
 use App\Jobs\SendEmailJob;
 use App\Models\LxdContainer;
+use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
@@ -41,6 +42,7 @@ class CostJob implements ShouldQueue
         $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
         $project = new Project();
         $forward = new Forward();
+        $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
         // $server = new Server();
 
 
@@ -60,7 +62,7 @@ class CostJob implements ShouldQueue
             //     dispatch(new SendEmailJob($email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
             // }
 
-            if ($current_project_balance - $need_pay <= 0) {
+            if ($current_project_balance - $need_pay < 0) {
                 // 扣费失败，删除容器
                 // $forward_where = $forward->where('lxd_id', $lxd->id);
 
@@ -106,8 +108,33 @@ class CostJob implements ShouldQueue
                 // 扣费
                 $project_where->update(['balance' => $current_project_balance - $need_pay]);
             }
+        }
 
+        // 获取远程桌面并计费
+        foreach ($remote_desktops as $remote_desktop) {
+            // 金额
+            $project_id = $remote_desktop->project->id;
+            $project_where = $project->where('id', $project_id);
 
+            $need_pay = $remote_desktop->server->price;
+
+            $current_project_balance = $project_where->firstOrFail()->balance;
+
+            if ($current_project_balance - $need_pay < 0) {
+                // 扣费失败，删除账号
+
+                RemoteDesktop::where('id', $remote_desktop->id)->delete();
+                $config = [
+                    'inst_id' => $remote_desktop->id,
+                    'method' => 'delete',
+                    'address' => $remote_desktop->server->address,
+                    'token' => $remote_desktop->server->token,
+                ];
+                dispatch(new RemoteDesktopJob($config));
+            } else {
+                // 扣费
+                $project_where->update(['balance' => $current_project_balance - $need_pay]);
+            }
         }
     }
 }

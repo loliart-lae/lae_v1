@@ -42,12 +42,13 @@
                 <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('doing') }}" class="mdui-btn mdui-ripple mdui-ripple-white">为什么选择</a>
                 <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white">关于我们</a>
-                <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
+                <a target="_blank" href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
-                <a href="{{ route('doing') }}" class="mdui-ripple mdui-ripple-white">Windows 工作站</a>
+                <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
+                <a href="https://f.lightart.top/" class="mdui-btn mdui-ripple mdui-ripple-white">社区</a>
                 <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
                     {{ Auth::user()->balance }}</a>

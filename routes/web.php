@@ -64,6 +64,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/lxd/{project_id}/create', [Controllers\AppEngineController::class, 'create_in_project'])->name('lxd.create_in_project');
     Route::resource('/lxd/{lxd_id}/forward', Controllers\ForwardController::class);
 
+    Route::resource('/remote_desktop', Controllers\RemoteDesktopController::class);
+
     Route::resource('/projects/{project_id}/members', Controllers\ProjectMembersController::class);
 
 });

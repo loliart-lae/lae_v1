@@ -47,7 +47,7 @@ class AppEngineController extends Controller
         $projects = $member->where('user_id', Auth::id())->with('project')->get();
 
         // 选择服务器
-        $servers = $server->where('free_disk', '>', '5')->where('free_mem', '>', '1024')->get();
+        $servers = $server->where('free_disk', '>', '5')->where('free_mem', '>', '1024')->where('type', 'container')->get();
         // 列出模板
         $templates = $lxdTemplate->get();
 
@@ -84,14 +84,14 @@ class AppEngineController extends Controller
         $this->validate($request, [
             'project_id' => 'required',
             'name' => 'required',
-            'password' => 'required|alpha_dash',
+            'password' => 'required|alpha_dash|min:1|max:20',
             'image_id' => 'required',
             'server_id' => 'required'
         ]);
 
         $project_id = $request->project_id;
         // 在选定的项目中新建容器
-        if ($member->where('user_id', Auth::id())->where('project_id', $project_id)->exists()) {
+        if (ProjectMembersController::userInProject($project_id)) {
 
             // 预定义
             $lxdTemplate_data = $lxdTemplate->where('id', $request->template_id)->firstOrFail();
@@ -163,7 +163,6 @@ class AppEngineController extends Controller
                 'user' => Auth::id(),
             ];
 
-
             // 入列
             dispatch(new LxdJob($config));
 
@@ -198,7 +197,7 @@ class AppEngineController extends Controller
 
         $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template')->firstOrFail();
 
-        if (!$member->where('user_id', Auth::id())->where('project_id', $lxd->project_id)->exists()) {
+        if (!ProjectMembersController::userInProject($lxd->project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
         }
 
@@ -208,7 +207,7 @@ class AppEngineController extends Controller
 
 
         // 获取已启用的项目模板
-        return view('lxd.update', compact('selected_template', 'templates', 'id'));
+        return view('lxd.edit', compact('selected_template', 'templates', 'id'));
     }
 
     /**
@@ -226,7 +225,7 @@ class AppEngineController extends Controller
 
         $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template', 'server')->firstOrFail();
 
-        if (!$member->where('user_id', Auth::id())->where('project_id', $lxd->project_id)->exists()) {
+        if (!ProjectMembersController::userInProject($lxd->project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
         }
 
@@ -270,7 +269,6 @@ class AppEngineController extends Controller
      */
     public function destroy($id)
     {
-        $member = new ProjectMember();
         $lxdContainer = new LxdContainer();
         $forwards = new Forward();
         $lxdContainer_data = $lxdContainer->where('id', $id)->with('server', 'template')->firstOrFail();
@@ -283,7 +281,7 @@ class AppEngineController extends Controller
         }
         $project_id = $lxdContainer_data->project_id;
         $server_where_id = $lxdContainer_data->server;
-        if ($member->where('user_id', Auth::id())->where('project_id', $project_id)->exists()) {
+        if (ProjectMembersController::userInProject($project_id)) {
             // 调度删除任务
             $config = [
                 'inst_id' => $id,

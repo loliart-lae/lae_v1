@@ -105,4 +105,9 @@ class ProjectMembersController extends Controller
             return redirect()->back()->with('status', '删除成功。');
         } else abort(404);
     }
+
+    public static function userInProject($id) {
+        $member = new ProjectMember();
+        return $member->where('user_id', Auth::id())->where('project_id', $id)->exists();
+    }
 }

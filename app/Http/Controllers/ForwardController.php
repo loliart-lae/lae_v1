@@ -152,7 +152,7 @@ class ForwardController extends Controller
 
         $project_id = $forward_data->project_id;
         $server_where_id = $forward_data->server;
-        if ($member->where('user_id', Auth::id())->where('project_id', $project_id)->exists()) {
+        if (ProjectMembersController::userInProject($project_id)) {
             // 调度删除任务
             $config = [
                 'forward_id' => $id,

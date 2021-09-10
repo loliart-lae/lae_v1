@@ -53,6 +53,7 @@ class ProjectInviteController extends Controller
 
         // 存在
         // 检查是否已存在项目中
+
         if ($member->where('user_id', $user_id)->where('project_id', $request->route('project_id'))->exists()) {
             return redirect()->back()->with('status', '对象已在项目中。');
         } else {
