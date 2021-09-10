@@ -160,7 +160,7 @@ class RemoteDesktopController extends Controller
             'password' => $request->password,
         ];
 
-        dispatch(new RemoteDesktopJob($config));
+        dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');
 
         return redirect()->route('remote_desktop.index')->with('status', '密码已安排修改，稍等几分钟即可启用新的密码。');
     }
@@ -182,7 +182,7 @@ class RemoteDesktopController extends Controller
                 'address' => $remote_desktop->server->address,
                 'token' => $remote_desktop->server->token,
             ];
-            dispatch(new RemoteDesktopJob($config));
+            dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');
 
             // 删除
             RemoteDesktop::where('id', $id)->delete();
