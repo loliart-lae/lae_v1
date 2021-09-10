@@ -22,6 +22,10 @@
             color: white !important;
         }
 
+        .mdui-tab-scrollable {
+            padding-left: 0;
+        }
+
     </style>
 
     <!-- JavaScripts -->
