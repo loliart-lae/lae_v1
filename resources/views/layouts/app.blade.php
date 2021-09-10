@@ -35,13 +35,13 @@
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
-    <div class="mdui-appbar mdui-appbar-fixed" id="appbar">
-        <div class="mdui-tab mdui-color-theme" mdui-tab>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
+        <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width" mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
-                <a href="{{ route('doing') }}" class="mdui-btn mdui-ripple mdui-ripple-white">为什么选择</a>
-                <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white">关于我们</a>
+                <a href="{{ route('doing') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">为什么选择</a>
+                <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">关于我们</a>
                 <a target="_blank" href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
