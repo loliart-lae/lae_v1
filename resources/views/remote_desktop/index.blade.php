@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部ID</th>
+                    <th>内部 ID</th>
                     <th>用户名</th>
                     <th>CPU</th>
                     <th>内存</th>
