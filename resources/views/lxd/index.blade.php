@@ -10,12 +10,12 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部ID</th>
+                    <th>内部 ID</th>
                     <th>名称</th>
                     <th>CPU</th>
                     <th>内存</th>
                     <th>硬盘</th>
-                    <th>内部IP</th>
+                    <th>内部 IP</th>
                     <th>带宽限制</th>
                     <th>模板</th>
                     <th>属于服务器</th>
