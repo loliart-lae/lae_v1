@@ -80,7 +80,7 @@
                 @if ($i > 10)
                     <tr>
                         <td colspan="12" class="mdui-text-center">
-                            <a href="{{ route('lxd.create') }}">来1份容器，谢谢</a>
+                            <a href="{{ route('lxd.create') }}">来 1 份容器，谢谢</a>
                         </td>
                     </tr>
                 @endif

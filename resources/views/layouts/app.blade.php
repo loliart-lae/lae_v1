@@ -45,6 +45,7 @@
                 <a target="_blank" href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
+                <a href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
