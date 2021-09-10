@@ -128,9 +128,11 @@ class CostJob implements ShouldQueue
                     'inst_id' => $remote_desktop->id,
                     'method' => 'delete',
                     'address' => $remote_desktop->server->address,
+                    'username' => $remote_desktop->username,
                     'token' => $remote_desktop->server->token,
                 ];
-                dispatch(new RemoteDesktopJob($config));
+
+                dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
             } else {
                 // 扣费
                 $project_where->update(['balance' => $current_project_balance - $need_pay]);
