@@ -57,6 +57,9 @@ class RemoteDesktopController extends Controller
             'password' => 'required|alpha_dash|min:1|max:20'
         ]);
 
+        if ($request->username == 'Administrator') {
+            return redirect()->back()->with('status', 'Error: What are you trying to do ?');
+        }
 
         if (!ProjectMembersController::userInProject($request->project_id)) {
             return redirect()->back()->with('status', '项目不存在。');
