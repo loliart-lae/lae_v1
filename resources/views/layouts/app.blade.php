@@ -77,6 +77,10 @@
         <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple"><i
             style="position: relative; top: -1px;margin-right: 2px"
             class="mdui-icon material-icons">arrow_back</i>返回</a>
+
+        <div class="mdui-typo">
+            <hr/>
+        </div>
         @yield('content')
     </div>
 
