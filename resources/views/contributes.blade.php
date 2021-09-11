@@ -45,11 +45,11 @@
                     <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">咸鱼中的咸鱼</div>
+                            <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
                         </div>
                         <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple mdui-ripple-white">Blog</button>
-                            <button class="mdui-btn mdui-ripple mdui-ripple-white">Github</button>
+                            <button href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</button>
+                            <button href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</button>
                         </div>
                     </div>
                 </div>
