@@ -74,7 +74,7 @@
     </div>
 
     <div style="position: static;bottom: 0;width: 100%;margin: 5px" class="mdui-typo">
-        <p style="text-align: center" class="mdui-typo-caption-opacity"><a href="{{ route('contributes') }}">Contributors</a><br />Light App Engine<br />Created with 💗 by iVampireSP.com<br /></p>
+        <p style="text-align: center" class="mdui-typo-caption-opacity"><a href="{{ route('contributes') }}">Contributors</a><br />Light App Engine<br />Crafted with 💗 by iVampireSP.com<br /></p>
     </div>
 
     <script>
