@@ -89,6 +89,14 @@
         </div>
     </div>
 
+    <div class="doc-footer-nav">
+        <div class="mdui-container">
+            <div class="mdui-typo">
+                <p>测试<p>
+            </div>
+        </div>
+    </div>
+
     
     
     <!--
