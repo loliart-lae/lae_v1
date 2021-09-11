@@ -48,8 +48,8 @@
                             <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
                         </div>
                         <div class="mdui-card-actions">
-                            <button href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</button>
-                            <button href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</button>
+                            <a href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
