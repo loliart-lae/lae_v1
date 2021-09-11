@@ -45,7 +45,7 @@
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
-    <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
+    <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered mdui-tab-centered" id="appbar">
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width" mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
