@@ -42,6 +42,7 @@ Route::prefix('/')->group(function () {
         return view('contributes');
     })->name('contributes');
 
+    Route::post('/tunnel/auth', [Controllers\TunnelController::class, 'auth']);
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -68,6 +69,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/lxd/{lxd_id}/forward', Controllers\ForwardController::class);
 
     Route::resource('/remote_desktop', Controllers\RemoteDesktopController::class);
+
+    Route::resource('/tunnels', Controllers\TunnelController::class);
 
     Route::resource('/projects/{project_id}/members', Controllers\ProjectMembersController::class);
 
