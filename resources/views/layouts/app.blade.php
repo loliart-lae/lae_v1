@@ -43,13 +43,15 @@
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width" mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
-                <a target="_blank" href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
+                <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
+                    class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('doing') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">为什么选择</a>
                 <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">关于我们</a>
                 <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
-                <a target="_blank" href="https://f.lightart.top/t/knowledge-base" class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
+                <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
+                    class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
@@ -79,6 +81,14 @@
         $("#pre_btn").hide()
         $(document).on('pjax:clicked', function() {
             $("#pre_btn").fadeIn()
+        })
+        $(document).on("pjax:timeout", function(event) {
+            mdui.snackbar({
+                message: '在与服务器连接时出现问题，请尝试刷新页面。',
+                position: 'bottom'
+            })
+
+            event.preventDefault()
         })
     </script>
     @yield('script')
