@@ -52,27 +52,6 @@
                 </div>
             </div>
         </div>
-            <!--
-            <div class="mdui-m-b-4">
-                <img width="100" height="100"class="mdui-img-circle" src="https://nwl.im/avatar" />
-                <div class="mdui-typo-display-1">iVampireSP.com</div>
-                <ul>
-                    <li>创始人</li>
-                </ul>
-            </div>
-
-            <div class="mdui-m-b-4">
-                <img width="100" height="100"class="mdui-img-circle" src="https://q1.qlogo.cn/g?b=qq&nk=1016696385&s=100" />
-                <div class="mdui-typo-display-1">冰砚炽</div>
-                <ul>
-                    <li>前端优化</li>
-                </ul>
-            </div>
-
-
-        </div>
-        -->
-
     </div>
 
     <div class="mdui-row">
@@ -108,9 +87,5 @@
             </ol>
         </div>
     </div>
-
-
-
-
 
 @endsection
