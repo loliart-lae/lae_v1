@@ -45,7 +45,7 @@
                 <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
                     class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
-                <a href="{{ route('doing') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">为什么选择</a>
+                <a href="{{ route('why') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">为什么选择</a>
                 <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white disabled">关于我们</a>
                 <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
             @else
