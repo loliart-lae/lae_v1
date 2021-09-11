@@ -3,8 +3,10 @@
 @section('title', '贡献名单')
 
 @section('content')
-    <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
-    <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
+    <div class="mdui-row">
+        <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
+        <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
+    </div>
 
     <div class="mdui-row">
         <h1 class="mdui-text-color-theme">开发人员</h1>
