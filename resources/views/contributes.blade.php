@@ -45,7 +45,7 @@
                     <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Title</div>
+                            <div class="mdui-card-primary-title">咸鱼中的咸鱼</div>
                             <div class="mdui-card-primary-subtitle">Subtitle</div>
                         </div>
                         <div class="mdui-card-actions">
