@@ -19,7 +19,7 @@
             </div>
 
             <div class="mdui-card-media">
-                <img src="card.jpg"/>
+                <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
                 <div class="mdui-card-media-covered">
                     <div class="mdui-card-primary">
                         <div class="mdui-card-primary-title">Title</div>
