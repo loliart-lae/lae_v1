@@ -11,7 +11,7 @@
                 <tr>
                     <th>ID</th>
                     <th>内部 ID</th>
-                    <th width="3%">名称</th>
+                    <th width="10%">名称</th>
                     <th>CPU</th>
                     <th>内存</th>
                     <th>硬盘</th>
