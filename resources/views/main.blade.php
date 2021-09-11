@@ -4,7 +4,6 @@
 
 @section('content')
 
-<div class="mdui-typo">
     <h1 class="mdui-text-color-theme">我们是？</h1>
     <p>嘿，这里是 <b>Light App Engine</b>，简称 <b>LAE</b>。</p>
 
@@ -54,8 +53,5 @@
         <li>任何违反服务器所在 “地区/国家” 法律行为。</li>
         <li>长时间高强度占用资源。</li>
     </ul>
-</div>
-
-
 
 @endsection
