@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="mdui-card-media">
-                    <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg" height="200" width="400"/>
+                    <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg" height="300" width="400"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">咕咕咕咕咕咕咕咕咕</div>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="mdui-card-media">
-                    <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png" height="200" width="400"/>
+                    <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png" height="300" width="400"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
