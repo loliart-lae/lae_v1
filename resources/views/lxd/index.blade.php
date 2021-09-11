@@ -11,18 +11,18 @@
                 <tr>
                     <th>ID</th>
                     <th>内部 ID</th>
-                    <th width="10%">名称</th>
-                    <th>CPU</th>
+                    <th>显示名称</th>
+                    <th>CPU 核心数</th>
                     <th>内存</th>
-                    <th>硬盘</th>
+                    <th>硬盘空间</th>
                     <th>内部 IP</th>
                     <th>带宽限制</th>
-                    <th>模板</th>
-                    <th>属于服务器</th>
+                    <th>使用模板</th>
+                    <th>属于的服务器</th>
                     <th>属于项目</th>
                     <th>端口转发</th>
                     <th>总价格</th>
-                    <th>操作</th>
+                    <th>可用操作</th>
                 </tr>
             </thead>
             <tbody>
