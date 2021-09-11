@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="mdui-row">
+    <div class="mdui-row mdui-container">
         <h1 class="mdui-text-color-theme">Bug 发现者</h1>
         <p>非常感谢以下人员及时发现并反馈Bug。</p>
         <div class="mdui-typo">
