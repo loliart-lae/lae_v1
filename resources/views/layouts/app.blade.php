@@ -74,19 +74,21 @@
         </div>
     </div>
     <div class="mdui-container mdui-p-a-2 pjax-container">
-        <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple"><i
+        <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple margin-bottom"><i
             style="position: relative; top: -1px;margin-right: 2px"
             class="mdui-icon material-icons">arrow_back</i>返回</a>
 
         @yield('content')
     </div>
-
+    
+    <!--
     <div style="position: static;bottom: 0;width: 98%;margin: auto;margin-bottom: 5px;margin-top: 5px;"
         class="mdui-typo">
         <p style="text-align: center" class="mdui-typo-caption-opacity"><a
                 href="{{ route('contributes') }}">Contributors</a><br />Light App Engine<br />Crafted with 💗 by
             iVampireSP.com<br /></p>
     </div>
+    -->
 
     <script>
         $.pjax.defaults.timeout = 1200
