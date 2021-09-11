@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'dashboard/*'
+        'dashboard/*',
+        'tunnel/auth'
     ];
 }
