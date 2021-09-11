@@ -3,8 +3,8 @@
 @section('title', '首页')
 
 @section('content')
-<div class="mdui-typo-display-2">嘿，你好</div><br>
-<div class="mdui-typo-display-1-opacity">借助 LAE 轻量应用引擎 在互联网中快速开辟一席之地</div>
+<div class="mdui-typo-display-1">嘿，你好</div><br>
+<div class="mdui-typo-headline">借助 LAE 轻量应用引擎 在互联网中快速开辟一席之地</div>
 
 <div class="mdui-typo">
     <h2 class="mdui-text-color-theme">嗯？这是什么！</h2>
