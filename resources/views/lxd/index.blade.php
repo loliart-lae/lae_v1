@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $lxd->id }}</td>
-                        <td>{{ $lxd->name }}</td>
+                        <td width="3%">{{ $lxd->name }}</td>
                         <td>{{ $lxd->template->cpu }} Core</td>
                         <td>{{ $lxd->template->mem }}M</td>
                         <td>{{ $lxd->template->disk }} G</td>
