@@ -76,6 +76,7 @@
     </div>
 
     <div class="mdui-row">
+        <br>
         <div class="mdui-typo-display-2">Bug 发现者</div>
         <p>非常感谢以下人员及时发现并反馈Bug。</p>
         <div style="margin-left: 10px;padding: 20px">
