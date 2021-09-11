@@ -74,9 +74,11 @@
         </div>
     </div>
     <div class="mdui-container mdui-p-a-2 pjax-container">
-        <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple"><i
+        <div class="mdui-row">
+            <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple"><i
                 style="position: relative; top: -1px;margin-right: 2px"
                 class="mdui-icon material-icons">arrow_back</i>返回</a>
+        </div>
         @yield('content')
     </div>
 
