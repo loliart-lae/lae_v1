@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="mdui-row">
         <h1 class="mdui-text-color-theme">意见提交者</h1>
         <p>非常感谢以下人员向我们提供宝贵的意见。</p>
         <div class="mdui-typo">
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="mdui-row">
         <h1 class="mdui-text-color-theme">知识分享者</h1>
         <p>非常感谢以下人员丰富社区知识库，让大家能够更好的博览。</p>
         <div class="mdui-typo">
