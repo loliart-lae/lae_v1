@@ -19,7 +19,7 @@
                     <th>属于的服务器</th>
                     <th>属于项目</th>
                     <th>总价格</th>
-                    <th>当前可选择的操作</th>
+                    <th>当前可选的操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
