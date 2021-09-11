@@ -11,19 +11,20 @@
     <div>
         <div class="mdui-typo-display-2">开发人员</div>
         <div style="margin-left: 10px;padding: 20px">
-
+        <div class="mdui-col-sm-6 mdui-col-md-4">
         <div class="mdui-card">
-        <!-- 卡片头部，包含头像、标题、副标题 -->
-            <div class="mdui-card-header">
-                <img class="mdui-card-header-avatar" src="https://nwl.im/avatar"/>
-            </div>
+            <!-- 卡片头部，包含头像、标题、副标题 -->
+                <div class="mdui-card-header">
+                    <img class="mdui-card-header-avatar" src="https://nwl.im/avatar"/>
+                </div>
 
-            <div class="mdui-card-media">
-                <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
-                <div class="mdui-card-media-covered">
-                    <div class="mdui-card-primary">
-                        <div class="mdui-card-primary-title">Title</div>
-                        <div class="mdui-card-primary-subtitle">Subtitle</div>
+                <div class="mdui-card-media">
+                    <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
+                    <div class="mdui-card-media-covered">
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">Title</div>
+                            <div class="mdui-card-primary-subtitle">Subtitle</div>
+                        </div>
                     </div>
                 </div>
             </div>
