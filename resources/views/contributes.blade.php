@@ -11,12 +11,14 @@
     <div>
         <div class="mdui-typo-display-2">开发人员</div>
         <div style="margin-left: 10px;padding: 20px">
-        
+
         <div class="mdui-col-sm-6 mdui-col-md-4">
             <div class="mdui-card">
                 <!-- 卡片头部，包含头像、标题、副标题 -->
                 <div class="mdui-card-header">
                     <img class="mdui-card-header-avatar" src="https://nwl.im/avatar"/>
+                    <div class="mdui-card-header-title">iVampireSP.com</div>
+                    <div class="mdui-card-header-subtitle">创始人</div>
                 </div>
 
                 <div class="mdui-card-media">
