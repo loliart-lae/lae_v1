@@ -45,8 +45,8 @@
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
-    <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered mdui-tab-centered" id="appbar">
-        <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width" mdui-tab>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
+        <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width mdui-tab-centered" mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
