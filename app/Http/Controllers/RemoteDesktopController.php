@@ -19,7 +19,7 @@ class RemoteDesktopController extends Controller
      */
     public function index()
     {
-        $remote_desktops = RemoteDesktop::with(['server'])->whereHas('member', function ($query) {
+        $remote_desktops = RemoteDesktop::with('server')->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
         return view('remote_desktop.index', compact('remote_desktops'));
