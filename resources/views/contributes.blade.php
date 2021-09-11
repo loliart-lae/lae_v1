@@ -37,9 +37,9 @@
             <div class="mdui-card">
                 <!-- 卡片头部，包含头像、标题、副标题 -->
                 <div class="mdui-card-header">
-                    <img class="mdui-card-header-avatar" src="https://nwl.im/avatar"/>
-                    <div class="mdui-card-header-title">iVampireSP.com</div>
-                    <div class="mdui-card-header-subtitle">创始人</div>
+                    <img class="mdui-card-header-avatar" src="https://q1.qlogo.cn/g?b=qq&nk=1016696385&s=100"/>
+                    <div class="mdui-card-header-title">冰砚炽</div>
+                    <div class="mdui-card-header-subtitle">前端优化</div>
                 </div>
 
                 <div class="mdui-card-media">
@@ -69,9 +69,10 @@
                     <li>前端优化</li>
                 </ul>
             </div>
--->
+
 
         </div>
+        -->
 
     </div>
 
