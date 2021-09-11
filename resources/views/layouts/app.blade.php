@@ -80,7 +80,7 @@
 
         @yield('content')
 
-        <div class="mdui-typo">
+        <div class="mdui-typo margin-top">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 <a href="{{ route('contributes') }}">Contributors</a>
                 <br />Light App Engine<br />
