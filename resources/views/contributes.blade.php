@@ -24,8 +24,11 @@
                     <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Title</div>
-                            <div class="mdui-card-primary-subtitle">Subtitle</div>
+                            <div class="mdui-card-primary-title">咕咕咕咕咕咕咕咕咕</div>
+                        </div>
+                        <div class="mdui-card-actions">
+                            <a href="https://ivampiresp.com/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a href="https://github.com/iVampireSP" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
