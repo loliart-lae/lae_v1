@@ -46,7 +46,6 @@
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">咸鱼中的咸鱼</div>
-                            <div class="mdui-card-primary-subtitle">Subtitle</div>
                         </div>
                         <div class="mdui-card-actions">
                             <button class="mdui-btn mdui-ripple mdui-ripple-white">Blog</button>
