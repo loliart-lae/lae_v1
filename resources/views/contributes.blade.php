@@ -48,9 +48,11 @@
         <div class="mdui-typo-display-2">意见提交者</div>
         <p>非常感谢以下人员向我们提供宝贵的意见。</p>
         <div style="margin-left: 10px;padding: 20px">
-            <li>苏沫</li>
-            <li>Tony Stark</li>
-            <li>以及没有被提及的广大用户们。</li>
+            <ol>
+                <li>苏沫</li>
+                <li>Tony Stark</li>
+                <li>以及没有被提及的广大用户们。</li>
+            </ol>
         </div>
     </div>
 
@@ -58,7 +60,9 @@
         <div class="mdui-typo-display-2">知识分享者</div>
         <p>非常感谢以下人员丰富社区知识库，让大家能够更好的博览。</p>
         <div style="margin-left: 10px;padding: 20px">
-            <p>暂无成员，争做第一吧。</p>
+            <ol>
+                <p>暂无成员，争做第一吧。</p>
+            </ol>
         </div>
     </div>
 
