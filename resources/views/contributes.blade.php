@@ -8,7 +8,7 @@
 
     <div class="mdui-row">
         <h1 class="mdui-text-color-theme">开发人员</h1>
-        
+
         <div class="mdui-col-sm-12 mdui-col-md-4">
             <div class="mdui-card">
                 <div class="mdui-card-header">
@@ -24,14 +24,14 @@
                             <div class="mdui-card-primary-title">咕咕咕咕咕咕咕咕咕</div>
                         </div>
                         <div class="mdui-card-actions">
-                            <a href="https://ivampiresp.com/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
-                            <a href="https://github.com/iVampireSP" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
+                            <a target="_blank" href="https://ivampiresp.com/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a target="_blank" href="https://github.com/iVampireSP" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="mdui-col-sm-12 mdui-col-md-4">
             <div class="mdui-card">
                 <div class="mdui-card-header">
@@ -47,8 +47,8 @@
                             <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
                         </div>
                         <div class="mdui-card-actions">
-                            <a href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
-                            <a href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
+                            <a target="_blank" href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a target="_blank" href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
