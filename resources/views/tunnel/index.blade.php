@@ -19,7 +19,7 @@
                     <th>属于服务器</th>
                     <th>属于项目</th>
                     <th>总价格</th>
-                    <th>配置文件以及删除</th>
+                    <th>可选的操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
@@ -58,7 +58,7 @@
                         <td>{{ $tunnel->server->price }}/m
                         </td>
 
-                        <td><a href="{{ route('tunnels.show', $tunnel->id)}}">配置文件</a>|
+                        <td><a href="{{ route('tunnels.show', $tunnel->id)}}">配置文件</a> | 
                             <a href="#"
                                 onclick="if (confirm('删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
