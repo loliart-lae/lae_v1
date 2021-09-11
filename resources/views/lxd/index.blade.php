@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="mdui-text-color-theme">容器管理</h1>
 
-    <div class="mdui-table-fluid mdui-typo">
+    <div class="mdui-table-fluid mdui-typo mdui-container">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
