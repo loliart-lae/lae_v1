@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <div class="doc-footer-nav">
+    <div class="doc-footer-nav mdui-color-theme">
         <div class="mdui-container">
             <div class="mdui-typo">
                 <p>测试<p>
