@@ -14,16 +14,22 @@
 
     <title>@yield('title') - {{ config('app.name') }}</title>
     <style>
-        .mdui-list-item {
-            border-radius: 0 50px 50px 0;
-        }
-
         .mdui-theme-primary-blue .mdui-color-theme {
             color: white !important;
         }
 
         .mdui-tab-scrollable {
             padding-left: 0;
+        }
+
+        .mdui-btn {
+            border-radius: 3px
+        }
+
+        .mdui-card,
+        .mdui-table-fluid,
+        .mdui-dialog {
+            border-radius: 5px
         }
 
     </style>
@@ -73,8 +79,11 @@
         @yield('content')
     </div>
 
-    <div style="position: static;bottom: 0;width: 98%;margin: auto;margin-bottom: 5px;margin-top: 5px;" class="mdui-typo">
-        <p style="text-align: center" class="mdui-typo-caption-opacity"><a href="{{ route('contributes') }}">Contributors</a><br />Light App Engine<br />Crafted with 💗 by iVampireSP.com<br /></p>
+    <div style="position: static;bottom: 0;width: 98%;margin: auto;margin-bottom: 5px;margin-top: 5px;"
+        class="mdui-typo">
+        <p style="text-align: center" class="mdui-typo-caption-opacity"><a
+                href="{{ route('contributes') }}">Contributors</a><br />Light App Engine<br />Crafted with 💗 by
+            iVampireSP.com<br /></p>
     </div>
 
     <script>
