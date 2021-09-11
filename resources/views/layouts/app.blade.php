@@ -97,7 +97,7 @@
         })
         $(document).on("pjax:timeout", function(event) {
             mdui.snackbar({
-                message: '与服务器连接时可能网络不太通畅。',
+                message: '与服务器连接时可能网络不太通畅',
                 position: 'bottom'
             })
 
