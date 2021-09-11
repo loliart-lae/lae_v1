@@ -67,7 +67,7 @@
                 @endforeach
                 @if ($i > 10)
                     <tr>
-                        <td colspan="12" class="mdui-text-center">
+                        <td colspan="11" class="mdui-text-center">
                             <a href="{{ route('remote_desktop.create') }}">新建个 阿噜噜噜噜噜噜吧 账号</a>
                         </td>
                     </tr>
