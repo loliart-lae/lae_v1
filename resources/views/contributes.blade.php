@@ -78,12 +78,12 @@
     <div class="mdui-row">
         <h1 class="mdui-text-color-theme">Bug 发现者</h1>
         <p>非常感谢以下人员及时发现并反馈Bug。</p>
-        <div style="margin-left: 10px;padding: 20px">
-            <ol>
+        <div class="mdui-typo">
+            <ul>
                 <li>苏沫</li>
                 <li>Tony Stark</li>
                 <li>以及没有被提及的广大用户们。</li>
-            </ol>
+            </ul>
         </div>
     </div>
 
