@@ -12,7 +12,7 @@
         <div class="mdui-typo-display-2">开发人员</div><br>
         
 
-        <div class="mdui-col-sm-6 mdui-col-md-4">
+        <div class="mdui-col-sm-6 mdui-col-md-6">
             <div class="mdui-card">
                 <!-- 卡片头部，包含头像、标题、副标题 -->
                 <div class="mdui-card-header">
