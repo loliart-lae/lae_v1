@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    
+    <!--
     <div class="mdui-color-grey-300 mdui-p-a-2 pjax-container">
         <div class="mdui-container-fluid mdui-valign">
             <div class="mdui-typo mdui-row">
@@ -105,6 +105,7 @@
             </div>
         </div>
     </div>
+    -->
     
 
     <script>
