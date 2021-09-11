@@ -11,7 +11,7 @@
                 <tr>
                     <th>ID</th>
                     <th>内部 ID</th>
-                    <th>名称</th>
+                    <th width="3%">名称</th>
                     <th>CPU</th>
                     <th>内存</th>
                     <th>硬盘</th>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $lxd->id }}</td>
-                        <td width="3%">{{ $lxd->name }}</td>
+                        <td>{{ $lxd->name }}</td>
                         <td>{{ $lxd->template->cpu }} Core</td>
                         <td>{{ $lxd->template->mem }}M</td>
                         <td>{{ $lxd->template->disk }} G</td>
