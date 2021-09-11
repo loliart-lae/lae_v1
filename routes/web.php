@@ -38,6 +38,9 @@ Route::prefix('/')->group(function () {
         return view('about_us');
     })->name('about_us');
 
+    Route::get('contributes', function () {
+        return view('contributes');
+    })->name('contributes');
 
 });
 

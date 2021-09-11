@@ -71,8 +71,10 @@
                 style="position: relative; top: -1px;margin-right: 2px"
                 class="mdui-icon material-icons">arrow_back</i>返回</a>
         @yield('content')
+    </div>
 
-        {{-- <div style="position: absolute;bottom: 0;margin: 5px"><p style="mdui-center">贡献名单</p></div> --}}
+    <div style="position: static;bottom: 0;width: 100%;margin: 5px" class="mdui-typo">
+        <p style="text-align: center" class="mdui-typo-caption-opacity"><a href="{{ route('contributes') }}">Contributors</a><br />Light App Engine<br />Created with 💗 by iVampireSP.com<br /></p>
     </div>
 
     <script>
