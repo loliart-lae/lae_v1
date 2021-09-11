@@ -9,7 +9,7 @@
     <br /><br /><br /><br />
 
     <div class="mdui-row">
-        <h2 class="mdui-text-color-theme">开发人员</h2>
+        <h1 class="mdui-text-color-theme">开发人员</h1>
         
         <div class="mdui-col-sm-6 mdui-col-md-4">
             <div class="mdui-card">
