@@ -80,6 +80,11 @@
 
         @yield('content')
     </div>
+
+    <div class="mdui-center">
+        <p class="mdui-typo-caption-opacity">Light App Engine<br />Crafted with 💗 by
+            iVampireSP.com<br /></p>
+    </div>
     
     <!--
     <div style="position: static;bottom: 0;width: 98%;margin: auto;margin-bottom: 5px;margin-top: 5px;"
