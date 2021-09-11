@@ -8,7 +8,7 @@
     <div class="mdui-typo-display-1-opacity">Light App Engine 离不开广大用户的支持。</div>
     <br /><br />
 
-    <div class="mdui-row">
+    <div class="mdui-row mdui-container">
         <h1 class="mdui-text-color-theme">开发人员</h1>
         
         <div class="mdui-col-sm-6 mdui-col-md-4">
