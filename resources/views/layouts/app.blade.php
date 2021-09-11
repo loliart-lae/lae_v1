@@ -61,6 +61,7 @@
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
+                <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
                 <a target="_blank" href="https://f.lightart.top/" class="mdui-btn mdui-ripple mdui-ripple-white">社区</a>
                 <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
                     class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
@@ -110,6 +111,14 @@
             message: '{{ session('status') }}',
             position: 'top'
             });
+        @endif
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                mdui.snackbar({
+                message: 'Error: ' + '{{ $error }}',
+                position: 'bottom'
+                });
+            @endforeach
         @endif
     </script>
 </body>
