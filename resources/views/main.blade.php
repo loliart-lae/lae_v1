@@ -5,10 +5,10 @@
 @section('content')
 
 <div class="mdui-typo">
-    <h2 class="mdui-text-color-theme">我们是？</h2>
+    <h1 class="mdui-text-color-theme">我们是？</h1>
     <p>嘿，这里是 <b>Light App Engine</b>，简称 <b>LAE</b>。</p>
 
-    <h2 class="mdui-text-color-theme">在这个平台可以做什么？</h2>
+    <h1 class="mdui-text-color-theme">在这个平台可以做什么？</h1>
     <p>你可以租赁容器，进行测试。或者利用容器组建一个集群，还可以使用单一容器开一个 Minecraft 服务器之类的。</p>
 
     <h1 class="mdui-text-color-theme">如何充值？</h1>
@@ -20,7 +20,7 @@
         <li>扫码充值</li>
     </ol>
 
-    <h2 class="mdui-text-color-theme">如何创建我的实例？</h2>
+    <h1 class="mdui-text-color-theme">如何创建我的实例？</h1>
     <p>要创建实例，首先你需要<b>确保</b>：</p>
 
     <ol>
@@ -39,7 +39,7 @@
 
     <p>到这里，你就可以使用容器啦~</p>
 
-    <h2 class="mdui-text-color-theme">什么是端口转发？我又如何访问我的容器？</h2>
+    <h1 class="mdui-text-color-theme">什么是端口转发？我又如何访问我的容器？</h1>
 
     <p>端口转发可以将内网端口转发到公网中。不同服务器之间内网无法互相访问。同服务器中，您可以借助一个容器访问另一个容器。</p>
 
@@ -47,7 +47,7 @@
 
     <p>转发时，请注意：外部端口必须大于 <kbd>1025</kbd></p>
 
-    <h2 class="mdui-text-color-theme">我不可以在容器上做什么？</h2>
+    <h1 class="mdui-text-color-theme">我不可以在容器上做什么？</h1>
 
     <ul>
         <li>肉鸡，扫描，等危害网络安全等行为。</li>
