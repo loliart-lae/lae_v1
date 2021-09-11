@@ -9,7 +9,7 @@
     <br /><br /><br /><br />
 
     <div>
-        <div class="mdui-typo-display-2">开发人员</div>
+        <div class="mdui-typo-display-2">开发人员</div><br>
         
 
         <div class="mdui-col-sm-6 mdui-col-md-4">
