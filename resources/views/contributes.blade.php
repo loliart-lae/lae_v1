@@ -76,8 +76,7 @@
     </div>
 
     <div class="mdui-row">
-        <br>
-        <h2 class="mdui-text-color-theme">Bug 发现者</h2>
+        <h1 class="mdui-text-color-theme">Bug 发现者</h1>
         <p>非常感谢以下人员及时发现并反馈Bug。</p>
         <div style="margin-left: 10px;padding: 20px">
             <ol>
@@ -89,9 +88,9 @@
     </div>
 
     <div>
-        <div class="mdui-typo-display-2">意见提交者</div>
+        <h1 class="mdui-text-color-theme">意见提交者</h1>
         <p>非常感谢以下人员向我们提供宝贵的意见。</p>
-        <div class="mdui-typo" style="margin-left: 10px;padding: 20px">
+        <div class="mdui-typo">
             <ul>
                 <li>苏沫</li>
                 <li>Tony Stark</li>
@@ -101,7 +100,7 @@
     </div>
 
     <div>
-        <div class="mdui-typo-display-2">知识分享者</div>
+        <h1 class="mdui-text-color-theme">知识分享者</h1>
         <p>非常感谢以下人员丰富社区知识库，让大家能够更好的博览。</p>
         <div style="margin-left: 10px;padding: 20px">
             <ol>
