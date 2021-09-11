@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1 class="mdui-text-color-theme">我们是？</h1>
+    <h2 class="mdui-text-color-theme">我们是？</h2>
     <p>嘿，这里是 <b>Light App Engine</b>，简称 <b>LAE</b>。</p>
 
     <h1 class="mdui-text-color-theme">在这个平台可以做什么？</h1>
