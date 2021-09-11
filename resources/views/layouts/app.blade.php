@@ -79,15 +79,17 @@
             class="mdui-icon material-icons">arrow_back</i>返回</a>
 
         @yield('content')
+
+        <div class="mdui-center">
+            <p class="mdui-typo-caption-opacity">
+                <a href="{{ route('contributes') }}">Contributors</a>
+                <br />Light App Engine<br />
+                Crafted with 💗 by iVampireSP.com<br />
+            </p>
+        </div>
     </div>
 
-    <div class="mdui-container mdui-center">
-        <p class="mdui-typo-caption-opacity">
-            <a href="{{ route('contributes') }}">Contributors</a>
-            <br />Light App Engine<br />
-            Crafted with 💗 by iVampireSP.com<br />
-        </p>
-    </div>
+    
     
     <!--
     <div style="position: static;bottom: 0;width: 98%;margin: auto;margin-bottom: 5px;margin-top: 5px;"
