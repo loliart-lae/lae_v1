@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <!--
+    
     <div class="mdui-color-grey-300">
         <div class="mdui-container mdui-valign">
             <div class="mdui-typo mdui-row">
@@ -105,7 +105,7 @@
             </div>
         </div>
     </div>
-    -->
+    
 
     <script>
         $.pjax.defaults.timeout = 1200
