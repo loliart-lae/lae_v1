@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="mdui-card-media">
-                    <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
+                    <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">Title</div>
@@ -45,8 +45,11 @@
                     <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png"/>
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Title</div>
-                            <div class="mdui-card-primary-subtitle">Subtitle</div>
+                            <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
+                        </div>
+                        <div class="mdui-card-actions">
+                            <a href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +69,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="mdui-row">
         <h1 class="mdui-text-color-theme">意见提交者</h1>
         <p>非常感谢以下人员向我们提供宝贵的意见。</p>
         <div class="mdui-typo">
@@ -78,10 +81,10 @@
         </div>
     </div>
 
-    <div>
+    <div class="mdui-row">
         <h1 class="mdui-text-color-theme">知识分享者</h1>
         <p>非常感谢以下人员丰富社区知识库，让大家能够更好的博览。</p>
-        <div style="margin-left: 10px;padding: 20px">
+        <div class="mdui-typo">
             <ol>
                 <p>暂无成员，争做第一吧。</p>
             </ol>
