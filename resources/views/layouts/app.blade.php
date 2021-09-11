@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <div class="doc-footer-nav mdui-color-theme">
+    <div class="mdui-color-grey">
         <div class="mdui-container">
             <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
