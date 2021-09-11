@@ -12,6 +12,23 @@
         <div class="mdui-typo-display-2">开发人员</div>
         <div style="margin-left: 10px;padding: 20px">
 
+        <div class="mdui-card">
+        <!-- 卡片头部，包含头像、标题、副标题 -->
+            <div class="mdui-card-header">
+                <img class="mdui-card-header-avatar" src="https://nwl.im/avatar"/>
+            </div>
+
+            <div class="mdui-card-media">
+                <img src="card.jpg"/>
+                <div class="mdui-card-media-covered">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title">Title</div>
+                        <div class="mdui-card-primary-subtitle">Subtitle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
             <div class="mdui-m-b-4">
                 <img width="100" height="100"class="mdui-img-circle" src="https://nwl.im/avatar" />
                 <div class="mdui-typo-display-1">iVampireSP.com</div>
