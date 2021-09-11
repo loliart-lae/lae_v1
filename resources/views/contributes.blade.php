@@ -5,7 +5,7 @@
 @section('content')
     <br /><br />
     <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
-    <div class="mdui-typo-display-1-opacity">Light App Engine 需要您的支持才能变得更好。</div>
+    <div class="mdui-typo-display-1-opacity">Light App Engine 离不开广大用户的支持。</div>
     <br /><br /><br /><br />
 
     <div>
