@@ -99,10 +99,10 @@
         <span class="mdui-typo-headline">隧道协议</span>
         <p>根据您的使用场景以及应用选择。</p>
         <select name="protocol" class="mdui-select" mdui-select required>
-            <option value="http">HTTP-适合不加密，明文传输的网页浏览业务。</option>
-            <option value="https">HTTPS-适合加密，对安全性较强的业务。</option>
-            <option value="tcp">TCP-即时通讯或者游戏等对可靠性要求较高的业务。</option>
-            <option value="udp">UDP-适合数据可靠性较低的业务。</option>
+            <option value="http">HTTP - 适合不加密，明文传输的网页浏览业务。</option>
+            <option value="https">HTTPS - 适合加密，对安全性较强的业务。</option>
+            <option value="tcp">TCP - 即时通讯或者游戏等对可靠性要求较高的业务。</option>
+            <option value="udp">UDP - 适合数据可靠性较低的业务。</option>
         </select>
         <br /> <br />
         <br /> <br />
