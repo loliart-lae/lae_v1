@@ -94,8 +94,8 @@
     </div>
 
     <!--
-    <div class="mdui-color-grey">
-        <div class="mdui-container">
+    <div class="mdui-color-grey-300">
+        <div class="mdui-container mdui-valign">
             <div class="mdui-typo mdui-row">
                 <p class="mdui-typo-caption-opacity mdui-text-center">
                     <a href="{{ route('contributes') }}">Contributors</a>
