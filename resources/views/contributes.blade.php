@@ -81,7 +81,7 @@
     <div>
         <h1 class="mdui-text-color-theme">知识分享者</h1>
         <p>非常感谢以下人员丰富社区知识库，让大家能够更好的博览。</p>
-        <div style="margin-left: 10px;padding: 20px">
+        <div class="mdui-typo">
             <ol>
                 <p>暂无成员，争做第一吧。</p>
             </ol>
