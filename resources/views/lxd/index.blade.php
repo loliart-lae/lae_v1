@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="mdui-text-color-theme">容器管理</h1>
 
-    <div class="mdui-typo">
+    <div class="mdui-table-fluid mdui-typo">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
@@ -26,11 +26,13 @@
                 </tr>
             </thead>
             <tbody>
+                <!--
                 <tr>
                     <td colspan="14" class="mdui-text-center">
                         <a href="{{ route('lxd.create') }}">新建 Linux 容器</a>
                     </td>
                 </tr>
+-->
                 @php($i = 1)
                 @foreach ($lxdContainers as $lxd)
                     <tr>
