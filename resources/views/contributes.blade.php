@@ -91,12 +91,12 @@
     <div>
         <div class="mdui-typo-display-2">意见提交者</div>
         <p>非常感谢以下人员向我们提供宝贵的意见。</p>
-        <div style="margin-left: 10px;padding: 20px">
-            <ol>
+        <div class="mdui-typo" style="margin-left: 10px;padding: 20px">
+            <ul>
                 <li>苏沫</li>
                 <li>Tony Stark</li>
                 <li>以及没有被提及的广大用户们。</li>
-            </ol>
+            </ul>
         </div>
     </div>
 
