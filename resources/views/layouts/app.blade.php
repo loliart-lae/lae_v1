@@ -76,6 +76,7 @@
     </div>
 
     <script>
+        $.pjax.defaults.timeout = 1200
         $(document).pjax('a', '.pjax-container')
 
         $("#pre_btn").hide()
