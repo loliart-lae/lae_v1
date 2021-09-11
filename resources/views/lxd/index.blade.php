@@ -26,13 +26,11 @@
                 </tr>
             </thead>
             <tbody>
-                <!--
                 <tr>
                     <td colspan="14" class="mdui-text-center">
                         <a href="{{ route('lxd.create') }}">新建 Linux 容器</a>
                     </td>
                 </tr>
--->
                 @php($i = 1)
                 @foreach ($lxdContainers as $lxd)
                     <tr>
