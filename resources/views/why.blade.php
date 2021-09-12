@@ -8,7 +8,20 @@
     <div class="mdui-table">
         <thead>
             <th></th>
+            <th>
+                Linux 容器
+            </th>
+            <th>
+                共享 Windows 远程桌面
+            </th>
         </thead>
+        <tbody>
+            <td>
+                随时修改配置
+            </td>
+            <td class="is-visible">支持</td>
+            <td class="is-hidden">不支持</td>
+        </tbody>
     </div>
 </div>
 
