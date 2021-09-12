@@ -28,6 +28,12 @@
                     <td class="is-visible">支持</td>
                     <td class="is-hidden">不支持</td>
                 </tr>
+                <tr>
+                    <td>可选择镜像</td>
+                    <td></td>
+                    <td class="is-visible">支持</td>
+                    <td class="is-hidden">不支持</td>
+                </tr>
             </tbody>
         </table>
     </div>
