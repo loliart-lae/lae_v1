@@ -11,7 +11,7 @@
                 <tr>
                     <th>ID</th>
                     <th>内部 ID</th>
-                    <th>显示名称</th>
+                    <th>容器的显示名称</th>
                     <th>CPU 核心数</th>
                     <th>内存</th>
                     <th>硬盘空间</th>
