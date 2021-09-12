@@ -3,7 +3,7 @@
 @section('title', '网络存储')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">网络存储</h1>
+    <h1 class="mdui-text-color-theme">{{  $project_name  }} 中的网络存储</h1>
     <br />
 
     <div class="mdui-table-fluid">

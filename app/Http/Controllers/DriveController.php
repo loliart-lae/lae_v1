@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Project;
 
 class DriveController extends Controller
 {
@@ -18,12 +19,14 @@ class DriveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Drive $drive)
+    public function index(Request $request, Drive $drive, Project $project)
     {
         $drive = Drive::where('project_id', $request->route('project_id'))
-            ->whereNull('parent_id')->with('childFolders')->get();
+            ->whereNull('parent_id')->with(['childFolders'])->get();
 
-        return view('projects.drive.index', compact('drive'));
+        $project_name = $project->where('id', $request->route('project_id'))->firstOrFail()->name;
+
+        return view('projects.drive.index', compact('drive', 'project_name'));
     }
 
     /**
@@ -145,11 +148,13 @@ class DriveController extends Controller
         // return view('projects.drive.index', compact('drive', 'path'));
     }
 
-    public function files(Drive $drive, Request $request)
+    public function files(Drive $drive, Request $request, Project $project)
     {
         if (!ProjectMembersController::userInProject($request->route('project_id'))) {
             return redirect()->to('/')->with('status', '你可能正在尝试越权。');
         }
+
+        $project_name = $project->where('id', $request->route('project_id'))->firstOrFail()->name;
 
         $path = $request->path;
 
@@ -165,7 +170,7 @@ class DriveController extends Controller
 
         $drive = $drive->where('project_id', $request->route('project_id'))->where('parent_id', $parent_id)->get();
 
-        return view('projects.drive.index', compact('drive', 'path'));
+        return view('projects.drive.index', compact('drive', 'path', 'project_name'));
     }
 
     /**
