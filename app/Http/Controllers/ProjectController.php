@@ -20,10 +20,11 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ProjectInvite $invite)
     {
         $projects = ProjectMember::where('user_id', Auth::id())->with('project')->get();
-        return view('projects.index', compact('projects'));
+        $invites = $invite->where('invite_user_id', Auth::id())->with('user', 'project')->count();
+        return view('projects.index', compact('projects', 'invites'));
     }
 
     /**
