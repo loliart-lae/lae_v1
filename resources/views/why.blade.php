@@ -9,7 +9,7 @@
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
-                    <th>&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     <th>穿透隧道</th>
                     <th>Linux 容器</th>
                     <th>共享 Windows 远程桌面</th>
@@ -33,6 +33,12 @@
                     <td></td>
                     <td class="is-visible">支持</td>
                     <td class="is-hidden">不支持</td>
+                </tr>
+                <tr>
+                    <td>计费标准</td>
+                    <td></td>
+                    <td>支持</td>
+                    <td>不支持</td>
                 </tr>
             </tbody>
         </table>
