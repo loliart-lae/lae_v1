@@ -33,4 +33,18 @@
     </div>
 </div>
 
+<style>
+    /* 响应式工具表格中的样式 */
+    .is-visible {
+      background-color: #E8EAF6 !important;
+      color: #3F51B5 !important;
+      text-align: center;
+    }
+    .is-hidden {
+      background-color: transparent !important;
+      color: #ccc !important;
+      text-align: center;
+    }
+</style>
+
 @endsection
