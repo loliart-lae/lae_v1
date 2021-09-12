@@ -4,6 +4,12 @@
 
 @section('content')
 
-为什么选择
+<div class="mdui-table-fluid">
+    <div class="mdui-table">
+        <thead>
+            <th></th>
+        </thead>
+    </div>
+</div>
 
 @endsection
