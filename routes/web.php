@@ -24,11 +24,14 @@ Route::get('/doing', function () {
     return view('doing');
 })->name('doing');
 
-
 Route::prefix('/')->group(function () {
     Route::get('/', function () {
         return view('index');
     })->name('index');
+
+    Route::get('/needLogin', function () {
+        return view('needLogin');
+    })->name('needLogin');
 
     Route::get('why', function () {
         return view('why');
@@ -41,6 +44,9 @@ Route::prefix('/')->group(function () {
     Route::get('contributes', function () {
         return view('contributes');
     })->name('contributes');
+
+    Route::get('download/{name}', [Controllers\DriveController::class, 'view'])->name('download.view')->middleware('auth');
+    Route::get('download/{name}/download', [Controllers\DriveController::class, 'route_download'])->name('download.download')->middleware('auth');
 
     Route::post('/tunnel/auth', [Controllers\TunnelController::class, 'auth']);
 });
@@ -64,6 +70,12 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/projects/{project_id}/leave', [Controllers\ProjectController::class, 'leave'])->name('projects.leave');
     Route::post('/projects/{project_id}/charge', [Controllers\ProjectController::class, 'charge'])->name('projects.charge');
     Route::resource('/projects/{project_id}/invite', Controllers\ProjectInviteController::class);
+
+
+    Route::resource('/projects/{project_id}/storage', Controllers\DriveController::class)->except(['show', 'edit', 'update']);
+    Route::get('/projects/{project_id}/storage/files', [Controllers\DriveController::class, 'files'])->name('storage.show');
+
+
     Route::resource('/lxd', Controllers\AppEngineController::class);
     Route::get('/lxd/{project_id}/create', [Controllers\AppEngineController::class, 'create_in_project'])->name('lxd.create_in_project');
     Route::resource('/lxd/{lxd_id}/forward', Controllers\ForwardController::class);

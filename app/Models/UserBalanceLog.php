@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserBalanceLog extends Model
 {
@@ -20,7 +21,7 @@ class UserBalanceLog extends Model
             return false;
         }
 
-        $result = $user->where('id', $user_id)->update(['balance' => $current_balance]);
+        $user->where('id', $user_id)->update(['balance' => $current_balance]);
 
         $this->user_id = $user_id;
         $this->method = 'cost';
@@ -50,5 +51,9 @@ class UserBalanceLog extends Model
 
         return true;
 
+    }
+
+    static public function getBalance() {
+        return Auth::user()->balance;
     }
 }

@@ -3,9 +3,8 @@
 @section('title', '穿透隧道')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">内网穿透隧道管理</h1>
+    <h1 class="mdui-text-color-theme">启动集</h1>
 
-    {{-- <a href="" class="mdui-btn mdui-color-theme-accent mdui-ripple">启动集</a> --}}
     <br /><br />
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
@@ -27,8 +26,7 @@
             <tbody class="mdui-typo">
                 <tr>
                     <td colspan="11" class="mdui-text-center">
-                        <a href="{{ route('tunnels.create') }}">新建 隧道</a>
-                        {{--  或者 <a href="{{ route('tunnels.create') }}">新建 启动集</a> --}}
+                        <a href="{{ route('tunnels.create') }}">新建 隧道</a> 或者 <a href="{{ route('tunnels.create') }}">新建 启动集</a>
                     </td>
                 </tr>
                 @php($i = 1)

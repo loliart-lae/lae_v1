@@ -6,7 +6,7 @@
     <h1 class="mdui-text-color-theme">有关{{ $project_info->name }}</h1>
     项目所有者: {{ $project_info->user->name }}
     <br />
-    项目积分: {{ $project_info->balance }} 
+    项目积分: {{ $project_info->balance }}
     @if ($project_info->balance < 100)
         <a class="mdui-btn mdui-ripple" onclick="balance_low()"><i class="mdui-icon material-icons">error</i> 项目积分过少</a>
     @endif
@@ -15,6 +15,8 @@
     <a class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#invite-dialog'}">邀请新成员到项目</a>&nbsp;<a
         class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>&nbsp;<a
         href="{{ route('invite.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
+    <a href="{{ route('storage.index', $project_info->id) }}"
+        class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
 
     @if ($project_info->user_id != Auth::id())
         <form style="display: inline;" method="POST" action="{{ route('projects.leave', $project_info->id) }}">
