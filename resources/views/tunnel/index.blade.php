@@ -61,7 +61,7 @@
                         <td>{{ $tunnel->server->price }}/m
                         </td>
 
-                        <td><a href="{{ route('tunnels.show', $tunnel->id)}}">配置文件</a> |
+                        <td><a href="#" onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">配置文件</a> |
                             <a href="#"
                                 onclick="if (confirm('删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
