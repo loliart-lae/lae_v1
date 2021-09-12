@@ -6,7 +6,7 @@
 
 <div class="mdui-typo">
     <div class="mdui-table-fluid">
-        <table class="mdui-table">
+        <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
                     <th></th>
