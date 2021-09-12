@@ -30,12 +30,12 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $file->id }}</td>
-                        <td><a href="  @if (is_null($file->mimetype))
-                                {{ route('storage.show', Request::route('project_id')) }}?path={{ $file->path }}
+                        <td>@if (is_null($file->mimetype))
+                            <a href="{{ route('storage.show', Request::route('project_id')) }}?path={{ $file->path }}">{{ $file->name }}</a>
                             @else
-                                {{ route('download.view', $file->fileName) }}
+                            <a href="#" onclick="window.open('{{ route('download.view', $file->fileName) }}');">{{ $file->name }}</a>
                 @endif
-                ">{{ $file->name }}</a></td>
+                </td>
                 <td>
                     @if (!is_null($file->mimetype))
                         {{ $file->mimetype }}
