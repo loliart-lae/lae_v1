@@ -127,15 +127,15 @@ class LxdJob implements ShouldQueue
                 $old_template = LxdTemplate::where('id', $this->config['old_template'])->firstOrFail();
 
                 // Update memory
-                $server_data_memory -= $old_template->mem;
-                $server_data_memory -= $old_template->disk;
+                $server_data_memory += $old_template->mem;
+                $server_data_memory += $old_template->disk;
 
                 // New Template
                 $new_template = LxdTemplate::where('id', $this->config['new_template'])->firstOrFail();
 
                 // Update memory
-                $server_data_memory += $new_template->mem;
-                $server_data_disk += $new_template->disk;
+                $server_data_memory -= $new_template->mem;
+                $server_data_disk -= $new_template->disk;
 
                 if ($server_data_memory <= 1024 || $server_data_disk <= 5) {
                     $lxd->where('id', $this->config['inst_id'])->update([
@@ -144,6 +144,7 @@ class LxdJob implements ShouldQueue
                     ]);
                     // 通知用户执行失败
                     dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
+
                 } else {
                     Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
                         'id' => $this->config['inst_id'],
