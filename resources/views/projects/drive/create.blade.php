@@ -30,7 +30,7 @@
             <input type="hidden" name="path" value="{{ $path }}" />
             <div class="form-group">
                 <input type="file" name="file" placeholder="上传文件">
-                <small class="form-text text-muted">选择文件并上传到/{{ $path }}下</small>
+                <small class="form-text text-muted">选择文件并上传到 "/{{ $path }}" 下</small>
             </div>
             <br />
                <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">上传</button>
