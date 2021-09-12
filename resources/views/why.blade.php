@@ -16,11 +16,16 @@
             </th>
         </thead>
         <tbody>
-            <td>
-                随时修改配置
-            </td>
-            <td class="is-visible">支持</td>
-            <td class="is-hidden">不支持</td>
+            <tr>
+                <td>按分钟计费</td>
+                <td class="is-visible">支持</td>
+                <td class="is-visible">支持</td>
+            </tr>
+            <tr>
+                <td>随时修改配置</td>
+                <td class="is-visible">支持</td>
+                <td class="is-hidden">不支持</td>
+            </tr>            
         </tbody>
     </div>
 </div>
