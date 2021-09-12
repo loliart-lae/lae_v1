@@ -6,7 +6,7 @@
 
 <div class="mdui-typo">
     <div class="mdui-table-fluid">
-        <div class="mdui-table">
+        <table class="mdui-table">
             <thead>
                 <tr>
                     <th></th>
@@ -26,7 +26,7 @@
                     <td class="is-hidden">不支持</td>
                 </tr>
             </tbody>
-        </div>
+        </table>
     </div>
 </div>
 
