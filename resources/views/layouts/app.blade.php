@@ -82,7 +82,7 @@
 
         @yield('content')
 
-        <div class="mdui-typo mdui-m-t-1">
+        <div class="mdui-typo mdui-m-t-5">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 <a href="{{ route('contributes') }}">Contributors</a>
                 <br />Light App Engine<br />
@@ -104,7 +104,7 @@
         </div>
     </div>
     -->
-    
+
 
     <script>
         $.pjax.defaults.timeout = 1200
