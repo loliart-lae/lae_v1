@@ -25,7 +25,7 @@
                 <td>随时修改配置</td>
                 <td class="is-visible">支持</td>
                 <td class="is-hidden">不支持</td>
-            </tr>            
+            </tr>
         </tbody>
     </div>
 </div>
