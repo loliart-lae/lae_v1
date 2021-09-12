@@ -124,7 +124,13 @@ class TunnelController extends Controller
      */
     public function show($id)
     {
+
         $tunnel = Tunnel::where('id', $id)->with(['server', 'project'])->firstOrFail();
+
+        if (!ProjectMembersController::userInProject($tunnel->project->id)) {
+            return redirect()->back()->with('status', '你没有合适的权限。');
+        }
+
         $address = $tunnel->server->address;
 
         $ini = <<<EOF
