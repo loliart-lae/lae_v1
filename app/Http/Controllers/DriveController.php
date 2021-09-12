@@ -21,6 +21,10 @@ class DriveController extends Controller
      */
     public function index(Request $request, Drive $drive, Project $project)
     {
+        if (!ProjectMembersController::userInProject($request->route('project_id'))) {
+            return redirect()->to('/')->with('status', '你没有合适的权限。');
+        }
+
         $drive = Drive::where('project_id', $request->route('project_id'))
             ->whereNull('parent_id')->with(['childFolders'])->get();
 
