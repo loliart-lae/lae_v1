@@ -6,6 +6,11 @@
     <h1 class="mdui-text-color-theme">{{  $project_name  }} 中的网络存储</h1>
     <br />
 
+    <a href="{{ route('storage.index', Request::route('project_id')) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">存储主页</a>
+    &nbsp;&nbsp;
+    <a href="{{ route('projects.show', Request::route('project_id')) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">项目主页</a>
+
+
     <h2>{{ Request::get('path') }}</h2>
 
     <div class="mdui-table-fluid">
