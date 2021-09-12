@@ -18,9 +18,9 @@
             <tbody>
                 <tr>
                     <td>按分钟计费</td>
-                    <td class="is-visible">支持</td>
-                    <td class="is-visible">支持</td>
-                    <td class="is-visible">支持</td>
+                    <td class="is-hidden">不属于</td>
+                    <td class="is-visible">属于</td>
+                    <td class="is-visible">属于</td>
                 </tr>
                 <tr>
                     <td>随时修改配置</td>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>计费标准</td>
-                    <td>每分钟 0.01 积分</td>
+                    <td>每条 0.01 积分</td>
                     <td>每分钟 0.012 积分</td>
                     <td>每分钟 0.0012 积分</td>
                 </tr>
