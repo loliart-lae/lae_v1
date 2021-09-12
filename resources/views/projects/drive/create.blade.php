@@ -17,10 +17,12 @@
 
         <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
     </form>
+    <br />
+    <br />
 
     <span class="mdui-typo-headline">上传文件</span>
     <p>如果要将文件设置为仅项目成员可下载，请将文件名以 "_" 开头，你无法在根目录上传文件。</p>
-    
+
     <div class="form-group">
         <form method="POST" action="{{ route('storage.store', Request::route('project_id')) }}"
             enctype="multipart/form-data">
@@ -30,7 +32,7 @@
                 <input type="file" name="file" placeholder="上传文件">
                 <small class="form-text text-muted">选择文件并上传到/{{ $path }}下</small>
             </div>
-
+            <br />
                <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">上传</button>
         </form>
     </div>
