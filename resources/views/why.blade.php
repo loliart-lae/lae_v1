@@ -10,9 +10,9 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th>穿透隧道</th>
                     <th>Linux 容器</th>
                     <th>共享 Windows 远程桌面</th>
-                    <th>穿透隧道</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +24,8 @@
                 </tr>
                 <tr>
                     <td>随时修改配置</td>
-                    <td class="is-visible">支持</td>
                     <td class="is-hidden">不支持</td>
+                    <td class="is-visible">支持</td>
                     <td class="is-hidden">不支持</td>
                 </tr>
             </tbody>
