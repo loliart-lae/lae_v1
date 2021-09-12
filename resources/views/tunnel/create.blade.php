@@ -114,7 +114,7 @@
         </div>
 
         <span class="mdui-typo-headline">内网地址</span>
-        <p>被映射主机的地址，比如 <code>127.0.0.1:80</code></p>
+        <p>被映射主机的地址，比如 127.0.0.1:80</p>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">内网地址</label>
             <input class="mdui-textfield-input" type="text" name="local_address" value="{{ old('local_address') }}"
