@@ -189,6 +189,6 @@
         <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
 
         <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器为无特权容器，不支持Docker。<br />带宽均为共享带宽，如果带宽有调整，新开容器才会生效。</small></div>
+        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器为无特权容器，不支持Docker。<br />带宽均为共享带宽，如果带宽有调整，将会即时生效。</small></div>
     </form>
 @endsection
