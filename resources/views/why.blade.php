@@ -10,12 +10,8 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>
-                        Linux 容器
-                    </th>
-                    <th>
-                        共享 Windows 远程桌面
-                    </th>
+                    <th>Linux 容器</th>
+                    <th>共享 Windows 远程桌面</th>
                 </tr>
             </thead>
             <tbody>
