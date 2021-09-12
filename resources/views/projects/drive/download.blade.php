@@ -5,11 +5,11 @@
 @section('content')
     <div class="mdui-typo-display-2">下载</div><br>
     <div class="mdui-typo-headline-opacity">{{ $data->name }}</div>
-
+    <br />
     <div class="mdui-typo">
-        <p>你正在通过LAE下载来自“{{ $data->projectName }}”项目的文件。</p>
+        <p>你正在通过 LAE 下载来自 “{{ $data->projectName }}” 项目的文件。</p>
         <p>你将要下载的文件类型为：{{ $data->mimetype }}，
-            <br />这个文件有 {{ $data->size }} Mib 大，
+            <br />此文件大小为 {{ $data->size }} Mib，
             <br />
             下载需要消耗 {{ $data->cost }} 账户积分，
             下载后你还剩余 {{ $data->left }} 账户积分。

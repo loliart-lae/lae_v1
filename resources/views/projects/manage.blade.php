@@ -3,7 +3,7 @@
 @section('title', $project_info->name)
 
 @section('content')
-    <h1 class="mdui-text-color-theme">有关{{ $project_info->name }}</h1>
+    <h1 class="mdui-text-color-theme">有关 {{ $project_info->name }}</h1>
     项目所有者: {{ $project_info->user->name }}
     <br />
     项目积分: {{ $project_info->balance }}
