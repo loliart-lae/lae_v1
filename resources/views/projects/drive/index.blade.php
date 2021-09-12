@@ -6,6 +6,8 @@
     <h1 class="mdui-text-color-theme">{{  $project_name  }} 中的网络存储</h1>
     <br />
 
+    <h2>{{ Request::get('path') }}</h2>
+
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
