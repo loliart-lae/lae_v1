@@ -9,7 +9,7 @@
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
-                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>&nbsp;&nbsp;</th>
                     <th>穿透隧道</th>
                     <th>Linux 容器</th>
                     <th>共享 Windows 远程桌面</th>
