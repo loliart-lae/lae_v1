@@ -27,7 +27,7 @@
         </label>
 
         <br /> <br />
-
+        <p>注意：积分是虚拟物品，不支持退款。请合理充值。</p>
         <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">充值</button>
 
     </form>
