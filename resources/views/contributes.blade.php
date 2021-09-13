@@ -67,7 +67,7 @@
                             <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
                         </div>
                         <div class="mdui-card-actions">
-                            <a target="_blank" href="https://www.yistars.cn/" class="mdui-text-capitalize"
+                            <a target="_blank" href="https://www.yistars.cn/"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
                             <a target="_blank" href="https://github.com/BingYanchi"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
