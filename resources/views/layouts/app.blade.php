@@ -152,6 +152,7 @@
                                 expires: 7,
                                 path: '/'
                             })
+                            return false;
                         }
                     }
                 ]
