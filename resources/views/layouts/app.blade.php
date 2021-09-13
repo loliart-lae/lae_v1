@@ -76,6 +76,16 @@
         </div>
     </div>
     <div class="mdui-container mdui-p-a-2 pjax-container">
+        <div id="topic" style="margin-bottom: 10px">
+            <div class="mdui-chip">
+                <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个QQ群，群号码是：769779712</span>
+                <span class="mdui-chip-delete" onclick="$.cookie('is_readed', '1', {
+                                            expires: 7,
+                                            path: '/'
+                                        });$('#topic').hide()"><i class="mdui-icon material-icons">cancel</i></span>
+            </div>
+        </div>
+
         <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
                 style="position: relative; top: -1px;margin-right: 2px"
                 class="mdui-icon material-icons">arrow_back</i>返回</a>
@@ -127,22 +137,9 @@
         @endif
 
         if (!$.cookie('is_readed')) {
-            mdui.dialog({
-                title: '嗨~ 我们创建了一个 QQ 群',
-                content: '为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个QQ群，群号码是：769779712',
-                buttons: [
-                    {
-                        text: '好',
-                        onClick: function(inst) {
-                            $.cookie('is_readed', '1', {
-                                expires: 7,
-                                path: '/'
-                            })
-                            return false;
-                        }
-                    }
-                ]
-            });
+            $('#topic').show();
+        } else {
+            $('#topic').hide();
         }
     </script>
 </body>

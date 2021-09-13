@@ -3,10 +3,6 @@
 @section('title', '贡献名单')
 
 @section('content')
-    <div class="mdui-chip">
-        <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个QQ群，群号码是：769779712</span>
-        <span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>
-    </div>
 
     <div class="mdui-row">
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
@@ -19,20 +15,22 @@
         <div class="mdui-col-sm-12 mdui-col-md-4">
             <div class="mdui-card">
                 <div class="mdui-card-header">
-                    <img class="mdui-card-header-avatar" src="https://nwl.im/avatar"/>
+                    <img class="mdui-card-header-avatar" src="https://nwl.im/avatar" />
                     <div class="mdui-card-header-title">iVampireSP.com</div>
                     <div class="mdui-card-header-subtitle">创始人</div>
                 </div>
 
                 <div class="mdui-card-media">
-                    <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg" height="250"/>
+                    <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg" height="250" />
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">咕咕咕咕咕咕咕咕咕</div>
                         </div>
                         <div class="mdui-card-actions">
-                            <a target="_blank" href="https://ivampiresp.com/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
-                            <a target="_blank" href="https://github.com/iVampireSP" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
+                            <a target="_blank" href="https://ivampiresp.com/"
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a target="_blank" href="https://github.com/iVampireSP"
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
@@ -42,20 +40,22 @@
         <div class="mdui-col-sm-12 mdui-col-md-4">
             <div class="mdui-card">
                 <div class="mdui-card-header">
-                    <img class="mdui-card-header-avatar" src="https://q1.qlogo.cn/g?b=qq&nk=1016696385&s=100"/>
+                    <img class="mdui-card-header-avatar" src="https://q1.qlogo.cn/g?b=qq&nk=1016696385&s=100" />
                     <div class="mdui-card-header-title">冰砚炽</div>
                     <div class="mdui-card-header-subtitle">前端优化</div>
                 </div>
 
                 <div class="mdui-card-media">
-                    <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png" height="250"/>
+                    <img src="https://i.loli.net/2021/09/11/QvS4W3tNhlb7G9p.png" height="250" />
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
                             <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
                         </div>
                         <div class="mdui-card-actions">
-                            <a target="_blank" href="https://www.yistars.cn/" class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
-                            <a target="_blank" href="https://github.com/BingYanchi" class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
+                            <a target="_blank" href="https://www.yistars.cn/"
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
+                            <a target="_blank" href="https://github.com/BingYanchi"
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                         </div>
                     </div>
                 </div>
