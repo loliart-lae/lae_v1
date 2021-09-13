@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="mdui-card mdui-center">
+    <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
         <div class="mdui-card-media">
             <i class="mdui-icon material-icons">explore</i>
             " 通知"
