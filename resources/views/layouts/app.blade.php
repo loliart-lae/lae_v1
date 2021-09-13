@@ -132,7 +132,7 @@
 
         if (!$.cookie('is_readed')) {
             $('#topic').append(` <div class="mdui-float-right"><div class="mdui-chip">
-                <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个 QQ 群：769779712</span>
+                <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持<br>我们创建了一个 QQ 群：769779712</span>
                 <span class="mdui-chip-delete" onclick="$.cookie('is_readed', '1', {
                                             expires: 7,
                                             path: '/'
