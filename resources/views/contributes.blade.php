@@ -3,11 +3,11 @@
 @section('title', '贡献名单')
 
 @section('content')
-
+<div class="mdui-row">
     <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
         <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">Title</div>
-            <div class="mdui-card-primary-subtitle">Subtitle</div>
+            <div class="mdui-card-primary-title">提醒：</div>
+            <div class="mdui-card-primary-subtitle">2021/9/13</div>
         </div>
 
         <div class="mdui-card-content">子曰：「学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知，而不愠，不亦君子乎？」</div>
@@ -17,6 +17,7 @@
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
     </div>
+</div>
 
     <div class="mdui-row">
         <h1 class="mdui-text-color-theme">开发人员</h1>
