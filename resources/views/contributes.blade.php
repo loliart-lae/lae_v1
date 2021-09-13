@@ -25,7 +25,7 @@
     <div class="mdui-row mdui-row-xs-3">
         <h1 class="mdui-text-color-theme">开发人员</h1>
 
-        <div class="mdui-col-sm-12 mdui-col-md-4 mdui-col">
+        <div class="mdui-col-sm-12 mdui-col-md-4 mdui-col mdui-m-t-1">
             <div class="mdui-card">
                 <div class="mdui-card-header">
                     <img class="mdui-card-header-avatar" src="https://nwl.im/avatar" />
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="mdui-col-sm-12 mdui-col-md-4 mdui-col">
+        <div class="mdui-col-sm-12 mdui-col-md-4 mdui-col mdui-m-t-1">
             <div class="mdui-card">
                 <div class="mdui-card-header">
                     <img class="mdui-card-header-avatar" src="https://q1.qlogo.cn/g?b=qq&nk=1016696385&s=100" />
