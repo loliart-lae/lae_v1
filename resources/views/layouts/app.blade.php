@@ -91,20 +91,6 @@
         </div>
     </div>
 
-    <!--
-    <div class="mdui-color-grey-300 mdui-p-a-2 pjax-container">
-        <div class="mdui-container-fluid mdui-valign">
-            <div class="mdui-typo mdui-row">
-                <p class="mdui-typo-caption-opacity mdui-text-center">
-                    <a href="{{ route('contributes') }}">Contributors</a>
-                    <br />Light App Engine<br />
-                    Crafted with 💗 by iVampireSP.com<br />
-                </p>
-            </div>
-        </div>
-    </div>
-    -->
-
 
     <script>
         $.pjax.defaults.timeout = 1200
@@ -142,8 +128,8 @@
 
         if (!$.cookie('is_readed')) {
             mdui.dialog({
-                title: '嗨～我们创建了一个QQ群。',
-                content: '为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个QQ群。群号码是：769779712。',
+                title: '嗨~ 我们创建了一个 QQ 群',
+                content: '为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个QQ群，群号码是：769779712',
                 buttons: [
                     {
                         text: '好',
