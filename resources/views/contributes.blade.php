@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="mdui-row">
-    <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
+    <div class="mdui-card mdui-center mdui-m-y-1" style="background-color: #e8e8e8">
         <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">提醒：</div>
             <div class="mdui-card-primary-subtitle">2021/9/13</div>
