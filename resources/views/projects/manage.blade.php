@@ -15,8 +15,7 @@
     <a class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#invite-dialog'}">邀请新成员到项目</a>&nbsp;<a
         class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>&nbsp;<a
         href="{{ route('invite.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
-    <a href="{{ route('storage.index', $project_info->id) }}"
-        class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
+    <a href="{{ route('storage.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
 
     @if ($project_info->user_id != Auth::id())
         <form style="display: inline;" method="POST" action="{{ route('projects.leave', $project_info->id) }}">
@@ -61,12 +60,13 @@
                                     <div class="mdui-dialog-title">请出{{ $member->user->name }}</div>
                                     <div class="mdui-dialog-content">
                                         请出后，{{ $member->user->name }}不会收到退款，他也会失去对{{ $project_info->name }}的所有控制权。
+                                        <form id="f_kick_{{ $i }}" method="POST"
+                                            action="{{ route('members.destroy', [$project_info->id, $member->user->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </div>
-                                    <form id="f_kick_{{ $i }}" method="POST"
-                                        action="{{ route('members.destroy', [$project_info->id, $member->user->id]) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+
                                     <div class="mdui-dialog-actions">
                                         <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
                                         <button onclick="$('#f_kick_{{ $i }}').submit()"
