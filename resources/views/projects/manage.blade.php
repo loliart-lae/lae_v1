@@ -56,6 +56,7 @@
                             @if (Auth::id() != $member->user->id)
                                 <td class="mdui-text-color-blue" mdui-dialog="{target: '#kick_dialog_{{ $i }}'}"
                                     onclick="$('.selected_user_name').text('{{ $member->user->name }}')">请出</td>
+<<<<<<< HEAD
 
                                 <div class="mdui-dialog" id="kick_dialog_{{ $i }}">
                                     <div class="mdui-dialog-title">请出{{ $member->user->name }}</div>
@@ -76,6 +77,28 @@
                                 </div>
 
 
+=======
+                                <div>
+                                    <div class="mdui-dialog" id="kick_dialog_{{ $i }}">
+                                        <div class="mdui-dialog-title">请出{{ $member->user->name }}</div>
+                                        <div class="mdui-dialog-content">
+                                            请出后，{{ $member->user->name }}不会收到退款，他也会失去对{{ $project_info->name }}的所有控制权。
+                                            <form id="f_kick_{{ $i }}" method="POST"
+                                                action="{{ route('members.destroy', [$project_info->id, $member->user->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </div>
+
+                                        <div class="mdui-dialog-actions">
+                                            <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
+                                            <button onclick="$('#f_kick_{{ $i }}').submit()"
+                                                class="mdui-btn mdui-ripple">请出</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+>>>>>>> cbf705aeae640884badb24e8f4ff55950b853441
                             @else
                                 <td>您自己</td>
                             @endif
