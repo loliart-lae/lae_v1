@@ -39,11 +39,13 @@
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">咕咕咕咕咕咕咕咕咕</div>
                         </div>
-                        <div class="mdui-card-actions">
+                        <div class="mdui-card-actions mdui-text-capitalize">
                             <a target="_blank" href="https://ivampiresp.com/"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
                             <a target="_blank" href="https://github.com/iVampireSP"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
+                            <a target="_blank" href="mailto:im@ivampiresp.com"
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Emial</a>
                         </div>
                     </div>
                 </div>
@@ -64,11 +66,13 @@
                         <div class="mdui-card-primary">
                             <a class="mdui-card-primary-title">咸鱼中的咸鱼</a>
                         </div>
-                        <div class="mdui-card-actions">
+                        <div class="mdui-card-actions mdui-text-capitalize">
                             <a target="_blank" href="https://www.yistars.cn/"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Blog</a>
                             <a target="_blank" href="https://github.com/BingYanchi"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
+                            <a target="_blank" href="mailto:Bing_Yanchi@outlook.com"
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Emial</a>
                         </div>
                     </div>
                 </div>
