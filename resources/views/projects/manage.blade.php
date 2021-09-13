@@ -56,6 +56,7 @@
                             @if (Auth::id() != $member->user->id)
                                 <td class="mdui-text-color-blue" mdui-dialog="{target: '#kick_dialog_{{ $i }}'}"
                                     onclick="$('.selected_user_name').text('{{ $member->user->name }}')">请出</td>
+
                                 <div class="mdui-dialog" id="kick_dialog_{{ $i }}">
                                     <div class="mdui-dialog-title">请出{{ $member->user->name }}</div>
                                     <div class="mdui-dialog-content">
@@ -73,6 +74,8 @@
                                             class="mdui-btn mdui-ripple">请出</button>
                                     </div>
                                 </div>
+
+
                             @else
                                 <td>您自己</td>
                             @endif
