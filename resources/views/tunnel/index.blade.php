@@ -5,6 +5,9 @@
 @section('content')
     <h1 class="mdui-text-color-theme">内网穿透隧道管理</h1>
 
+        <a target="_blank" href="https://security.nwl.im/frp/0.37.1/"
+            class="mdui-btn mdui-color-theme-accent mdui-ripple">下载Frp 各版本客户端</a>
+
     {{-- <a href="" class="mdui-btn mdui-color-theme-accent mdui-ripple">启动集</a> --}}
     <br /><br />
     <div class="mdui-table-fluid">
@@ -28,7 +31,7 @@
                 <tr>
                     <td colspan="11" class="mdui-text-center">
                         <a href="{{ route('tunnels.create') }}">新建 隧道</a>
-                        {{--  或者 <a href="{{ route('tunnels.create') }}">新建 启动集</a> --}}
+                        {{-- 或者 <a href="{{ route('tunnels.create') }}">新建 启动集</a> --}}
                     </td>
                 </tr>
                 @php($i = 1)
