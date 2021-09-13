@@ -5,10 +5,6 @@
 @section('content')
 <div class="mdui-row mdui-m-y-4">
     <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
-        <div class="mdui-card-header">
-            <div class="mdui-card-header-subtitle">Subtitle</div>
-        </div>
-
         <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">提醒：</div>
             <div class="mdui-card-primary-subtitle">2021/9/13</div>
