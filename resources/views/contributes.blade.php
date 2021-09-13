@@ -4,6 +4,22 @@
 
 @section('content')
 
+    <div class="mdui-card mdui-center">
+        <div class="mdui-card-media">
+            <i class="mdui-icon material-icons">explore</i>
+            " 通知"
+            <div class="mdui-text-right">
+                <i class="mdui-icon material-icons">access_time</i>
+                " 2021-09-01"
+            </div>
+            <article class="mdui-valign">
+                <span class="mdui-typo">
+                    <p>这事测撒大黑鱼我去饿</p>
+                </span>
+            </article>
+        </div>
+    </div>
+
     <div class="mdui-row">
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
