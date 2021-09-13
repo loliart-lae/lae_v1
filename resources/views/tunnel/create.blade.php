@@ -106,26 +106,32 @@
         </select>
         <br /> <br />
         <br /> <br />
-        <span class="mdui-typo-headline">域名</span>
-        <p>仅在 HTTP 与 HTTPS 中生效。</p>
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">域名</label>
-            <input class="mdui-textfield-input" type="text" name="custom_domain" value="{{ old('custom_domain') }}" />
-        </div>
 
-        <span class="mdui-typo-headline">内网地址</span>
-        <p>被映射主机的地址，比如 127.0.0.1:80</p>
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">内网地址</label>
-            <input class="mdui-textfield-input" type="text" name="local_address" value="{{ old('local_address') }}"
-                required />
-        </div>
+        <div class="mdui-row">
+            <div class="mdui-col-xs-6">
+                <span class="mdui-typo-headline">内网地址</span>
+                <p>被映射主机的地址，比如 127.0.0.1:80</p>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">内网地址</label>
+                    <input class="mdui-textfield-input" type="text" name="local_address" value="{{ old('local_address') }}"
+                        required />
+                </div>
 
-        <span class="mdui-typo-headline">公网端口</span>
-        <p>将内网地址的端口映射为，如果是 HTTP/HTTPS 协议，则该项可以不填写。</p>
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">公网端口</label>
-            <input class="mdui-textfield-input" type="text" name="remote_port" value="{{ old('remote_port') }}" />
+                <span class="mdui-typo-headline">公网端口</span>
+                <p>将内网地址的端口映射为，如果是 HTTP/HTTPS 协议，则该项可以不填写。</p>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">公网端口</label>
+                    <input class="mdui-textfield-input" type="text" name="remote_port" value="{{ old('remote_port') }}" />
+                </div>
+            </div>
+            <div class="mdui-col-xs-6">
+                <span class="mdui-typo-headline">域名</span>
+                <p>仅在 HTTP 与 HTTPS 中生效。</p>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">域名</label>
+                    <input class="mdui-textfield-input" type="text" name="custom_domain" value="{{ old('custom_domain') }}" />
+                </div>
+            </div>
         </div>
 
         <br /> <br />
