@@ -22,7 +22,7 @@
 <br />
 -->
 
-    <div class="mdui-row mdui-row-xs-3 mdui-col-sm-1 mdui-col-md-1">
+    <div class="mdui-row mdui-col-lg-3 mdui-col-md-3 mdui-col-sm-1">
         <h1 class="mdui-text-color-theme">开发人员</h1>
 
         <div class="mdui-col-sm-12 mdui-col-md-4 mdui-col mdui-m-t-1">
