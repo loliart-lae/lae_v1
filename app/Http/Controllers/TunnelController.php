@@ -136,7 +136,7 @@ class TunnelController extends Controller
         $ini = <<<EOF
 [common]
 server_addr = $address
-server_port = 7000
+server_port = 1024
 user = LAE
 token = LAE
 
