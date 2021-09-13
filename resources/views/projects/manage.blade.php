@@ -12,23 +12,29 @@
     @endif
     <br />
     <br />
-    <a class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#invite-dialog'}">邀请新成员到项目</a>&nbsp;<a
-        class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>&nbsp;<a
-        href="{{ route('invite.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
-    <a href="{{ route('storage.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
+
+    <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple"
+        mdui-dialog="{target: '#invite-dialog'}">邀请新成员到项目</a>
+    <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple"
+        mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>
+    <a style="margin: 3px" href="{{ route('invite.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
+    <a style="margin: 3px" href="{{ route('storage.index', $project_info->id) }}"
+        class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
 
     @if ($project_info->user_id != Auth::id())
         <form style="display: inline;" method="POST" action="{{ route('projects.leave', $project_info->id) }}">
             @csrf
-            <button onclick="if(!confirm('离开后，将不会退回任何资金，也无法撤销该操作。')) return false"
+            <button style="margin: 3px" onclick="if(!confirm('离开后，将不会退回任何资金，也无法撤销该操作。')) return false"
                 class="mdui-btn mdui-color-theme-accent mdui-ripple">离开</button>
         </form>
     @else
-        <a href="{{ route('projects.edit', $project_info->id) }}"
+        <a style="margin: 3px" href="{{ route('projects.edit', $project_info->id) }}"
             class="mdui-btn mdui-color-theme-accent mdui-ripple">修改</a>
-        <a href="{{ route('projects.destroy', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple"
-            mdui-dialog="{target: '#destroy-dialog'}">解散</a>
+        <a style="margin: 3px" href="{{ route('projects.destroy', $project_info->id) }}"
+            class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#destroy-dialog'}">解散</a>
     @endif
+
+
 
 
     <h1 class="mdui-text-color-theme">项目人员管理</h1>
