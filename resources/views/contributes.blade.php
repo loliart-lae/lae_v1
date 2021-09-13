@@ -3,6 +3,11 @@
 @section('title', '贡献名单')
 
 @section('content')
+    <div class="mdui-chip">
+        <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个QQ群，群号码是：769779712</span>
+        <span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>
+    </div>
+
     <div class="mdui-row">
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
