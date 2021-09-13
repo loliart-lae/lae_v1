@@ -19,12 +19,17 @@ class ForwardController extends Controller
      */
     public function index(Request $request, Forward $forward)
     {
-        // 获取已经创建的转发
-        $forwards = $forward->where('lxd_id', $request->route('lxd_id'))->with('server')->whereHas('member', function ($query) {
-            $query->where('user_id', Auth::id());
-        })->get();
 
-        $server_info = LxdContainer::where('id', $request->route('lxd_id'))->with('server')->firstOrFail();
+
+        $server_info = LxdContainer::where('id', $request->route('lxd_id'))->with('server', 'project')->firstOrFail();
+
+        if (!ProjectMembersController::userInProject($server_info->project->id)) {
+            return redirect()->to('/')->with('status', '你没有合适的权限。');
+        }
+
+        // 获取已经创建的转发
+        $forwards = $forward->where('lxd_id', $request->route('lxd_id'))->with('server')->get();
+
         $server_name = $forward_price = $server_info->server->name ?? '暂时无法获取';
         $forward_price = $server_info->server->forward_price ?? '暂时无法获取';
 
