@@ -6,7 +6,7 @@
     <h1 class="mdui-text-color-theme">内网穿透隧道管理</h1>
 
         <a target="_blank" href="https://security.nwl.im/frp/0.37.1/"
-            class="mdui-btn mdui-color-theme-accent mdui-ripple">下载Frp 各版本客户端</a>
+            class="mdui-btn mdui-color-theme-accent mdui-ripple">下载 Frp 各版本客户端</a>
 
     {{-- <a href="" class="mdui-btn mdui-color-theme-accent mdui-ripple">启动集</a> --}}
     <br /><br />
