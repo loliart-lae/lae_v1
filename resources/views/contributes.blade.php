@@ -3,7 +3,7 @@
 @section('title', '贡献名单')
 
 @section('content')
-<div class="mdui-row mdui-m-y-4">
+<div class="mdui-m-a-4">
     <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
         <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">提醒：</div>
