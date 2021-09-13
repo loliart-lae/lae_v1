@@ -20,12 +20,12 @@
         <li>扫码充值</li>
     </ol>
 
-    <h1 class="mdui-text-color-theme">如何创建我的实例？</h1>
+    <h1 class="mdui-text-color-theme"><mark>如何创建我的实例？</mark></h1>
     <p>要创建实例，首先你需要<b>确保</b>：</p>
 
     <ol>
         <li><mark>你已经创建了项目</mark></li>
-        <li>项目中有足够的积分余额</li>
+        <li><mark>项目中有足够的积分余额</mark></li>
     </ol>
 
     <p>确保这些条件之后，你可以按照这个流程操作：</p>
