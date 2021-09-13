@@ -4,11 +4,9 @@
 
 @section('content')
     <div class="mdui-row">
-        <div class="mdui-right">
-            <a href="{{ route('storage.index', Request::route('project_id')) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">存储主页</a>
-            &nbsp;&nbsp;
-            <a href="{{ route('projects.show', Request::route('project_id')) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">项目主页</a>
-        </div>
+        <a href="{{ route('storage.index', Request::route('project_id')) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">存储主页</a>
+        &nbsp;&nbsp;
+        <a href="{{ route('projects.show', Request::route('project_id')) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">项目主页</a>
     </div>
     <br />
     <h1 class="mdui-text-color-theme">新建文件夹 或者 上传文件</h1>
