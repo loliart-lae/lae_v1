@@ -40,7 +40,7 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $tunnel->id }}</td>
                         <td>{{ $tunnel->name }}</td>
-                        <td>{{ $tunnel->protocol }}</td>
+                        <td>{{ strtoupper($tunnel->protocol) }}</td>
                         <td>{{ $tunnel->local_address }}</td>
                         <td>
                             @switch($tunnel->protocol)
