@@ -5,19 +5,12 @@
 @section('content')
 
     <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
-        <div class="mdui-card-media">
-            <i class="mdui-icon material-icons">explore</i>
-            " 通知"
-            <div class="mdui-text-right">
-                <i class="mdui-icon material-icons">access_time</i>
-                " 2021-09-01"
-            </div>
-            <article class="mdui-valign">
-                <span class="mdui-typo">
-                    <p>这事测撒大黑鱼我去饿</p>
-                </span>
-            </article>
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">Title</div>
+            <div class="mdui-card-primary-subtitle">Subtitle</div>
         </div>
+
+        <div class="mdui-card-content">子曰：「学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知，而不愠，不亦君子乎？」</div>
     </div>
 
     <div class="mdui-row">
