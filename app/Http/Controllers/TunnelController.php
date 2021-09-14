@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Ramsey\Uuid\Uuid;
 use App\Models\Server;
 use App\Models\Tunnel;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\ProjectMember;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Nonstandard\UuidV6;
-use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 
 class TunnelController extends Controller
 {
@@ -82,21 +83,12 @@ class TunnelController extends Controller
                 return redirect()->back()->with('status', 'Error: 公网端口范围不正确，最低1025，最高65535。');
             }
         } else if ($request->protocol == 'xtcp') {
-            if ($request->role == 'visitor') {
-                // 访问者
-                // 要求输入名称
-                // $request->name
-            }
             $request->custom_domain = null;
             $request->remote_port = null;
 
-            // $this->validate($request, array(
-            //     "" => 'required',
-            // ));
-
-            if ($request->remote_port < 1025 || $request->remote_port >= 65535) {
-                return redirect()->back()->with('status', 'Error: 公网端口范围不正确，最低1025，最高65535。');
-            }
+            $this->validate($request, array(
+                "sk" => 'required|alpha_dash|min:3|max:15',
+            ));
         } else {
             return redirect()->back()->with('status', 'Error: 不支持的协议。');
         }
@@ -128,6 +120,7 @@ class TunnelController extends Controller
         $tunnel->client_token = Uuid::uuid6()->toString();
         $tunnel->server_id = $request->server_id;
         $tunnel->project_id = $request->project_id;
+        $tunnel->sk = $request->sk;
         $tunnel->save();
 
         return redirect()->route('tunnels.index')->with('status', 'Tunnel 隧道新建成功。');
@@ -233,8 +226,9 @@ EOF;
 
     public function auth(Request $request, Tunnel $tunnel)
     {
+
         if ($request->op == 'Login') {
-            if ($request->content['user'] == 'lightart.top') {
+            if ($request->content['user'] == 'lightart.top' || $request->content['user'] == 'lightart_top_visitor') {
                 // 存在
                 return response()->json(array(
                     "reject" => false,
@@ -243,51 +237,85 @@ EOF;
             } else {
                 return response()->json(array(
                     "reject" => true,
-                    "reject_reason" => "invalid token.",
+                    "reject_reason" => "用户不被允许。",
                     "unchange" => true,
                 ));
             }
         } else if ($request->op == 'NewProxy') {
-            // 分割字符串 // proxy_type // $request->user['user]
-            $client = explode('|', $request->content['proxy_name']);
-            // 0: 服务器ID 1: 隧道ID
-            $sid = explode('.', $client[0])[1];
-            $tid = $client[1];
-            $token = $client[2];
-            // 检查是否存在
-            $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
-            if ($tunnel_where->where('client_token', $token)->exists()) {
-                // 检查端口之类的是否相等
-                $tunnel_info = $tunnel_where->firstOrFail();
-                if ($request->content['proxy_type'] == 'tcp' || $request->content['proxy_type'] == 'udp') {
-                    if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['remote_port'] != $tunnel_info->remote_port || $tunnel_info->remote_port < 1024) {
-                        return response()->json(array(
-                            "reject" => true,
-                            "reject_reason" => 'tunnel ' . $request->content['proxy_name'] . ' config mismatch',
-                            "unchange" => true,
-                        ));
-                    }
-                } elseif ($request->content['proxy_type'] == 'http' || $request->content['proxy_type'] == 'https') {
-                    if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['custom_domains'][0] != $tunnel_info->custom_domain) {
-                        return response()->json(array(
-                            "reject" => true,
-                            "reject_reason" => 'tunnel ' . $request->content['proxy_name'] . ' config mismatch',
-                            "unchange" => true,
-                        ));
-                    }
+            Log::debug($request);
+            if ($request->content['user']['user'] == 'lightart_top_visitor') {
+                // 协议检测
+                if ($request->content['proxy_type'] !== 'xtcp') {
+                    return response()->json(array(
+                        "reject" => true,
+                        "reject_reason" => "不允许的访问协议。",
+                        "unchange" => true,
+                    ));
+                }
+
+                // 占用检测
+                // 分割字符串 // proxy_type // $request->user['user]
+                $client = explode('|', $request->content['proxy_name']);
+                // 0: 服务器ID 1: 隧道ID
+                $sid = explode('.', $client[0])[1];
+                $tid = $client[1];
+                $token = $client[2];
+                // 检查是否存在
+                $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
+                if ($tunnel_where->where('client_token', $token)->exists()) {
+                    return response()->json(array(
+                        "reject" => true,
+                        "reject_reason" => "你不能占用常规协议。",
+                        "unchange" => true,
+                    ));
                 }
 
                 return response()->json(array(
                     "reject" => false,
-                    "reject_reason" => "invalid token.",
                     "unchange" => true,
                 ));
+
             } else {
-                return response()->json(array(
-                    "reject" => true,
-                    "reject_reason" => "tunnel not found.",
-                    "unchange" => true,
-                ));
+                // 分割字符串 // proxy_type // $request->user['user]
+                $client = explode('|', $request->content['proxy_name']);
+                // 0: 服务器ID 1: 隧道ID
+                $sid = explode('.', $client[0])[1];
+                $tid = $client[1];
+                $token = $client[2];
+                // 检查是否存在
+                $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
+                if ($tunnel_where->where('client_token', $token)->exists()) {
+                    // 检查端口之类的是否相等
+                    $tunnel_info = $tunnel_where->firstOrFail();
+                    if ($request->content['proxy_type'] == 'tcp' || $request->content['proxy_type'] == 'udp') {
+                        if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['remote_port'] != $tunnel_info->remote_port || $tunnel_info->remote_port < 1024) {
+                            return response()->json(array(
+                                "reject" => true,
+                                "reject_reason" => 'tunnel ' . $request->content['proxy_name'] . ' config mismatch',
+                                "unchange" => true,
+                            ));
+                        }
+                    } elseif ($request->content['proxy_type'] == 'http' || $request->content['proxy_type'] == 'https') {
+                        if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['custom_domains'][0] != $tunnel_info->custom_domain) {
+                            return response()->json(array(
+                                "reject" => true,
+                                "reject_reason" => 'tunnel ' . $request->content['proxy_name'] . ' config mismatch',
+                                "unchange" => true,
+                            ));
+                        }
+                    }
+
+                    return response()->json(array(
+                        "reject" => false,
+                        "unchange" => true,
+                    ));
+                } else {
+                    return response()->json(array(
+                        "reject" => true,
+                        "reject_reason" => "隧道不存在",
+                        "unchange" => true,
+                    ));
+                }
             }
         }
     }
