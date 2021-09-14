@@ -200,12 +200,12 @@ user = lightart_top_visitor
 token = lightart_top
 
 [lae_visitor_{$uuid}]
-type=xtcp
-role=visitor
-server_name=p2p
-sk=520china
-bind_addr=127.0.0.1
-bind_port=$local_port
+type = xtcp
+role = visitor
+server_name = p2p
+sk = {$tunnel->sk}
+bind_addr = 127.0.0.1
+bind_port = $local_port
 
 #------ 对端复制结束 --------
 
