@@ -202,7 +202,7 @@ token = lightart_top
 [lae_visitor_{$uuid}]
 type = xtcp
 role = visitor
-server_name = p2p
+server_name = {$tunnel->server->id}|$id|$client_token
 sk = {$tunnel->sk}
 bind_addr = 127.0.0.1
 bind_port = $local_port
