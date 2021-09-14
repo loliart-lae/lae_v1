@@ -150,6 +150,6 @@
 
         <br /><br />
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
-                地区服务器基础价格<br />Tunnel 隧道 一旦创建成功后将无法修改<br />XTCP 不收费</small></div>
+                地区服务器基础价格<br />Tunnel 隧道 一旦创建成功后将无法修改<br />XTCP 免费，带宽受限于你的网络上行速度。</small></div>
     </form>
 @endsection
