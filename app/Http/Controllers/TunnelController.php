@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Ramsey\Uuid\Uuid;
 use App\Models\Server;
 use App\Models\Tunnel;
@@ -144,6 +145,7 @@ class TunnelController extends Controller
         $address = $tunnel->server->address;
 
         $ini = <<<EOF
+# 这是你的配置文件，请将它填入frpc.ini
 [common]
 server_addr = $address
 server_port = 1024
@@ -151,6 +153,8 @@ user = lightart_top
 token = lightart_top
 
 EOF;
+
+        $uuid = Uuid::uuid1()->toString();
 
         $id = $tunnel->id;
         $name = $tunnel->name;
@@ -162,8 +166,8 @@ EOF;
         $remote_port = $tunnel->remote_port;
         $ini .= PHP_EOL . <<<EOF
 
-#------ Copy tunnel start ------
-# $name at server {$tunnel->server->id} by project {$tunnel->project->id}
+#------ 复制开始 ------
+# {$tunnel->project->name} 的 $name 于服务器 {$tunnel->server->name}
 [{$tunnel->server->id}|$id|$client_token]
 type = $protocol
 local_ip = $local_ip
@@ -173,14 +177,47 @@ EOF . PHP_EOL;
         if ($protocol == 'tcp' || $protocol == 'udp') {
             $ini .= <<<EOF
 remote_port = $remote_port
+
+#------ 复制结束 --------
 EOF;
         } elseif ($protocol == 'http' || $protocol == 'https') {
             $ini .= <<<EOF
 custom_domains = {$tunnel->custom_domain}
+
+#------ 复制结束 --------
+EOF;
+        } elseif ($protocol == 'xtcp') {
+            $ini .= <<<EOF
+sk = {$tunnel->sk}
+
+#------ 复制结束 --------
+
+
+
+
+# 以下的是对端配置文件，请不要复制或者使用！
+# 如果你想让别人通过XTCP连接到你的主机，请将以下配置文件发给你信任的人。如果你不信任他人，请勿发送，这样会导致不信任的人也能通过XTCP连接到你的主机。
+
+#------ 对端复制开始 --------
+[common]
+server_addr = $address
+server_port = 1024
+user = lightart_top_visitor
+token = lightart_top
+
+[lae_visitor_{$uuid}]
+type=xtcp
+role=visitor
+server_name=p2p
+sk=520china
+bind_addr=127.0.0.1
+bind_port=$local_port
+
+#------ 对端复制结束 --------
+
+# 觉得好用的话，能否将Light App Engine(https://lightart.top) 推荐给你的好友？算是我们一个小小的请求，这对我们非常重要。
 EOF;
         }
-
-        $ini .= PHP_EOL . '#------ Copy tunnel end --------' . PHP_EOL;
 
         return response($ini, 200)->header('Content-Type', 'text/plain');
     }
@@ -255,33 +292,50 @@ EOF;
 
                 // 占用检测
                 // 分割字符串 // proxy_type // $request->user['user]
-                $client = explode('|', $request->content['proxy_name']);
-                // 0: 服务器ID 1: 隧道ID
-                $sid = explode('.', $client[0])[1];
-                $tid = $client[1];
-                $token = $client[2];
-                // 检查是否存在
-                $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
-                if ($tunnel_where->where('client_token', $token)->exists()) {
+                try {
+                    $client = explode('|', $request->content['proxy_name']);
+                    // 0: 服务器ID 1: 隧道ID
+                    $sid = explode('.', $client[0])[1];
+                    $tid = $client[1];
+                    $token = $client[2];
+                    // 检查是否存在
+                    $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
+                    if ($tunnel_where->where('client_token', $token)->exists()) {
+                        return response()->json(array(
+                            "reject" => true,
+                            "reject_reason" => "你不能占用常规协议。",
+                            "unchange" => true,
+                        ));
+                    }
+                } catch (Exception $e) {
+                    // 分割字符串失败
                     return response()->json(array(
-                        "reject" => true,
-                        "reject_reason" => "你不能占用常规协议。",
+                        "reject" => false,
                         "unchange" => true,
                     ));
                 }
+
 
                 return response()->json(array(
                     "reject" => false,
                     "unchange" => true,
                 ));
-
             } else {
-                // 分割字符串 // proxy_type // $request->user['user]
-                $client = explode('|', $request->content['proxy_name']);
-                // 0: 服务器ID 1: 隧道ID
-                $sid = explode('.', $client[0])[1];
-                $tid = $client[1];
-                $token = $client[2];
+                try {
+                    // 分割字符串 // proxy_type // $request->user['user]
+                    $client = explode('|', $request->content['proxy_name']);
+                    // 0: 服务器ID 1: 隧道ID
+                    $sid = explode('.', $client[0])[1];
+                    $tid = $client[1];
+                    $token = $client[2];
+                } catch (Exception $e) {
+                    return response()->json(array(
+                        "reject" => true,
+                        "reject_reason" => "我怀疑你在搞事。",
+                        "unchange" => true,
+                    ));
+                }
+
                 // 检查是否存在
                 $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
                 if ($tunnel_where->where('client_token', $token)->exists()) {
@@ -291,7 +345,7 @@ EOF;
                         if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['remote_port'] != $tunnel_info->remote_port || $tunnel_info->remote_port < 1024) {
                             return response()->json(array(
                                 "reject" => true,
-                                "reject_reason" => 'tunnel ' . $request->content['proxy_name'] . ' config mismatch',
+                                "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确。你可以前往Light App Engine(https://lightart.top)中重新复制。',
                                 "unchange" => true,
                             ));
                         }
@@ -299,7 +353,7 @@ EOF;
                         if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['custom_domains'][0] != $tunnel_info->custom_domain) {
                             return response()->json(array(
                                 "reject" => true,
-                                "reject_reason" => 'tunnel ' . $request->content['proxy_name'] . ' config mismatch',
+                                "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确，域名在Light App Engine(https://lightart.top)中绑定。',
                                 "unchange" => true,
                             ));
                         }

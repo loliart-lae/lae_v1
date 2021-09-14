@@ -44,7 +44,7 @@ class CostJob implements ShouldQueue
         $project = new Project();
         $forward = new Forward();
         $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
-        $tunnels = Tunnel::with(['server', 'project'])->get();
+        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=' , 'xtcp')->get();
         // $server = new Server();
 
 

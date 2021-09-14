@@ -103,6 +103,7 @@
             <option value="https">HTTPS - 适合加密，对安全性较强的业务。</option>
             <option value="tcp">TCP - 即时通讯或者游戏等对可靠性要求较高的业务。</option>
             <option value="udp">UDP - 适合数据可靠性较低的业务。</option>
+            <option value="xtcp">XTCP - 免费！P2P传输，需要双方都启动客户端，并且不能保证穿透成功。</option>
         </select>
         <br /> <br />
         <br /> <br />
@@ -118,7 +119,7 @@
                 </div>
 
                 <span class="mdui-typo-headline">公网端口</span>
-                <p>将内网地址的端口映射为，如果是 HTTP/HTTPS 协议，则该项可以不填写。</p>
+                <p>将内网地址的端口映射为，如果是 HTTP/HTTPS/XTCP 协议，则该项可以不填写。<br /><br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">公网端口</label>
                     <input class="mdui-textfield-input" type="text" name="remote_port" value="{{ old('remote_port') }}" />
@@ -126,10 +127,19 @@
             </div>
             <div class="mdui-col-xs-6">
                 <span class="mdui-typo-headline">域名</span>
-                <p>仅在 HTTP 与 HTTPS 中生效。</p>
+                <p>仅在 HTTP 与 HTTPS 中生效。<br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">域名</label>
                     <input class="mdui-textfield-input" type="text" name="custom_domain" value="{{ old('custom_domain') }}" />
+                </div>
+            </div>
+            <div class="mdui-col-xs-6">
+                <span class="mdui-typo-headline">XTCP 密钥</span>
+                <p>如果你选择了XTCP，则该项目是必填的。如果为其他协议，请忽略。<br />
+                只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">XTCP 密钥</label>
+                    <input class="mdui-textfield-input" type="text" name="sk" value="{{ old('sk') }}" />
                 </div>
             </div>
         </div>
@@ -140,6 +150,6 @@
 
         <br /><br />
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
-                地区服务器基础价格</small></div>
+                地区服务器基础价格<br />Tunnel 隧道 一旦创建成功后将无法修改<br />XTCP 不收费</small></div>
     </form>
 @endsection
