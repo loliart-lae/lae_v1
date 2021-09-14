@@ -147,8 +147,8 @@ class TunnelController extends Controller
 [common]
 server_addr = $address
 server_port = 1024
-user = lightart.top
-token = lightart.top
+user = lightart_top
+token = lightart_top
 
 EOF;
 
@@ -228,7 +228,7 @@ EOF;
     {
 
         if ($request->op == 'Login') {
-            if ($request->content['user'] == 'lightart.top' || $request->content['user'] == 'lightart_top_visitor') {
+            if ($request->content['user'] == 'lightart_top' || $request->content['user'] == 'lightart_top_visitor') {
                 // 存在
                 return response()->json(array(
                     "reject" => false,
