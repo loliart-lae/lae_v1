@@ -15,6 +15,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use App\Models\Tunnel;
 
 class CostJob implements ShouldQueue
 {
@@ -43,6 +44,7 @@ class CostJob implements ShouldQueue
         $project = new Project();
         $forward = new Forward();
         $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
+        $tunnels = Tunnel::with(['server', 'project'])->get();
         // $server = new Server();
 
 
@@ -133,6 +135,25 @@ class CostJob implements ShouldQueue
                 ];
 
                 dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
+            } else {
+                // 扣费
+                $project_where->update(['balance' => $current_project_balance - $need_pay]);
+            }
+        }
+
+        // 获取Frp Tunnel 并计费
+        foreach ($tunnels as $tunnel) {
+            // 金额
+            $project_id = $tunnel->project->id;
+            $project_where = $project->where('id', $project_id);
+
+            $need_pay = $tunnel->server->price;
+
+            $current_project_balance = $project_where->firstOrFail()->balance;
+
+            if ($current_project_balance - $need_pay < 0) {
+                // 扣费失败，删除账号
+                Tunnel::where('id', $tunnel->id)->delete();
             } else {
                 // 扣费
                 $project_where->update(['balance' => $current_project_balance - $need_pay]);
