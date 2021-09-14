@@ -97,8 +97,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>名称</th>
-                        <th>系统</th>
+                        <th>镜像</th>
+                        <th>源</th>
                         <th>选择</th>
                     </tr>
                 </thead>
