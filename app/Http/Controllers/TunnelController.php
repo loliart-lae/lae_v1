@@ -81,9 +81,26 @@ class TunnelController extends Controller
             if ($request->remote_port < 1025 || $request->remote_port >= 65535) {
                 return redirect()->back()->with('status', 'Error: 公网端口范围不正确，最低1025，最高65535。');
             }
+        } else if ($request->protocol == 'xtcp') {
+            if ($request->role == 'visitor') {
+                // 访问者
+                // 要求输入名称
+                // $request->name
+            }
+            $request->custom_domain = null;
+            $request->remote_port = null;
+
+            // $this->validate($request, array(
+            //     "" => 'required',
+            // ));
+
+            if ($request->remote_port < 1025 || $request->remote_port >= 65535) {
+                return redirect()->back()->with('status', 'Error: 公网端口范围不正确，最低1025，最高65535。');
+            }
         } else {
             return redirect()->back()->with('status', 'Error: 不支持的协议。');
         }
+
 
         // 检查本地地址是否合法
         if (strpos($request->local_address, ':') == false) {
@@ -137,8 +154,8 @@ class TunnelController extends Controller
 [common]
 server_addr = $address
 server_port = 1024
-user = LAE
-token = LAE
+user = lightart.top
+token = lightart.top
 
 EOF;
 
@@ -217,7 +234,7 @@ EOF;
     public function auth(Request $request, Tunnel $tunnel)
     {
         if ($request->op == 'Login') {
-            if ($request->content['user'] == 'LAE') {
+            if ($request->content['user'] == 'lightart.top') {
                 // 存在
                 return response()->json(array(
                     "reject" => false,
