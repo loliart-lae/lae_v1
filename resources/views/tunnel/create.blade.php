@@ -89,7 +89,7 @@
 
         <br /> <br />
         <span class="mdui-typo-headline">隧道的名称</span>
-        <p>只允许字母、数字，短破折号（-）和下划线（_）,至少3位，最多15位。该名称用于标识。</p>
+        <p>只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位。该名称用于标识。</p>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">隧道名称</label>
             <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />

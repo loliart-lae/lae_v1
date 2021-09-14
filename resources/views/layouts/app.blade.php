@@ -54,7 +54,7 @@
                 <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
                 <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
                     class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
-                <a href="{{ route('why') }}" class="mdui-btn mdui-ripple mdui-ripple-white">为什么选择</a>
+                <a href="{{ route('why') }}" class="mdui-btn mdui-ripple mdui-ripple-white" disabled>为什么选择</a>
                 <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white" disabled>关于我们</a>
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
@@ -131,13 +131,13 @@
         @endif
 
         if (!$.cookie('is_readed')) {
-            $('#topic').append(` <div class="mdui-chip mdui-float-right">
-                <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个 QQ 群：769779712</span>
+            $('#topic').append(` <div class="mdui-float-right"><div class="mdui-chip">
+                <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</span>
                 <span class="mdui-chip-delete" onclick="$.cookie('is_readed', '1', {
                                             expires: 7,
                                             path: '/'
                                         });$('#topic').hide()"><i class="mdui-icon material-icons">cancel</i></span>
-            </div>`)
+            </div></div>`)
             $('#topic').style('margin-bottom', '10px')
         }
     </script>

@@ -15,11 +15,11 @@
                     <th>CPU</th>
                     <th>内存</th>
                     <th>带宽</th>
-                    <th>属于服务器</th>
+                    <th>属于的服务器</th>
                     <th>属于项目</th>
                     <th>连接信息</th>
                     <th>总价格</th>
-                    <th>操作</th>
+                    <th>可用操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
