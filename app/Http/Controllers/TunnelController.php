@@ -166,7 +166,6 @@ EOF;
         $remote_port = $tunnel->remote_port;
         $ini .= PHP_EOL . <<<EOF
 
-#------ 复制开始 ------
 # {$tunnel->project->name} 的 $name 于服务器 {$tunnel->server->name}
 [{$tunnel->server->id}|$id|$client_token]
 type = $protocol
@@ -178,20 +177,15 @@ EOF . PHP_EOL;
             $ini .= <<<EOF
 remote_port = $remote_port
 
-#------ 复制结束 --------
 EOF;
         } elseif ($protocol == 'http' || $protocol == 'https') {
             $ini .= <<<EOF
 custom_domains = {$tunnel->custom_domain}
 
-#------ 复制结束 --------
 EOF;
         } elseif ($protocol == 'xtcp') {
             $ini .= <<<EOF
 sk = {$tunnel->sk}
-
-#------ 复制结束 --------
-
 
 
 
