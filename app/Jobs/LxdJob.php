@@ -120,15 +120,16 @@ class LxdJob implements ShouldQueue
                 $server_query = Server::where('id', $server_id);
                 $server_data = $server_query->firstOrFail();
 
+                // 现有空间
                 $server_data_memory = $server_data->free_mem;
                 $server_data_disk = $server_data->free_disk;
 
-                // Old Template
+                // 旧模板
                 $old_template = LxdTemplate::where('id', $this->config['old_template'])->firstOrFail();
 
-                // Update memory
+                // 计算内存
                 $server_data_memory += $old_template->mem;
-                $server_data_memory += $old_template->disk;
+                $server_data_disk += $old_template->disk;
 
                 // New Template
                 $new_template = LxdTemplate::where('id', $this->config['new_template'])->firstOrFail();
