@@ -141,6 +141,13 @@
             $('#topic').style('margin-bottom', '10px')
         }
     </script>
+    <script id="mcjs">
+        ! function(c, h, i, m, p) {
+            m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m,
+                p)
+        }(document, "script",
+            "https://chimpstatic.com/mcjs-connected/js/users/242171d27b4e09a976c65f0bf/94a210924b235e476f9e763c8.js");
+    </script>
 </body>
 
 </html>
