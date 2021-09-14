@@ -49,7 +49,7 @@ class LxdJob implements ShouldQueue
 
         switch ($this->config['method']) {
             case 'init':
-                $result = Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                $result = Http::retry(5, 100)->timeout(1200)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
                     'id' => $this->config['inst_id'],
                     'cpu' => $this->config['cpu'],
                     'mem' => $this->config['mem'],
@@ -147,7 +147,7 @@ class LxdJob implements ShouldQueue
                     dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
 
                 } else {
-                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                    Http::retry(5, 100)->timeout(600)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
                         'id' => $this->config['inst_id'],
                         'cpu' => $new_template->cpu,
                         'mem' => $new_template->mem,
