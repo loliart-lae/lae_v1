@@ -196,7 +196,7 @@ sk = {$tunnel->sk}
 [common]
 server_addr = $address
 server_port = 1024
-user = lightart_top_visitor
+user = lightart_top
 token = lightart_top
 
 [lae_visitor_{$uuid}]
@@ -257,7 +257,6 @@ EOF;
 
     public function auth(Request $request, Tunnel $tunnel)
     {
-
         if ($request->op == 'Login') {
             if ($request->content['user'] == 'lightart_top' || $request->content['user'] == 'lightart_top_visitor') {
                 // 存在
@@ -273,97 +272,55 @@ EOF;
                 ));
             }
         } else if ($request->op == 'NewProxy') {
-            Log::debug($request);
-            if ($request->content['user']['user'] == 'lightart_top_visitor') {
-                // 协议检测
-                if ($request->content['proxy_type'] !== 'xtcp') {
-                    return response()->json(array(
-                        "reject" => true,
-                        "reject_reason" => "不允许的访问协议。",
-                        "unchange" => true,
-                    ));
-                }
 
-                // 占用检测
+            try {
                 // 分割字符串 // proxy_type // $request->user['user]
-                try {
-                    $client = explode('|', $request->content['proxy_name']);
-                    // 0: 服务器ID 1: 隧道ID
-                    $sid = explode('.', $client[0])[1];
-                    $tid = $client[1];
-                    $token = $client[2];
-                    // 检查是否存在
-                    $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
-                    if ($tunnel_where->where('client_token', $token)->exists()) {
+                $client = explode('|', $request->content['proxy_name']);
+                // 0: 服务器ID 1: 隧道ID
+                $sid = explode('.', $client[0])[1];
+                $tid = $client[1];
+                $token = $client[2];
+            } catch (Exception $e) {
+                return response()->json(array(
+                    "reject" => true,
+                    "reject_reason" => "我怀疑你在搞事。",
+                    "unchange" => true,
+                ));
+            }
+
+            // 检查是否存在
+            $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
+            if ($tunnel_where->where('client_token', $token)->exists()) {
+                // 检查端口之类的是否相等
+                $tunnel_info = $tunnel_where->firstOrFail();
+                if ($request->content['proxy_type'] == 'tcp' || $request->content['proxy_type'] == 'udp') {
+                    if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['remote_port'] != $tunnel_info->remote_port || $tunnel_info->remote_port < 1024) {
                         return response()->json(array(
                             "reject" => true,
-                            "reject_reason" => "你不能占用常规协议。",
+                            "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确。你可以前往Light App Engine(https://lightart.top)中重新复制。',
                             "unchange" => true,
                         ));
                     }
-                } catch (Exception $e) {
-                    // 分割字符串失败
-                    return response()->json(array(
-                        "reject" => false,
-                        "unchange" => true,
-                    ));
+                } elseif ($request->content['proxy_type'] == 'http' || $request->content['proxy_type'] == 'https') {
+                    if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['custom_domains'][0] != $tunnel_info->custom_domain) {
+                        return response()->json(array(
+                            "reject" => true,
+                            "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确，域名在Light App Engine(https://lightart.top)中绑定。',
+                            "unchange" => true,
+                        ));
+                    }
                 }
-
 
                 return response()->json(array(
                     "reject" => false,
                     "unchange" => true,
                 ));
             } else {
-                try {
-                    // 分割字符串 // proxy_type // $request->user['user]
-                    $client = explode('|', $request->content['proxy_name']);
-                    // 0: 服务器ID 1: 隧道ID
-                    $sid = explode('.', $client[0])[1];
-                    $tid = $client[1];
-                    $token = $client[2];
-                } catch (Exception $e) {
-                    return response()->json(array(
-                        "reject" => true,
-                        "reject_reason" => "我怀疑你在搞事。",
-                        "unchange" => true,
-                    ));
-                }
-
-                // 检查是否存在
-                $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
-                if ($tunnel_where->where('client_token', $token)->exists()) {
-                    // 检查端口之类的是否相等
-                    $tunnel_info = $tunnel_where->firstOrFail();
-                    if ($request->content['proxy_type'] == 'tcp' || $request->content['proxy_type'] == 'udp') {
-                        if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['remote_port'] != $tunnel_info->remote_port || $tunnel_info->remote_port < 1024) {
-                            return response()->json(array(
-                                "reject" => true,
-                                "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确。你可以前往Light App Engine(https://lightart.top)中重新复制。',
-                                "unchange" => true,
-                            ));
-                        }
-                    } elseif ($request->content['proxy_type'] == 'http' || $request->content['proxy_type'] == 'https') {
-                        if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['custom_domains'][0] != $tunnel_info->custom_domain) {
-                            return response()->json(array(
-                                "reject" => true,
-                                "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确，域名在Light App Engine(https://lightart.top)中绑定。',
-                                "unchange" => true,
-                            ));
-                        }
-                    }
-
-                    return response()->json(array(
-                        "reject" => false,
-                        "unchange" => true,
-                    ));
-                } else {
-                    return response()->json(array(
-                        "reject" => true,
-                        "reject_reason" => "隧道不存在",
-                        "unchange" => true,
-                    ));
-                }
+                return response()->json(array(
+                    "reject" => true,
+                    "reject_reason" => "隧道不存在",
+                    "unchange" => true,
+                ));
             }
         }
     }
