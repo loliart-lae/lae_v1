@@ -69,6 +69,11 @@ class TunnelController extends Controller
             return redirect()->back()->with('status', '服务器不存在。');
         }
 
+        $project_balance = Project::where('id', $request->project_id)->firstOrFail()->balance;
+        if ($project_balance <= 1) {
+            return redirect()->back()->with('status', '项目积分不足 1，还剩:' . $project_balance);
+        }
+
         if ($request->protocol == 'http' || $request->protocol == 'https') {
             $request->remote_port = 0;
             $this->validate($request, array(

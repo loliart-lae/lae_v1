@@ -73,6 +73,12 @@ class RemoteDesktopController extends Controller
         if (RemoteDesktop::where('username', $request->username)->exists()) {
             return redirect()->back()->with('status', 'Error: 同服务器上已经存在该用户名了。');
         }
+
+        $project_balance = Project::where('id', $request->project_id)->firstOrFail()->balance;
+        if ($project_balance <= 1) {
+            return redirect()->back()->with('status', '项目积分不足 1，还剩:' . $project_balance);
+        }
+
         $server_data = $server_where->firstOrFail();
 
         // 保存
