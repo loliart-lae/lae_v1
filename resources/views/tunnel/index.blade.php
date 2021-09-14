@@ -59,7 +59,13 @@
                             @endswitch
 
                         </td>
-                        <td>{{ $tunnel->server->network_limit }} Mbps</td>
+                        <td>
+                            @if ($tunnel->protocol != 'xtcp')
+                                {{ $tunnel->server->network_limit }} Mbps
+                            @else
+                                取决于客户机
+                            @endif
+                        </td>
                         <td>{{ $tunnel->server->name }}</td>
                         <td><a
                                 href="{{ route('projects.show', $tunnel->project->id) }}">{{ $tunnel->project->name }}</a>
