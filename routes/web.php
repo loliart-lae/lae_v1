@@ -45,6 +45,10 @@ Route::prefix('/')->group(function () {
         return view('contributes');
     })->name('contributes');
 
+    Route::get('dream', function () {
+        return view('invites.dream');
+    })->name('dream1');
+
     Route::get('download/{name}', [Controllers\DriveController::class, 'view'])->name('download.view')->middleware('auth');
     Route::get('download/{name}/download', [Controllers\DriveController::class, 'route_download'])->name('download.download')->middleware('auth');
 
