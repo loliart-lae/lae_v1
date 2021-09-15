@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="mdui-row mdui-m-t-2 mdui-m-x-1">
+            <div class="mdui-row mdui-m-t-4 mdui-m-x-1">
                 <p>为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</p>
             </div>
         </div>
