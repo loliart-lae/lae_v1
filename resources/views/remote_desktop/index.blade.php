@@ -12,7 +12,7 @@
                     <th>ID</th>
                     <th>内部 ID</th>
                     <th>用户名</th>
-                    <th>CPU</th>
+                    <th>CPU	核心数</th>
                     <th>内存</th>
                     <th>带宽</th>
                     <th>属于的服务器</th>
