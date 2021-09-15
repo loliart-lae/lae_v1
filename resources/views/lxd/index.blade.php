@@ -92,39 +92,47 @@
 
     <div class="mdui-dialog" id="webssh-dialog">
         <div class="mdui-dialog-title">连接到Web SSH</div>
-        <form method="get" action="/webssh" enctype="text/plain">
-            <div class="mdui-dialog-content">
-                <div class="mdui-textfield">
-                    <label class="mdui-textfield-label">IP或者主机名</label>
-                    <input class="mdui-textfield-input" name="hostname" type="text" />
-                </div>
-
-                <div class="mdui-textfield">
-                    <label class="mdui-textfield-label">端口</label>
-                    <input class="mdui-textfield-input" name="port" type="text" />
-                </div>
-
-                <div class="mdui-textfield">
-                    <label class="mdui-textfield-label">用户名</label>
-                    <input class="mdui-textfield-input" name="username" type="text" />
-                </div>
-
-                <div class="mdui-textfield">
-                    <label class="mdui-textfield-label">密码</label>
-                    <input class="mdui-textfield-input" id="sshPwd" name="base64Pwd" type="password" />
-                </div>
-                <input type="hidden" id="realPwd" name="password" />
-                <script>
-                    $('#sshPwd').keyup(function() {
-                        $('#realPwd').val(Base64.encode($('#sshPwd').val()));
-                    });
-                </script>
+        <div class="mdui-dialog-content">
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">IP或者主机名</label>
+                <input class="mdui-textfield-input" id="sshHost" name="hostname" type="text" />
             </div>
-            <div class="mdui-dialog-actions">
-                <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
-                <button type="submit" class="mdui-btn mdui-ripple">连接</button>
+
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">端口</label>
+                <input class="mdui-textfield-input" id="sshPort" name="port" type="text" />
             </div>
-        </form>
+
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">用户名</label>
+                <input class="mdui-textfield-input" id="sshUser" name="username" type="text" />
+            </div>
+
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">密码</label>
+                <input class="mdui-textfield-input" id="sshPwd" name="base64Pwd" type="password" />
+            </div>
+            <input type="hidden" id="realPwd" name="password" />
+        </div>
+        <div class="mdui-dialog-actions">
+            <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
+            <button onclick="gotoWebSSH()" class="mdui-btn mdui-ripple">连接</button>
+        </div>
+
+        <script>
+            $('#sshPwd').keyup(function() {
+                $('#realPwd').val(Base64.encode($('#sshPwd').val()));
+            });
+
+            function gotoWebSSH() {
+                let hostname = $('#sshHost').val();
+                let port = $('#sshPort').val();
+                let username = $('#sshUser').val();
+                let password = $('#realPwd').val();
+
+                window.open(`/webssh?hostname=${hostname}&port=${port}&username=${username}&password=${password}`);
+            }
+        </script>
     </div>
 
 @endsection
