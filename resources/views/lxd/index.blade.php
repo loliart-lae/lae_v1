@@ -15,13 +15,13 @@
                 <tr>
                     <th>ID</th>
                     <th>内部 ID</th>
-                    <th>容器的显示名称</th>
-                    <th>CPU 核心数</th>
+                    <th>显示名称</th>
+                    <th>CPU</th>
                     <th>内存</th>
-                    <th>硬盘空间</th>
+                    <th>硬盘</th>
                     <th>内部 IP</th>
                     <th>带宽限制</th>
-                    <th>容器所使用的模板</th>
+                    <th>使用模板</th>
                     <th>属于的服务器</th>
                     <th>属于的项目</th>
                     <th>端口转发</th>
@@ -38,26 +38,26 @@
                 @php($i = 1)
                 @foreach ($lxdContainers as $lxd)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $lxd->id }}</td>
+                        <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $lxd->id }}</td>
                         <td nowrap="nowrap">{{ $lxd->name }}</td>
-                        <td>{{ $lxd->template->cpu }} Core</td>
-                        <td>{{ $lxd->template->mem }}M</td>
-                        <td>{{ $lxd->template->disk }} G</td>
-                        <td>{{ $lxd->lan_ip }}</td>
-                        <td>{{ $lxd->server->network_limit }} Mbps</td>
-                        <td>
+                        <td nowrap="nowrap">{{ $lxd->template->cpu }} Core</td>
+                        <td nowrap="nowrap">{{ $lxd->template->mem }}M</td>
+                        <td nowrap="nowrap">{{ $lxd->template->disk }} G</td>
+                        <td nowrap="nowrap">{{ $lxd->lan_ip }}</td>
+                        <td nowrap="nowrap">{{ $lxd->server->network_limit }} Mbps</td>
+                        <td nowrap="nowrap">
                             @if ($lxd->status == 'running')
                                 <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
                             @else
                                 {{ $lxd->template->name }}
                             @endif
                         </td>
-                        <td>{{ $lxd->server->name }}</td>
-                        <td><a href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
+                        <td nowrap="nowrap">{{ $lxd->server->name }}</td>
+                        <td nowrap="nowrap"><a href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
                         </td>
                         @php($forwards = count($lxd->forward))
-                        <td>
+                        <td nowrap="nowrap">
                             @if ($lxd->status == 'running')
                                 <a href="{{ route('forward.index', $lxd->id) }}">{{ $forwards }} 端口</a>
                             @else
@@ -66,10 +66,10 @@
 
 
                         </td>
-                        <td>{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                        <td nowrap="nowrap">{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
                         </td>
 
-                        <td>
+                        <td nowrap="nowrap">
                             @if ($lxd->status == 'running')
                                 <a href="#" onclick="$('#f-{{ $i }}').submit()">删除</a>
                                 <form id="f-{{ $i }}" method="post"
