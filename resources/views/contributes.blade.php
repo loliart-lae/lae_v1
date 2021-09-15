@@ -18,7 +18,7 @@
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
     </div>
-    <h1></h1>
+    <h1> </h1>
 <br />
 
 
