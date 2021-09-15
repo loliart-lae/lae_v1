@@ -37,13 +37,11 @@
     </style>
 
     <!-- JavaScripts -->
-    <script src="/js/mdui.js"></script>
+    <script src="/js/mdui.js?bypasscache=202109150854"></script>
     <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-    <script src="/editor.md/lib/marked.min.js"></script>
-    <script src="/editor.md/editormd.min.js"></script>
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
