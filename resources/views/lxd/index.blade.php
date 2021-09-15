@@ -93,10 +93,10 @@
     </div>
 
     <div class="mdui-dialog" id="webssh-dialog">
-        <div class="mdui-dialog-title">连接到Web SSH</div>
+        <div class="mdui-dialog-title">连接到 Web SSH</div>
         <div class="mdui-dialog-content">
             <div class="mdui-textfield">
-                <label class="mdui-textfield-label">IP或者主机名</label>
+                <label class="mdui-textfield-label">IP 或者 主机名</label>
                 <input class="mdui-textfield-input" id="sshHost" name="hostname" type="text" />
             </div>
 
