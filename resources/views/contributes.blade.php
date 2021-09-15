@@ -9,12 +9,13 @@
         <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
             <div class="mdui-row">
                 <div class="mdui-col-xs-8">
-                    <div class="mdui-typo-display-1">提醒</div>
+                    <div class="mdui-typo-headline">提醒</div>
                 </div>
                 <div class="mdui-col-xs-4">
-                    <div class="mdui-typo-title-opacity mdui-text-right">2021-9-16</div>
-                    <i class="mdui-icon material-icons">close</i>
-
+                    <div class="mdui-typo-title-opacity mdui-text-right">
+                        2021-9-16
+                        <i class="mdui-icon material-icons">close</i>
+                    </div>
                 </div>
             </div>
 
