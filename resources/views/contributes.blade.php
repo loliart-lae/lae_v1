@@ -15,9 +15,11 @@
                     </div>
                 </div>
                 <div class="mdui-float-right">
-                    <div class="mdui-typo-subheading-opacity mdui-text-right">
-                        2021-9-16
-                        <i class="mdui-icon material-icons">close</i>
+                    <div class="mdui-typo">
+                        <div class="mdui-typo-subheading-opacity mdui-text-right">
+                            2021-9-16
+                            <i class="mdui-icon material-icons">close</i>
+                        </div>
                     </div>
                 </div>
             </div>
