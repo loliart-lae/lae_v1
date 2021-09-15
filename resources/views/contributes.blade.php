@@ -12,7 +12,7 @@
                     <div class="mdui-typo-display-1">提醒</div>
                 </div>
                 <div class="mdui-col-xs-4">
-                    <div class="mdui-typo-title-opacity mdui-text-right">
+                    <div class="mdui-typo-subheading-opacity mdui-text-right">
                         2021-9-16
                         <i class="mdui-icon material-icons">close</i>
                     </div>
