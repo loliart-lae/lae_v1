@@ -12,13 +12,13 @@
             <div class="mdui-card-primary-subtitle">2021/9/13</div>
         </div>
         -->
-        <div class="mdui-container">
+        <div class="mdui-container mdui-m-t-1">
             <div class="mdui-row">
                 <div class="mdui-col-xs-8">
                     <div class="mdui-typo-headline">提醒</div>
                 </div>
-                <div class="mdui-col-xs-3">
-                    <div class="mdui-typo-body-1-opacity mdui-float-right">2021-9-16</div>
+                <div class="mdui-col-xs-4">
+                    <div class="mdui-typo-body-1-opacity mdui-text-right">2021-9-16</div>
                 </div>
             </div>
 
