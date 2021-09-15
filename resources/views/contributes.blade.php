@@ -8,7 +8,6 @@
     <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
         <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">提醒</div>
-            <div class="mdui-card-primary-subtitle">2021/9/13</div>
         </div>
 
         <div class="mdui-card-content">为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</div>
