@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="mdui-row">
+
     <div class="mdui-card mdui-center" style="background-color: #e8e8e8">
         <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">提醒：</div>
@@ -18,7 +18,7 @@
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">Light App Engine 离不开广大用户的支持。</div>
     </div>
-</div>
+
 <br />
 
 
