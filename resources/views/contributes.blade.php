@@ -6,7 +6,7 @@
 
 
     <div class="mdui-card mdui-center mdui-container" style="background-color: #e8e8e8">
-        <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
+        <div class="mdui-container mdui-m-t-1 mdui-m-b-1">
         
             <div class="mdui-clearfix">
                 <div class="mdui-float-left">
