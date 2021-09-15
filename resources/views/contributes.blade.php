@@ -13,10 +13,12 @@
                 </div>
                 <div class="mdui-col-xs-4">
                     <div class="mdui-typo-title-opacity mdui-text-right">2021-9-16</div>
+                    <i class="mdui-icon material-icons">close</i>
+
                 </div>
             </div>
 
-            <div class="mdui-row mdui-m-t-1">
+            <div class="mdui-row mdui-m-t-1 mdui-m-l-1">
                 <p>为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</p>
             </div>
         </div>
