@@ -20,8 +20,12 @@
                 <div class="mdui-typo-body-1-opacity mdui-float-right">2021-9-16</div>
             </div>
         </div>
+
+        <div class="mdui-row">
+            <p>为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</p>
+        </div>
        
-        <div class="mdui-card-content">为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</div>
+        
     </div>
 
     <div class="mdui-row">
