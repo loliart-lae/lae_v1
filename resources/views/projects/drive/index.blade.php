@@ -35,29 +35,29 @@
                 @php($i = 1)
                 @foreach ($drive as $file)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $file->id }}</td>
-                        <td>@if (is_null($file->mimetype))
+                        <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $file->id }}</td>
+                        <td nowrap="nowrap">@if (is_null($file->mimetype))
                             <a href="{{ route('storage.show', Request::route('project_id')) }}?path={{ $file->path }}">{{ $file->name }}</a>
                             @else
                             <a href="#" onclick="window.open('{{ route('download.view', $file->fileName) }}');">{{ $file->name }}</a>
                 @endif
                 </td>
-                <td>
+                <td nowrap="nowrap">
                     @if (!is_null($file->mimetype))
                         {{ $file->mimetype }}
                     @else
                         文件夹
                     @endif
                 </td>
-                <td>
+                <td nowrap="nowrap">
                     @if (!is_null($file->mimetype))
                         {{ $file->size }} MiB
                     @else
                         {{ __('📁') }}
                     @endif
                 </td>
-                <td><a title="{{ __('Your all data will be lost.') }}" href="#"
+                <td nowrap="nowrap"><a title="{{ __('Your all data will be lost.') }}" href="#"
                         onclick="$('#delete_item_{{ $file->id }}').submit()">删除</a>
                     @if (!is_null($file->mimetype))
                         <span> | <a href="#"

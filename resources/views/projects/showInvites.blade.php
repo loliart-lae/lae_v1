@@ -22,17 +22,17 @@
                 @php($i = 1)
                 @foreach ($invites as $invite)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $invite->project->name }}</td>
-                        <td>{{ $invite->user->name }}</td>
+                        <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $invite->project->name }}</td>
+                        <td nowrap="nowrap">{{ $invite->user->name }}</td>
                         @if ($invite->status == 2)
-                            <td>已拒绝</td>
+                            <td nowrap="nowrap">已拒绝</td>
                         @elseif ($invite->status == 1)
-                            <td>已同意</td>
+                            <td nowrap="nowrap">已同意</td>
                         @else
-                            <td>未回应</td>
+                            <td nowrap="nowrap">未回应</td>
                         @endif
-                        <td>{{ $invite->created_at }}</td>
+                        <td nowrap="nowrap">{{ $invite->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>

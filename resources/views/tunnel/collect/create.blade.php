@@ -25,11 +25,11 @@
                     @php($i = 1)
                     @foreach ($projects as $project)
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $project->project->name }}</td>
-                            <td>{{ $project->project->balance }}</td>
+                            <td nowrap="nowrap">{{ $i++ }}</td>
+                            <td nowrap="nowrap">{{ $project->project->name }}</td>
+                            <td nowrap="nowrap">{{ $project->project->balance }}</td>
 
-                            <td>
+                            <td nowrap="nowrap">
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $project->project->id }}" name="project_id"
                                         @if ($i == 2) checked @endif required />

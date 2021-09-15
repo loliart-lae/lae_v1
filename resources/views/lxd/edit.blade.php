@@ -32,16 +32,16 @@
                     @php($i = 1)
                     @foreach ($templates as $template)
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $template->name }}</td>
-                            <td>{{ $template->cpu }}</td>
+                            <td nowrap="nowrap">{{ $i++ }}</td>
+                            <td nowrap="nowrap">{{ $template->name }}</td>
+                            <td nowrap="nowrap">{{ $template->cpu }}</td>
 
 
-                            <td>{{ $template->mem }} M</td>
-                            <td>{{ $template->disk }} G</td>
-                            <td>{{ $template->price }}</td>
-                            {{-- <td>{{ $template->price * 44640 / 100 }} 元 / 月</td> --}}
-                            <td>
+                            <td nowrap="nowrap">{{ $template->mem }} M</td>
+                            <td nowrap="nowrap">{{ $template->disk }} G</td>
+                            <td nowrap="nowrap">{{ $template->price }}</td>
+                            {{-- <td nowrap="nowrap">{{ $template->price * 44640 / 100 }} 元 / 月</td> --}}
+                            <td nowrap="nowrap">
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $template->id }}" name="template_id" @if ($template->id == $selected_template) checked @endif required />
                                     <i class="mdui-radio-icon"></i>

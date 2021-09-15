@@ -32,12 +32,12 @@
                 @php($i = 1)
                 @foreach ($tunnels as $tunnel)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $tunnel->id }}</td>
-                        <td>{{ $tunnel->name }}</td>
-                        <td>{{ $tunnel->protocol }}</td>
-                        <td>{{ $tunnel->local_address }}</td>
-                        <td>
+                        <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->id }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->name }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->protocol }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->local_address }}</td>
+                        <td nowrap="nowrap">
                             @switch($tunnel->protocol)
                                 @case('http')
                                     {{ $tunnel->custom_domain }}
@@ -51,15 +51,15 @@
                             @endswitch
 
                         </td>
-                        <td>{{ $tunnel->server->network_limit }} Mbps</td>
-                        <td>{{ $tunnel->server->name }}</td>
-                        <td><a
+                        <td nowrap="nowrap">{{ $tunnel->server->network_limit }} Mbps</td>
+                        <td nowrap="nowrap">{{ $tunnel->server->name }}</td>
+                        <td nowrap="nowrap"><a
                                 href="{{ route('projects.show', $tunnel->project->id) }}">{{ $tunnel->project->name }}</a>
                         </td>
-                        <td>{{ $tunnel->server->price }}/m
+                        <td nowrap="nowrap">{{ $tunnel->server->price }}/m
                         </td>
 
-                        <td><a href="{{ route('tunnels.show', $tunnel->id)}}">配置文件</a> |
+                        <td nowrap="nowrap"><a href="{{ route('tunnels.show', $tunnel->id)}}">配置文件</a> |
                             <a href="#"
                                 onclick="if (confirm('删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"

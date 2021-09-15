@@ -30,14 +30,14 @@
                 </tr>
                 @foreach ($forwards as $forward)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $forward->id }}</td>
-                        <td>{{ $forward->from }}</td>
-                        <td>{{ $forward->to }}</td>
-                        <td>TCP&UDP</td>
-                        <td>{{ $forward->reason }}</td>
-                        <td>{{ $forward->server->address }}:{{ $forward->to }}</td>
-                        <td>
+                        <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $forward->id }}</td>
+                        <td nowrap="nowrap">{{ $forward->from }}</td>
+                        <td nowrap="nowrap">{{ $forward->to }}</td>
+                        <td nowrap="nowrap">TCP&UDP</td>
+                        <td nowrap="nowrap">{{ $forward->reason }}</td>
+                        <td nowrap="nowrap">{{ $forward->server->address }}:{{ $forward->to }}</td>
+                        <td nowrap="nowrap">
                             @if ($forward->status == 'active')
                                 <a href="#" onclick="$('#f-{{ $i }}').submit()">删除</a>
                                 <form id="f-{{ $i }}" method="post"
