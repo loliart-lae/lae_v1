@@ -20,11 +20,11 @@
                     <th>协议</th>
                     <th>内部地址</th>
                     <th>外部地址</th>
-                    <th>共享带宽配额</th>
-                    <th>属于的服务器</th>
+                    <th>共享带宽</th>
+                    <th>属于服务器</th>
                     <th>属于项目</th>
                     <th>总价格</th>
-                    <th>当前可选择的操作</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
@@ -37,12 +37,12 @@
                 @php($i = 1)
                 @foreach ($tunnels as $tunnel)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>{{ $tunnel->id }}</td>
-                        <td>{{ $tunnel->name }}</td>
-                        <td>{{ strtoupper($tunnel->protocol) }}</td>
-                        <td>{{ $tunnel->local_address }}</td>
-                        <td>
+                        <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->id }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->name }}</td>
+                        <td nowrap="nowrap">{{ strtoupper($tunnel->protocol) }}</td>
+                        <td nowrap="nowrap">{{ $tunnel->local_address }}</td>
+                        <td nowrap="nowrap">
                             @switch($tunnel->protocol)
                                 @case('http')
                                     {{ $tunnel->custom_domain }}
@@ -59,18 +59,18 @@
                             @endswitch
 
                         </td>
-                        <td>
+                        <td nowrap="nowrap">
                             @if ($tunnel->protocol != 'xtcp')
                                 {{ $tunnel->server->network_limit }} Mbps
                             @else
                                 取决于客户机
                             @endif
                         </td>
-                        <td>{{ $tunnel->server->name }}</td>
-                        <td><a
+                        <td nowrap="nowrap">{{ $tunnel->server->name }}</td>
+                        <td nowrap="nowrap"><a
                                 href="{{ route('projects.show', $tunnel->project->id) }}">{{ $tunnel->project->name }}</a>
                         </td>
-                        <td>
+                        <td nowrap="nowrap">
                             @if ($tunnel->protocol != 'xtcp')
                                 {{ $tunnel->server->price }}/m
                             @else
@@ -83,7 +83,7 @@
                         @else
                             @php($tip = ' 删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')
                         @endif
-                        <td><a href="#" onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">配置文件</a> |
+                        <td nowrap="nowrap"><a href="#" onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">配置文件</a> |
                             <a href="#"
                                 onclick="if (confirm('{{ $tip }}')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
