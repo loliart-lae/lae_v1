@@ -6,6 +6,8 @@
     <h1 class="mdui-text-color-theme">容器管理</h1>
     <br />
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#webssh-dialog'}">Web SSH</button>
+    &nbsp;&nbsp;
+    <a href="{{ route('lxd.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 Linux 容器</a>
     <br /><br />
     <div class="mdui-table-fluid mdui-typo">
         <table class="mdui-table mdui-table-hoverable">
