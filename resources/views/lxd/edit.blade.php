@@ -24,7 +24,7 @@
                         <th>内存</th>
                         <th>硬盘</th>
                         <th>价格</th>
-                        <th>月付预估</th>
+                        {{-- <th>月付预估</th> --}}
                         <th>选择</th>
                     </tr>
                 </thead>
@@ -40,7 +40,7 @@
                             <td>{{ $template->mem }} M</td>
                             <td>{{ $template->disk }} G</td>
                             <td>{{ $template->price }}</td>
-                            <td>{{ $template->price * 44640 / 100 }} 元 / 月</td>
+                            {{-- <td>{{ $template->price * 44640 / 100 }} 元 / 月</td> --}}
                             <td>
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $template->id }}" name="template_id" @if ($template->id == $selected_template) checked @endif required />
