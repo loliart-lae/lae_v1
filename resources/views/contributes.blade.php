@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <div class="mdui-card mdui-center mdui-container" style="background-color: #e8e8e8">
+    <div class="mdui-card mdui-center mdui-container mdui-p-b-1" style="background-color: #e8e8e8">
         <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
             <div class="mdui-row">
                 <div class="mdui-col-xs-8">
