@@ -64,7 +64,7 @@
                                     onclick="$('.selected_user_name').text('{{ $member->user->name }}')">请出</td>
 
                                 <div class="mdui-dialog" id="kick_dialog_{{ $i }}">
-                                    <div class="mdui-dialog-title">请出{{ $member->user->name }}</div>
+                                    <div class="mdui-dialog-title">请出 {{ $member->user->name }}</div>
                                     <div class="mdui-dialog-content">
                                         请出后，{{ $member->user->name }} 不会收到退款，他也会失去对 {{ $project_info->name }} 的所有控制权。
                                         <form id="f_kick_{{ $i }}" method="POST"
