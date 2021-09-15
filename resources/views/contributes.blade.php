@@ -6,7 +6,7 @@
 
 
     <div class="mdui-card mdui-center mdui-container" style="background-color: #e8e8e8">
-        <div class="mdui-container mdui-m-t-1 mdui-m-b-1">
+        <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
         
             <div class="mdui-clearfix">
                 <div class="mdui-float-left">
@@ -16,10 +16,10 @@
                 </div>
                 <div class="mdui-float-right">
                     <div class="mdui-typo">
-                        <div class="mdui-typo-subheading-opacity mdui-text-right">
+                        <p class="mdui-text-right">
                             2021-9-16
                             <i class="mdui-icon material-icons">close</i>
-                        </div>
+                        </p>
                     </div>
                 </div>
             </div>
