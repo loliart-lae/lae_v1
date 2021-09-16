@@ -22,7 +22,13 @@
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
                         <div class="mdui-panel-item-title">{{ $i++ }}. {{ $lxd->name }}</div>
-                        <div class="mdui-panel-item-summary"></div>
+                        <div class="mdui-panel-item-summary">
+                            @if ($lxd->status == 'running')
+                                <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
+                            @else
+                                {{ $lxd->template->name }}
+                            @endif
+                        </div>
                         <div class="mdui-panel-item-summary">{{ $lxd->lan_ip }}</div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
