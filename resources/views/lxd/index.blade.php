@@ -9,6 +9,68 @@
     &nbsp;&nbsp;
     <a href="{{ route('lxd.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 Linux 容器</a>
     <br /><br />
+    <div class="mdui-typo">
+
+        @php($i = 1)
+        @foreach ($lxdContainers as $lxd)
+            @php($last_project_id = $lxd->project->id)
+            @if ($lxd->project->id !== $last_project_id || $i == 1)
+                <h1>{{ $lxd->project->name }}</h1>
+            @endif
+            <div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item">
+                    <div class="mdui-panel-item-header">
+                        <div class="mdui-panel-item-title">{{ $i++ }}. {{ $lxd->name }}</div>
+                        <div class="mdui-panel-item-summary">{{ $lxd->project->name }}</div>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-panel-item-body">
+                        <p>内部ID： {{ $lxd->id }}</p>
+                        <p>名称：{{ $lxd->name }}</p>
+                        <p>核心：{{ $lxd->template->cpu }} Core</p>
+                        <p>内存：{{ $lxd->template->mem }}M</p>
+                        <p>存储：{{ $lxd->template->disk }} G</p>
+                        <p>内部IP：{{ $lxd->lan_ip }}</p>
+                        <p>网络限制：{{ $lxd->server->network_limit }} Mbps</p>
+                        <p>模板名称：
+                            @if ($lxd->status == 'running')
+                                <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
+                            @else
+                                {{ $lxd->template->name }}
+                            @endif
+                        </p>
+                        @php($forwards = count($lxd->forward))
+                        <p>所在服务器：{{ $lxd->server->name }}</p>
+                        <p>所在项目：<a
+                                href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
+                        </p>
+                        <p>
+                            {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                        </p>
+
+                        <div class="mdui-panel-item-actions">
+                            @if ($lxd->status == 'running')
+                                <a class="mdui-btn mdui-ripple"
+                                    href="{{ route('forward.index', $lxd->id) }}">{{ $forwards }} 端口</a>
+                            @else
+                                <button class="mdui-btn mdui-ripple" mdui-panel-item-close>正在调度</button>
+                            @endif
+                            @if ($lxd->status == 'running')
+                                <button onclick="$('#f-{{ $i }}').submit()"
+                                    class="mdui-btn mdui-ripple">销毁</button>
+                                <form id="f-{{ $i }}" method="post"
+                                    action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>
+                            @else
+                                <button class="mdui-btn mdui-ripple">{{ $lxd->status }}</button>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+{{--
     <div class="mdui-table-fluid mdui-typo">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
@@ -54,7 +116,8 @@
                             @endif
                         </td>
                         <td nowrap="nowrap">{{ $lxd->server->name }}</td>
-                        <td nowrap="nowrap"><a href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
+                        <td nowrap="nowrap"><a
+                                href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
                         </td>
                         @php($forwards = count($lxd->forward))
                         <td nowrap="nowrap">
@@ -66,7 +129,8 @@
 
 
                         </td>
-                        <td nowrap="nowrap">{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                        <td nowrap="nowrap">
+                            {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
                         </td>
 
                         <td nowrap="nowrap">
@@ -90,7 +154,7 @@
                 @endif
             </tbody>
         </table>
-    </div>
+    </div> --}}
 
     <div class="mdui-dialog" id="webssh-dialog">
         <div class="mdui-dialog-title">连接到 Web SSH</div>
@@ -123,17 +187,21 @@
 
         <script>
             $('#sshPwd').keyup(function() {
-                $('#realPwd').val(Base64.encode($('#sshPwd').val()));
+                $('#realPwd').val(Base64.encode($('#sshPwd').val()))
             });
 
             function gotoWebSSH() {
-                let hostname = $('#sshHost').val();
-                let port = $('#sshPort').val();
-                let username = $('#sshUser').val();
-                let password = $('#realPwd').val();
+                let hostname = $('#sshHost').val()
+                let port = $('#sshPort').val()
+                let username = $('#sshUser').val()
+                let password = $('#realPwd').val()
 
-                window.open(`https://webssh.lightart.top/?hostname=${hostname}&port=${port}&username=${username}&password=${password}`);
+                window.open(
+                    `https://webssh.lightart.top/?hostname=${hostname}&port=${port}&username=${username}&password=${password}`
+                );
             }
+
+            mdui.mutation()
         </script>
     </div>
 
