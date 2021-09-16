@@ -15,6 +15,7 @@
         @php($last_project_id = 0)
         @foreach ($lxdContainers as $lxd)
             @if ($lxd->project->id !== $last_project_id)
+                @php($last_project_id = $lxd->project->id)
                 <h1>{{ $lxd->project->name }}</h1>
             @endif
             <div class="mdui-panel" mdui-panel>
@@ -71,8 +72,7 @@
             </div>
         @endforeach
     </div>
-{{--
-    <div class="mdui-table-fluid mdui-typo">
+    {{-- <div class="mdui-table-fluid mdui-typo">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
