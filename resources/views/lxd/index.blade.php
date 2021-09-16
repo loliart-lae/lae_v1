@@ -38,7 +38,7 @@
                         <p>核心：{{ $lxd->template->cpu }} Core</p>
                         <p>内存：{{ $lxd->template->mem }}M</p>
                         <p>存储：{{ $lxd->template->disk }} G</p>
-                        <p>内部IP：{{ $lxd->lan_ip }}</p>
+                        <p>内部 IP：{{ $lxd->lan_ip }}</p>
                         <p>网络限制：{{ $lxd->server->network_limit }} Mbps</p>
                         <p>模板名称：
                             @if ($lxd->status == 'running')
