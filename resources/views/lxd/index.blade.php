@@ -12,9 +12,9 @@
     <div class="mdui-typo">
 
         @php($i = 1)
+        @php($last_project_id = 0)
         @foreach ($lxdContainers as $lxd)
-            @php($last_project_id = $lxd->project->id)
-            @if ($lxd->project->id !== $last_project_id || $i == 1)
+            @if ($lxd->project->id !== $last_project_id)
                 <h1>{{ $lxd->project->name }}</h1>
             @endif
             <div class="mdui-panel" mdui-panel>
