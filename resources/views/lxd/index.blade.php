@@ -33,7 +33,7 @@
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
-                        <p>内部ID：{{ $lxd->id }}</p>
+                        <p>内部 ID：{{ $lxd->id }}</p>
                         <p>名称：{{ $lxd->name }}</p>
                         <p>核心：{{ $lxd->template->cpu }} Core</p>
                         <p>内存：{{ $lxd->template->mem }}M</p>
