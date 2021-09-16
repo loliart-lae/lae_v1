@@ -76,7 +76,7 @@
                             <a target="_blank" href="https://github.com/iVampireSP"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                             <a target="_blank" href="mailto:im@ivampiresp.com"
-                                class="mdui-btn mdui-ripple mdui-ripple-white">Emial</a>
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Email</a>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                             <a target="_blank" href="https://github.com/BingYanchi"
                                 class="mdui-btn mdui-ripple mdui-ripple-white">Github</a>
                             <a target="_blank" href="mailto:Bing_Yanchi@outlook.com"
-                                class="mdui-btn mdui-ripple mdui-ripple-white">Emial</a>
+                                class="mdui-btn mdui-ripple mdui-ripple-white">Email</a>
                         </div>
                     </div>
                 </div>
@@ -119,6 +119,7 @@
                 <li>苏沫</li>
                 <li>Tony Stark</li>
                 <li>凌辰溪</li>
+                <li>Chi_Tang</li>
                 <li>以及没有被提及的广大用户们。</li>
             </ul>
         </div>
