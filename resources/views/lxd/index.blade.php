@@ -61,7 +61,7 @@
                                 href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
                         </p>
                         <p>
-                            价格：{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                            积分/分钟：{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
                         </p>
 
                         <div class="mdui-panel-item-actions">

@@ -57,7 +57,7 @@
                         <th>ID</th>
                         <th>名称</th>
                         <th>共享带宽</th>
-                        <th>基础价格</th>
+                        <th>积分/分钟</th>
                         <th>选择</th>
                     </tr>
                 </thead>

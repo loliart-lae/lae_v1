@@ -58,7 +58,7 @@
                         <th>CPU</th>
                         <th>内存</th>
                         <th>带宽</th>
-                        <th>基础价格</th>
+                        <th>基础价格(积分/分钟)</th>
                         <th>选择</th>
                     </tr>
                 </thead>
