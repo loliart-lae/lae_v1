@@ -162,21 +162,26 @@ class LxdJob implements ShouldQueue
                     // dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
                     Message::send('无法调整容器模板，因为服务器上已经没有更多的资源了。', $this->config['user']);
                 } else {
-                    Http::retry(5, 100)->timeout(600)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
-                        'id' => $this->config['inst_id'],
-                        'cpu' => $new_template->cpu,
-                        'mem' => $new_template->mem,
-                        'disk' => $new_template->disk,
-                        'token' => $this->config['token'],
-                    ]);
-                    $server_query->update([
-                        'free_mem' => $server_data_memory,
-                        'free_disk' => $server_data_disk,
-                    ]);
+                    try {
+                        Http::retry(5, 100)->timeout(600)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                            'id' => $this->config['inst_id'],
+                            'cpu' => $new_template->cpu,
+                            'mem' => $new_template->mem,
+                            'disk' => $new_template->disk,
+                            'token' => $this->config['token'],
+                        ]);
+                        $server_query->update([
+                            'free_mem' => $server_data_memory,
+                            'free_disk' => $server_data_disk,
+                        ]);
 
-                    $lxd->where('id', $this->config['inst_id'])->update([
-                        'status' => 'running',
-                    ]);
+                        $lxd->where('id', $this->config['inst_id'])->update([
+                            'status' => 'running',
+                        ]);
+                        Message::send('容器模板已经调整完成。', $this->config['user']);
+                    } catch (Exception $e) {
+                        Message::send('此时无法调整容器模板。', $this->config['user']);
+                    }
                 }
 
                 break;
