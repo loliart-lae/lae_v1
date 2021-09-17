@@ -40,6 +40,9 @@ class UserBalanceController extends Controller
             'balance' => 'required|min:1|max:100',
             'payment' => 'required'
         ]);
+        if ($request->balance < 1 || $request->balance > 100) {
+            return redirect()->back()->with('status', 'What \'s up.');
+        }
         if ($request->payment == 'alipay') {
             $pay_type = 2;
         } else  if ($request->payment == 'wechat') {
