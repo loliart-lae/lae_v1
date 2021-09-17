@@ -61,7 +61,10 @@
                                 <div class="mdui-card-primary">
                                     <div class="mdui-card-primary-title">{{ $document->title }}</div>
                                     <div class="mdui-card-primary-subtitle">
-                                        {{ $document->description }}<br />访问量：{{ $document->views }}</div>
+                                        {{ $document->description }}<br />
+                                        访问量：{{ $document->views }} <br />
+                                        作者：{{ $document->user->name }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
