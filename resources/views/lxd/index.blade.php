@@ -29,7 +29,15 @@
                                 {{ $lxd->template->name }}
                             @endif
                         </div>
-                        <div class="mdui-panel-item-summary">{{ $lxd->lan_ip }}</div>
+                        <div class="mdui-panel-item-summary">
+                            @if (is_null($lxd->lan_ip))
+                                <div class="mdui-progress">
+                                    <div class="mdui-progress-indeterminate"></div>
+                                </div>
+                            @else
+                                {{ $lxd->lan_ip }}
+                            @endif
+                        </div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
@@ -61,7 +69,11 @@
                                 <a class="mdui-btn mdui-ripple"
                                     href="{{ route('forward.index', $lxd->id) }}">{{ $forwards }} 端口</a>
                             @else
-                                <button class="mdui-btn mdui-ripple" mdui-panel-item-close>正在调度</button>
+                                <button class="mdui-btn mdui-ripple" mdui-panel-item-close>
+                                    <div class="mdui-progress">
+                                        <div class="mdui-progress-indeterminate"></div>
+                                    </div>
+                                </button>
                             @endif
                             @if ($lxd->status == 'running')
                                 <button onclick="$('#f-{{ $i }}').submit()"

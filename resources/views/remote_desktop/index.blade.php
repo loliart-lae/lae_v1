@@ -35,7 +35,8 @@
                         <td nowrap="nowrap">{{ $remote_desktop->id }}</td>
                         <td nowrap="nowrap">
                             @if ($remote_desktop->status == 'active')
-                                <a href="{{ route('remote_desktop.edit', $remote_desktop->id) }}">{{ $remote_desktop->username }}</a>
+                                <a
+                                    href="{{ route('remote_desktop.edit', $remote_desktop->id) }}">{{ $remote_desktop->username }}</a>
                             @else
                                 {{ $remote_desktop->username }}
                             @endif
@@ -58,6 +59,10 @@
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('remote_desktop.destroy', $remote_desktop->id) }}">@csrf
                                     @method('DELETE')</form>
+                            @elseif($remote_desktop->status == 'pending')
+                                <div class="mdui-progress">
+                                    <div class="mdui-progress-indeterminate"></div>
+                                </div>
                             @else
                                 {{ $remote_desktop->status }}
                             @endif
