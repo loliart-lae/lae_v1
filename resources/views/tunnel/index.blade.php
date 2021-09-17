@@ -20,6 +20,7 @@
                     <th>协议</th>
                     <th>内部地址</th>
                     <th>外部地址</th>
+                    <th>CNAME</th>
                     <th>共享带宽</th>
                     <th>属于服务器</th>
                     <th>属于项目</th>
@@ -59,6 +60,7 @@
                             @endswitch
 
                         </td>
+                        <td nowrap="nowrap">{{ $tunnel->server->address }}</td>
                         <td nowrap="nowrap">
                             @if ($tunnel->protocol != 'xtcp')
                                 {{ $tunnel->server->network_limit }} Mbps
