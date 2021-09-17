@@ -37,7 +37,7 @@ class UserBalanceController extends Controller
     public function store(Request $request, Order $order)
     {
         $this->validate($request, [
-            'balance' => 'required|min:0.01|max:100',
+            'balance' => 'required|min:1|max:100',
             'payment' => 'required'
         ]);
         if ($request->payment == 'alipay') {
