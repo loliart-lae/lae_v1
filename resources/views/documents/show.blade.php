@@ -38,6 +38,7 @@
                 <p style="margin:0;padding:0">
                     {{ $document->title }} <br /> {{ $document->description }}
                     <br />
+                    @csrf
                     <label for="useful">觉得这份文档对您有用吗？</label>
                     <input type="checkbox" id="useful" onchange="toggleUseful()" @if($is_liked ?? 0) checked @endif  />
                 </p>
@@ -51,11 +52,11 @@
     <script>
         $('body').removeClass('mdui-theme-layout-auto')
         $('body').addClass('mdui-theme-layout-dark')
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('#task input[name="_token"]').val()
-        //     }
-        // })
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        })
         $('#editor').fadeIn()
         var _mdeditor
         //修正emoji图片错误
