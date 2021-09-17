@@ -58,7 +58,7 @@
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
-                    <span id="userBalance">{{ Auth::user()->balance }}</span></a>
+                    <span id="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
