@@ -130,9 +130,6 @@
             }
 
             var seconds = date.getSeconds()
-            if (seconds < 10) {
-                seconds = '0' + seconds
-            }
             var format = `${hour}:${minutes}:${seconds}`
             $('#save_tip').text('正在保存...')
 
