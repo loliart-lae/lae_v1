@@ -10,6 +10,11 @@ class Message extends Model
 {
     use HasFactory;
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     static public function send($content, $user_id = null)
     {
         if (is_null($user_id)) {
@@ -27,5 +32,4 @@ class Message extends Model
 
         return true;
     }
-
 }

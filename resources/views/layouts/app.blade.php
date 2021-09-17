@@ -58,7 +58,7 @@
             @else
                 <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
-                    {{ Auth::user()->balance }}</a>
+                    <span id="userBalance">{{ Auth::user()->balance }}</span></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
@@ -115,6 +115,7 @@
     </script>
     @yield('script')
     <script>
+        @auth
         setInterval(function() {
             var date = new Date()
             var startTime = Date.parse(date)
@@ -137,7 +138,8 @@
                                 mdui.snackbar({
                                     message: data.data[i].content,
                                     position: 'right-bottom'
-                                });
+                                })
+                                $('#userBalance').html(data.balance)
                             }
 
                         }
@@ -146,11 +148,13 @@
                         mdui.snackbar({
                             message: '此时无法获取通知。',
                             position: 'right-bottom'
-                        });
+                        })
                     }
                 })
             }
         }, 1000)
+
+        @endauth
 
         @if (session('status'))
             mdui.snackbar({

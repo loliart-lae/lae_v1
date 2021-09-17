@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+
     public function index()
     {
         // 列出通知
@@ -19,6 +20,6 @@ class MessageController extends Controller
         $message_data = $message->where('user_id', Auth::id())->where('read', 0)->get();
         $message->where('user_id', Auth::id())->where('read', 0)->update(['read' => 1]);
 
-        return response()->json(['status' => 'success', 'data' => $message_data]);
+        return response()->json(['status' => 'success', 'data' => $message_data, 'balance' => Auth::user()->balance]);
     }
 }
