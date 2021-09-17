@@ -70,11 +70,13 @@
                         </div>
                         <div class="mdui-card-actions">
                             @if ($document->user_id == Auth::id())
+                                <button onclick="window.open('{{ route('documents.show', $document->id) }}')"
+                                    class="mdui-btn mdui-ripple">浏览</button>
                                 <button onclick="window.open('{{ route('documents.edit', $document->id) }}')"
                                     class="mdui-btn mdui-ripple">编辑</button>
                                 @if ($my)
-                                    <button onclick="updateVisibility({{ $document->id }})" id="btn_{{ $document->id }}"
-                                        class="mdui-btn mdui-ripple">
+                                    <button onclick="updateVisibility({{ $document->id }})"
+                                        id="btn_{{ $document->id }}" class="mdui-btn mdui-ripple">
                                         @if ($document->visibility)
                                             公开
                                             <script>
