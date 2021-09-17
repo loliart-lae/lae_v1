@@ -272,7 +272,7 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $forwards = new Forward();
         $lxdContainer_data = $lxdContainer->where('id', $id)->with('server', 'template')->firstOrFail();
-        if ($lxdContainer_data->status != 'running') {
+        if ($lxdContainer_data->status != 'running' && $lxdContainer_data->status != 'failed') {
             return redirect()->back()->with('status', '无法删除，因为容器还没有准备好。');
         }
 

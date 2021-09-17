@@ -2,8 +2,10 @@
 
 namespace App\Jobs;
 
+use Exception;
 use App\Models\Server;
 use App\Models\Forward;
+use App\Models\Message;
 use App\Jobs\SendEmailJob;
 use App\Models\LxdTemplate;
 use App\Models\LxdContainer;
@@ -42,28 +44,34 @@ class LxdJob implements ShouldQueue
 
         $lxd = new LxdContainer();
         $forward = new Forward();
-        if (isset($this->config['user'])) {
-            $email = User::find($this->config['user'])->email;
-        }
-
 
         switch ($this->config['method']) {
             case 'init':
-                $result = Http::retry(5, 100)->timeout(1200)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
-                    'id' => $this->config['inst_id'],
-                    'cpu' => $this->config['cpu'],
-                    'mem' => $this->config['mem'],
-                    'image' => $this->config['image'],
-                    'disk' => $this->config['disk'],
-                    'password' => $this->config['password'],
-                    'token' => $this->config['token']
-                ]);
+                try {
+                    $result = Http::retry(5, 100)->timeout(1200)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                        'id' => $this->config['inst_id'],
+                        'cpu' => $this->config['cpu'],
+                        'mem' => $this->config['mem'],
+                        'image' => $this->config['image'],
+                        'disk' => $this->config['disk'],
+                        'password' => $this->config['password'],
+                        'token' => $this->config['token']
+                    ]);
 
-                $lxd->where('id', $this->config['inst_id'])->update([
-                    'status' => 'running',
-                    'lan_ip' => $result['lan_ip'],
-                ]);
-                dispatch(new SendEmailJob($email, "久等了，您的 Linux 容器已经准备好了。"))->onQueue('mail');
+                    $lxd->where('id', $this->config['inst_id'])->update([
+                        'status' => 'running',
+                        'lan_ip' => $result['lan_ip'],
+                    ]);
+                    // dispatch(new SendEmailJob($email, "久等了，您的 Linux 容器已经准备好了。"))->onQueue('mail');
+                    Message::send('Linux 容器已经准备好了。', $this->config['user']);
+                } catch (Exception $e) {
+                    Message::send('此时无法开设容器。', $this->config['user']);
+                    $lxd->where('id', $this->config['inst_id'])->update([
+                        'status' => 'failed',
+                        'lan_ip' => '此时无法创建，请尝试销毁后重试。'
+                    ]);
+                }
+
                 break;
 
             case 'delete':
@@ -94,15 +102,22 @@ class LxdJob implements ShouldQueue
                 break;
 
             case 'forward':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
-                    'id' => $this->config['inst_id'],
-                    'from' => $this->config['from'],
-                    'to' => $this->config['to'],
-                    'token' => $this->config['token']
-                ]);
-                $forward->where('lxd_id', $this->config['inst_id'])->update([
-                    'status' => 'active',
-                ]);
+                try {
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                        'id' => $this->config['inst_id'],
+                        'from' => $this->config['from'],
+                        'to' => $this->config['to'],
+                        'token' => $this->config['token']
+                    ]);
+                    $forward->where('lxd_id', $this->config['inst_id'])->update([
+                        'status' => 'active',
+                    ]);
+                } catch (Exception $e) {
+                    Message::send('此时无法新建端口转发。', $this->config['user']);
+                    $forward->where('lxd_id', $this->config['inst_id'])->update([
+                        'status' => 'failed',
+                    ]);
+                }
                 break;
 
             case 'forward_delete':
@@ -144,8 +159,8 @@ class LxdJob implements ShouldQueue
                         'template_id' => $this->config['old_template']
                     ]);
                     // 通知用户执行失败
-                    dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
-
+                    // dispatch(new SendEmailJob($email, '无法调整容器模板，因为服务器上已经没有更多的资源了。'))->onQueue('mail');
+                    Message::send('无法调整容器模板，因为服务器上已经没有更多的资源了。', $this->config['user']);
                 } else {
                     Http::retry(5, 100)->timeout(600)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
                         'id' => $this->config['inst_id'],

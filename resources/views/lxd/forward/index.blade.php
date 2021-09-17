@@ -38,8 +38,8 @@
                         <td nowrap="nowrap">{{ $forward->reason }}</td>
                         <td nowrap="nowrap">{{ $forward->server->address }}:{{ $forward->to }}</td>
                         <td nowrap="nowrap">
-                            @if ($forward->status == 'active')
-                                <a href="#" onclick="$('#f-{{ $i }}').submit()">删除</a>
+                            @if ($forward->status == 'active' || $forward->status == 'failed')
+                                <a href="#" onclick="$('#f-{{ $i }}').submit()">@if ($forward->status == 'failed') 失败 @endif 删除</a>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('forward.destroy', [Request::route('lxd_id'), $forward->id]) }}">@csrf @method('DELETE')</form>
                             @else

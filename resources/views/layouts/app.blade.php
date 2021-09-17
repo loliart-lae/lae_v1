@@ -115,6 +115,45 @@
     </script>
     @yield('script')
     <script>
+        setInterval(function() {
+            var date = new Date()
+            var startTime = Date.parse(date)
+
+            if (localStorage.getItem('startTime') == null) {
+                localStorage.setItem('startTime', startTime)
+            }
+            current = localStorage.getItem('startTime')
+            if (startTime - current >= 10000) {
+                // 立即更新localStorage，然后获取通知
+                localStorage.setItem('startTime', startTime)
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route('messages.unread') }}',
+                    dataType: 'json',
+                    success: function(data) {
+                        for (var i = 0; i < data.data.length; i++) {
+                            if (data.data.length != 0) {
+                                mdui.snackbar({
+                                    message: data.data[i].content,
+                                    position: 'right-bottom'
+                                });
+                            }
+
+                        }
+                    },
+                    error: function(data) {
+                        mdui.snackbar({
+                            message: '此时无法获取通知。',
+                            position: 'right-bottom'
+                        });
+                    }
+                })
+
+            }
+            console.log(startTime)
+        }, 1000)
+
         @if (session('status'))
             mdui.snackbar({
             message: '{{ session('status') }}',
@@ -131,6 +170,17 @@
         @endif
 
         if (!$.cookie('is_readed')) {
+            if (!window.localStorage) {
+                mdui.snackbar({
+                    message: '你的浏览器不支持 localStorage, 队列更新可能不会启用。',
+                    position: 'bottom'
+                });
+            } else {
+                mdui.snackbar({
+                    message: '检测到 localStorage, 你将会间接收到通知。',
+                    position: 'bottom'
+                });
+            }
             $('#topic').append(` <div class="mdui-float-right"><div class="mdui-chip">
                 <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</span>
                 <span class="mdui-chip-delete" onclick="$.cookie('is_readed', '1', {

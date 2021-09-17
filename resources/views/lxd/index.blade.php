@@ -75,7 +75,7 @@
                                     </div>
                                 </button>
                             @endif
-                            @if ($lxd->status == 'running')
+                            @if ($lxd->status == 'running' || $lxd->status == 'failed')
                                 <button onclick="$('#f-{{ $i }}').submit()"
                                     class="mdui-btn mdui-ripple">销毁</button>
                                 <form id="f-{{ $i }}" method="post"

@@ -100,7 +100,7 @@ class ForwardController extends Controller
 
         dispatch(new LxdJob($config));
 
-        return redirect()->back()->with('status', '新建成功。');
+        return redirect()->back()->with('status', '正在准备您的端口。');
     }
 
     /**
@@ -151,8 +151,8 @@ class ForwardController extends Controller
         $id = $request->route('forward');
 
         $forward_data = $forward->where('id', $id)->with('server')->firstOrFail();
-        if ($forward_data->status != 'active') {
-            return redirect()->back()->with('status', '无法删除，因为隧道还没有准备好。');
+        if ($forward_data->status != 'active' && $forward_data->status != 'failed') {
+            return redirect()->back()->with('status', '无法删除，因为转发还没有准备好。');
         }
 
         $project_id = $forward_data->project_id;

@@ -99,6 +99,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::put('/documents/like/{id}', [Controllers\DocumentController::class, 'like'])->name('documents.like');
     Route::resource('/documents', Controllers\DocumentController::class);
 
+    Route::get('/messages/unread', [Controllers\MessageController::class, 'get'])->name('messages.unread');
+
 });
 
 Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);

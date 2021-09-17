@@ -2,7 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
+use Exception;
+use App\Models\Message;
 use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Http;
@@ -36,22 +37,24 @@ class RemoteDesktopJob implements ShouldQueue
     public function handle()
     {
         $remote_desktop = new RemoteDesktop();
-        if (isset($this->config['user'])) {
-            $email = User::find($this->config['user'])->email;
-        }
 
         switch ($this->config['method']) {
             case 'create':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/create", [
-                    'username' => $this->config['username'],
-                    'password' => $this->config['password'],
-                    'token' => $this->config['token']
-                ]);
+                try {
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/create", [
+                        'username' => $this->config['username'],
+                        'password' => $this->config['password'],
+                        'token' => $this->config['token']
+                    ]);
 
-                $remote_desktop->where('id', $this->config['inst_id'])->update([
-                    'status' => 'active',
-                ]);
-                dispatch(new SendEmailJob($email, "久等了，您的 共享的 Windows 远程桌面 已经准备好了。"))->onQueue('mail');
+                    $remote_desktop->where('id', $this->config['inst_id'])->update([
+                        'status' => 'active',
+                    ]);
+                } catch (Exception $e) {
+                    Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
+                }
+
+                // dispatch(new SendEmailJob($email, "久等了，您的 共享的 Windows 远程桌面 已经准备好了。"))->onQueue('mail');
 
                 break;
 
@@ -63,11 +66,15 @@ class RemoteDesktopJob implements ShouldQueue
                 break;
 
             case 'passwd':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/passwd", [
-                    'username' => $this->config['username'],
-                    'password' => $this->config['password'],
-                    'token' => $this->config['token']
-                ]);
+                try {
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/passwd", [
+                        'username' => $this->config['username'],
+                        'password' => $this->config['password'],
+                        'token' => $this->config['token']
+                    ]);
+                } catch (Exception $e) {
+                    Message::send('此时无法更改 共享的 Windows 远程桌面 的密码。', $this->config['user']);
+                }
                 break;
         }
     }
