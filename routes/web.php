@@ -57,6 +57,14 @@ Route::prefix('/')->group(function () {
     Route::get('download/{name}/download', [Controllers\DriveController::class, 'route_download'])->name('download.download')->middleware('auth');
 
     Route::post('/tunnel/auth', [Controllers\TunnelController::class, 'auth']);
+
+
+    Route::get('/documents/my', [Controllers\DocumentController::class, 'my'])->name('documents.my');
+    Route::get('/documents/search', [Controllers\DocumentController::class, 'search'])->name('documents.search');
+    Route::put('/documents/like/{id}', [Controllers\DocumentController::class, 'like'])->name('documents.like');
+    Route::resource('/documents', Controllers\DocumentController::class);
+
+    Route::get('/messages/unread', [Controllers\MessageController::class, 'get'])->name('messages.unread');
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -93,14 +101,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/tunnels', Controllers\TunnelController::class);
 
     Route::resource('/projects/{project_id}/members', Controllers\ProjectMembersController::class);
-
-    Route::get('/documents/my', [Controllers\DocumentController::class, 'my'])->name('documents.my');
-    Route::get('/documents/search', [Controllers\DocumentController::class, 'search'])->name('documents.search');
-    Route::put('/documents/like/{id}', [Controllers\DocumentController::class, 'like'])->name('documents.like');
-    Route::resource('/documents', Controllers\DocumentController::class);
-
-    Route::get('/messages/unread', [Controllers\MessageController::class, 'get'])->name('messages.unread');
-
 });
 
 Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);

@@ -107,6 +107,7 @@
     <div class="mdui-dialog" id="search-dialog">
         <div class="mdui-dialog-title">搜索文档</div>
         <form method="get" action="{{ route('documents.search') }}">
+            @csrf
             <div class="mdui-dialog-content">
                 <div class="mdui-textfield mdui-textfield-floating-label" style="position: relative;top:-20px">
                     <label class="mdui-textfield-label">标题</label>
@@ -120,11 +121,11 @@
         </form>
     </div>
     <script>
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('input[name="_token"]').val()
-        //     }
-        // })
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        })
 
         function updateVisibility(id) {
             $.ajax({

@@ -35,6 +35,7 @@
             </div>
             <div class="mdui-col-xs-6 mdui-col-sm-4">
                 <iframe src="{{ route('webSSH') }}" style="height: 85vh;width: 100%" frameborder="0"></iframe>
+                @csrf
                 <input type="text" name="title" style="background: transparent;
                 width: 96%;
                 border: none;
@@ -67,13 +68,14 @@
 
     {!! editor_js() !!}
     <script>
+
         $('body').removeClass('mdui-theme-layout-auto')
         $('body').addClass('mdui-theme-layout-dark')
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('input[name="_token"]').val()
-        //     }
-        // })
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        })
         $('#editor').fadeIn()
         var _mdeditor
         //修正emoji图片错误
