@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Document;
 use App\Models\DocumentTag;
 use App\Models\DocumentLike;
@@ -196,7 +197,7 @@ class DocumentController extends Controller
     {
         $documentLike = new DocumentLike();
         // 获取信息
-        $documentLike_data = $documentLike::where('document_id', $id)->where('user_id', Auth::id());
+        $documentLike_data = $documentLike::where('document_id', $id)->with('document')->where('user_id', Auth::id());
         if ($documentLike_data->exists()) {
             // 已经赞过，将点赞切换
             $data = $documentLike->where('document_id', $id)->where('user_id', Auth::id())->firstOrFail();
@@ -224,6 +225,7 @@ class DocumentController extends Controller
                 // 给作者打钱
                 $userBalanceLog = new UserBalanceLog();
                 $userBalanceLog->charge($doc_user_id, 1, 'Document like.');
+                Message::send('嗨，' . Auth::user()->name . " 赞了你的文档 " . $documentLike->document->title , $doc_user_id);
             }
 
             return response()->json(['status' => 'success']);
