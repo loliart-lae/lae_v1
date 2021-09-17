@@ -149,9 +149,7 @@
                         });
                     }
                 })
-
             }
-            console.log(startTime)
         }, 1000)
 
         @if (session('status'))
