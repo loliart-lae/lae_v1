@@ -94,8 +94,8 @@
                                     </form>
                                 @endif
                             @else
-                                <a href="{{ route('documents.show', $document->id) }}"
-                                    class="mdui-btn mdui-ripple">浏览</a>
+                                <button onclick="window.open('{{ route('documents.show', $document->id) }}')"
+                                    class="mdui-btn mdui-ripple">浏览</button>
                             @endif
                         </div>
                     </div>
