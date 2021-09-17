@@ -38,8 +38,8 @@
                 <p style="margin:0;padding:0">
                     {{ $document->title }} <br /> {{ $document->description }}
                     <br />
-                    <label for="useful" onclick="toggleUseful()">觉得这份文档对您有用吗？</label>
-                    <input type="checkbox" id="useful" onclick="toggleUseful()" @if($is_liked ?? 0) checked @endif  />
+                    <label for="useful">觉得这份文档对您有用吗？</label>
+                    <input type="checkbox" id="useful" onchange="toggleUseful()" @if($is_liked ?? 0) checked @endif  />
                 </p>
             </div>
         </div>
