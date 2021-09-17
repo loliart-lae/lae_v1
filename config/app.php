@@ -171,7 +171,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        WangNingkai\Editor\EditorServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...

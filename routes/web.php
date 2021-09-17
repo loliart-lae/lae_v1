@@ -49,6 +49,10 @@ Route::prefix('/')->group(function () {
         return view('invites.dream');
     })->name('dream1');
 
+    Route::get('webSSH', function () {
+        return view('webSSH');
+    })->name('webSSH');
+
     Route::get('download/{name}', [Controllers\DriveController::class, 'view'])->name('download.view')->middleware('auth');
     Route::get('download/{name}/download', [Controllers\DriveController::class, 'route_download'])->name('download.download')->middleware('auth');
 
@@ -90,6 +94,11 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::resource('/projects/{project_id}/members', Controllers\ProjectMembersController::class);
 
+    Route::get('/documents/my', [Controllers\DocumentController::class, 'my'])->name('documents.my');
+    Route::get('/documents/search', [Controllers\DocumentController::class, 'search'])->name('documents.search');
+    Route::put('/documents/like/{id}', [Controllers\DocumentController::class, 'like'])->name('documents.like');
+    Route::resource('/documents', Controllers\DocumentController::class);
+
 });
 
 Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);
@@ -103,4 +112,3 @@ Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
     Route::resource('/balance', Controllers\Admin\BalanceController::class);
     Route::get('/balance/user/search', [Controllers\Admin\BalanceController::class, 'find'])->name('admin.balance.user.find');
 });
-

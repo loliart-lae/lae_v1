@@ -63,9 +63,10 @@
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                <a target="_blank" href="https://f.lightart.top/" class="mdui-btn mdui-ripple mdui-ripple-white">社区</a>
+                <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档</a>
+                <a target="_blank" href="https://f.lightart.top/" class="mdui-ripple mdui-ripple-white">社区</a>
                 <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
-                    class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
+                    class="mdui-ripple mdui-ripple-white">知识库</a>
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                     class="mdui-ripple mdui-ripple-white">退出登录</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -74,7 +75,7 @@
             @endguest
         </div>
     </div>
-    <div class="mdui-container mdui-p-a-2 pjax-container">
+    <div class="@yield('container', 'mdui-container') mdui-p-a-2 pjax-container">
         <div id="topic">
 
         </div>
