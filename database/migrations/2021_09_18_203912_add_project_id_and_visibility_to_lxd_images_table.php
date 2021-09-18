@@ -14,7 +14,7 @@ class AddProjectIdAndVisibilityToLxdImagesTable extends Migration
     public function up()
     {
         Schema::table('lxd_images', function (Blueprint $table) {
-            $table->unsignedBigInteger('project_id')->index()->after('image');
+            $table->unsignedBigInteger('project_id')->index()->nullable()->after('image');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->boolean('visibility')->default(0)->comment('可见性')->after('project_id');
 
