@@ -106,15 +106,6 @@
 
         })
 
-        @if (session('status'))
-            alert({{ session('status') }})
-        @endif
-        @if (count($errors) > 0)
-            @foreach ($errors->all() as $error)
-                alert({{ $error }})
-            @endforeach
-        @endif
-
         function save() {
             var date = new Date()
             var hour = date.getHours()
