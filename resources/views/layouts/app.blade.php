@@ -133,6 +133,32 @@
                     url: '{{ route('messages.unread') }}',
                     dataType: 'json',
                     success: function(data) {
+                        var currentBalance = parseInt($('#userBalance').text())
+                        if (currentBalance != data.balance) {
+                            mdui.snackbar({
+                                message: '账户积分已更新为:' + data.balance,
+                                position: 'right-bottom'
+                            })
+                            $({
+                                // 起始值
+                                countNum: currentBalance
+                            }).animate({
+                                // 最终值
+                                countNum: data.balance
+                            }, {
+                                // 动画持续时间
+                                duration: 2000,
+                                easing: "linear",
+                                step: function() {
+                                    // 设置每步动画计算的数值
+                                    $('#userBalance').text(Math.floor(this.countNum));
+                                },
+                                complete: function() {
+                                    // 设置动画结束的数值
+                                    $('#userBalance').text(this.countNum);
+                                }
+                            });
+                        }
                         $('#userBalance').html(data.balance)
                         for (var i = 0; i < data.data.length; i++) {
                             if (data.data.length != 0) {
@@ -141,7 +167,6 @@
                                     position: 'right-bottom'
                                 })
                             }
-
                         }
                     },
                     error: function(data) {
@@ -153,7 +178,6 @@
                 })
             }
         }, 1000)
-
         @endauth
 
         @if (session('status'))
