@@ -5,6 +5,8 @@
 @section('content')
     <h1 class="mdui-text-color-theme">内网穿透隧道管理</h1>
 
+    <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建隧道</a>
+    &nbsp;&nbsp;
     <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple">下载 Frp
         各版本客户端</a>
 
@@ -85,7 +87,8 @@
                         @else
                             @php($tip = ' 删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')
                         @endif
-                        <td nowrap="nowrap"><a href="#" onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">配置文件</a> |
+                        <td nowrap="nowrap"><a href="#"
+                                onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">配置文件</a> |
                             <a href="#"
                                 onclick="if (confirm('{{ $tip }}')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"

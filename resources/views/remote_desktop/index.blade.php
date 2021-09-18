@@ -5,6 +5,9 @@
 @section('content')
     <h1 class="mdui-text-color-theme">共享远程桌面管理</h1>
 
+    <a href="{{ route('remote_desktop.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建隧道</a>
+    <br /><br />
+
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
