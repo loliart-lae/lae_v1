@@ -54,6 +54,8 @@
         <li>任何违反服务器所在 “地区/国家” 法律行为。</li>
         <li>长时间高强度占用资源。</li>
     </ul>
+
+    <p>Light App Engine 也为除了您以外的 {{ App\Models\User::count() - 2 }} 个用户提供服务，期待您的成果💗</p>
 </div>
 
 

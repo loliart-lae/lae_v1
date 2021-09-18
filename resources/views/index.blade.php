@@ -18,6 +18,8 @@
         <li>在 <kbd>容器管理</kbd> 中新建容器</li>
     </ol>
     <p><em>创建容器必须要有项目，并且项目中有足够的余额</em></p>
+
+    <p>我们正在为 {{ App\Models\User::count() - 1 }} 个用户提供服务，并且时刻欢迎您的加入！</p>
 </div>
 
 @endsection
