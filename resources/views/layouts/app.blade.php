@@ -134,12 +134,12 @@
                     dataType: 'json',
                     success: function(data) {
                         for (var i = 0; i < data.data.length; i++) {
+                            $('#userBalance').html(data.balance)
                             if (data.data.length != 0) {
                                 mdui.snackbar({
                                     message: data.data[i].content,
                                     position: 'right-bottom'
                                 })
-                                $('#userBalance').html(data.balance)
                             }
 
                         }
