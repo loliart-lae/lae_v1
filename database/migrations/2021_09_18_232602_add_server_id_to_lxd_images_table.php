@@ -14,7 +14,7 @@ class AddServerIdToLxdImagesTable extends Migration
     public function up()
     {
         Schema::table('lxd_images', function (Blueprint $table) {
-            $table->unsignedBigInteger('server_id')->index();
+            $table->unsignedBigInteger('server_id')->nullable()->index();
             $table->foreign('server_id')->references('id')->on('servers');
         });
     }
