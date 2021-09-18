@@ -58,7 +58,7 @@ class DocumentController extends Controller
         $document->user_id = Auth::id();
         $document->save();
 
-        return redirect()->back()->with('status', '新建成功，现在开始编辑吧。');
+        return redirect()->route('documents.edit', $document->id)->with('status', '非常感谢您对我们社区的贡献。');
     }
 
     /**
