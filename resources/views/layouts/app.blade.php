@@ -117,6 +117,7 @@
     <script>
         @auth
         setInterval(function() {
+            var updateCount = 0
             var date = new Date()
             var startTime = Date.parse(date)
 
@@ -133,8 +134,8 @@
                     url: '{{ route('messages.unread') }}',
                     dataType: 'json',
                     success: function(data) {
-                        var currentBalance = parseInt($('#userBalance').text())
-                        if (currentBalance != data.balance) {
+                        var currentBalance = parseFloat($('#userBalance').text())
+                        if (currentBalance != data.balance && updateCount == 0) {
                             mdui.snackbar({
                                 message: '账户积分已更新为:' + data.balance,
                                 position: 'right-bottom'
@@ -159,6 +160,7 @@
                                 }
                             });
                         }
+                        updateCount++;
                         $('#userBalance').html(data.balance)
                         for (var i = 0; i < data.data.length; i++) {
                             if (data.data.length != 0) {
