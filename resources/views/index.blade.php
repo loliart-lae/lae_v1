@@ -20,6 +20,7 @@
     <p><em>创建容器必须要有项目，并且项目中有足够的余额</em></p>
 
     <p>我们正在为 {{ App\Models\User::count() - 1 }} 个用户提供服务，并且时刻欢迎您的加入！</p>
+    <p>如果你有想法想对我说，欢迎发送邮件至<a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
 </div>
 
 @endsection
