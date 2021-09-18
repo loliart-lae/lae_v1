@@ -8,10 +8,11 @@ use App\Models\LxdContainer;
 use Illuminate\Http\Request;
 use App\Models\ProjectInvite;
 use App\Models\ProjectMember;
+use App\Models\RemoteDesktop;
 use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProjectMembersController;
-
+use App\Models\Tunnel;
 
 class ProjectController extends Controller
 {
@@ -130,7 +131,13 @@ class ProjectController extends Controller
         if ($project_where_id->where('user_id', Auth::id())->exists()) {
             // 解散项目
             if ($lxd->where('project_id', $id)->count() > 0) {
-                return redirect()->route('projects.index')->with('status', '项目中还有未删除的容器。');
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 Linux 容器。');
+            }
+            if (RemoteDesktop::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 共享的 Windows 远程桌面。');
+            }
+            if (Tunnel::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 穿透隧道。');
             }
 
             // 删除项目中所有成员
