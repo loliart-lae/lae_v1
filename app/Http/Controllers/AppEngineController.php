@@ -49,10 +49,10 @@ class AppEngineController extends Controller
         // 选择服务器
         $servers = $server->where('free_disk', '>', '5')->where('free_mem', '>', '1024')->where('type', 'container')->get();
         // 列出模板
-        $templates = $lxdTemplate->whereNull('project_id')->where('visibility', 1)->get();
+        $templates = $lxdTemplate->get();
 
         // 列出镜像
-        $images = $lxdImage->get();
+        $images = $lxdImage->whereNull('project_id')->where('visibility', 1)->get();
 
 
         return view('lxd.create', compact('servers', 'templates', 'projects', 'images'));
