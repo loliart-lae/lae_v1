@@ -31,6 +31,8 @@ class Kernel extends ConsoleKernel
             // 分钟计费
             dispatch(new CostJob())->onQueue('cost');;
         })->everyMinute();
+        // 生成 metrics
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
     /**
