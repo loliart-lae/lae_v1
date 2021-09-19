@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Message;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\ProjectMember;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectMembersController extends Controller
 {
@@ -98,9 +99,13 @@ class ProjectMembersController extends Controller
         $project = new Project();
 
         // 检查项目是否属于这个用户
-        if ($project::where('id', $request->route('project_id'))->where('user_id', Auth::id())->exists()) {
+        $project_sql = $project->where('id', $request->route('project_id'))->where('user_id', Auth::id())->first();
+        if ($project->where('id', $request->route('project_id'))->where('user_id', Auth::id())->exists()) {
             // 删除
             $member->where('project_id', $request->route('project_id'))->where('user_id', $request->route('member'))->delete();
+
+
+            Message::send("你被请出项目 {$project_sql->name}。", $request->route('member'));
 
             return redirect()->back()->with('status', '删除成功。');
         } else abort(404);
