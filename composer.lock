@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68afcd63f5d2e5fd2b6a6d7939f72992",
+    "content-hash": "6e696c759cf5121480409e8d3e87e67a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -133,6 +133,85 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "bringyourownideas/laravel-sitemap",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bringyourownideas/laravel-sitemap.git",
+                "reference": "7ecd1f794675eb32f1b97cb0bc08d788ae82af53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bringyourownideas/laravel-sitemap/zipball/7ecd1f794675eb32f1b97cb0bc08d788ae82af53",
+                "reference": "7ecd1f794675eb32f1b97cb0bc08d788ae82af53",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "laravel/framework": "^6.21|^7.0|^8.0",
+                "nesbot/carbon": "^2.41",
+                "php": "^7.3|^8.0",
+                "spatie/robots-txt": "^1.0",
+                "vdb/php-spider": "^v0.5.2"
+            },
+            "require-dev": {
+                "symfony/thanks": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BringYourOwnIdeas\\LaravelSitemap\\SitemapServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BringYourOwnIdeas\\LaravelSitemap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Thaleikis",
+                    "homepage": "https://peterthaleikis.com"
+                }
+            ],
+            "description": "A simple website crawler & sitemap generator without a headless browser for Laravel 5.8+",
+            "homepage": "https://bringyourownideas.com/blog/simple-laravel-sitemap-generator",
+            "keywords": [
+                "laravel",
+                "laravel sitemap",
+                "site crawler",
+                "sitemap generator",
+                "sitemap.xml"
+            ],
+            "support": {
+                "issues": "https://github.com/bringyourownideas/laravel-sitemap/issues",
+                "source": "https://github.com/bringyourownideas/laravel-sitemap"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/spekulatius",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spekulatius",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-23T23:21:47+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -4258,6 +4337,63 @@
             "time": "2020-12-04T13:10:38+00:00"
         },
         {
+            "name": "spatie/robots-txt",
+            "version": "1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/robots-txt.git",
+                "reference": "8802a2bee670b3c13cfd21ede0322f72b3efb711"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/robots-txt/zipball/8802a2bee670b3c13cfd21ede0322f72b3efb711",
+                "reference": "8802a2bee670b3c13cfd21ede0322f72b3efb711",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.0",
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Robots\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brent@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Determine if a page may be crawled from robots.txt and robots meta tags",
+            "homepage": "https://github.com/spatie/robots-txt",
+            "keywords": [
+                "robots-txt",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/robots-txt/issues",
+                "source": "https://github.com/spatie/robots-txt/tree/1.0.10"
+            },
+            "time": "2020-12-07T11:10:49+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.2.7",
             "source": {
@@ -6900,6 +7036,126 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.3"
             },
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "vdb/php-spider",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mvdbos/php-spider.git",
+                "reference": "17e8619f2ac66f94ee3a80ba0e8961683a51aff0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mvdbos/php-spider/zipball/17e8619f2ac66f94ee3a80ba0e8961683a51aff0",
+                "reference": "17e8619f2ac66f94ee3a80ba0e8961683a51aff0",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-dom": "*",
+                "guzzlehttp/guzzle": "^6.0.0||^7.0.0",
+                "php": ">=7.2",
+                "symfony/css-selector": "^3.0.0||^4.0.0||^5.0.0",
+                "symfony/dom-crawler": "^3.0.0||^4.0.0||^5.0.0",
+                "symfony/event-dispatcher": "^4.0.0||^5.0.0",
+                "symfony/finder": "^3.0.0||^4.0.0||^5.0.0",
+                "vdb/uri": "^0.2.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0.0",
+                "phpmd/phpmd": "^2.0.0",
+                "phpunit/phpunit": "^8.0.0",
+                "sebastian/phpcpd": "^4.0.0",
+                "squizlabs/php_codesniffer": "^3.0.0"
+            },
+            "type": "application",
+            "autoload": {
+                "psr-4": {
+                    "VDB\\Spider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthijs van den Bos"
+                }
+            ],
+            "description": "A configurable and extensible PHP web spider",
+            "keywords": [
+                "crawler",
+                "scraper",
+                "spider"
+            ],
+            "support": {
+                "issues": "https://github.com/matthijsvandenbos/php-spider/issues",
+                "source": "https://github.com/matthijsvandenbos/php-spider"
+            },
+            "time": "2020-10-26T08:26:18+00:00"
+        },
+        {
+            "name": "vdb/uri",
+            "version": "v0.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mvdbos/vdb-uri.git",
+                "reference": "626d0f8963723506b0c20ea755bf47e883929343"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mvdbos/vdb-uri/zipball/626d0f8963723506b0c20ea755bf47e883929343",
+                "reference": "626d0f8963723506b0c20ea755bf47e883929343",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.1"
+            },
+            "type": "application",
+            "autoload": {
+                "psr-4": {
+                    "VDB\\Uri\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthijs van den Bos",
+                    "email": "matthijs@vandenbos.org"
+                }
+            ],
+            "description": "A set of URI classes and a URI parser, based on RFC 3986",
+            "keywords": [
+                "http",
+                "parser",
+                "uri",
+                "url",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/mvdbos/vdb-uri/issues",
+                "source": "https://github.com/mvdbos/vdb-uri/tree/v0.2.4"
+            },
+            "time": "2020-10-07T09:20:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
