@@ -8,6 +8,8 @@
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#webssh-dialog'}">Web SSH</button>
     &nbsp;&nbsp;
     <a href="{{ route('lxd.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 Linux 容器</a>
+    &nbsp;&nbsp;
+    <a href="{{ route('images.index') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">镜像管理</a>
     <br /><br />
     <div class="mdui-typo">
 
@@ -80,6 +82,13 @@
                                     class="mdui-btn mdui-ripple">销毁</button>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>
+                            @elseif ($lxd->status == 'making')
+                                <button class="mdui-btn mdui-ripple">
+                                    正在生成镜像
+                                    <div class="mdui-progress">
+                                        <div class="mdui-progress-indeterminate"></div>
+                                    </div>
+                                </button>
                             @else
                                 <button class="mdui-btn mdui-ripple">{{ $lxd->status }}</button>
                             @endif
