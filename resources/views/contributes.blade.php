@@ -68,7 +68,7 @@
                     <img src="https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg" height="250" />
                     <div class="mdui-card-media-covered">
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">咕咕咕咕咕咕咕咕咕</div>
+                            <div class="mdui-card-primary-title">想当一个小天使</div>
                         </div>
                         <div class="mdui-card-actions mdui-text-capitalize">
                             <a target="_blank" href="https://ivampiresp.com/"
