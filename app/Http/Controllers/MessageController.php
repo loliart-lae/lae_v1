@@ -14,6 +14,12 @@ class MessageController extends Controller
         // 列出通知
     }
 
+    public function all(Message $message)
+    {
+        $message_data = $message::pagination(10);
+        return view('message.all', compact('message_data'));
+    }
+
     public function get(Message $message)
     {
         // 列出通知
