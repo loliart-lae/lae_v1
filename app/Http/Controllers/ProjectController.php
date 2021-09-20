@@ -152,7 +152,7 @@ class ProjectController extends Controller
             $project_where_id->where('user_id', Auth::id())->delete();
 
 
-            return redirect()->route('projects.index')->with('status', 'success');
+            return redirect()->route('projects.index')->with('status', '删除成员 成功');
         } else abort(403);
     }
 
@@ -176,9 +176,9 @@ class ProjectController extends Controller
 
             $balance = $project->where('id', $request->route('project_id'))->update(['balance' => $currentBalance]);
 
-            return redirect()->back()->with('status', 'success');
+            return redirect()->back()->with('status', '项目余额已更新。');
         } else {
-            return redirect()->back()->with('status', 'error');
+            return redirect()->back()->with('status', '无法更新项目余额。');
         }
     }
 }
