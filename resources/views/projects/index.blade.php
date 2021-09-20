@@ -5,16 +5,19 @@
 @section('content')
     <h1 class="mdui-text-color-theme">我所在的项目</h1>
     <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建项目</a> &nbsp; <a
-        href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">@if ($invites > 0)
-        {{ $invites }} 个
+        href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">
+        @if ($invites > 0)
+            {{ $invites }} 个
         @else
-        没有
+            没有
         @endif
-        待处理的邀请</a>
+        待处理的邀请
+    </a>
     <div class="mdui-row mdui-m-t-2">
-        <div class="mdui-col-sm-6">
 
-            @foreach ($projects as $project)
+
+        @foreach ($projects as $project)
+            <div class="mdui-col-sm-6">
                 <div>
                     <h3 id="proj-{{ $project->project->id }}" class="scroll_listen mdui-text-color-theme">
                         {{ $project->project->name }}</h3>
@@ -46,10 +49,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        @endforeach
 
-            @endforeach
 
-        </div>
     </div>
 
 @endsection
