@@ -32,7 +32,7 @@
             </thead>
             <tbody class="mdui-typo">
                 <tr>
-                    <td colspan="11" class="mdui-text-center">
+                    <td colspan="12" class="mdui-text-center">
                         <a href="{{ route('tunnels.create') }}">新建 隧道</a>
                         {{-- 或者 <a href="{{ route('tunnels.create') }}">新建 启动集</a> --}}
                     </td>
