@@ -95,10 +95,15 @@ class LxdJob implements ShouldQueue
                 break;
 
             case 'start':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
-                    'id' => $this->config['inst_id'],
-                    'token' => $this->config['token'],
-                ]);
+                try {
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                        'id' => $this->config['inst_id'],
+                        'token' => $this->config['token'],
+                    ]);
+                } catch (Exception $e) {
+                    Message::send($this->config['server_name'] . ' 的健康检查出现问题， LAE正在紧急修复。', $this->config['user']);
+                }
+
                 break;
 
             case 'forward':
