@@ -114,74 +114,75 @@
         })
     </script>
     @yield('script')
-    <script>
-        @auth
-        setInterval(function() {
-            var updateCount = 0
-            var date = new Date()
-            var startTime = Date.parse(date)
+    @auth
+        <script>
+            setInterval(function() {
+                var updateCount = 0
+                var date = new Date()
+                var startTime = Date.parse(date)
 
-            if (localStorage.getItem('startTime') == null) {
-                localStorage.setItem('startTime', startTime)
-            }
-            current = localStorage.getItem('startTime')
-            if (startTime - current >= 10000) {
-                // 立即更新localStorage，然后获取通知
-                localStorage.setItem('startTime', startTime)
+                if (localStorage.getItem('startTime') == null) {
+                    localStorage.setItem('startTime', startTime)
+                }
+                current = localStorage.getItem('startTime')
+                if (startTime - current >= 10000) {
+                    // 立即更新localStorage，然后获取通知
+                    localStorage.setItem('startTime', startTime)
 
-                $.ajax({
-                    type: 'GET',
-                    url: '{{ route('messages.unread') }}',
-                    dataType: 'json',
-                    success: function(data) {
-                        var currentBalance = parseFloat($('#userBalance').text())
-                        if (currentBalance != data.balance && updateCount == 0) {
-                            mdui.snackbar({
-                                message: '账户积分已更新为:' + data.balance,
-                                position: 'right-bottom'
-                            })
-                            $({
-                                // 起始值
-                                countNum: currentBalance
-                            }).animate({
-                                // 最终值
-                                countNum: data.balance
-                            }, {
-                                // 动画持续时间
-                                duration: 2000,
-                                easing: "linear",
-                                step: function() {
-                                    // 设置每步动画计算的数值
-                                    $('#userBalance').text(Math.floor(this.countNum));
-                                },
-                                complete: function() {
-                                    // 设置动画结束的数值
-                                    $('#userBalance').text(this.countNum);
-                                }
-                            });
-                        }
-                        updateCount++;
-                        $('#userBalance').html(data.balance)
-                        for (var i = 0; i < data.data.length; i++) {
-                            if (data.data.length != 0) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ route('messages.unread') }}',
+                        dataType: 'json',
+                        success: function(data) {
+                            var currentBalance = parseFloat($('#userBalance').text())
+                            if (currentBalance != data.balance && updateCount == 0) {
                                 mdui.snackbar({
-                                    message: data.data[i].content,
+                                    message: '账户积分已更新为:' + data.balance,
                                     position: 'right-bottom'
                                 })
+                                $({
+                                    // 起始值
+                                    countNum: currentBalance
+                                }).animate({
+                                    // 最终值
+                                    countNum: data.balance
+                                }, {
+                                    // 动画持续时间
+                                    duration: 2000,
+                                    easing: "linear",
+                                    step: function() {
+                                        // 设置每步动画计算的数值
+                                        $('#userBalance').text(Math.floor(this.countNum));
+                                    },
+                                    complete: function() {
+                                        // 设置动画结束的数值
+                                        $('#userBalance').text(this.countNum);
+                                    }
+                                });
                             }
+                            updateCount++;
+                            $('#userBalance').html(data.balance)
+                            for (var i = 0; i < data.data.length; i++) {
+                                if (data.data.length != 0) {
+                                    mdui.snackbar({
+                                        message: data.data[i].content,
+                                        position: 'right-bottom'
+                                    })
+                                }
+                            }
+                        },
+                        error: function(data) {
+                            mdui.snackbar({
+                                message: '此时无法获取通知。',
+                                position: 'right-bottom'
+                            })
                         }
-                    },
-                    error: function(data) {
-                        mdui.snackbar({
-                            message: '此时无法获取通知。',
-                            position: 'right-bottom'
-                        })
-                    }
-                })
-            }
-        }, 1000)
-        @endauth
-
+                    })
+                }
+            }, 1000)
+        </script>
+    @endauth
+    <script>
         @if (session('status'))
             mdui.snackbar({
             message: '{{ session('status') }}',
@@ -216,7 +217,40 @@
                                             path: '/'
                                         });$('#topic').hide()"><i class="mdui-icon material-icons">cancel</i></span>
             </div></div>`)
-            $('#topic').style('margin-bottom', '10px')
+            $('#topic').css('margin-bottom', '10px')
+        }
+
+        if (!$.cookie('is_readed_form')) {
+            mdui.dialog({
+                title: '征求您的意见。',
+                content: '你好@auth {{ Auth::user()->name }} @endauth ，请问您对我们的产品服务满意度如何？还想要什么新功能？有什么想对我们提出的意见？点击“反馈”按钮，向我们提出意见💗。',
+                buttons: [{
+                        text: '关闭',
+                        onClick: function(inst) {
+                            $.cookie('is_readed_form', '1', {
+                                expires: 7,
+                                path: '/'
+                            });
+                            return false
+                        }
+                    },
+                    {
+                        text: '反馈',
+                        onClick: function(inst) {
+                            $.cookie('is_readed_form', '1', {
+                                expires: 7,
+                                path: '/'
+                            });
+                            mdui.snackbar({
+                                message: '非常感谢！。',
+                                position: 'bottom'
+                            });
+                            window.open('https://wj.qq.com/s2/9060426/5c57')
+                            return false
+                        }
+                    }
+                ]
+            });
         }
     </script>
 </body>
