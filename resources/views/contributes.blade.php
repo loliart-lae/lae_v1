@@ -59,7 +59,7 @@
         <div class="mdui-col-sm-12 mdui-col-md-4 mdui-m-t-1">
             <div class="mdui-card">
                 <div class="mdui-card-header">
-                    <img class="mdui-card-header-avatar" src="https://nwl.im/avatar" />
+                    <img class="mdui-card-header-avatar" src="https://sdn.geekzu.org/avatar/9116fc3de8f9a46668beb1a6b7dbcbcd" />
                     <div class="mdui-card-header-title">iVampireSP.com</div>
                     <div class="mdui-card-header-subtitle">创始人</div>
                 </div>
