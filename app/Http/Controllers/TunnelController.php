@@ -113,9 +113,12 @@ class TunnelController extends Controller
             }
         } else {
             // 反之，检查域名是否被占用
-            if ($tunnel->where('custom_domain', $request->custom_domain)->where('server_id', $request->server_id)->where('protocol', $request->protocol)->exists()) {
-                return redirect()->back()->with('status', 'Error: 在这个服务器上已经存在相同协议的域名了。');
+            if ($request->protocol != 'xtcp') {
+                if ($tunnel->where('custom_domain', $request->custom_domain)->where('server_id', $request->server_id)->where('protocol', $request->protocol)->exists()) {
+                    return redirect()->back()->with('status', 'Error: 在这个服务器上已经存在相同协议的域名了。');
+                }
             }
+
         }
 
         $tunnel->name = $request->name;
