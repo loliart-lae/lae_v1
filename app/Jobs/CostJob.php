@@ -95,6 +95,7 @@ class CostJob implements ShouldQueue
                     'address' => $lxd->server->address,
                     'token' => $lxd->server->token,
                     'user' => $lxd->project->user_id,
+                    'server_id' => $lxd->server->id,
                 ];
                 dispatch(new LxdJob($config));
             } else {
