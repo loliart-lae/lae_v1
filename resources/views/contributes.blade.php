@@ -134,6 +134,17 @@
                 <li>苏沫</li>
                 <li>Tony Stark</li>
                 <li>xixi</li>
+                <li>FunnyStudio</li>
+                <li>以及没有被提及的广大用户们。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mdui-row">
+        <h1 class="mdui-text-color-theme">特别贡献者</h1>
+        <div class="mdui-typo">
+            <ul>
+                <li>KiteAB</li>
                 <li>以及没有被提及的广大用户们。</li>
             </ul>
         </div>
