@@ -39,7 +39,7 @@ class CalcServerJob implements ShouldQueue
         foreach ($lxdServers as $server) {
             $used_disk = 5;
             $memory = 1024;
-            $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->where('server_id', $server->id)->get();
+            $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('server_id', $server->id)->get();
             foreach ($lxdContainers as $lxd) {
                 $used_disk += $lxd->template->disk;
                 $memory += $lxd->template->mem;
