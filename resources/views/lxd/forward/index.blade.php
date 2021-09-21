@@ -41,7 +41,7 @@
                         <td nowrap="nowrap">{{ $forward->server->address }}:{{ $forward->to }}</td>
                         <td nowrap="nowrap">
                             @if ($forward->status == 'active' || $forward->status == 'failed')
-                                <a href="#" onclick="$('#f-{{ $i }}').submit()">@if ($forward->status == 'failed') 失败 @endif
+                                <a href="#" onclick="if (confirm('删除后，将无法通过该端口访问业务，并且端口也可能被他人占用。')) { $('#f-{{ $i }}').submit() } else { return false }">@if ($forward->status == 'failed') 失败 @endif
                                     删除</a>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('forward.destroy', [Request::route('lxd_id'), $forward->id]) }}">

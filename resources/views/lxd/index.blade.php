@@ -78,7 +78,7 @@
                                 </button>
                             @endif
                             @if ($lxd->status == 'running' || $lxd->status == 'failed')
-                                <button onclick="$('#f-{{ $i }}').submit()"
+                                <button onclick="if (confirm('确认删除吗？删除将会清除全部数据，并且无法找回！')) {$('#f-{{ $i }}').submit()} else {return false}"
                                     class="mdui-btn mdui-ripple">销毁</button>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>
