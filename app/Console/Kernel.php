@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\CostJob;
+use App\Jobs\CalcServerJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -31,6 +32,10 @@ class Kernel extends ConsoleKernel
             // 分钟计费
             dispatch(new CostJob())->onQueue('cost');;
         })->everyMinute();
+        $schedule->call(function () {
+            // 重新计算服务器配额
+            dispatch(new CalcServerJob())->onQueue('cost');;
+        })->everyTenMinutes();
         // 生成 metrics
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
