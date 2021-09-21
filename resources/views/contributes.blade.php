@@ -47,7 +47,7 @@
 -->
     <div class="mdui-row">
         <div class="mdui-typo-display-2">非常感谢以下人员对 Light App Engine 的贡献</div><br>
-        <div class="mdui-typo-headline-opacity">中秋节快乐，共建者们💗</div>
+        <div class="mdui-typo-headline-opacity">Light App Engine 离不开大家的支持。</div>
     </div>
     <h1> </h1>
 <br />
@@ -142,6 +142,7 @@
 
     <div class="mdui-row">
         <h1 class="mdui-text-color-theme">特别贡献者</h1>
+        <p>感谢热爱的你们</p>
         <div class="mdui-typo">
             <ul>
                 <li>KiteAB</li>
