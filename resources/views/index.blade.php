@@ -7,7 +7,7 @@
 <div class="mdui-typo-headline-opacity">借助 LAE 轻量应用引擎 在互联网中快速开辟一席之地</div> --}}
 
 <div class="mdui-typo-display-2">中秋节快乐</div><br>
-<div class="mdui-typo-headline-opacity">假期宝贵，准备好用Light App Engine与您的朋友们来一场盛宴了吗？</div>
+<div class="mdui-typo-headline-opacity">假期宝贵，准备好用 Light App Engine 与您的朋友们来一场盛宴了吗？</div>
 
 
 <div class="mdui-typo">
