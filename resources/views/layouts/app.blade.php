@@ -90,7 +90,7 @@
         <div class="mdui-typo mdui-m-t-5">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 <a href="{{ route('contributes') }}">Contributors</a>
-                <br />Light App Engine on {{ env('SERVER_ID', 'LoliArt') }}<br />
+                <br />Light App Engine host by {{ env('HOST_BY') }}<br />
                 Crafted with 💗 by iVampireSP.com<br />
             </p>
         </div>
