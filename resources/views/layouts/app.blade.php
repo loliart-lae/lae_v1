@@ -107,9 +107,10 @@
         })
         $(document).on("pjax:timeout", function(event) {
             mdui.snackbar({
-                message: '与服务器连接时可能网络不太通畅',
-                position: 'bottom'
+                message: '与服务器连接时可能网络不太通畅。<br />为什么会这样？<br />1. 您的网络环境不是很通畅<br />2. 服务器在均衡流量时，上游服务器响应较慢。',
+                position: 'right-bottom'
             })
+
 
             event.preventDefault()
         })
