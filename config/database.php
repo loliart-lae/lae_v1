@@ -34,7 +34,6 @@ return [
     */
 
     'connections' => [
-
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -44,6 +43,14 @@ return [
         ],
 
         'mysql' => [
+            'read' => [
+                ['host' => env('DB_READ_HOST1'), 'password' => env('DB_PASSWORD')],
+                ['host' => env('DB_READ_HOST2'), 'password' => env('DB_PASSWORD')],
+                ['host' => env('DB_READ_HOST3'), 'password' => env('DB_PASSWORD')]
+            ],
+            'write' => [
+                'host' => env('DB_HOST', '127.0.0.1'),
+            ],
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -123,7 +130,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
