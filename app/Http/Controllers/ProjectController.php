@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Drive;
+use App\Models\Tunnel;
 use App\Models\Project;
 use App\Models\LxdContainer;
 use Illuminate\Http\Request;
@@ -12,7 +14,6 @@ use App\Models\RemoteDesktop;
 use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProjectMembersController;
-use App\Models\Tunnel;
 
 class ProjectController extends Controller
 {
@@ -138,6 +139,9 @@ class ProjectController extends Controller
             }
             if (Tunnel::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 穿透隧道。');
+            }
+            if (Drive::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 存储。');
             }
 
             // 删除项目中所有成员
