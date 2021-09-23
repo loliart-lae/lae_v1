@@ -244,7 +244,7 @@
                                 path: '/'
                             });
                             mdui.snackbar({
-                                message: '非常感谢！。',
+                                message: '非常感谢！',
                                 position: 'bottom'
                             });
                             window.open('https://wj.qq.com/s2/9060426/5c57')
