@@ -223,39 +223,6 @@
             </div></div>`)
             $('#topic').css('margin-bottom', '10px')
         }
-
-        if (!$.cookie('is_readed_form')) {
-            mdui.dialog({
-                title: '征求您的意见。',
-                content: '你好@auth {{ Auth::user()->name }} @endauth ，请问您对我们的产品服务满意度如何？还想要什么新功能？有什么想对我们提出的意见？点击“反馈”按钮，向我们提出意见💗。',
-                buttons: [{
-                        text: '关闭',
-                        onClick: function(inst) {
-                            $.cookie('is_readed_form', '1', {
-                                expires: 7,
-                                path: '/'
-                            });
-                            return false
-                        }
-                    },
-                    {
-                        text: '反馈',
-                        onClick: function(inst) {
-                            $.cookie('is_readed_form', '1', {
-                                expires: 7,
-                                path: '/'
-                            });
-                            mdui.snackbar({
-                                message: '非常感谢！',
-                                position: 'bottom'
-                            });
-                            window.open('https://wj.qq.com/s2/9060426/5c57')
-                            return false
-                        }
-                    }
-                ]
-            });
-        }
     </script>
 </body>
 
