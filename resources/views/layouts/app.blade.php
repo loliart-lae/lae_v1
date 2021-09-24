@@ -50,14 +50,14 @@
     <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width mdui-tab-centered" mdui-tab>
             @guest
-                <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
+                <a class="main_link" href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
                 <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
                     class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
                 <a href="{{ route('why') }}" class="mdui-btn mdui-ripple mdui-ripple-white" disabled>为什么选择</a>
                 <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white" disabled>关于我们</a>
             @else
-                <a href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
+                <a class="main_link" href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
                 <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
                     <span id="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
@@ -98,6 +98,7 @@
 
 
     <script>
+        var main_link = 'Light App Engine'
         $.pjax.defaults.timeout = 1200
         $(document).pjax('a', '.pjax-container')
 
@@ -106,13 +107,14 @@
             $("#pre_btn").fadeIn()
         })
         $(document).on("pjax:timeout", function(event) {
-            mdui.snackbar({
-                message: '与服务器连接时可能网络不太通畅。<br />为什么会这样？<br />1. 您的网络环境不是很通畅<br />2. 服务器在均衡流量时，上游服务器响应较慢。',
-                position: 'right-bottom'
-            })
-
-
+            $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
+  <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
+</div>`)
             event.preventDefault()
+        })
+
+        $(document).on("pjax:complete", function(event) {
+            $('.main_link').html(main_link)
         })
     </script>
     @yield('script')
