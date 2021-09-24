@@ -124,10 +124,10 @@ return [
     'cipher' => 'AES-256-CBC',
 
     /**
-     * Pterodactyl Panel
+     * Host By
      */
-    'panel_url' => env('PTERODACTYL_URL', 'https://panel.lo-li.art:2083/api/application'),
-    'panel_key' => env('PTERODACTYL_KEY', 'GkpxZFWzt80l0SisurA6zN7Awm3e1KzMmLpT2eZySGrcl1K4'),
+    'host_by' => env('HOST_BY', 'anonymous'),
+
 
     /*
     |--------------------------------------------------------------------------
