@@ -6,7 +6,8 @@
     <div class="mdui-typo">
         <div class="mdui-card" style="margin-top: 5px">
             <div class="mdui-card-header">
-                <img class="mdui-card-header-avatar" src="https://sdn.geekzu.org/avatar/{{ md5($status->user->email) }}" />
+                <img class="mdui-card-header-avatar"
+                    src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}" />
                 <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
                         {{ $status->created_at->diffForHumans() }}</small></div>
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
@@ -24,7 +25,7 @@
                     @endif
                 </button>
                 <button onclick="return false" class="mdui-btn mdui-ripple">@php($replies = count($status->replies))
-                    @if ($replies > 0) {{ $replies }} 条 @else 没有 @endif 回复</button>
+                    @if ($replies > 0) {{ $replies }}条 @else 没有 @endif 回复</button>
 
                 @can('destroy', $status)
                     <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}" method="POST"
@@ -40,16 +41,34 @@
     </div>
 
     <div class="mdui-typo">
+        @php($i = 0)
+        <h1>@if ($replies > 0) {{ $replies }}条 @endif 回复</h1>
+        @foreach ($status_replies as $status_reply)
+            @php($i++)
+            <div>{{ $i }}.<img class="mdui-card-header-avatar"
+                    src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}" />
+                <p>{{ $status_reply->user->name }}说
+                    <br />{{ $status_reply->content }}
+                </p>
+            </div>
+        @endforeach
+        <br /> <br />
+        <div>
+            {{ $status_replies->links() }}
+        </div>
+        <br /> <br />
         <form id="replyForm" method="POST" action="{{ route('status.reply', $status->id) }}">
             @csrf
             @method('PUT')
             <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input" rows="4" name="content" placeholder="保持友善～" maxlength="140" required></textarea>
+                <textarea class="mdui-textfield-input" rows="4" name="content" placeholder="保持友善～" maxlength="140"
+                    required></textarea>
             </div>
             <button type="submit" class="mdui-btn mdui-ripple mdui-color-theme">回复</button>
         </form>
 
     </div>
+
 
 
 

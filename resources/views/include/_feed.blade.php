@@ -23,7 +23,9 @@
                                 <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                             @endif
                         </button>
-                        <button onclick="window.location.href = '{{ route('status.show', $status->id) }}'" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }} 条 @else 没有 @endif 回复</button>
+                        <button onclick="window.location.href = '{{ route('status.show', $status->id) }}'"
+                            class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
+                            回复</button>
                         @can('destroy', $status)
                             <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}"
                                 method="POST" onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">

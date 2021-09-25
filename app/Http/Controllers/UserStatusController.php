@@ -6,6 +6,7 @@ use App\Models\Message;
 use App\Models\UserBalanceLog;
 use App\Models\UserStatus;
 use App\Models\UserStatusLike;
+use App\Models\UserStatusReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,28 +28,36 @@ class UserStatusController extends Controller
     }
 
     function global (Request $request) {
-        $feed_items = UserStatus::simplePaginate(30);
+        $feed_items = UserStatus::orderBy('created_at', 'desc')->simplePaginate(30);
 
         return view('global', compact('feed_items'));
     }
 
-    public function reply(Request $request)
+    public function reply(Request $request, UserStatusReply $userStatusReply)
     {
-        $id = $request->route('id');
-        // 检测status是否存在
-
-        $status_sql = UserStatus::where('id', $id);
-        if (!$status_sql->exists()) {
-            return redirect()->back()->with('status', '目标回复不存在。');
-        }
-
         $this->validate($request, [
             'content' => 'required|max:140',
         ]);
 
-        Auth::user()->statuses()->create([
-            'content' => '我回复了' . $request->content,
-        ]);
+        $id = $request->route('id');
+
+        $status_sql = UserStatus::where('id', $id);
+        if (!$status_sql->exists()) {
+            return redirect()->back()->with('status', '内容不存在。');
+        }
+
+        $userStatusReply->parent_id = $request->parent_id;
+        $userStatusReply->content = $request->content;
+        $userStatusReply->status_id = $id;
+        $userStatusReply->user_id = Auth::id();
+
+        $userStatusReply->save();
+
+        return redirect()->back()->with('status', '回复成功。');
+
+        // Auth::user()->statuses()->create([
+        //     'content' => '我回复了' . $request->content,
+        // ]);
         // 保存
     }
 
@@ -135,8 +144,9 @@ class UserStatusController extends Controller
     {
         $status_model = new UserStatus();
 
-        $status = $status_model->where('id', $id)->with('replies')->firstOrFail();
-        return view('feed.comments', compact('status'));
+        $status = $status_model->where('id', $id)->firstOrFail();
+        $status_replies = UserStatusReply::where('status_id', $id)->with('user')->simplePaginate(30);
+        return view('feed.comments', compact('status', 'status_replies'));
 
     }
 
