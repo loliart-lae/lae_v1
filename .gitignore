@@ -15,3 +15,5 @@ yarn-error.log
 /.vscode
 .DS_Store
 public/sitemap.xml
+.env.example
+.env
