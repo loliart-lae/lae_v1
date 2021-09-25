@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-    <h1 class="mdui-text-color-theme">你的信息</h1>
+        <h1 class="mdui-text-color-theme">你的信息</h1>
 
         <div class="mdui-row">
             <div class="mdui-col-xs-12 mdui-col-sm-5">
@@ -14,6 +14,7 @@
             <div class="mdui-col-xs-6 mdui-col-sm-7 mdui-text-right">
                 <div class="mdui-typo-display-1">{{ $user->name }}</div>
 
+                <p>积分: {{ $user->balance }} ，<a href="{{ route('billing.index') }}">充值</a></p>
                 <form method="POST" action="{{ route('user.update', $user->id) }}">
                     @csrf
                     @method('PUT')
