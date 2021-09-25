@@ -127,7 +127,7 @@
         $(document).on("pjax:complete", function(event) {
             $('.main_link').html(main_link)
             $('.pjax-container').css('opacity', '1')
-            $('.pjax-container').css('transform', 'scale(1)')
+            $('.pjax-container').css('transform', 'unset')
         })
     </script>
     @yield('script')
