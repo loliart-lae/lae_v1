@@ -15,7 +15,7 @@ use hanbz\PassportClient\Facades\PassportClient;
 | contains the "web" middleware group. Now create something great!
 |
 */
-sleep(3);
+
 Route::get('oauth/login', fn () => PassportClient::driver('passport')->redirect())->name('login');
 Route::get('oauth/callback', [Controllers\AuthController::class, 'OAuthCallback']);
 Route::post('oauth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
