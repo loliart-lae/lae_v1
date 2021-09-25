@@ -6,12 +6,12 @@
                 <div class="mdui-card" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
-                            src="https://sdn.geekzu.org/avatar/{{ md5($status->user->email) }}" />
+                            src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}" />
                         <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
                                 {{ $status->created_at->diffForHumans() }}</small></div>
-                        <div class="mdui-card-header-subtitle">Bio</div>
+                        <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '啊吧啊吧啊吧' }}</div>
                     </div>
-                    <div class="mdui-card-content">{{ $status->content }}</div>
+                    <div class="mdui-card-content">{!! nl2br(e($status->content)) !!}</div>
                     <div class="mdui-card-actions">
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
@@ -23,7 +23,7 @@
                                 <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                             @endif
                         </button>
-                        <button onclick="window.location.href = '{{ route('status.show', $status->id) }}'" class="mdui-btn mdui-ripple">评论</button>
+                        <button onclick="window.location.href = '{{ route('status.show', $status->id) }}'" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }} 条 @else 没有 @endif 回复</button>
                         @can('destroy', $status)
                             <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}"
                                 method="POST" onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">

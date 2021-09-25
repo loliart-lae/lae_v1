@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <style>
+    {{-- <style>
         .line {
             position: fixed;
             top: -50vh;
@@ -17,11 +17,11 @@
             backdrop-filter: saturate(20%) blur(10px);
         }
 
-    </style>
+    </style> --}}
 
-    <div class="line" onclick="$('.line').animate({left: '150%'}, 2000);setTimeout(function() {$('.line').remove()}, 2500)">
+    {{-- <div class="line" onclick="$('.line').animate({left: '150%'}, 2000);setTimeout(function() {$('.line').remove()}, 2500)">
 
-    </div>
+    </div> --}}
 
     <script>
         // mdui.dialog({

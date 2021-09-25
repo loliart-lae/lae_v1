@@ -20,4 +20,8 @@ class UserStatus extends Model
     {
         return $this->belongsTo(UserStatusLike::class, 'id', 'status_id');
     }
+
+    public function replies() {
+        return $this->hasMany(UserStatusReply::class, 'status_id', 'id');
+    }
 }

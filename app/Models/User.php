@@ -59,4 +59,5 @@ class User extends Authenticatable
         return UserStatus::whereIn('user_id', $user_ids)->with('user', 'like')->orderBy('created_at', 'desc');
     }
 
+
 }

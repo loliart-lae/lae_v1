@@ -1,41 +1,58 @@
 @extends('layouts.app')
 
-@section('title', '评论系统')
+@section('title', '回复')
 
 @section('content')
     <div class="mdui-typo">
-        {{-- <span class="mdui-typo-headline">{{ $status-> }}。}}</span> --}}
-        <br />
-        <span class="mdui-typo-headline-opacity hitokoto_text"></span>
-        <br /><br />
-
-        <form method="POST" action="{{ route('status.store') }}">
-            @csrf
-            <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4"
-                    required></textarea>
-                <div class="mdui-textfield-helper">此刻在想些什么？</div>
+        <div class="mdui-card" style="margin-top: 5px">
+            <div class="mdui-card-header">
+                <img class="mdui-card-header-avatar" src="https://sdn.geekzu.org/avatar/{{ md5($status->user->email) }}" />
+                <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
+                        {{ $status->created_at->diffForHumans() }}</small></div>
+                <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
             </div>
-            <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
-        </form>
+            <div class="mdui-card-content">{!! nl2br(e($status->content)) !!}</div>
+            <div class="mdui-card-actions">
+                <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
+                    class="mdui-btn mdui-ripple mdui-btn-icon">
+                    @if (is_null($status->like))
+                        <i class="mdui-icon material-icons" style="color: unset">star_border</i>
+                    @elseif ($status->like->is_liked)
+                        <i style="color:#36a6e8" class="mdui-icon material-icons">star</i>
+                    @else
+                        <i class="mdui-icon material-icons" style="color: unset">star_border</i>
+                    @endif
+                </button>
+                <button onclick="return false" class="mdui-btn mdui-ripple">@php($replies = count($status->replies))
+                    @if ($replies > 0) {{ $replies }} 条 @else 没有 @endif 回复</button>
 
-
-
-        <h4>我的时间河&nbsp;|&nbsp;<a href="{{ route('global') }}">全站时间河</a></h4>
-        @include('include._feed')
+                @can('destroy', $status)
+                    <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}" method="POST"
+                        onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="mdui-btn mdui-ripple">删除</button>
+                    </form>
+                @endcan
+            </div>
+        </div>
 
     </div>
 
-    <script>
-        fetch('https://v1.hitokoto.cn?c=k')
-            .then(response => response.json())
-            .then(data => {
-                // 还是 JQ 来的方便
-                $('.hitokoto_text').html(data.hitokoto)
-                $('.hitokoto_placeholder').attr('placeholder', data.hitokoto)
-            })
-            .catch(console.error)
-    </script>
+    <div class="mdui-typo">
+        <form id="replyForm" method="POST" action="{{ route('status.reply', $status->id) }}">
+            @csrf
+            @method('PUT')
+            <div class="mdui-textfield">
+                <textarea class="mdui-textfield-input" rows="4" name="content" placeholder="保持友善～" maxlength="140" required></textarea>
+            </div>
+            <button type="submit" class="mdui-btn mdui-ripple mdui-color-theme">回复</button>
+        </form>
+
+    </div>
+
+
+
     <script>
         function toggleLike(id) {
             $.ajax({
@@ -63,6 +80,5 @@
             })
         }
     </script>
-
 
 @endsection

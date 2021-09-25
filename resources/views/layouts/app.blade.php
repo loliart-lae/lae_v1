@@ -14,6 +14,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
         integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 
     <title>@yield('title') - {{ config('app.name') }}</title>
     <style>
@@ -60,8 +61,10 @@
                 <a href="{{ route('about_us') }}" class="mdui-ripple mdui-ripple-white" disabled>关于我们</a>
             @else
                 <a href="{{ route('main') }}" class="main_link">Light App Engine</a>
-                <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
-                    <span id="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span></a>
+                <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
+                    style="white-space: nowrap"><small>
+                        {{ Auth::user()->name }} / <span id="userBalance"
+                            style="display: contents;">{{ Auth::user()->balance }}</span></small></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
@@ -133,70 +136,70 @@
     @yield('script')
     @auth
         <script>
-                setInterval(function() {
-                    var updateCount = 0
-                    var date = new Date()
-                    var startTime = Date.parse(date)
+            // setInterval(function() {
+            //     var updateCount = 0
+            //     var date = new Date()
+            //     var startTime = Date.parse(date)
 
-                    if (localStorage.getItem('startTime') == null) {
-                        localStorage.setItem('startTime', startTime)
-                    }
-                    current = localStorage.getItem('startTime')
-                    if (startTime - current >= 10000) {
-                        // 立即更新localStorage，然后获取通知
-                        localStorage.setItem('startTime', startTime)
+            //     if (localStorage.getItem('startTime') == null) {
+            //         localStorage.setItem('startTime', startTime)
+            //     }
+            //     current = localStorage.getItem('startTime')
+            //     if (startTime - current >= 10000) {
+            //         // 立即更新localStorage，然后获取通知
+            //         localStorage.setItem('startTime', startTime)
 
-                        $.ajax({
-                            type: 'GET',
-                            url: '{{ route('messages.unread') }}',
-                            dataType: 'json',
-                            success: function(data) {
-                                var currentBalance = parseFloat($('#userBalance').text())
-                                if (currentBalance != data.balance && updateCount == 0) {
-                                    mdui.snackbar({
-                                        message: '账户积分已更新为:' + data.balance,
-                                        position: 'right-bottom'
-                                    })
-                                    $({
-                                        // 起始值
-                                        countNum: currentBalance
-                                    }).animate({
-                                        // 最终值
-                                        countNum: data.balance
-                                    }, {
-                                        // 动画持续时间
-                                        duration: 2000,
-                                        easing: "linear",
-                                        step: function() {
-                                            // 设置每步动画计算的数值
-                                            $('#userBalance').text(Math.floor(this.countNum));
-                                        },
-                                        complete: function() {
-                                            // 设置动画结束的数值
-                                            $('#userBalance').text(this.countNum);
-                                        }
-                                    });
-                                }
-                                updateCount++;
-                                $('#userBalance').html(data.balance)
-                                for (var i = 0; i < data.data.length; i++) {
-                                    if (data.data.length != 0) {
-                                        mdui.snackbar({
-                                            message: data.data[i].content,
-                                            position: 'right-bottom'
-                                        })
-                                    }
-                                }
-                            },
-                            error: function(data) {
-                                mdui.snackbar({
-                                    message: '此时无法获取通知。',
-                                    position: 'right-bottom'
-                                })
-                            }
-                        })
-                    }
-                }, 1000)
+            //         $.ajax({
+            //             type: 'GET',
+            //             url: '{{ route('messages.unread') }}',
+            //             dataType: 'json',
+            //             success: function(data) {
+            //                 var currentBalance = parseFloat($('#userBalance').text())
+            //                 if (currentBalance != data.balance && updateCount == 0) {
+            //                     mdui.snackbar({
+            //                         message: '账户积分已更新为:' + data.balance,
+            //                         position: 'right-bottom'
+            //                     })
+            //                     $({
+            //                         // 起始值
+            //                         countNum: currentBalance
+            //                     }).animate({
+            //                         // 最终值
+            //                         countNum: data.balance
+            //                     }, {
+            //                         // 动画持续时间
+            //                         duration: 2000,
+            //                         easing: "linear",
+            //                         step: function() {
+            //                             // 设置每步动画计算的数值
+            //                             $('#userBalance').text(Math.floor(this.countNum));
+            //                         },
+            //                         complete: function() {
+            //                             // 设置动画结束的数值
+            //                             $('#userBalance').text(this.countNum);
+            //                         }
+            //                     });
+            //                 }
+            //                 updateCount++;
+            //                 $('#userBalance').html(data.balance)
+            //                 for (var i = 0; i < data.data.length; i++) {
+            //                     if (data.data.length != 0) {
+            //                         mdui.snackbar({
+            //                             message: data.data[i].content,
+            //                             position: 'right-bottom'
+            //                         })
+            //                     }
+            //                 }
+            //             },
+            //             error: function(data) {
+            //                 mdui.snackbar({
+            //                     message: '此时无法获取通知。',
+            //                     position: 'right-bottom'
+            //                 })
+            //             }
+            //         })
+            //     }
+            // }, 1000)
         </script>
     @endauth
     <script>

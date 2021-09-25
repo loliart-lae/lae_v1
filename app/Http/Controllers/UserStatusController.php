@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
+use App\Models\UserBalanceLog;
 use App\Models\UserStatus;
-use Illuminate\Http\Request;
 use App\Models\UserStatusLike;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserStatusController extends Controller
@@ -24,11 +26,30 @@ class UserStatusController extends Controller
         return view('main', compact('feed_items'));
     }
 
-    public function global(Request $request)
-    {
+    function global (Request $request) {
         $feed_items = UserStatus::simplePaginate(30);
 
         return view('global', compact('feed_items'));
+    }
+
+    public function reply(Request $request)
+    {
+        $id = $request->route('id');
+        // 检测status是否存在
+
+        $status_sql = UserStatus::where('id', $id);
+        if (!$status_sql->exists()) {
+            return redirect()->back()->with('status', '目标回复不存在。');
+        }
+
+        $this->validate($request, [
+            'content' => 'required|max:140',
+        ]);
+
+        Auth::user()->statuses()->create([
+            'content' => '我回复了' . $request->content,
+        ]);
+        // 保存
     }
 
     public function like(Request $request)
@@ -50,7 +71,6 @@ class UserStatusController extends Controller
                 $data = $statusLike->where('status_id', $id)->where('user_id', Auth::id())->update(['is_liked' => $is_liked]);
             }
 
-
             return response()->json(['status' => $is_liked]);
         } else {
             $status = $status_sql->where('id', $id);
@@ -65,7 +85,7 @@ class UserStatusController extends Controller
 
             $status_user_id = $statusLike->firstOrFail()->user_id;
             if ($status_user_id !== Auth::id()) {
-                // 给作者打钱
+                // 打钱
                 $userBalanceLog = new UserBalanceLog();
                 $userBalanceLog->charge($status_user_id, 1, 'Status like.');
                 Message::send('嗨，' . Auth::user()->name . " 赞了你的动态。", $status_user_id);
@@ -95,11 +115,11 @@ class UserStatusController extends Controller
     {
         //
         $this->validate($request, [
-            'content' => 'required|max:140'
+            'content' => 'required|max:140',
         ]);
 
         Auth::user()->statuses()->create([
-            'content' => $request->content
+            'content' => $request->content,
         ]);
 
         return redirect()->back()->with('status', '动态已流入长河。');
@@ -113,7 +133,11 @@ class UserStatusController extends Controller
      */
     public function show($id)
     {
-        //
+        $status_model = new UserStatus();
+
+        $status = $status_model->where('id', $id)->with('replies')->firstOrFail();
+        return view('feed.comments', compact('status'));
+
     }
 
     /**

@@ -124,6 +124,11 @@ return [
     'cipher' => 'AES-256-CBC',
 
     /**
+     * Gravatar URL
+     */
+    'gravatar_url' => env('GRAVATAR_URL'),
+
+    /**
      * Host By
      */
     'host_by' => env('HOST_BY', 'anonymous'),

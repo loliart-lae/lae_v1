@@ -75,12 +75,14 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
     Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->name('status.like');
     Route::resource('/status', Controllers\UserStatusController::class);
+    Route::put('/status/{id}/reply', [Controllers\UserStatusController::class, 'reply'])->name('status.reply');
 
 
 
     Route::get('/billing/return', [Controllers\UserBalanceController::class, 'return']);
     Route::get('/billing/thankyou', [Controllers\UserBalanceController::class, 'thankyou'])->name('billing.thankyou');
     Route::resource('/billing', Controllers\UserBalanceController::class);
+    Route::resource('/user', Controllers\UserController::class);
 
     Route::get('invites', [Controllers\ProjectInviteController::class, 'invites'])->name('invites.list');
     Route::post('invites/{id}/accept', [Controllers\ProjectInviteController::class, 'accept'])->name('invites.accept');
