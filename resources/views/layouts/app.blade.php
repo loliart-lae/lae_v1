@@ -112,12 +112,12 @@
         $("#pre_btn").hide()
         $(document).on('pjax:clicked', function() {
             $("#pre_btn").fadeIn()
-            $('.pjax-container').css('opacity', '0.7')
-            $('.pjax-container').css('transform', 'scale(0.97)')
+            // $('.pjax-container').css('opacity', '0.7')
+            // $('.pjax-container').css('transform', 'scale(0.97)')
         })
         $(document).on("pjax:timeout", function(event) {
-            $('.pjax-container').css('opacity', '0.1')
-            $('.pjax-container').css('transform', 'scale(0.93)')
+            // $('.pjax-container').css('opacity', '0.1')
+            // $('.pjax-container').css('transform', 'scale(0.93)')
             $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
   <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
 </div>`)
@@ -126,8 +126,8 @@
 
         $(document).on("pjax:complete", function(event) {
             $('.main_link').html(main_link)
-            $('.pjax-container').css('opacity', '1')
-            $('.pjax-container').css('transform', 'scale(1)')
+            // $('.pjax-container').css('opacity', '1')
+            // $('.pjax-container').css('transform', 'scale(1)')
         })
     </script>
     @yield('script')
