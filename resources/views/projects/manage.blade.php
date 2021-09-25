@@ -113,7 +113,7 @@
         </form>
     </div>
 
-    <div class="mdui-dialog" id="charge-dialog">
+    <div class="mdui-dialog" id="charge-dialog" style="z-index: 5120;">
         <div class="mdui-dialog-title">汇款积分至项目</div>
 
         <form method="POST" action="{{ route('projects.charge', $project_info->id) }}">
