@@ -48,6 +48,7 @@
     <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
 
 </head>
 
@@ -93,7 +94,7 @@
         @yield('content')
 
 
-        <div class="mdui-typo mdui-m-t-8">
+        <div class="mdui-typo" style="margin-top: 50px">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 <br />This node host by {{ config('app.host_by') }}
             </p>

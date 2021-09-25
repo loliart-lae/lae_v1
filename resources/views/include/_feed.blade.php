@@ -1,8 +1,9 @@
 @if ($feed_items->count() > 0)
-    <div class="mdui-row">
+
+    <div id="masonry" class="mdui-row">
 
         @foreach ($feed_items as $status)
-            <div class="mdui-col-xs-6">
+            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
                 <div class="mdui-card" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
@@ -39,6 +40,15 @@
             </div>
         @endforeach
     </div>
+    <script>
+        $(function() {
+            var $container = $('#masonry');
+            $container.masonry({
+                itemSelector: '.poll',
+
+            });
+        });
+    </script>
     <div class="mdui-m-t-2 mdui-m-b-4">
         {{ $feed_items->links() }}
     </div>
