@@ -81,7 +81,7 @@
             @endguest
         </div>
     </div>
-    <div class="@yield('container', 'mdui-container') mdui-p-a-2 pjax-container">
+    <div class="@yield('container', 'mdui-container') pjax-container">
         <div id="topic">
 
         </div>
@@ -92,9 +92,19 @@
 
         @yield('content')
 
-        <div class="mdui-typo mdui-m-t-5">
+
+        <div class="mdui-typo mdui-m-t-8">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                <br />Light App Engine host by {{ config('app.host_by') }}<br />
+                <br />This node host by {{ config('app.host_by') }}
+            </p>
+        </div>
+
+    </div>
+
+    <div class="mdui-container mdui-m-b-5">
+        <div class="mdui-typo animate__animated animate__zoomInUp">
+            <p class="mdui-typo-caption-opacity mdui-text-center">
+                Light App Engine<br />
                 Crafted with 💗 by <a href="{{ route('contributes') }}">Contributors</a><br />
             </p>
         </div>
