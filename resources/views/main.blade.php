@@ -40,7 +40,7 @@
         // })
     </script>
 
-    <div class="mdui-typo">
+    <div class="mdui-typo animate__animated animate__zoomInDown">
         <span class="mdui-typo-headline">嗨, {{ Auth::user()->name }}。</span>
         <br />
         <span class="mdui-typo-headline-opacity hitokoto_text"></span>

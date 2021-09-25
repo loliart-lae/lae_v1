@@ -6,6 +6,7 @@
     <div class="mdui-typo">
         <div class="mdui-row">
             <div class="mdui-col-xs-12 mdui-col-sm-5 mdui-text-center">
+
                 <img class="mdui-img-circle animate__bounceIn" src="{{ config('app.gravatar_url') }}/{{ md5($user->email) }}?s=192">
             </div>
 
@@ -13,6 +14,7 @@
                 <div class="mdui-typo-display-1">{{ $user->name }}</div>
 
                 <p>积分: {{ $user->balance }} ，<a href="{{ route('billing.index') }}">充值</a></p>
+
                 <form method="POST" action="{{ route('user.update', $user->id) }}">
                     @csrf
                     @method('PUT')
