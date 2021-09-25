@@ -22,7 +22,21 @@
         </script>
     @endif
     &nbsp;&nbsp;
-    <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#search-dialog'}">搜索</button>
+
+    <div style="width: 25%; display: inline-flex">
+        <form method="get" action="{{ route('documents.search') }}">
+            @csrf
+            <div class="mdui-textfield mdui-textfield-expandable">
+                <button onclick="return false" class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
+                        class="mdui-icon material-icons">search</i></button>
+                <input class="mdui-textfield-input" name="title" type="text" placeholder="Search" />
+
+                <button type="submit" class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
+                        class="mdui-icon material-icons">done</i></button>
+
+            </div>
+        </form>
+    </div>
 
 
     <div class="mdui-dialog" id="new_document">
@@ -106,22 +120,7 @@
         </div>
 
     </div>
-    <div class="mdui-dialog" id="search-dialog">
-        <div class="mdui-dialog-title">搜索文档</div>
-        <form method="get" action="{{ route('documents.search') }}">
-            @csrf
-            <div class="mdui-dialog-content">
-                <div class="mdui-textfield mdui-textfield-floating-label" style="position: relative;top:-20px">
-                    <label class="mdui-textfield-label">标题</label>
-                    <input class="mdui-textfield-input" name="title" type="text" />
-                </div>
-            </div>
-            <div class="mdui-dialog-actions">
-                <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
-                <button class="mdui-btn mdui-ripple" type="submit">搜索</button>
-            </div>
-        </form>
-    </div>
+
     <script>
         $.ajaxSetup({
             headers: {
