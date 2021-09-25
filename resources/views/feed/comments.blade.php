@@ -47,7 +47,7 @@
             @foreach ($status_replies as $status_reply)
                 @php($i++)
                 <div class="mdui-col-xs-12 mdui-p-y-2">
-                    <div class="mdui-col-xs-1">
+                    <div class="mdui-col-xs-2 mdui-col-sm-1">
                         <img class="mdui-img-circle mdui-center" src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}">
                     </div>
                     <div class="mdui-col-xs-11">
