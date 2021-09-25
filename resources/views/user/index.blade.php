@@ -6,7 +6,7 @@
     <div class="mdui-typo">
         <div class="mdui-row">
             <div class="mdui-col-xs-12 mdui-col-sm-5 mdui-text-center">
-                <img class="mdui-img-circle animate__bounceIn" src="{{ config('app.gravatar_url') }}/{{ md5($user->email) }}?s=192">
+                <img class="mdui-img-circle animate__animated animate__bounceIn" src="{{ config('app.gravatar_url') }}/{{ md5($user->email) }}?s=192">
             </div>
 
             <div class="mdui-col-xs-6 mdui-col-sm-7">
