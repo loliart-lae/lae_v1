@@ -3,7 +3,7 @@
 @section('title', $user->name)
 
 @section('content')
-    <div>
+    <div class="mdui-typo">
         <h1 class="mdui-text-color-theme">{{ $user->name }}</h1>
 
         <div class="mdui-row">
@@ -16,6 +16,7 @@
                 <div class="mdui-typo-display-1">你的签名：<small>{{ $user->bio }}</small></div>
                 -->
 
+                <p>积分: {{ $user->balance }} ，<a href="{{ route('billing.index') }}">充值</a></p>
                 <form method="POST" action="{{ route('user.update', $user->id) }}">
                     @csrf
                     @method('PUT')

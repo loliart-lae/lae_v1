@@ -16,7 +16,7 @@ class UserBalanceController extends Controller
      */
     public function index()
     {
-        return view('charge');
+        return view('user.charge');
     }
 
     /**
