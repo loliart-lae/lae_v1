@@ -50,7 +50,7 @@
 
     <br /><br />
     <div class="container">
-        <div class="mdui-row" id="main">
+        <div class="mdui-row">
             @foreach ($documents as $document)
                 <div class="mdui-col-sm-4">
                     <div class="mdui-card">

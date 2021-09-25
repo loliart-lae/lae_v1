@@ -15,7 +15,7 @@ use hanbz\PassportClient\Facades\PassportClient;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+sleep(3);
 Route::get('oauth/login', fn () => PassportClient::driver('passport')->redirect())->name('login');
 Route::get('oauth/callback', [Controllers\AuthController::class, 'OAuthCallback']);
 Route::post('oauth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
@@ -64,13 +64,18 @@ Route::prefix('/')->group(function () {
     Route::put('/documents/like/{id}', [Controllers\DocumentController::class, 'like'])->name('documents.like');
     Route::resource('/documents', Controllers\DocumentController::class);
 
+    // Route::resource('/forums', Controllers\ForumController::class);
+    // Route::resource('/forums/{fid}/posts', Controllers\ForumPostController::class);
+
     Route::get('/messages/unread', [Controllers\MessageController::class, 'get'])->name('messages.unread');
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('main');
-    })->name('main');
+    Route::get('/', [Controllers\UserStatusController::class, 'index'])->name('main');
+    Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
+    Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->name('status.like');
+    Route::resource('/status', Controllers\UserStatusController::class);
+
 
 
     Route::get('/billing/return', [Controllers\UserBalanceController::class, 'return']);

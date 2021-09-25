@@ -14,6 +14,7 @@ use App\Models\RemoteDesktop;
 use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProjectMembersController;
+use App\Models\Forum;
 
 class ProjectController extends Controller
 {
@@ -143,6 +144,9 @@ class ProjectController extends Controller
             if (Drive::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 存储。');
             }
+            // if (Forum::where('project_id', $id)->count() > 0) {
+            //     return redirect()->route('projects.index')->with('status', '项目中还有未删除的 社区论坛。');
+            // }
 
             // 删除项目中所有成员
             $member = new ProjectMember();

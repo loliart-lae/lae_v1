@@ -1,45 +1,8 @@
 @extends('layouts.app')
 
-@section('title', '时光长河')
+@section('title', '全站时光长河')
 
 @section('content')
-
-    <style>
-        .line {
-            position: fixed;
-            top: -50vh;
-            left: -50%;
-            width: 300px;
-            height: 200vh;
-            z-index: 1;
-            transform: rotate(29deg);
-            background-color: #e5e5e53b;
-            backdrop-filter: saturate(20%) blur(10px);
-        }
-
-    </style>
-
-    <div class="line" onclick="$('.line').animate({left: '150%'}, 2000);setTimeout(function() {$('.line').remove()}, 2500)">
-
-    </div>
-
-    <script>
-        // mdui.dialog({
-        //     content: `嗨～～～～～～～～～～<br />几日未见，Light App Engine 的仪表盘已经焕然一新。
-    //     <br />它现在已经变成了 时间长河，Light App Engine 也不局限于云计算(我们也从未考虑过只做云计算)，Light App Engine 未来可能会更倾向社区，功能将随着社区的需求而更新。`,
-        //     buttons: [{
-        //         text: '确认',
-        //         onClick: function(inst) {
-        //             setTimeout(function() {
-        //                 $('.line').animate({
-        //                     left: '150%'
-        //                 }, 2000)
-        //             }, 0)
-        //         }
-        //     }]
-        // })
-    </script>
-
     <div class="mdui-typo">
         <span class="mdui-typo-headline">嗨, {{ Auth::user()->name }}。</span>
         <br />
@@ -58,7 +21,7 @@
 
 
 
-        <h4>我的时间河&nbsp;|&nbsp;<a href="{{ route('global') }}">全站时间河</a></h4>
+        <h4><a href="{{ route('main') }}">我的时间河</a>&nbsp;|&nbsp;全站时间河</h4>
         @include('include._feed')
 
     </div>
@@ -100,6 +63,5 @@
             })
         }
     </script>
-
 
 @endsection

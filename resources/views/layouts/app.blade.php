@@ -35,6 +35,10 @@
             border-radius: 5px
         }
 
+        .pjax-container {
+            transition: all 0.3s ease-in-out
+        }
+
     </style>
 
     <!-- JavaScripts -->
@@ -50,24 +54,22 @@
     <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width mdui-tab-centered" mdui-tab>
             @guest
-                <a class="main_link" href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
-                <a href="{{ route('login') }}" class="mdui-btn mdui-ripple mdui-ripple-white">登录</a>
-                <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
-                    class="mdui-btn mdui-ripple mdui-ripple-white">知识库</a>
-                <a href="{{ route('why') }}" class="mdui-btn mdui-ripple mdui-ripple-white" disabled>为什么选择</a>
-                <a href="{{ route('about_us') }}" class="mdui-btn mdui-ripple mdui-ripple-white" disabled>关于我们</a>
+                <a href="{{ route('index') }}" class="main_link">Light App Engine</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录</a>
+                <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white" disabled>为什么选择</a>
+                <a href="{{ route('about_us') }}" class="mdui-ripple mdui-ripple-white" disabled>关于我们</a>
             @else
-                <a class="main_link" href="{{ route('main') }}" class="mdui-ripple mdui-ripple-white">Light App Engine</a>
+                <a href="{{ route('main') }}" class="main_link">Light App Engine</a>
                 <a href="{{ route('billing.index') }}" class="mdui-ripple mdui-ripple-white">剩余积分:
                     <span id="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档</a>
-                <a target="_blank" href="https://f.lightart.top/" class="mdui-ripple mdui-ripple-white">社区</a>
-                <a target="_blank" href="https://f.lightart.top/t/knowledge-base"
-                    class="mdui-ripple mdui-ripple-white">知识库</a>
+                {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
+                <a target="_blank" href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+                <a href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
+
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                     class="mdui-ripple mdui-ripple-white">退出登录</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -89,15 +91,20 @@
 
         <div class="mdui-typo mdui-m-t-5">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                <a href="{{ route('contributes') }}">Contributors</a>
                 <br />Light App Engine host by {{ config('app.host_by') }}<br />
-                Crafted with 💗 by iVampireSP.com<br />
+                Crafted with 💗 by <a href="{{ route('contributes') }}">Contributors</a><br />
             </p>
         </div>
     </div>
 
 
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        })
+
         var main_link = 'Light App Engine'
         $.pjax.defaults.timeout = 1200
         $(document).pjax('a', '.pjax-container')
@@ -105,8 +112,11 @@
         $("#pre_btn").hide()
         $(document).on('pjax:clicked', function() {
             $("#pre_btn").fadeIn()
+            $('.pjax-container').css('opacity', '0.7')
+            $('.pjax-container').css('transform', 'scale(0.9)')
         })
         $(document).on("pjax:timeout", function(event) {
+            $('.pjax-container').css('opacity', '0.1')
             $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
   <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
 </div>`)
@@ -115,75 +125,77 @@
 
         $(document).on("pjax:complete", function(event) {
             $('.main_link').html(main_link)
+            $('.pjax-container').css('opacity', '1')
+            $('.pjax-container').css('transform', 'scale(1)')
         })
     </script>
     @yield('script')
     @auth
         <script>
-            setInterval(function() {
-                var updateCount = 0
-                var date = new Date()
-                var startTime = Date.parse(date)
+            //     setInterval(function() {
+            //         var updateCount = 0
+            //         var date = new Date()
+            //         var startTime = Date.parse(date)
 
-                if (localStorage.getItem('startTime') == null) {
-                    localStorage.setItem('startTime', startTime)
-                }
-                current = localStorage.getItem('startTime')
-                if (startTime - current >= 10000) {
-                    // 立即更新localStorage，然后获取通知
-                    localStorage.setItem('startTime', startTime)
+            //         if (localStorage.getItem('startTime') == null) {
+            //             localStorage.setItem('startTime', startTime)
+            //         }
+            //         current = localStorage.getItem('startTime')
+            //         if (startTime - current >= 10000) {
+            //             // 立即更新localStorage，然后获取通知
+            //             localStorage.setItem('startTime', startTime)
 
-                    $.ajax({
-                        type: 'GET',
-                        url: '{{ route('messages.unread') }}',
-                        dataType: 'json',
-                        success: function(data) {
-                            var currentBalance = parseFloat($('#userBalance').text())
-                            if (currentBalance != data.balance && updateCount == 0) {
-                                mdui.snackbar({
-                                    message: '账户积分已更新为:' + data.balance,
-                                    position: 'right-bottom'
-                                })
-                                $({
-                                    // 起始值
-                                    countNum: currentBalance
-                                }).animate({
-                                    // 最终值
-                                    countNum: data.balance
-                                }, {
-                                    // 动画持续时间
-                                    duration: 2000,
-                                    easing: "linear",
-                                    step: function() {
-                                        // 设置每步动画计算的数值
-                                        $('#userBalance').text(Math.floor(this.countNum));
-                                    },
-                                    complete: function() {
-                                        // 设置动画结束的数值
-                                        $('#userBalance').text(this.countNum);
-                                    }
-                                });
-                            }
-                            updateCount++;
-                            $('#userBalance').html(data.balance)
-                            for (var i = 0; i < data.data.length; i++) {
-                                if (data.data.length != 0) {
-                                    mdui.snackbar({
-                                        message: data.data[i].content,
-                                        position: 'right-bottom'
-                                    })
-                                }
-                            }
-                        },
-                        error: function(data) {
-                            mdui.snackbar({
-                                message: '此时无法获取通知。',
-                                position: 'right-bottom'
-                            })
-                        }
-                    })
-                }
-            }, 1000)
+            //             $.ajax({
+            //                 type: 'GET',
+            //                 url: '{{ route('messages.unread') }}',
+            //                 dataType: 'json',
+            //                 success: function(data) {
+            //                     var currentBalance = parseFloat($('#userBalance').text())
+            //                     if (currentBalance != data.balance && updateCount == 0) {
+            //                         mdui.snackbar({
+            //                             message: '账户积分已更新为:' + data.balance,
+            //                             position: 'right-bottom'
+            //                         })
+            //                         $({
+            //                             // 起始值
+            //                             countNum: currentBalance
+            //                         }).animate({
+            //                             // 最终值
+            //                             countNum: data.balance
+            //                         }, {
+            //                             // 动画持续时间
+            //                             duration: 2000,
+            //                             easing: "linear",
+            //                             step: function() {
+            //                                 // 设置每步动画计算的数值
+            //                                 $('#userBalance').text(Math.floor(this.countNum));
+            //                             },
+            //                             complete: function() {
+            //                                 // 设置动画结束的数值
+            //                                 $('#userBalance').text(this.countNum);
+            //                             }
+            //                         });
+            //                     }
+            //                     updateCount++;
+            //                     $('#userBalance').html(data.balance)
+            //                     for (var i = 0; i < data.data.length; i++) {
+            //                         if (data.data.length != 0) {
+            //                             mdui.snackbar({
+            //                                 message: data.data[i].content,
+            //                                 position: 'right-bottom'
+            //                             })
+            //                         }
+            //                     }
+            //                 },
+            //                 error: function(data) {
+            //                     mdui.snackbar({
+            //                         message: '此时无法获取通知。',
+            //                         position: 'right-bottom'
+            //                     })
+            //                 }
+            //             })
+            //         }
+            //     }, 1000)
         </script>
     @endauth
     <script>
