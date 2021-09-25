@@ -99,7 +99,6 @@
 
 
     <script>
-        /* 
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('input[name="_token"]').val()
@@ -130,7 +129,6 @@
             $('.pjax-container').css('opacity', '1')
             $('.pjax-container').css('transform', 'scale(1)')
         })
-        */
     </script>
     @yield('script')
     @auth
