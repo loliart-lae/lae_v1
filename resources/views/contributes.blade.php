@@ -4,7 +4,7 @@
 
 @section('content')
 
-<!--
+
     <div class="mdui-card mdui-center mdui-container" style="background-color: #e8e8e8">
         <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
 
@@ -44,7 +44,7 @@
         </div>
     </div>
     <br />
--->
+
     <div class="mdui-row">
         <div class="mdui-typo-display-2">非常感谢以下人员对 {{ config('app.name') }} 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">{{ config('app.name') }} 是大家一同筑起的。</div>
