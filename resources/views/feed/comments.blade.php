@@ -7,7 +7,7 @@
         <div class="mdui-card" style="margin-top: 5px">
             <div class="mdui-card-header">
                 <img class="mdui-card-header-avatar"
-                    src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}" />
+                    src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
                 <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
                         {{ $status->created_at->diffForHumans() }}</small></div>
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
@@ -49,7 +49,7 @@
                 <div class="mdui-col-xs-12 mdui-p-y-2">
                     <div class="mdui-col-xs-2 mdui-col-sm-1">
                         <img class="mdui-img-circle mdui-center"
-                            src="{{ config('app.gravatar_url') }}/{{ md5($status_reply->user->email) }}">
+                            src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status_reply->user->email)) }}">
                     </div>
                     <div class="mdui-col-xs-11">
                         {{ $i }}. {{ $status_reply->user->name }} 说：@if ($status_reply->user->id == Auth::id()) <a onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
