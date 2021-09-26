@@ -56,7 +56,6 @@
                             <form id="statusReply-{{ $i }}" method="post"
                                 action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')</form>
                         @endif
-                        <br />
                         {{ $status_reply->content }}
                     </div>
                 </div>
