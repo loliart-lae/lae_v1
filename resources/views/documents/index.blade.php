@@ -67,7 +67,7 @@
         <div class="mdui-row">
             @foreach ($documents as $document)
                 <div class="mdui-col-sm-4">
-                    <div class="mdui-card">
+                    <div class="mdui-card mdui-m-t-1">
                         <div class="mdui-card-media">
                             <img
                                 src="{{ $document->image_url ?? 'https://i.loli.net/2021/09/11/mKfYd4cWSwNiLx1.jpg' }}" />
