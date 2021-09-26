@@ -20,7 +20,7 @@
                                             class="mdui-text-color-theme mdui-icon material-icons">account_circle</i>
                                     @elseif (in_array($status->user->id, $ids))
                                         <i onclick="toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-theme mdui-icon material-icons animate__heartBeat">favorite</i>
+                                            class="mdui-text-color-theme mdui-icon material-icons">favorite</i>
                                     @else
                                         <i onclick="toggleFollow({{ $status->user->id }})"
                                             class="mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>
