@@ -58,7 +58,7 @@
                         @else
                         <br />
                         @endif
-                        {{ $status_reply->content }}
+                        {!! nl2br(e($status_reply->content)) !!}
                     </div>
                 </div>
             @endforeach
