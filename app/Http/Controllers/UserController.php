@@ -77,7 +77,7 @@ class UserController extends Controller
         }
 
         $user_data->update([
-            'bio' => $request->bio
+            'bio' => $request->bio,
         ]);
 
         return redirect()->back()->with('status', '签名修改完成啦。');
@@ -92,5 +92,23 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function toggleFollow(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
+        $id = $request->id;
+        if ($id == Auth::id()) {
+            return response()->json(['msg' => 'What \'s up? 你连自己也不放过？']);
+        }
+        $self = Auth::user();
+        $to = User::find($id);
+        $self->toggleFollow($to);
+        $status = [$self->isFollowing($to)];
+
+        return response()->json($status);
+
     }
 }

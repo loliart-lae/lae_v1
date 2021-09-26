@@ -72,6 +72,7 @@ Route::prefix('/')->group(function () {
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', [Controllers\UserStatusController::class, 'index'])->name('main');
+    Route::put('/user/toggleFollow', [Controllers\UserController::class, 'toggleFollow'])->name('user.toggleFollow');
     Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
     Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->name('status.like');
     Route::resource('/status', Controllers\UserStatusController::class);

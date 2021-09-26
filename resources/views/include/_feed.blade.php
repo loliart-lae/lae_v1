@@ -9,7 +9,26 @@
                         <img class="mdui-card-header-avatar"
                             src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}" />
                         <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
-                                {{ $status->created_at->diffForHumans() }}</small></div>
+                                {{ $status->created_at->diffForHumans() }}</small>
+                            <div style="display: inline;
+                                position: absolute;
+                                right: 16px;
+                                margin-top: 3px;cursor: pointer" class="follow_{{ $status->user->id }}">
+                                @if ($display ?? '' != 0)
+                                    @if ($status->user->id == Auth::id())
+                                        <i mdui-tooltip="{content: '这是你'}"
+                                            class="mdui-text-color-theme mdui-icon material-icons">account_circle</i>
+                                    @elseif (in_array($status->user->id, $ids))
+                                        <i onclick="toggleFollow({{ $status->user->id }})"
+                                            class="mdui-text-color-theme mdui-icon material-icons">favorite</i>
+                                    @else
+                                        <i onclick="toggleFollow({{ $status->user->id }})"
+                                            class="mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>
+                                    @endif
+                                @endif
+
+                            </div>
+                        </div>
                         <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '啊吧啊吧啊吧' }}</div>
                     </div>
                     <div class="mdui-card-content">{!! nl2br(e($status->content)) !!}</div>
@@ -52,6 +71,69 @@
     <div class="mdui-m-t-2 mdui-m-b-4">
         {{ $feed_items->links() }}
     </div>
+    <script>
+        function toggleLike(id) {
+            $.ajax({
+                type: 'PUT',
+                url: `{{ route('status.like') }}?id=${id}`,
+                data: {
+                    'toggle': 'toggle'
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.status == 1) {
+                        $('#status_' + id).css('color', '#36a6e8')
+                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star</i>`)
+                    } else {
+                        $('#status_' + id).css('color', 'unset')
+                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star_border</i>`)
+                    }
+                },
+                error: function(data) {
+                    mdui.snackbar({
+                        message: '暂时无法点赞。',
+                        position: 'bottom'
+                    })
+                }
+            })
+        }
+
+        function toggleFollow(id) {
+            $.ajax({
+                type: 'PUT',
+                url: `{{ route('user.toggleFollow') }}?id=${id}`,
+                data: {
+                    'toggle': 'toggle'
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data[0] == true) {
+                        $('.follow_' + id).html(
+                            `<i onclick="toggleFollow(${id})"
+                                            class="follow_${id} mdui-text-color-theme mdui-icon material-icons">favorite</i>`
+                        )
+                    } else {
+                        $('.follow_' + id).html(
+                            `<i onclick="toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>`
+                        )
+                    }
+
+                    if (data['msg'] != undefined) {
+                        mdui.snackbar({
+                            message: data['msg'],
+                            position: 'bottom'
+                        })
+                    }
+                },
+                error: function(data) {
+                    mdui.snackbar({
+                        message: '暂时无法切换关注状态。',
+                        position: 'bottom'
+                    })
+                }
+            })
+        }
+    </script>
 
 @else
     <p>还没有人出现在你的时间长河中。</p>

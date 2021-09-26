@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\User;
 use App\Models\UserBalanceLog;
 use App\Models\UserStatus;
 use App\Models\UserStatusLike;
@@ -24,13 +25,20 @@ class UserStatusController extends Controller
             $feed_items = Auth::user()->feed()->simplePaginate(30);
         }
 
-        return view('main', compact('feed_items'));
+        $display = 0;
+        return view('main', compact('feed_items', 'display'));
     }
 
-    function global (Request $request) {
+    function global (Request $request, User $user) {
         $feed_items = UserStatus::orderBy('created_at', 'desc')->simplePaginate(30);
+        $user = $user->find(Auth::id());
+        $followings = $user->followings->toArray();
+        $ids = [];
+        foreach ($followings as $following) {
+            $ids[] = $following['id'];
+        }
 
-        return view('global', compact('feed_items'));
+        return view('global', compact('feed_items', 'ids'));
     }
 
     public function reply(Request $request, UserStatusReply $userStatusReply)
@@ -63,6 +71,9 @@ class UserStatusController extends Controller
 
     public function like(Request $request)
     {
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
         $id = $request->id;
         $statusLike = new UserStatusLike();
         $status_sql = new UserStatus();

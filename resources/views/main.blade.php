@@ -73,33 +73,5 @@
             })
             .catch(console.error)
     </script>
-    <script>
-        function toggleLike(id) {
-            $.ajax({
-                type: 'PUT',
-                url: `{{ route('status.like') }}?id=${id}`,
-                data: {
-                    'toggle': 'toggle'
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if (data.status == 1) {
-                        $('#status_' + id).css('color', '#36a6e8')
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star</i>`)
-                    } else {
-                        $('#status_' + id).css('color', 'unset')
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star_border</i>`)
-                    }
-                },
-                error: function(data) {
-                    mdui.snackbar({
-                        message: '暂时无法点赞。',
-                        position: 'bottom'
-                    })
-                }
-            })
-        }
-    </script>
-
 
 @endsection

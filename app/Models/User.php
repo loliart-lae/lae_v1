@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Overtrue\LaravelFollow\Followable as FollowAble;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -54,9 +55,14 @@ class User extends Authenticatable
 
     public function feed()
     {
-        $user_ids = $this->followers()->get()->toArray();
-        array_push($user_ids, $this->id);
-        return UserStatus::whereIn('user_id', $user_ids)->with('user', 'like')->orderBy('created_at', 'desc');
+        $user_ids = $this->followings->toArray();
+        $ids = [];
+        foreach ($user_ids as $user_id) {
+            $ids[] = $user_id['id'];
+        }
+        $ids[] = Auth::id();
+
+        return UserStatus::whereIn('user_id', $ids)->with('user', 'like')->orderBy('created_at', 'desc');
     }
 
 
