@@ -20,7 +20,7 @@
                                             class="mdui-text-color-theme mdui-icon material-icons">account_circle</i>
                                     @elseif (in_array($status->user->id, $ids))
                                         <i onclick="toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-theme mdui-icon material-icons">favorite</i>
+                                            class="mdui-text-color-theme mdui-icon material-icons animate__heartBeat">favorite</i>
                                     @else
                                         <i onclick="toggleFollow({{ $status->user->id }})"
                                             class="mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>
@@ -110,11 +110,11 @@
                     if (data[0] == true) {
                         $('.follow_' + id).html(
                             `<i onclick="toggleFollow(${id})"
-                                            class="follow_${id} mdui-text-color-theme mdui-icon material-icons">favorite</i>`
+                                            class="follow_${id} mdui-text-color-theme mdui-icon material-icons animate__heartBeat">favorite</i>`
                         )
                     } else {
                         $('.follow_' + id).html(
-                            `<i onclick="toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>`
+                            `<i onclick="toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons animate__animated animate__flip">favorite</i>`
                         )
                     }
 
