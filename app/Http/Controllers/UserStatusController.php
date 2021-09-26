@@ -183,8 +183,18 @@ class UserStatusController extends Controller
     public function destroy($id, UserStatus $userStatus)
     {
         if ($userStatus->find($id)->firstOrFail()->user_id == Auth::id()) {
-            $userStatus->delete();
+            $userStatus->where('id', $id)->delete();
             return redirect()->back()->with('status', '动态已从时间长河中彻底消失。');
+        }
+        return redirect()->back()->with('status', '删除失败。');
+
+    }
+
+    public function destroy_reply($id, UserStatusReply $userStatusReply)
+    {
+        if ($userStatusReply->find($id)->firstOrFail()->user_id == Auth::id()) {
+            $userStatusReply->where('id', $id)->delete();
+            return redirect()->back()->with('status', '回复已经删除');
         }
         return redirect()->back()->with('status', '删除失败。');
 
