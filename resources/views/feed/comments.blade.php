@@ -64,7 +64,7 @@
             {{ $status_replies->links() }}
         </div>
 
-        <form id="replyForm" method="POST" action="{{ route('status.reply', $status->id) }}">
+        <form id="replyForm" class="mdui-m-t-5" method="POST" action="{{ route('status.reply', $status->id) }}">
             @csrf
             @method('PUT')
             <div class="mdui-textfield">
