@@ -7,7 +7,7 @@
                 <div class="mdui-card" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
-                            src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}" />
+                            src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
                         <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
                                 {{ $status->created_at->diffForHumans() }}</small>
                             <div style="display: inline;
