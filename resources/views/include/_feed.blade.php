@@ -109,12 +109,12 @@
                 success: function(data) {
                     if (data[0] == true) {
                         $('.follow_' + id).html(
-                            `<i onclick="toggleFollow(${id})"
+                            `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})"
                                             class="follow_${id} mdui-text-color-theme mdui-icon material-icons animate__heartBeat">favorite</i>`
                         )
                     } else {
                         $('.follow_' + id).html(
-                            `<i onclick="toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons animate__animated animate__flip">favorite</i>`
+                            `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons animate__animated animate__flip">favorite</i>`
                         )
                     }
 
