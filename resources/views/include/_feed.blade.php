@@ -17,13 +17,13 @@
                                 @if ($display ?? '' != 0)
                                     @if ($status->user->id == Auth::id())
                                         <i mdui-tooltip="{content: '这是你'}"
-                                            class="mdui-text-color-theme mdui-icon material-icons">account_circle</i>
+                                            class="mdui-text-color-theme mdui-icon material-icons" onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
                                     @elseif (in_array($status->user->id, $ids))
                                         <i onclick="toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-theme mdui-icon material-icons">favorite</i>
+                                            class="mdui-text-color-theme mdui-icon material-icons" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite')">favorite</i>
                                     @else
                                         <i onclick="toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>
+                                            class="mdui-text-color-black-secondary mdui-icon material-icons" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite')>favorite</i>
                                     @endif
                                 @endif
 
