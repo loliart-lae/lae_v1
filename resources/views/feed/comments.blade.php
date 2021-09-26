@@ -52,7 +52,10 @@
                             src="{{ config('app.gravatar_url') }}/{{ md5($status_reply->user->email) }}">
                     </div>
                     <div class="mdui-col-xs-11">
-                        {{ $i }}. {{ $status_reply->user->name }} 说：
+                        {{ $i }}. {{ $status_reply->user->name }} 说：@if ($status_reply->user->id == Auth::id()) <a onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
+                            <form id="statusReply-{{ $i }}" method="post"
+                                action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')</form>
+                        @endif
                         <br />
                         {{ $status_reply->content }}
                     </div>

@@ -76,6 +76,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->name('status.like');
     Route::resource('/status', Controllers\UserStatusController::class);
     Route::put('/status/{id}/reply', [Controllers\UserStatusController::class, 'reply'])->name('status.reply');
+    Route::delete('/status/reply/{id}', [Controllers\UserStatusController::class, 'destroy_reply'])->name('status.reply.destroy');
 
 
 
