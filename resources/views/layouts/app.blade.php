@@ -53,6 +53,21 @@
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
+    <div id="offline_tip" style="width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    backdrop-filter: blur(20px) saturate(200%);display:none;opacity:1">
+        <div style="width:100%;position: absolute;
+    top: 50%;
+    margin-top: -75px;text-align:center">
+            <h1 style="font-weight: 200;">无法连接到服务器<br /></h1>
+            <p><span onclick="close_offline_tip()" style="cursor: pointer">此提示将在通信恢复后自动关闭，您也可以点击这里手动关闭。</span></p>
+        </div>
+
+    </div>
     <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width mdui-tab-centered" mdui-tab>
             @guest
@@ -71,8 +86,9 @@
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
-                <a target="_blank" href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-                <a href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
+                {{-- <a href="{{ route('autoBash.index') }}" class="mdui-ripple mdui-ripple-white">自动化命令行</a> --}}
+                <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+                <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
 
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                     class="mdui-ripple mdui-ripple-white">退出登录</a>
@@ -121,6 +137,29 @@
 
         var main_link = 'Light App Engine'
         $.pjax.defaults.timeout = 1200
+
+        function close_offline_tip() {
+            $('#offline_tip').fadeOut()
+            $('body').css('overflow', 'auto')
+        }
+
+
+
+        function showOfflineTip() {
+            mdui.snackbar({
+                message: '无法连接到 LAE',
+                position: 'right-bottom',
+                buttonText: '显示',
+                onButtonClick: function() {
+                    $('#offline_tip').fadeIn()
+                    $('body').css('overflow', 'hidden')
+                }
+            })
+        }
+
+        window.addEventListener('online', close_offline_tip)
+        window.addEventListener('offline', showOfflineTip)
+
         $(document).pjax('a', '.pjax-container')
 
         $("#pre_btn").hide()
@@ -165,6 +204,7 @@
                         url: '{{ route('messages.unread') }}',
                         dataType: 'json',
                         success: function(data) {
+                            close_offline_tip()
                             var currentBalance = parseFloat($('#userBalance').text())
                             if (currentBalance != data.balance && updateCount == 0) {
                                 mdui.snackbar({
@@ -203,10 +243,7 @@
                             }
                         },
                         error: function(data) {
-                            mdui.snackbar({
-                                message: '此时无法获取通知。',
-                                position: 'right-bottom'
-                            })
+                            showOfflineTip()
                         }
                     })
                 }
