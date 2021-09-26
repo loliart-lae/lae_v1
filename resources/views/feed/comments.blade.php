@@ -42,13 +42,14 @@
 
     <div class="mdui-typo">
         @php($i = 0)
-        <h1>@if ($replies > 0) {{ $replies }} 条@endif回复</h1>
+        <h1>@if ($replies > 0) {{ $replies }} 条@endif 回复</h1>
         <div class="mdui-row">
             @foreach ($status_replies as $status_reply)
                 @php($i++)
                 <div class="mdui-col-xs-12 mdui-p-y-2">
                     <div class="mdui-col-xs-2 mdui-col-sm-1">
-                        <img class="mdui-img-circle mdui-center" src="{{ config('app.gravatar_url') }}/{{ md5($status->user->email) }}">
+                        <img class="mdui-img-circle mdui-center"
+                            src="{{ config('app.gravatar_url') }}/{{ md5($status_reply->user->email) }}">
                     </div>
                     <div class="mdui-col-xs-11">
                         {{ $i }}. {{ $status_reply->user->name }} 说：
@@ -56,7 +57,7 @@
                         {{ $status_reply->content }}
                     </div>
                 </div>
-        @endforeach
+            @endforeach
         </div>
         <br /> <br />
         <div>
