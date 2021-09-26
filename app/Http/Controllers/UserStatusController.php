@@ -92,7 +92,8 @@ class UserStatusController extends Controller
             $statusLike->is_liked = true;
             $statusLike->save();
 
-            $status_user_id = $statusLike->firstOrFail()->user_id;
+            $status_user_id = $status->firstOrFail()->user_id;
+
             if ($status_user_id !== Auth::id()) {
                 // 打钱
                 $userBalanceLog = new UserBalanceLog();
