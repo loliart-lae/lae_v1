@@ -203,7 +203,7 @@ class UserStatusController extends Controller
 
     public function destroy_reply($id, UserStatusReply $userStatusReply)
     {
-        if ($userStatusReply->find($id)->firstOrFail()->user_id == Auth::id()) {
+        if ($userStatusReply->where('id', $id)->firstOrFail()->user_id == Auth::id()) {
             $userStatusReply->where('id', $id)->delete();
             return redirect()->back()->with('status', '回复已经删除');
         }
