@@ -82,11 +82,11 @@
                         {{ Auth::user()->name }} / <span id="userBalance"
                             style="display: contents;">{{ Auth::user()->balance }}</span></small></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">容器管理</a>
+                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
-                {{-- <a href="{{ route('autoBash.index') }}" class="mdui-ripple mdui-ripple-white">自动化命令行</a> --}}
+                {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
                 <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
                 <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
 
