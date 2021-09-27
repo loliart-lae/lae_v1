@@ -88,6 +88,9 @@
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
                 <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+                <a onclick="mdui.confirm('这个功能还处于测试中，可能会有些不稳定，并且不适用于新手。确定前往吗？', function(){
+                        window.open('https://grafana.lightart.top:2083')
+                      })" href="#" class="mdui-ripple mdui-ripple-white">Grafana</a>
                 <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
 
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
