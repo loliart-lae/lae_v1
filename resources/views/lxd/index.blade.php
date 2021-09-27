@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', '容器')
+@section('title', 'Linux 容器')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">容器管理</h1>
+    <h1 class="mdui-text-color-theme">LXC Containers</h1>
 
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#webssh-dialog'}">Web SSH</button>
     &nbsp;&nbsp;
