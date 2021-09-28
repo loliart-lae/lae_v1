@@ -50,7 +50,7 @@
             @csrf
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4"
-                    required autofocus></textarea>
+                    required autofocus placeholder="@if (Auth::user()->balance > 10) 来享受这里吧，{{ Auth::user()->name }}。 @else 不用担心你的积分来源，它不光能充值获取，为社区做出贡献依旧能获取！去 “全站时间河”看看吧！ @endif "></textarea>
                 <div class="mdui-textfield-helper">此刻在想些什么？</div>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
@@ -69,7 +69,7 @@
             .then(data => {
                 // 还是 JQ 来的方便
                 $('.hitokoto_text').html(data.hitokoto)
-                $('.hitokoto_placeholder').attr('placeholder', data.hitokoto)
+                // $('.hitokoto_placeholder').attr('placeholder', data.hitokoto)
             })
             .catch(console.error)
     </script>
