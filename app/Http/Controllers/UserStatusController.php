@@ -195,7 +195,7 @@ class UserStatusController extends Controller
     {
         if ($userStatus->find($id)->firstOrFail()->user_id == Auth::id()) {
             $userStatus->where('id', $id)->delete();
-            return redirect()->back()->with('status', '动态已从时间长河中彻底消失。');
+            return redirect()->route('main')->with('status', '动态已从时间长河中彻底消失。');
         }
         return redirect()->back()->with('status', '删除失败。');
 
