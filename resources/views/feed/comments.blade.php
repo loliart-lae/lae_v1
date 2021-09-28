@@ -12,7 +12,22 @@
                         {{ $status->created_at->diffForHumans() }}</small></div>
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
             </div>
-            <div class="mdui-card-content">{!! nl2br(e($status->content)) !!}</div>
+            <div class="mdui-card-content mdui-p-t-1">
+                <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! nl2br(e($status->content)) !!}</textarea>
+                <div id="log_{{ $status->id }}"></div>
+                <script>
+                    $(function() {
+                        var log_view
+
+                        log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
+                            markdown: $('#log_{{ $status->id }}_content').html(),
+                            tocm: true,
+                            emoji: true,
+                            taskList: true,
+                        });
+                    })
+                </script>
+            </div>
             <div class="mdui-card-actions">
                 <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                     class="mdui-btn mdui-ripple mdui-btn-icon">
@@ -52,11 +67,13 @@
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status_reply->user->email)) }}">
                     </div>
                     <div class="mdui-col-xs-11">
-                        {{ $i }}. {{ $status_reply->user->name }} 说：@if ($status_reply->user->id == Auth::id()) <a onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
+                        {{ $i }}. {{ $status_reply->user->name }} 说：@if ($status_reply->user->id == Auth::id()) <a
+                                onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
                             <form id="statusReply-{{ $i }}" method="post"
-                                action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')</form>
+                                action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
+                            </form>
                         @else
-                        <br />
+                            <br />
                         @endif
                         {!! nl2br(e($status_reply->content)) !!}
                     </div>
