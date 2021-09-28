@@ -3,6 +3,17 @@
 @section('title', '回复')
 
 @section('content')
+    <style>
+        .editormd-html-preview>h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 0 !important
+        }
+
+    </style>
     <div class="mdui-typo">
         <div class="mdui-card" style="margin-top: 5px">
             <div class="mdui-card-header">
@@ -69,13 +80,27 @@
                     <div class="mdui-col-xs-11">
                         {{ $i }}. {{ $status_reply->user->name }} 说：@if ($status_reply->user->id == Auth::id()) <a
                                 onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
-                            <form id="statusReply-{{ $i }}" method="post"
+                            <form id="statusReply-{{ $i }}" style="display: none" method="post"
                                 action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
                             </form>
                         @else
                             <br />
                         @endif
-                        {!! nl2br(e($status_reply->content)) !!}
+                        <div id="reply_{{ $status_reply->id }}"></div>
+                        <textarea id="reply_{{ $status_reply->id }}_content"
+                            style="display:none;">{!! nl2br(e($status_reply->content)) !!}</textarea>
+                        <script>
+                            $(function() {
+                                var log_view
+
+                                log_view = editormd.markdownToHTML("reply_{{ $status_reply->id }}", {
+                                    markdown: $('#reply_{{ $status_reply->id }}_content').html(),
+                                    tocm: true,
+                                    emoji: true,
+                                    taskList: true,
+                                });
+                            })
+                        </script>
                     </div>
                 </div>
             @endforeach
