@@ -1,5 +1,4 @@
 @if ($feed_items->count() > 0)
-    {!! editor_js() !!}
     <style>
         .editormd-html-preview > h1,h2,h3,h4,h5,h6{
             margin-top: 0 !important
