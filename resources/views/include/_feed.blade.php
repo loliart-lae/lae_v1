@@ -1,5 +1,10 @@
 @if ($feed_items->count() > 0)
-
+    {!! editor_js() !!}
+    <style>
+        .editormd-html-preview > h1,h2,h3,h4,h5,h6{
+            margin-top: 0 !important
+        }
+    </style>
     <div id="masonry" class="mdui-row">
 
         @foreach ($feed_items as $status)
@@ -17,7 +22,8 @@
                                 @if ($display ?? '' != 0)
                                     @if ($status->user->id == Auth::id())
                                         <i mdui-tooltip="{content: '这是你'}"
-                                            class="mdui-text-color-theme mdui-icon material-icons" onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
+                                            class="mdui-text-color-theme mdui-icon material-icons"
+                                            onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
                                     @elseif (in_array($status->user->id, $ids))
                                         <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
                                             class="mdui-text-color-theme mdui-icon material-icons">favorite</i>
@@ -31,7 +37,24 @@
                         </div>
                         <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '啊吧啊吧啊吧' }}</div>
                     </div>
-                    <div class="mdui-card-content">{!! nl2br(e($status->content)) !!}</div>
+                    <div class="mdui-card-content mdui-p-t-1">
+                        <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! nl2br(e($status->content)) !!}
+
+                        </textarea>
+                        <div id="log_{{ $status->id }}"></div>
+                        <script>
+                            $(function() {
+                                var log_view
+
+                                log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
+                                    markdown: $('#log_{{ $status->id }}_content').html(),
+                                    tocm: true,
+                                    emoji: true,
+                                    taskList: true,
+                                });
+                            })
+                        </script>
+                    </div>
                     <div class="mdui-card-actions">
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
