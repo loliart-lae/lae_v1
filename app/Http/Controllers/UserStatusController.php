@@ -205,7 +205,7 @@ class UserStatusController extends Controller
     {
         if ($userStatusReply->where('id', $id)->firstOrFail()->user_id == Auth::id()) {
             $userStatusReply->where('id', $id)->delete();
-            return redirect()->back()->with('status', '回复已经删除');
+            return redirect()->route('main')->with('status', '回复已经删除');
         }
         return redirect()->back()->with('status', '删除失败。');
 
