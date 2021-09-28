@@ -1,8 +1,14 @@
 @if ($feed_items->count() > 0)
     <style>
-        .editormd-html-preview > h1,h2,h3,h4,h5,h6{
+        .editormd-html-preview>h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             margin-top: 0 !important
         }
+
     </style>
     <div id="masonry" class="mdui-row">
 
@@ -37,7 +43,8 @@
                         <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '啊吧啊吧啊吧' }}</div>
                     </div>
                     <div class="mdui-card-content mdui-p-t-1">
-                        <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! nl2br(e($status->content)) !!}</textarea>
+                        <textarea id="log_{{ $status->id }}_content"
+                            style="display:none;">{!! nl2br(e($status->content)) !!}</textarea>
                         <div id="log_{{ $status->id }}"></div>
                         <script>
                             $(function() {
