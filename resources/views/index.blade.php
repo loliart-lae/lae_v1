@@ -8,7 +8,7 @@
 
     <div class="mdui-typo-display-2">国庆预热🍰</div><br />
     <div class="mdui-typo-headline-opacity" style="cursor: pointer" id="owo" onclick="updateOwo()">准备好了吗？要开始了哦～</div>
-    <audio id="huluhuluhulu" src="huluhuluhulu.mp3"></audio>
+    <audio id="huluhuluhulu" src="https://ivampiresp.com/wp-content/uploads/2021/09/1632933552-huluhuluhulu.mp3"></audio>
     <script>
         var times = 0
 
