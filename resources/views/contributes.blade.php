@@ -146,7 +146,7 @@
         <div class="mdui-typo">
             <ul>
                 <li>KiteAB</li>
-                <li>以及没有被提及的广大用户们。</li>
+                <li>思衔</li>
             </ul>
         </div>
     </div>
