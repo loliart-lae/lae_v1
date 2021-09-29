@@ -15,8 +15,8 @@ class UpdateColToForwardsTable extends Migration
     {
         Schema::table('forwards', function (Blueprint $table) {
             //
-            $table->unsignedSmallInteger('from')->update();
-            $table->unsignedSmallInteger('to')->update();
+            $table->unsignedSmallInteger('from')->change();
+            $table->unsignedSmallInteger('to')->change();
         });
     }
 
