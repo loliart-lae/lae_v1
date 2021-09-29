@@ -88,7 +88,7 @@
                         @endif
                         <div id="reply_{{ $status_reply->id }}"></div>
                         <textarea id="reply_{{ $status_reply->id }}_content"
-                            style="display:none;">{!! nl2br(e($status_reply->content)) !!}</textarea>
+                            style="display:none;">{!! e($status_reply->content) !!}</textarea>
                         <script>
                             $(function() {
                                 var log_view
