@@ -173,8 +173,11 @@ class ProjectController extends Controller
 
     public function charge(Request $request, UserBalanceLog $userBalanceLog, Project $project)
     {
+        $this->validate($request, [
+            'value' => 'integer|min:1'
+        ]);
         // 扣费
-        (double)$value = $request->value;
+        (float)$value = $request->value;
         if ($userBalanceLog->cost(Auth::id(), $value, 'Charge to project.')) {
 
             // 获取项目余额
