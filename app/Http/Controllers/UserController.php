@@ -71,6 +71,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'bio' => 'required',
+            'website' => 'url'
+        ]);
         $user_data = User::where('id', $id);
         if (!$user_data->exists()) {
             return redirect()->back()->with('status', '用户不存在。');
@@ -78,9 +82,10 @@ class UserController extends Controller
 
         $user_data->update([
             'bio' => $request->bio,
+            'website' => $request->website
         ]);
 
-        return redirect()->back()->with('status', '签名修改完成啦。');
+        return redirect()->back()->with('status', '用户资料已更新。');
     }
 
     /**

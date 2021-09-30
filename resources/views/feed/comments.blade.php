@@ -19,8 +19,15 @@
             <div class="mdui-card-header">
                 <img class="mdui-card-header-avatar"
                     src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
-                <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
-                        {{ $status->created_at->diffForHumans() }}</small></div>
+                <div class="mdui-card-header-title">
+                    @if (is_null($status->user->website))
+                        {{ $status->user->name }}
+                    @else
+                        <a href="{{ $status->user->website }}">{{ $status->user->name }}</a>
+                    @endif
+                    <small> /
+                        {{ $status->created_at->diffForHumans() }}</small>
+                </div>
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
             </div>
             <div class="mdui-card-content mdui-p-t-1">
@@ -78,7 +85,13 @@
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status_reply->user->email)) }}">
                     </div>
                     <div class="mdui-col-xs-11">
-                        {{ $i }}. {{ $status_reply->user->name }} 说：@if ($status_reply->user->id == Auth::id()) <a
+                        {{ $i }}.
+                        @if (is_null($status_reply->user->website))
+                            {{ $status_reply->user->name }}
+                        @else
+                            <a target="_blank" href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
+                        @endif
+                        说：@if ($status_reply->user->id == Auth::id()) <a
                                 onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
                             <form id="statusReply-{{ $i }}" style="display: none" method="post"
                                 action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')

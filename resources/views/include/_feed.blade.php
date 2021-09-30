@@ -18,7 +18,13 @@
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
-                        <div class="mdui-card-header-title">{{ $status->user->name }} <small> /
+                        <div class="mdui-card-header-title">
+                            @if (is_null($status->user->website))
+                                {{ $status->user->name }}
+                            @else
+                                <a target="_blank" href="{{ $status->user->website }}">{{ $status->user->name }}</a>
+                            @endif
+                            <small> /
                                 {{ $status->created_at->diffForHumans() }}</small>
                             <div style="display: inline;
                                 position: absolute;
@@ -70,9 +76,8 @@
                                 <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                             @endif
                         </button>
-                        <button onclick="window.location.href = '{{ route('status.show', $status->id) }}'"
-                            class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
-                            回复</button>
+                        <a href="{{ route('status.show', $status->id) }}" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
+                            回复</a>
                         @can('destroy', $status)
                             <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}"
                                 method="POST" onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">
