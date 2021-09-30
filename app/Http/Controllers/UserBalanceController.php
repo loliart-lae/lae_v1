@@ -41,7 +41,7 @@ class UserBalanceController extends Controller
             'payment' => 'required'
         ]);
         if ($request->balance < 1 || $request->balance > 100) {
-            return redirect()->back()->with('status', 'What \'s up.');
+            return redirect()->back()->with('status', '请不要这样，先生');
         }
         if ($request->payment == 'alipay') {
             $pay_type = 2;
