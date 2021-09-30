@@ -13,8 +13,8 @@
             @csrf
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4"
-                    required autofocus></textarea>
-                <div class="mdui-textfield-helper">如何才能让互联网更开放呢？Light App Engine 到底需要该怎么做.........</div>
+                    required autofocus placeholder="如何才能让互联网更开放呢？Light App Engine 到底需要该怎么做........."></textarea>
+                <div class="mdui-textfield-helper">还需要更多...更多......</div>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
         </form>
@@ -32,7 +32,7 @@
             .then(data => {
                 // 还是 JQ 来的方便
                 $('.hitokoto_text').html(data.hitokoto)
-                $('.hitokoto_placeholder').attr('placeholder', data.hitokoto)
+                // $('.hitokoto_placeholder').attr('placeholder', data.hitokoto)
             })
             .catch(console.error)
     </script>
