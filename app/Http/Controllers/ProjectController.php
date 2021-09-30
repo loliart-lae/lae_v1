@@ -48,6 +48,10 @@ class ProjectController extends Controller
      */
     public function store(Request $request, Project $project, ProjectMember $member)
     {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
         if ($project::where('name', $request->name)->where('user_id', Auth::id())->count() > 0) {
             return redirect()->back()->with('status', '在你的账户下已有同名项目了。');
         }
