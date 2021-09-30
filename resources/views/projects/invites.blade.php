@@ -3,7 +3,7 @@
 @section('title', '待处理的处理项目邀请')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">待处理的处理项目邀请</h1>
+    <div class="mdui-typo-display-2">待处理的处理项目邀请</div>
 
     <br />
 
@@ -25,15 +25,20 @@
                         <td nowrap="nowrap">{{ $invite->project->name }}</td>
                         <td nowrap="nowrap">{{ $invite->user->name }}</td>
                         @if ($invite->status == false)
-                        <form id="f_{{ $invite->id }}_accept" method="post" action="{{ route('invites.accept', $invite->id) }}">
-                            @csrf
-                            @method('POST')
-                        </form>
-                        <form id="f_{{ $invite->id }}_deny" method="post" action="{{ route('invites.deny', $invite->id) }}">
-                            @csrf
-                            @method('POST')
-                        </form>
-                        <td nowrap="nowrap"><a class="mdui-text-color-theme" style="text-decoration: none" href="javascript: $('#f_{{ $invite->id }}_accept').submit();">同意</a> 或者 <a class="mdui-text-color-theme" style="text-decoration: none" href="javascript: $('#f_{{ $invite->id }}_deny').submit();">拒绝</a></td>
+                            <form id="f_{{ $invite->id }}_accept" method="post"
+                                action="{{ route('invites.accept', $invite->id) }}">
+                                @csrf
+                                @method('POST')
+                            </form>
+                            <form id="f_{{ $invite->id }}_deny" method="post"
+                                action="{{ route('invites.deny', $invite->id) }}">
+                                @csrf
+                                @method('POST')
+                            </form>
+                            <td nowrap="nowrap"><a class="mdui-text-color-theme" style="text-decoration: none"
+                                    href="javascript: $('#f_{{ $invite->id }}_accept').submit();">同意</a> 或者 <a
+                                    class="mdui-text-color-theme" style="text-decoration: none"
+                                    href="javascript: $('#f_{{ $invite->id }}_deny').submit();">拒绝</a></td>
                         @endif
 
                     </tr>
@@ -43,5 +48,3 @@
     </div>
 
 @endsection
-
-

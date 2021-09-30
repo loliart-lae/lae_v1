@@ -3,7 +3,8 @@
 @section('title', '项目管理')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">我所在的项目</h1>
+    <div class="mdui-typo-display-2">我所在的项目</div>
+
     <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建项目</a> &nbsp; <a
         href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">
         @if ($invites > 0)

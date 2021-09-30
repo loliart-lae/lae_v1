@@ -3,7 +3,7 @@
 @section('title', '穿透隧道')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">内网穿透隧道管理</h1>
+    <div class="mdui-typo-display-2">内网穿透隧道管理</div>
 
     <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建隧道</a>
     &nbsp;&nbsp;

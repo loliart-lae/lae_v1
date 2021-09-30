@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="mdui-typo-display-2"><span id="doc-type"></span>文档</div>
-    <br />
 
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#new_document'}">新建文档</button>
     &nbsp;&nbsp;

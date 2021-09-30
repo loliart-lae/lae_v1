@@ -41,7 +41,7 @@
         }
 
         .mdui-typo-display-2 {
-            margin-bottom: 5px
+            margin-bottom: 10px
         }
 
     </style>

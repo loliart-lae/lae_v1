@@ -3,7 +3,8 @@
 @section('title', '新建共享的Windows 远程桌面账户')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">新建共享的 Windows 远程桌面账号</h1>
+    <div class="mdui-typo-display-2">新建共享的 Windows 远程桌面账号</div>
+
     <p>在选定的项目中新建 共享的 Windows 远程桌面账号。</p>
     <br />
     <form method="post" action="{{ route('remote_desktop.store') }}">
@@ -31,7 +32,8 @@
 
                             <td nowrap="nowrap">
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $project->project->id }}" name="project_id" @if ($i == 2) checked @endif required />
+                                    <input type="radio" value="{{ $project->project->id }}" name="project_id"
+                                        @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>
@@ -76,7 +78,8 @@
 
                             <td>
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $server->id }} "name="server_id" @if ($i == 2) checked @endif required />
+                                    <input type="radio" value="{{ $server->id }} " name="server_id"
+                                        @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>
@@ -110,6 +113,7 @@
         <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
 
         <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，如需安装软件请前往社区中发帖。一些软件可用绿色版免安装。</small></div>
+        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
+                地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，如需安装软件请前往社区中发帖。一些软件可用绿色版免安装。</small></div>
     </form>
 @endsection

@@ -3,7 +3,7 @@
 @section('title', '新建项目')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">新建项目</h1>
+    <div class="mdui-typo-display-2">新建项目</div>
     <p>在你新建项目之后，你需要在你的项目中充值积分，它在项目中共享。</p>
     <form method="post" action="{{ route('projects.store') }}">
         @csrf

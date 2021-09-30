@@ -3,7 +3,8 @@
 @section('title', '新建 Tunnel 隧道')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">新建 Tunnel 隧道</h1>
+    <div class="mdui-typo-display-2">新建 Tunnel 隧道</div>
+
     <p>在选定的项目中新建 Tunnel 隧道</p>
     <br />
     <form method="post" action="{{ route('tunnels.store') }}">
@@ -114,15 +115,16 @@
                 <p>被映射主机的地址，比如 127.0.0.1:80</p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">内网地址</label>
-                    <input class="mdui-textfield-input" type="text" name="local_address" value="{{ old('local_address') }}"
-                        required />
+                    <input class="mdui-textfield-input" type="text" name="local_address"
+                        value="{{ old('local_address') }}" required />
                 </div>
 
                 <span class="mdui-typo-headline">公网端口</span>
                 <p>将内网地址的端口映射为，如果是 HTTP/HTTPS/XTCP 协议，则该项可以不填写。<br /><br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">公网端口</label>
-                    <input class="mdui-textfield-input" type="text" name="remote_port" value="{{ old('remote_port') }}" />
+                    <input class="mdui-textfield-input" type="text" name="remote_port"
+                        value="{{ old('remote_port') }}" />
                 </div>
             </div>
             <div class="mdui-col-xs-6">
@@ -130,13 +132,14 @@
                 <p>仅在 HTTP 与 HTTPS 中生效。<br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">域名</label>
-                    <input class="mdui-textfield-input" type="text" name="custom_domain" value="{{ old('custom_domain') }}" />
+                    <input class="mdui-textfield-input" type="text" name="custom_domain"
+                        value="{{ old('custom_domain') }}" />
                 </div>
             </div>
             <div class="mdui-col-xs-6">
                 <span class="mdui-typo-headline">XTCP 密钥</span>
                 <p>如果你选择了XTCP，则该项目是必填的。如果为其他协议，请忽略。<br />
-                只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
+                    只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">XTCP 密钥</label>
                     <input class="mdui-textfield-input" type="text" name="sk" value="{{ old('sk') }}" />

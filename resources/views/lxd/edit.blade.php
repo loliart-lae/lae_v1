@@ -3,7 +3,7 @@
 @section('title', '更改项目模板')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">更改项目模板</h1>
+    <div class="mdui-typo-display-2">更改项目模板</div>
     <br />
     <form method="post" action="{{ route('lxd.update', $id) }}">
         @csrf
@@ -43,7 +43,8 @@
                             {{-- <td nowrap="nowrap">{{ $template->price * 44640 / 100 }} 元 / 月</td> --}}
                             <td nowrap="nowrap">
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $template->id }}" name="template_id" @if ($template->id == $selected_template) checked @endif required />
+                                    <input type="radio" value="{{ $template->id }}" name="template_id"
+                                        @if ($template->id == $selected_template) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>

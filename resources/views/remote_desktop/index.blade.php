@@ -3,9 +3,10 @@
 @section('title', '共享远程桌面')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">共享远程桌面管理</h1>
+    <div class="mdui-typo-display-2">共享远程桌面管理</div>
 
-    <a href="{{ route('remote_desktop.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 共享的 Windows 远程桌面</a>
+    <a href="{{ route('remote_desktop.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 共享的 Windows
+        远程桌面</a>
     <br /><br />
 
     <div class="mdui-table-fluid">

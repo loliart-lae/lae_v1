@@ -3,7 +3,8 @@
 @section('title', '新建容器')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">新建容器</h1>
+    <div class="mdui-typo-display-2">新建容器</div>
+
     <p>在选定的项目中新建容器。</p>
     <br />
     <form method="post" action="{{ route('lxd.store') }}">
@@ -31,7 +32,8 @@
 
                             <td nowrap="nowrap">
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $project->project->id }}" name="project_id" @if ($i == 2) checked @endif required />
+                                    <input type="radio" value="{{ $project->project->id }}" name="project_id"
+                                        @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>
@@ -73,7 +75,8 @@
 
                             <td>
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $server->id }} "name="server_id" @if ($i == 2) checked @endif required />
+                                    <input type="radio" value="{{ $server->id }} " name="server_id"
+                                        @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>
@@ -112,7 +115,8 @@
 
                             <td>
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $image->id }}" name="image_id" @if ($i == 2) checked @endif required />
+                                    <input type="radio" value="{{ $image->id }}" name="image_id"
+                                        @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>
@@ -159,7 +163,8 @@
                             {{-- <td>{{ $template->price * 44640 / 100 }} 元 / 月</td> --}}
                             <td>
                                 <label class="mdui-radio">
-                                    <input type="radio" value="{{ $template->id }}" name="template_id" @if ($i == 2) checked @endif required />
+                                    <input type="radio" value="{{ $template->id }}" name="template_id"
+                                        @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
 
                                 </label>
@@ -191,6 +196,8 @@
         <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
 
         <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器默认用户名为 root，并且是无特权容器，不支持 Docker。<br />带宽均为共享带宽，如果带宽有调整，将会即时生效。<br />如果你的容器配置和模板配置不符，可以对容器模板进行升配/降配，然后再修改回去即可刷新。</small></div>
+        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
+                地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器默认用户名为 root，并且是无特权容器，不支持
+                Docker。<br />带宽均为共享带宽，如果带宽有调整，将会即时生效。<br />如果你的容器配置和模板配置不符，可以对容器模板进行升配/降配，然后再修改回去即可刷新。</small></div>
     </form>
 @endsection

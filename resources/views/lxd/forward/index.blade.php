@@ -3,7 +3,8 @@
 @section('title', '端口转发')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">端口转发</h1>
+    <div class="mdui-typo-display-2">端口转发</div>
+
     <p>服务器 {{ $server_name }} 的转发积分: {{ $forward_price }}/条</p>
     <br />
 
@@ -41,7 +42,8 @@
                         <td nowrap="nowrap">{{ $forward->server->address }}:{{ $forward->to }}</td>
                         <td nowrap="nowrap">
                             @if ($forward->status == 'active' || $forward->status == 'failed')
-                                <a href="#" onclick="if (confirm('删除后，将无法通过该端口访问业务，并且端口也可能被他人占用。')) { $('#f-{{ $i }}').submit() } else { return false }">@if ($forward->status == 'failed') 失败 @endif
+                                <a href="#"
+                                    onclick="if (confirm('删除后，将无法通过该端口访问业务，并且端口也可能被他人占用。')) { $('#f-{{ $i }}').submit() } else { return false }">@if ($forward->status == 'failed') 失败 @endif
                                     删除</a>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('forward.destroy', [Request::route('lxd_id'), $forward->id]) }}">

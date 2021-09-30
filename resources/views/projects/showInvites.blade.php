@@ -3,7 +3,7 @@
 @section('title', '对方还未处理的邀请')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">对方还未处理的邀请</h1>
+    <div class="mdui-typo-display-2">对方还未处理的邀请</div>
 
     <br />
 

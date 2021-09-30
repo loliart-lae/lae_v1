@@ -3,7 +3,7 @@
 @section('title', 'Linux 容器')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">LXC Containers</h1>
+    <div class="mdui-typo-display-2">LXC Containers</div>
 
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#webssh-dialog'}">Web SSH</button>
     &nbsp;&nbsp;
@@ -78,7 +78,8 @@
                                 </button>
                             @endif
                             @if ($lxd->status == 'running' || $lxd->status == 'failed')
-                                <button onclick="if (confirm('确认删除吗？删除将会清除全部数据，并且无法找回！')) {$('#f-{{ $i }}').submit()} else {return false}"
+                                <button
+                                    onclick="if (confirm('确认删除吗？删除将会清除全部数据，并且无法找回！')) {$('#f-{{ $i }}').submit()} else {return false}"
                                     class="mdui-btn mdui-ripple">销毁</button>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>

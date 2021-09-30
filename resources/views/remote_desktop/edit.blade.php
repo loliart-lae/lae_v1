@@ -3,7 +3,8 @@
 @section('title', '修改密码')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">修改密码</h1>
+    <div class="mdui-typo-display-2">修改密码</div>
+
     <br />
     <form method="post" action="{{ route('remote_desktop.update', $id) }}">
         @csrf

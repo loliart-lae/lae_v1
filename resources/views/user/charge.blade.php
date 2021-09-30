@@ -3,7 +3,8 @@
 @section('title', '账户充值')
 
 @section('content')
-    <h1 class="mdui-text-color-theme">充值</h1>
+    <div class="mdui-typo-display-2">充值</div>
+
     <p>汇率：1 人民币 = 100 积分</p>
     <form method="post" action="{{ route('billing.store') }}">
         @csrf
