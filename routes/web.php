@@ -37,9 +37,9 @@ Route::prefix('/')->group(function () {
         return view('why');
     })->name('why');
 
-    Route::get('about_us', function () {
-        return view('about_us');
-    })->name('about_us');
+    Route::get('why_begin', function () {
+        return view('why_begin');
+    })->name('why_begin');
 
     Route::get('contributes', function () {
         return view('contributes');
@@ -110,6 +110,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/tunnels', Controllers\TunnelController::class);
 
     Route::resource('/projects/{project_id}/members', Controllers\ProjectMembersController::class);
+
+    Route::resource('/fastVisit', Controllers\FastVisitController::class);
+
+    // Route::resource('/commandJobs', Controllers\CommandJobsController::class);
 });
 
 Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);

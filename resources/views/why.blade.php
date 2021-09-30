@@ -5,7 +5,18 @@
 @section('content')
 
 <div class="mdui-typo">
-    <div class="mdui-table-fluid">
+    <div class="mdui-typo-display-2">优雅，永不过时</div>
+    <div class="mdui-typo-headline-opacity animate__animated animate__hinge">或许这不是个好选择</div>
+
+    <div class="mdui-typo">
+        <h1>Light App Engine</h1>
+        <p>一个非常轻量的云计算，但是他也不只是一个云计算。</p>
+        <p>他也更像一个社区，什么都交谈。</p>
+        <p>然后我也不知道该怎么说，只想让 Light App Engine 用有属于他自己的样子，而并非像大厂一样。</p>
+    </div>
+
+
+    {{-- <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
@@ -42,7 +53,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> --}}
 </div>
 
 <style>
