@@ -8,7 +8,7 @@
     <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建隧道</a>
     &nbsp;&nbsp;
     <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple">下载 Frp
-        各版本客户端</a>
+        各平台客户端</a>
 
     {{-- <a href="" class="mdui-btn mdui-color-theme-accent mdui-ripple">启动集</a> --}}
     <br /><br />
