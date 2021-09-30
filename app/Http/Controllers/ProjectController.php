@@ -48,6 +48,9 @@ class ProjectController extends Controller
      */
     public function store(Request $request, Project $project, ProjectMember $member)
     {
+        if ($project::where('name', $request->name)->where('user_id', Auth::id())->count() > 0) {
+            return redirect()->back()->with('status', '在你的账户下已有同名项目了。');
+        }
         $project->name = $request->name;
         $project->description = $request->description;
         $project->user_id = Auth::id();
