@@ -14,7 +14,7 @@
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4"
                     required autofocus></textarea>
-                <div class="mdui-textfield-helper">此刻在想些什么？</div>
+                <div class="mdui-textfield-helper">如何才能让互联网更开放呢？Light App Engine 到底需要该怎么做.........</div>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
         </form>
