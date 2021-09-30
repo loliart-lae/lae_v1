@@ -72,8 +72,10 @@
         </div>
 
     </div>
-    <div class="mdui-appbar mdui-appbar-fixed mdui-tab-centered" id="appbar">
-        <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width mdui-tab-centered" mdui-tab>
+    <div class="mdui-appbar mdui-appbar-fixed" id="appbar">
+        <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width @auth
+        mdui-tab-centered
+        @endauth" mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="main_link">Light App Engine</a>
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录</a>
