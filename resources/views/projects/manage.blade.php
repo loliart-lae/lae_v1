@@ -6,9 +6,9 @@
     <h1 class="mdui-text-color-theme">有关 {{ $project_info->name }}</h1>
     项目所有者: {{ $project_info->user->name }}
     <br />
-    项目积分: {{ $project_info->balance }}
+    项目积分:{{ $project_info->balance }}</span>
     @if ($project_info->balance < 100)
-        <a class="mdui-btn mdui-ripple" onclick="balance_low()"><i class="mdui-icon material-icons">error</i> 项目积分过少</a>
+        <span mdui-tooltip="{content: '点击显示详细信息'}" onclick="balance_low()">&nbsp;!项目积分过少!</span>
     @endif
     <br />
     <br />
@@ -17,7 +17,8 @@
         mdui-dialog="{target: '#invite-dialog'}">邀请新成员到项目</a>
     <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple"
         mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>
-    <a style="margin: 3px" href="{{ route('invite.index', $project_info->id) }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
+    <a style="margin: 3px" href="{{ route('invite.index', $project_info->id) }}"
+        class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
     <a style="margin: 3px" href="{{ route('storage.index', $project_info->id) }}"
         class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
 
@@ -164,26 +165,14 @@
 @section('script')
     <script>
         function balance_low() {
-            mdui.dialog({
-                title: '<i class="mdui-icon material-icons">error</i>项目积分过少',
-                content: '注意！积分过少会导致您的数据处于危险状态，如果该项目的积分无法支撑容器扣费，那么您的容器将会被逐一删除，并且不会保留任何数据。如果您想长久使用，应保持积分处于充足状态。',
-                buttons: [{
-                        text: '确定'
-                    },
-                    {
-                        text: '汇入积分',
-                        onClick: function(inst) {
-                            var inst1 = new mdui.Dialog('#charge-dialog');
-                            inst1.open();
-
-                        }
-                    }
-                ]
+            mdui.snackbar({
+                message: '注意！<br />积分过少会导致您的数据处于危险状态，如果该项目的积分无法支撑服务扣费，那么您的服务将会被逐一删除，并且不会保留任何数据。如果您想长久使用，应保持积分处于充足状态。',
+                position: 'right-bottom'
             });
+
         }
         @if ($project_info->balance < 100)
-
-            balance_low();
+            balance_low()
         @endif
     </script>
 @endsection
