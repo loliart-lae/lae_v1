@@ -75,7 +75,8 @@
     <div class="mdui-appbar mdui-appbar-fixed" id="appbar">
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width @auth
         mdui-tab-centered
-        @endauth" mdui-tab>
+        @endauth"
+            mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="main_link">Light App Engine</a>
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录</a>
@@ -97,8 +98,8 @@
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
                 <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
                 <a onclick="mdui.confirm('这个功能还处于测试中，可能会有些不稳定，并且不适用于新手。确定前往吗？', function(){
-                            window.open('https://grafana.lightart.top:2083')
-                          })" href="#" class="mdui-ripple mdui-ripple-white">Grafana</a>
+                                window.open('https://grafana.lightart.top:2083')
+                              })" href="#" class="mdui-ripple mdui-ripple-white">Grafana</a>
                 <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
 
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
@@ -304,6 +305,8 @@
             $('#topic').css('margin-bottom', '10px')
         }
     </script>
+    <script data-ad-client="ca-pub-8840787584224208" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 
 </html>
