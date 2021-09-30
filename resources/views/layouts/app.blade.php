@@ -79,7 +79,7 @@
             mdui-tab>
             @guest
                 <a href="{{ route('index') }}" class="main_link">Light App Engine</a>
-                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录 才能进入新的世界</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录 进入新的世界</a>
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
             @else
@@ -131,7 +131,7 @@
     </div>
 
     <div class="mdui-container mdui-m-b-5">
-        <div class="mdui-typo animate__animated animate__zoomInUp">
+        <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 Light App Engine<br />
                 Crafted with 💗 by <a href="{{ route('contributes') }}">Contributors</a><br />
