@@ -128,7 +128,5 @@ Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
     Route::get('/balance/user/search', [Controllers\Admin\BalanceController::class, 'find'])->name('admin.balance.user.find');
 });
 
-
-Route::domain(request()->getHttpHost())->group(function () {
-    Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
-});
+// 拓展路由
+Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
