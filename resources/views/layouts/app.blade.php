@@ -53,6 +53,7 @@
     <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
 </head>
 
@@ -72,7 +73,7 @@
         </div>
 
     </div>
-    <div class="mdui-appbar mdui-appbar-fixed" id="appbar">
+    <div class="mdui-appbar mdui-appbar-fixed" id="appbar" mdui-headroom>
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width @auth
         mdui-tab-centered
         @endauth"
@@ -305,8 +306,6 @@
             $('#topic').css('margin-bottom', '10px')
         }
     </script>
-    <script data-ad-client="ca-pub-8840787584224208" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 
 </html>
