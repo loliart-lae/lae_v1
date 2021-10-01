@@ -16,7 +16,7 @@ use hanbz\PassportClient\Facades\PassportClient;
 |
 */
 
-Route::get('oauth/login', fn () => PassportClient::driver('passport')->redirect())->name('login');
+Route::get('oauth/login', [Controllers\AuthController::class, 'login'])->name('login');
 Route::get('oauth/callback', [Controllers\AuthController::class, 'OAuthCallback']);
 Route::post('oauth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
@@ -74,7 +74,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', [Controllers\UserStatusController::class, 'index'])->name('main');
     Route::put('/user/toggleFollow', [Controllers\UserController::class, 'toggleFollow'])->name('user.toggleFollow');
     Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
-    Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->name('status.like');
+    Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->middleware('throttle:60,1')->name('status.like');
     Route::resource('/status', Controllers\UserStatusController::class);
     Route::put('/status/{id}/reply', [Controllers\UserStatusController::class, 'reply'])->name('status.reply');
     Route::delete('/status/reply/{id}', [Controllers\UserStatusController::class, 'destroy_reply'])->name('status.reply.destroy');
@@ -127,3 +127,10 @@ Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
     Route::resource('/balance', Controllers\Admin\BalanceController::class);
     Route::get('/balance/user/search', [Controllers\Admin\BalanceController::class, 'find'])->name('admin.balance.user.find');
 });
+
+
+if (request()->getHttpHost() !== config('app.domain')) {
+    Route::domain(request()->getHttpHost())->group(function () {
+        Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
+    });
+}
