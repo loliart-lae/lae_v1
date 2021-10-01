@@ -19,11 +19,11 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     <style>
         .mdui-theme-primary-blue .mdui-color-theme {
-            color: white !important;
+            color: white !important
         }
 
         .mdui-tab-scrollable {
-            padding-left: 0;
+            padding-left: 0
         }
 
         .mdui-btn {
@@ -42,6 +42,10 @@
 
         .mdui-typo-display-2 {
             margin-bottom: 10px
+        }
+
+        .can_copy {
+            cursor: pointer
         }
 
     </style>
@@ -93,14 +97,15 @@
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                {{-- <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a> --}}
+                <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
 
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
                 <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
                 <a onclick="mdui.confirm('这个功能还处于测试中，可能会有些不稳定，并且不适用于新手。确定前往吗？', function(){
-                                window.open('https://grafana.lightart.top:2083')
-                              })" href="#" class="mdui-ripple mdui-ripple-white">Grafana</a>
+                                                                    window.open('https://grafana.lightart.top:2083')
+                                                                  })" href="#"
+                    class="mdui-ripple mdui-ripple-white">Grafana</a>
                 <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
 
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
@@ -112,8 +117,7 @@
         </div>
     </div>
     <div class="@yield('container', 'mdui-container') pjax-container">
-        <div id="topic">
-
+        <div id="topic" class="mdui-m-b-1">
         </div>
 
         <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
@@ -241,15 +245,15 @@
                                     easing: "linear",
                                     step: function() {
                                         // 设置每步动画计算的数值
-                                        $('#userBalance').text(Math.floor(this.countNum));
+                                        $('#userBalance').text(Math.floor(this.countNum))
                                     },
                                     complete: function() {
                                         // 设置动画结束的数值
-                                        $('#userBalance').text(this.countNum);
+                                        $('#userBalance').text(this.countNum)
                                     }
-                                });
+                                })
                             }
-                            updateCount++;
+                            updateCount++
                             $('#userBalance').html(data.balance)
                             for (var i = 0; i < data.data.length; i++) {
                                 if (data.data.length != 0) {
@@ -273,14 +277,14 @@
             mdui.snackbar({
             message: '{{ session('status') }}',
             position: 'top'
-            });
+            })
         @endif
         @if (count($errors) > 0)
             @foreach ($errors->all() as $error)
                 mdui.snackbar({
                 message: 'Error: ' + '{{ $error }}',
                 position: 'bottom'
-                });
+                })
             @endforeach
         @endif
 
@@ -289,22 +293,43 @@
                 mdui.snackbar({
                     message: '你的浏览器不支持 localStorage, 队列更新可能不会启用。',
                     position: 'bottom'
-                });
+                })
             } else {
-                mdui.snackbar({
+                @auth
+                    mdui.snackbar({
                     message: '检测到 localStorage, 你将会间接收到通知。',
                     position: 'bottom'
-                });
+                    })
+                @endauth
             }
-            $('#topic').append(` <div class="mdui-float-right"><div class="mdui-chip">
-                <span class="mdui-chip-title">为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</span>
-                <span class="mdui-chip-delete" onclick="$.cookie('is_readed', '1', {
-                                            expires: 7,
-                                            path: '/'
-                                        });$('#topic').hide()"><i class="mdui-icon material-icons">cancel</i></span>
-            </div></div>`)
+            $('#topic').append(`<div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item mdui-panel-item-open">
+                    <div class="mdui-panel-item-header">
+                        <div class="mdui-panel-item-title">加入 QQ 群</div>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-panel-item-body">
+                        为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个 QQ 群：769779712。
+                        <div class="mdui-panel-item-actions">
+                            <button class="mdui-btn mdui-ripple" onclick="$.cookie('is_readed', '1', {
+                                expires: 7,
+                                path: '/'
+                            });$('#topic').hide()">我知道了，消失吧！</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
             $('#topic').css('margin-bottom', '10px')
         }
+
+        new ClipboardJS('.can_copy')
+
+        $('.can_copy').click(function() {
+            mdui.snackbar({
+                message: '<i class="mdui-icon material-icons">content_copy</i> 已复制到剪切板。',
+                position: 'right-bottom'
+            })
+        })
     </script>
 </body>
 
