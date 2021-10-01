@@ -129,8 +129,6 @@ Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
 });
 
 
-if (request()->getHttpHost() !== config('app.domain')) {
-    Route::domain(request()->getHttpHost())->group(function () {
-        Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
-    });
-}
+Route::domain(request()->getHttpHost())->group(function () {
+    Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
+});
