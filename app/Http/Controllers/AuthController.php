@@ -9,6 +9,12 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
+    public function login() {
+        if (request()->getHttpHost() !== config('app.domain')) {
+            return redirect()->to('https://' . config('app.domain') . '/oauth/login');
+        }
+        return PassportClient::driver('passport')->redirect();
+    }
     public function OAuthCallback()
     {
         $oauth_user = PassportClient::driver('passport')->user();
