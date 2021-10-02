@@ -46,12 +46,20 @@
                         </td>
                         <td nowrap>{{ $fastVisit->domain->domain }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->uri }}</td>
-                        <td nowrap="nowrap" style="cursor: pointer"
-                            onclick="toggleAd({{ $fastVisit->id }},{{ $fastVisit->project->id }})">
+                        <td nowrap="nowrap">
                             @if ($fastVisit->show_ad)
-                                <a class="ad_{{ $fastVisit->id }}">已启用</a>
+                                <label class="mdui-switch">
+                                    <input id="check_ad_{{ $fastVisit->id }}"
+                                        onclick="toggleAd({{ $fastVisit->id }},{{ $fastVisit->project->id }})"
+                                        class="ad_{{ $fastVisit->id }}" type="checkbox" checked />
+                                    <i class="mdui-switch-icon"></i>
+                                </label>
                             @else
-                                <a class="ad_{{ $fastVisit->id }}">未启用</a>
+                                <label class="mdui-switch">
+                                    <input onclick="toggleAd({{ $fastVisit->id }},{{ $fastVisit->project->id }})"
+                                        class="ad_{{ $fastVisit->id }}" type="checkbox" />
+                                    <i class="mdui-switch-icon"></i>
+                                </label>
                             @endif
                         </td>
                         <td nowrap="nowrap">{{ $fastVisit->times }}</td>
@@ -77,12 +85,6 @@
         </table>
     </div>
 
-    <div id="animate_line" style="display: none">
-        <div class="mdui-progress">
-            <div class="mdui-progress-indeterminate"></div>
-        </div>
-    </div>
-
     <script>
         new ClipboardJS('.can_copy')
 
@@ -95,8 +97,6 @@
 
         // Update
         function toggleAd(id, project_id) {
-            var animate = $('#animate_line').html()
-            $('.ad_' + id).html(animate)
             $.ajax({
                 type: 'PUT',
                 url: '{{ url()->current() }}' + '/' + id,
@@ -105,30 +105,7 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    if (data.status == 'success') {
-                        var message = '未知'
-                        if (data.message) {
-                            message = '已启用'
-                        } else {
-                            message = '未启用'
-                        }
-                        $('.ad_' + id).html(message)
-                        mdui.snackbar({
-                            message: '广告状态已切换为 ' + message,
-                            position: 'right-bottom'
-                        })
-                    } else {
-                        mdui.snackbar({
-                            message: '此时无法切换广告状态。',
-                            position: 'right-bottom'
-                        })
-                    }
-                },
-                error: function(data) {
-                    mdui.snackbar({
-                        message: '此时无法切换广告状态。',
-                        position: 'right-bottom'
-                    })
+                    $('#check_ad_' + id).prop("checked", data.message);
                 }
             })
         }
