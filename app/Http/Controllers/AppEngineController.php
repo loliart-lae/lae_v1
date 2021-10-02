@@ -11,7 +11,6 @@ use App\Models\LxdTemplate;
 use App\Models\LxdContainer;
 use Illuminate\Http\Request;
 use App\Models\ProjectMember;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
 class AppEngineController extends Controller
@@ -86,13 +85,17 @@ class AppEngineController extends Controller
             'name' => 'required',
             'password' => 'required|alpha_dash|min:1|max:20',
             'image_id' => 'required',
-            'server_id' => 'required'
+            'server_id' => 'required',
+            'template_id' => 'required'
         ]);
 
         $project_id = $request->project_id;
         // 在选定的项目中新建容器
         if (ProjectMembersController::userInProject($project_id)) {
 
+            // if ($request->template_id == 8) {
+            //     return redirect()->back()->with('status', '别嫖了别嫖了，土都快吃完了。');
+            // }
             // 预定义
             $lxdTemplate_data = $lxdTemplate->where('id', $request->template_id)->firstOrFail();
             $server_data = $server->where('id', $request->server_id)->firstOrFail();
