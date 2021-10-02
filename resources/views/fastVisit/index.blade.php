@@ -77,6 +77,12 @@
         </table>
     </div>
 
+    <div id="animate_line" style="display: none">
+        <div class="mdui-progress">
+            <div class="mdui-progress-indeterminate"></div>
+        </div>
+    </div>
+
     <script>
         new ClipboardJS('.can_copy')
 
@@ -89,13 +95,12 @@
 
         // Update
         function toggleAd(id, project_id) {
-            $('.ad_' + id).html(`<div class="mdui-progress">
-  <div class="mdui-progress-indeterminate"></div>
-</div>`)
+            var animate = $('#animate_line').html()
+            $('.ad_' + id).html(animate)
             mdui.mutation()
             $.ajax({
                 type: 'PUT',
-                url: '{{ url()->full() }}' + '/' + id,
+                url: '{{ url()->current() }}' + '/' + id,
                 data: {
                     'project_id': project_id
                 },
