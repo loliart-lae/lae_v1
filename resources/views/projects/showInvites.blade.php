@@ -14,6 +14,7 @@
                     <th>ID</th>
                     <th>项目名称</th>
                     <th>邀请人</th>
+                    <th>对方名称</th>
                     <th>状态</th>
                     <th>发出时间</th>
                 </tr>
@@ -25,6 +26,7 @@
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $invite->project->name }}</td>
                         <td nowrap="nowrap">{{ $invite->user->name }}</td>
+                        <td nowrap="nowrap">{{ $invite->invite_user->name }}</td>
                         @if ($invite->status == 2)
                             <td nowrap="nowrap">已拒绝</td>
                         @elseif ($invite->status == 1)

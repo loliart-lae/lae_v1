@@ -22,7 +22,7 @@ class ProjectInviteController extends Controller
      */
     public function index(Request $request, Project $project, User $user, ProjectMember $member, ProjectInvite $invite)
     {
-        $invites = $invite->where('project_id', $request->route('project_id'))->with('user', 'project')->get();
+        $invites = $invite->where('project_id', $request->route('project_id'))->with('user', 'project', 'invite_user')->get();
         return view('projects.showInvites', compact('invites'));
     }
 
