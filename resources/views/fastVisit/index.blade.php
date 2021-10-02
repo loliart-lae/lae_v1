@@ -16,7 +16,7 @@
                     <th>ID</th>
                     <th>内部 ID</th>
                     <th>名称</th>
-                    <th>短语</th>
+                    <th>短语(点击复制)</th>
                     <th>域</th>
                     <th>目标地址</th>
                     <th>广告状态</th>
@@ -48,7 +48,8 @@
                             @else
                                 <a href="#">未启用</a>
                             @endif
-                            <form id="f-t-{{ $i }}" method="POST" action="{{ route('fastVisit.update', $fastVisit->id) }}">
+                            <form id="f-t-{{ $i }}" method="POST"
+                                action="{{ route('fastVisit.update', $fastVisit->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="project_id" value="{{ $fastVisit->project->id }}" />
@@ -81,5 +82,15 @@
         </table>
     </div>
 
+    <script>
+        new ClipboardJS('.can_copy')
+
+        $('.can_copy').click(function() {
+            mdui.snackbar({
+                message: '<i class="mdui-icon material-icons">content_copy</i> 已复制到剪切板。',
+                position: 'right-bottom'
+            })
+        })
+    </script>
 
 @endsection
