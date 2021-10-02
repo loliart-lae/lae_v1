@@ -112,8 +112,8 @@
     </div>
 
     <div class="mdui-row">
-        <h1 class="mdui-text-color-theme">Bug 发现者</h1>
-        <p>非常感谢以下人员及时发现并反馈Bug。</p>
+        <h1 class="mdui-text-color-theme">问题发现者</h1>
+        <p>非常感谢以下人员及时发现并反馈问题。</p>
         <div class="mdui-typo">
             <ul>
                 <li>苏沫</li>
@@ -121,6 +121,7 @@
                 <li>凌辰溪</li>
                 <li>Chi_Tang</li>
                 <li>SakuraPuare</li>
+                <li>懒猫</li>
                 <li>以及没有被提及的广大用户们。</li>
             </ul>
         </div>
