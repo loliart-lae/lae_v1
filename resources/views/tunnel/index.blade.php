@@ -25,20 +25,23 @@
                     <th>CNAME</th>
                     <th>共享带宽</th>
                     <th>属于服务器</th>
-                    <th>属于项目</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
-                <tr>
-                    <td colspan="12" class="mdui-text-center">
-                        <a href="{{ route('tunnels.create') }}">新建 隧道</a>
-                        {{-- 或者 <a href="{{ route('tunnels.create') }}">新建 启动集</a> --}}
-                    </td>
-                </tr>
                 @php($i = 1)
+                @php($project_id = 0)
                 @foreach ($tunnels as $tunnel)
+                    @if ($tunnel->project->id != $project_id)
+                        @php($project_id = $tunnel->project->id)
+                        <tr>
+                            <td colspan="11" class="mdui-text-center">
+                                <a
+                                    href="{{ route('projects.show', $tunnel->project->id) }}">{{ $tunnel->project->name }}</a>
+                            </td>
+                        </tr>
+                    @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $tunnel->id }}</td>
@@ -71,9 +74,6 @@
                             @endif
                         </td>
                         <td nowrap="nowrap">{{ $tunnel->server->name }}</td>
-                        <td nowrap="nowrap"><a
-                                href="{{ route('projects.show', $tunnel->project->id) }}">{{ $tunnel->project->name }}</a>
-                        </td>
                         <td nowrap="nowrap">
                             @if ($tunnel->protocol != 'xtcp')
                                 {{ $tunnel->server->price }}/m

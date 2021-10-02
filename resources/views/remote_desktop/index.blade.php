@@ -20,20 +20,24 @@
                     <th>内存</th>
                     <th>带宽</th>
                     <th>属于服务器</th>
-                    <th>属于项目</th>
                     <th>连接信息</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
-                <tr>
-                    <td colspan="11" class="mdui-text-center">
-                        <a href="{{ route('remote_desktop.create') }}">新建 共享的 Windows 远程桌面</a>
-                    </td>
-                </tr>
                 @php($i = 1)
+                @php($project_id = 0)
                 @foreach ($remote_desktops as $remote_desktop)
+                    @if ($remote_desktop->project->id != $project_id)
+                        @php($project_id = $remote_desktop->project->id)
+                        <tr>
+                            <td colspan="10" class="mdui-text-center">
+                                <a
+                                    href="{{ route('projects.show', $remote_desktop->project->id) }}">{{ $remote_desktop->project->name }}</a>
+                            </td>
+                        </tr>
+                    @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->id }}</td>
@@ -49,9 +53,6 @@
                         <td nowrap="nowrap">{{ $remote_desktop->server->mem }}M</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->network_limit }} Mbps</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->name }}</td>
-                        <td nowrap="nowrap"><a
-                                href="{{ route('projects.show', $remote_desktop->project->id) }}">{{ $remote_desktop->project->name }}</a>
-                        </td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->domain }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->price }}/m
                         </td>

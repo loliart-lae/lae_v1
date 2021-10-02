@@ -97,7 +97,7 @@
 
         <span class="mdui-typo-headline">目标地址</span>
         <p>访问入口后，跳转到哪里？</p>
-        <div class="mdui-textfield mdui-textfield-floating-label">
+        <div class="mdui-textfield">
             <label class="mdui-textfield-label">地址</label>
             <input class="mdui-textfield-input" type="text" name="uri" placeholder="https://" value="{{ old('uri') }}" required />
         </div>

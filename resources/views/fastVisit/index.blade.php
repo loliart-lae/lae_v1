@@ -21,18 +21,22 @@
                     <th>目标地址</th>
                     <th>广告状态</th>
                     <th>有效访问量</th>
-                    <th>属于项目</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody class="mdui-typo">
-                <tr>
-                    <td colspan="11" class="mdui-text-center">
-                        <a href="{{ route('fastVisit.create') }}">新建 访问入口</a>
-                    </td>
-                </tr>
                 @php($i = 1)
+                @php($project_id = 0)
                 @foreach ($fastVisits as $fastVisit)
+                    @if ($fastVisit->project->id != $project_id)
+                        @php($project_id = $fastVisit->project->id)
+                        <tr>
+                            <td colspan="9" class="mdui-text-center">
+                                <a
+                                    href="{{ route('projects.show', $fastVisit->project->id) }}">{{ $fastVisit->project->name }}</a>
+                            </td>
+                        </tr>
+                    @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->id }}</td>
@@ -57,9 +61,6 @@
                         </td>
 
                         <td nowrap="nowrap">{{ $fastVisit->times }}</td>
-                        <td nowrap="nowrap"><a
-                                href="{{ route('projects.show', $fastVisit->project->id) }}">{{ $fastVisit->project->name }}</a>
-                        </td>
                         <td> <a href="#"
                                 onclick="if (confirm('删除后，这个访问入口将无法使用。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
