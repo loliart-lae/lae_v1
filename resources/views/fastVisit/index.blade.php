@@ -90,7 +90,7 @@
 
         $('.can_copy').click(function() {
             mdui.snackbar({
-                message: '<i class="mdui-icon material-icons">content_copy</i> 已复制到剪切板。',
+                message: '链接短语 已复制到剪切板。',
                 position: 'right-bottom'
             })
         })
