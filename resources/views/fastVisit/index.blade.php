@@ -97,7 +97,6 @@
         function toggleAd(id, project_id) {
             var animate = $('#animate_line').html()
             $('.ad_' + id).html(animate)
-            mdui.mutation()
             $.ajax({
                 type: 'PUT',
                 url: '{{ url()->current() }}' + '/' + id,
