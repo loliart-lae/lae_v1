@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', '更改项目模板')
+@section('title', '更改容器模板')
 
 @section('content')
-    <div class="mdui-typo-display-2">更改项目模板</div>
+    <div class="mdui-typo-display-2">更改容器模板</div>
     <br />
     <form method="post" action="{{ route('lxd.update', $id) }}">
         @csrf
