@@ -58,6 +58,9 @@ class LxdJob implements ShouldQueue
                         'token' => $this->config['token']
                     ]);
 
+                    if ($result['status'] == 0) {
+                        throw new \Exception('无法开设容器');
+                    }
                     $lxd->where('id', $this->config['inst_id'])->update([
                         'status' => 'running',
                         'lan_ip' => $result['lan_ip'],
