@@ -46,18 +46,13 @@
                         </td>
                         <td nowrap>{{ $fastVisit->domain->domain }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->uri }}</td>
-                        <td nowrap="nowrap" style="cursor: pointer" onclick="$('#f-t-{{ $i }}').submit()">
+                        <td nowrap="nowrap" style="cursor: pointer"
+                            onclick="toggleAd({{ $fastVisit->id }},{{ $fastVisit->project->id }})">
                             @if ($fastVisit->show_ad)
-                                <a>已启用</a>
+                                <a class="ad_{{ $fastVisit->id }}">已启用</a>
                             @else
-                                <a>未启用</a>
+                                <a class="ad_{{ $fastVisit->id }}">未启用</a>
                             @endif
-                            <form id="f-t-{{ $i }}" method="POST"
-                                action="{{ route('fastVisit.update', $fastVisit->id) }}">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="project_id" value="{{ $fastVisit->project->id }}" />
-                            </form>
                         </td>
                         <td nowrap="nowrap">{{ $fastVisit->times }}</td>
                         <td>
@@ -91,6 +86,48 @@
                 position: 'right-bottom'
             })
         })
+
+        // Update
+        function toggleAd(id, project_id) {
+            $('.ad_' + id).html(`<div class="mdui-progress">
+  <div class="mdui-progress-indeterminate"></div>
+</div>`)
+            mdui.mutation()
+            $.ajax({
+                type: 'PUT',
+                url: '{{ url()->full() }}' + '/' + id,
+                data: {
+                    'project_id': project_id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.status == 'success') {
+                        var message = '未知'
+                        if (data.message) {
+                            message = '已启用'
+                        } else {
+                            message = '未启用'
+                        }
+                        $('.ad_' + id).html(message)
+                        mdui.snackbar({
+                            message: '广告状态已切换为 ' + message,
+                            position: 'right-bottom'
+                        })
+                    } else {
+                        mdui.snackbar({
+                            message: '此时无法切换广告状态。',
+                            position: 'right-bottom'
+                        })
+                    }
+                },
+                error: function(data) {
+                    mdui.snackbar({
+                        message: '此时无法切换广告状态。',
+                        position: 'right-bottom'
+                    })
+                }
+            })
+        }
     </script>
 
 @endsection

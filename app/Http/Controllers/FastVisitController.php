@@ -168,7 +168,7 @@ class FastVisitController extends Controller
             $fastVisit_sql->update([
                 'show_ad' => $showAd
             ]);
-            return redirect()->back();
+            return response()->json(['status' => 'success', 'message' => $showAd]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'You do not have permission to edit this.']);
         }
