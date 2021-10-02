@@ -124,7 +124,7 @@ class FastVisitController extends Controller
         if ($data->show_ad) {
             return view('fastVisit.public', compact('data'));
         } else {
-            return redirect($data->uri, 301);
+            return redirect()->away($data->uri);
         }
 
     }
