@@ -4,6 +4,10 @@
 
 @section('content')
     <div class="mdui-typo-display-2">有关 {{ $project_info->name }}</div>
+    <div class="mdui-typo-display-2-opacity">{{ $project_info->description }}</div>
+
+    <br />
+    <br />
 
     项目所有者: {{ $project_info->user->name }}
     <br />
