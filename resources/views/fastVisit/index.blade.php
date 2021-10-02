@@ -41,16 +41,16 @@
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->id }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->name }}</td>
-                        <td nowrap="nowrap"><a href="#" class="can_copy"
+                        <td nowrap="nowrap"><a class="can_copy"
                                 data-clipboard-text="https://{{ $fastVisit->domain->domain }}/v/{{ $fastVisit->slug }}">{{ $fastVisit->slug }}</a>
                         </td>
                         <td nowrap>{{ $fastVisit->domain->domain }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->uri }}</td>
                         <td nowrap="nowrap" style="cursor: pointer" onclick="$('#f-t-{{ $i }}').submit()">
                             @if ($fastVisit->show_ad)
-                                <a href="#">已启用</a>
+                                <a>已启用</a>
                             @else
-                                <a href="#">未启用</a>
+                                <a>未启用</a>
                             @endif
                             <form id="f-t-{{ $i }}" method="POST"
                                 action="{{ route('fastVisit.update', $fastVisit->id) }}">
@@ -59,10 +59,9 @@
                                 <input type="hidden" name="project_id" value="{{ $fastVisit->project->id }}" />
                             </form>
                         </td>
-
                         <td nowrap="nowrap">{{ $fastVisit->times }}</td>
-                        <td> <a href="#"
-                                onclick="if (confirm('删除后，这个访问入口将无法使用。')) { $('#f-{{ $i }}').submit() }">删除</a>
+                        <td>
+                            <a onclick="if (confirm('删除后，这个访问入口将无法使用。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
                                 action="{{ route('fastVisit.destroy', $fastVisit->id) }}">
                                 @csrf
