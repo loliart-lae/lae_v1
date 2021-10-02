@@ -99,7 +99,7 @@
         <p>访问入口后，跳转到哪里？</p>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">地址</label>
-            <input class="mdui-textfield-input" type="text" name="uri" value="{{ old('uri') }}" required />
+            <input class="mdui-textfield-input" type="text" name="uri" placeholder="https://" value="{{ old('uri') }}" required />
         </div>
         <br />
         <br />
