@@ -120,14 +120,17 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);
 
 
-Route::prefix('admin')->middleware('can:enter-admin')->group(function () {
+Route::prefix('sudo')->middleware('can:enter-admin')->group(function () {
     Route::get('/', function () {
         return 'admin.index';
     })->name('admin.index');
 
     Route::resource('/balance', Controllers\Admin\BalanceController::class);
     Route::get('/balance/user/search', [Controllers\Admin\BalanceController::class, 'find'])->name('admin.balance.user.find');
+
 });
+
+Route::get('/su/{id}', [Controllers\SudoController::class, 'su']);
 
 // 拓展路由
 Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
