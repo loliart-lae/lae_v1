@@ -124,11 +124,11 @@
 
         <form method="POST" action="{{ route('projects.charge', $project_info->id) }}">
             <div class="mdui-dialog-content">
-                <p>注意：你无法将你的全部积分汇款至项目。比如你拥有 100 积分，但是只能汇入 99 积分。</p>
+                <p>注意：你无法将你的全部积分汇款至项目。比如你拥有 {{ Auth::user()->balance }} 积分，但是只能汇入 {{ Auth::user()->balance - 1 }} 积分。</p>
 
                 @csrf
                 <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">金额</label>
+                    <label class="mdui-textfield-label">输入积分</label>
                     <input class="mdui-textfield-input" type="text" name="value" required />
                 </div>
             </div>
