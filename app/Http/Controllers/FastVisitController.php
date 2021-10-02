@@ -126,7 +126,6 @@ class FastVisitController extends Controller
         } else {
             return redirect()->away($data->uri);
         }
-
     }
 
     /**
@@ -148,6 +147,15 @@ class FastVisitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+    {
+
+    }
+
+    /**
+     * Toggle Ad
+     */
+
+    public function toggleAd(Request $request, $id)
     {
         //
 
