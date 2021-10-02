@@ -134,3 +134,6 @@ Route::get('/su/{id}', [Controllers\SudoController::class, 'su']);
 
 // 拓展路由
 Route::get('/v/{id}', [Controllers\FastVisitController::class, 'show'])->name('fastVisit.public');
+
+// 图片上传
+Route::post('/laravel-editor-md/upload/picture')->name('laravel-editor.upload');
