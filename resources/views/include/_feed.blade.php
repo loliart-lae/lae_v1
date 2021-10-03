@@ -14,7 +14,7 @@
 
         @foreach ($feed_items as $status)
             <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
-                <div class="mdui-card" style="margin-top: 5px">
+                <div class="mdui-card user_{{ $status->user->id }}_status" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
@@ -76,7 +76,8 @@
                                 <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                             @endif
                         </button>
-                        <a href="{{ route('status.show', $status->id) }}" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
+                        <a href="{{ route('status.show', $status->id) }}"
+                            class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
                             回复</a>
                         @can('destroy', $status)
                             <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}"
@@ -92,8 +93,9 @@
         @endforeach
     </div>
     <script>
+        var $container = $('#masonry');
         $(function() {
-            var $container = $('#masonry');
+
             $container.masonry({
                 itemSelector: '.poll',
 
@@ -130,7 +132,14 @@
             })
         }
 
+        function sleep(time) {
+            return new Promise(function(resolve) {
+                setTimeout(resolve, time);
+            });
+        }
+
         function toggleFollow(id) {
+
             $.ajax({
                 type: 'PUT',
                 url: `{{ route('user.toggleFollow') }}?id=${id}`,
@@ -145,6 +154,14 @@
                                             class="follow_${id} mdui-text-color-theme mdui-icon material-icons animate__heartBeat">favorite</i>`
                         )
                     } else {
+                        var user_statuses = $('.user_' + id + '_status');
+                        user_statuses.addClass('animate__animated animate__backOutDown')
+                        setTimeout(function() {
+                            user_statuses.remove()
+                            $('#masonry').masonry()
+                        }, 1000)
+
+
                         $('.follow_' + id).html(
                             `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons animate__animated animate__flip">favorite</i>`
                         )
