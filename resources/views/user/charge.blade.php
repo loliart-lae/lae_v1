@@ -10,7 +10,7 @@
         @csrf
         <br /> <br />
         <span class="mdui-typo-headline">输入充值金额</span>
-        <div class="mdui-textfield mdui-textfield-floating-label">
+        <div class="mdui-textfield">
             <label class="mdui-textfield-label">输入 RMB</label>
             <input class="mdui-textfield-input" type="number" name="balance" value="1" required />
         </div>
