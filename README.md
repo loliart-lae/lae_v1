@@ -1,10 +1,10 @@
 # Light App Engine
 
-贡献者名单：resources/views/contributes.blade.php
+贡献者名单：[`resources/views/contributes.blade.php`](https://lightart.top/contributes)
 
 ### 安装
 
-1. 复制.env.example，然后按需编辑字段。
+1. 复制`.env.example`，然后按需编辑字段。
 2. 运行`composer update`
 3. 运行`php artisan key:generate`
 4. 运行`php artisan migrate`
