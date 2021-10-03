@@ -92,10 +92,6 @@ class AppEngineController extends Controller
         $project_id = $request->project_id;
         // 在选定的项目中新建容器
         if (ProjectMembersController::userInProject($project_id)) {
-
-            if ($request->template_id == 8) {
-                return redirect()->back()->with('status', '别嫖了别嫖了，土都快吃完了。');
-            }
             // 预定义
             $lxdTemplate_data = $lxdTemplate->where('id', $request->template_id)->firstOrFail();
             $server_data = $server->where('id', $request->server_id)->firstOrFail();
