@@ -87,6 +87,13 @@
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录</a>
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
+
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
             @else
                 <a href="{{ route('main') }}" class="main_link">Light App Engine</a>
                 <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
