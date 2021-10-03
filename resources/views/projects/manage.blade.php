@@ -45,7 +45,7 @@
 
     <h1 class="mdui-text-color-theme">项目人员管理</h1>
 
-    <div class="mdui-table-fluid">
+    <div class="mdui-table-fluid mdui-hoverable">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>

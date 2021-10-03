@@ -14,7 +14,7 @@
 
         @foreach ($feed_items as $status)
             <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
-                <div class="mdui-card user_{{ $status->user->id }}_status" style="margin-top: 5px">
+                <div class="mdui-card mdui-hoverable user_{{ $status->user->id }}_status" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
