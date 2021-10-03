@@ -198,8 +198,8 @@
             $('.pjax-container').css('transform', 'scale(0.99)')
         })
         $(document).on("pjax:timeout", function(event) {
-            $('.pjax-container').css('opacity', '0.1')
-            $('.pjax-container').css('transform', 'scale(0.97)')
+            $('.pjax-container').css('opacity', '0.2')
+            $('.pjax-container').css('transform', 'scale(0.98)')
             $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
   <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
 </div>`)
