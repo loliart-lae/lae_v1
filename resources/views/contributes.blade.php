@@ -4,53 +4,52 @@
 
 @section('content')
 
-<!--
-    <div class="mdui-card mdui-center mdui-container" style="background-color: #e8e8e8">
-        <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
+    <!--
+            <div class="mdui-card mdui-center mdui-container" style="background-color: #e8e8e8">
+                <div class="mdui-container mdui-m-t-3 mdui-m-b-1">
 
-            <div class="mdui-row mdui-clearfix">
-                <div class="mdui-float-left">
-                    <div class="mdui-typo">
-                        <h1>提醒</h1>
+                    <div class="mdui-row mdui-clearfix">
+                        <div class="mdui-float-left">
+                            <div class="mdui-typo">
+                                <h1>提醒</h1>
+                            </div>
+                        </div>
+                        <div class="mdui-float-right">
+                            <div class="mdui-typo">
+                                <p class="mdui-text-right">
+                                    2021-9-16
+                                    <i class="mdui-icon material-icons">close</i>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="mdui-float-right">
-                    <div class="mdui-typo">
-                        <p class="mdui-text-right">
-                            2021-9-16
-                            <i class="mdui-icon material-icons">close</i>
-                        </p>
+
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-7">
+                            <div class="mdui-typo">
+                                <h1>提醒</h1>
+                            </div>
+                        </div>
+                        <div class="mdui-col-xs-4 ">
+                            <div class="mdui-typo-subheading-opacity mdui-text-right">
+                                2021-9-16
+                                <i class="mdui-icon material-icons">close</i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdui-row mdui-m-t-3 mdui-m-x-1">
+                        <p>为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</p>
                     </div>
                 </div>
             </div>
-
-            <div class="mdui-row">
-                <div class="mdui-col-xs-7">
-                    <div class="mdui-typo">
-                        <h1>提醒</h1>
-                    </div>
-                </div>
-                <div class="mdui-col-xs-4 ">
-                    <div class="mdui-typo-subheading-opacity mdui-text-right">
-                        2021-9-16
-                        <i class="mdui-icon material-icons">close</i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mdui-row mdui-m-t-3 mdui-m-x-1">
-                <p>为了更方便的与用户们交流与提供更加实时的技术支持我们创建了一个 QQ 群：769779712</p>
-            </div>
-        </div>
-    </div>
-    <br />
--->
+            <br />
+        -->
     <div class="mdui-row">
         <div class="mdui-typo-display-2">非常感谢以下人员对 {{ config('app.name') }} 的贡献</div><br>
         <div class="mdui-typo-headline-opacity">{{ config('app.name') }} 是大家一同筑起的。</div>
     </div>
-    <h1> </h1>
-<br />
+    <br />
 
 
     <div class="mdui-row">
@@ -59,9 +58,10 @@
         <div class="mdui-col-sm-12 mdui-col-md-4 mdui-m-t-1">
             <div class="mdui-card">
                 <div class="mdui-card-header">
-                    <img class="mdui-card-header-avatar" src="https://sdn.geekzu.org/avatar/9116fc3de8f9a46668beb1a6b7dbcbcd" />
+                    <img class="mdui-card-header-avatar"
+                        src="https://sdn.geekzu.org/avatar/9116fc3de8f9a46668beb1a6b7dbcbcd" />
                     <div class="mdui-card-header-title">iVampireSP.com</div>
-                    <div class="mdui-card-header-subtitle">创始人</div>
+                    <div class="mdui-card-header-subtitle">项目发起人</div>
                 </div>
 
                 <div class="mdui-card-media">
