@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'mid' => 3561,
-    'key' => 'z2v6hb9e7saymcbp1lfi0fc1wd9c',
-    'api_url' => 'https://www.3mpay.com/createOrder',
-    'notify' => env('APP_URL') . '/billing/notify',
-    'return' => env('APP_URL') . '/dashboard/billing/return',
-    'exchange_rate' => 100
+    'mid' => env('EPAY_MID'),
+    'key' => env('EPAY_KEY'),
+    'api_url' => env('EPAY_API_URL'),
+    'notify' => env('EPAY_NOFITY'),
+    'return' => env('EPAY_RETURN'),
+    'exchange_rate' => env('EPAY_EXCHANGE_RATE')
 ];
