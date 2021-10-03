@@ -84,7 +84,7 @@
         @endauth"
             mdui-tab>
             @guest
-                <a href="{{ route('index') }}" class="main_link">Light App Engine</a>
+                <a href="{{ route('index') }}" class="main_link">{{ config('app.name') }}</a>
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录</a>
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
@@ -96,7 +96,7 @@
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
             @else
-                <a href="{{ route('main') }}" class="main_link">Light App Engine</a>
+                <a href="{{ route('main') }}" class="main_link">{{ config('app.name') }}</a>
                 <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
                     style="white-space: nowrap"><small>
                         {{ Auth::user()->name }} / <span id="userBalance"
@@ -146,7 +146,7 @@
     <div class="mdui-container mdui-m-b-5">
         <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                Light App Engine<br />
+                {{ config('app.name') }}<br />
                 Crafted with 💗 by <a href="{{ route('contributes') }}">Contributors</a><br />
             </p>
         </div>
@@ -165,7 +165,7 @@
             }
         })
 
-        var main_link = 'Light App Engine'
+        var main_link = '{{ config('app.name') }}'
         $.pjax.defaults.timeout = 1200
 
         function close_offline_tip() {
