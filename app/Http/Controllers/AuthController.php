@@ -31,7 +31,8 @@ class AuthController extends Controller
             $user_id = User::where('email', $oauth_user->getEmail())->firstOrFail()->id;
             ProjectController::create_project($user_id, $oauth_user->getName(), '默认项目');
             $to = User::find(1);
-            // User::where('id', $user_id)->follow($to);
+            $self = User::find($user_id);
+            $self->follow($to);
         }
 
         Auth::login($user);
