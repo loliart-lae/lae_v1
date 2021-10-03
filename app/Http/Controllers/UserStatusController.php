@@ -29,7 +29,8 @@ class UserStatusController extends Controller
         return view('main', compact('feed_items', 'display'));
     }
 
-    function global (Request $request, User $user) {
+    function global(Request $request, User $user)
+    {
         $feed_items = UserStatus::orderBy('created_at', 'desc')->simplePaginate(30);
         $user = $user->find(Auth::id());
         $followings = $user->followings->toArray();
@@ -159,7 +160,6 @@ class UserStatusController extends Controller
         $status = $status_model->where('id', $id)->firstOrFail();
         $status_replies = UserStatusReply::where('status_id', $id)->with('user')->simplePaginate(30);
         return view('feed.comments', compact('status', 'status_replies'));
-
     }
 
     /**
@@ -193,21 +193,21 @@ class UserStatusController extends Controller
      */
     public function destroy($id, UserStatus $userStatus)
     {
-        if ($userStatus->find($id)->firstOrFail()->user_id == Auth::id()) {
-            $userStatus->where('id', $id)->delete();
+        $userStatus_sql = $userStatus->where('id', $id);
+        if ($userStatus_sql->firstOrFail()->user_id == Auth::id()) {
+            $userStatus_sql->delete();
             return redirect()->route('main')->with('status', '动态已从时间长河中彻底消失。');
         }
         return redirect()->back()->with('status', '删除失败。');
-
     }
 
     public function destroy_reply($id, UserStatusReply $userStatusReply)
     {
-        if ($userStatusReply->where('id', $id)->firstOrFail()->user_id == Auth::id()) {
-            $userStatusReply->where('id', $id)->delete();
+        $userStatusReply_sql = $userStatusReply->where('id', $id);
+        if ($userStatusReply_sql->firstOrFail()->user_id == Auth::id()) {
+            $userStatusReply_sql->delete();
             return redirect()->route('main')->with('status', '回复已经删除');
         }
         return redirect()->back()->with('status', '删除失败。');
-
     }
 }
