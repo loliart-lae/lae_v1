@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function login() {
+    public function login()
+    {
         if (request()->getHttpHost() !== config('app.domain')) {
             return redirect()->to('https://' . config('app.domain') . '/oauth/login');
         }
@@ -29,6 +30,8 @@ class AuthController extends Controller
             $user = User::create(compact('name', 'email', 'password', 'email_verified_at'));
             $user_id = User::where('email', $oauth_user->getEmail())->firstOrFail()->id;
             ProjectController::create_project($user_id, $oauth_user->getName(), '默认项目');
+            $to = User::find(1);
+            User::where('id', $user_id)->follow($to);
         }
 
         Auth::login($user);
@@ -36,7 +39,8 @@ class AuthController extends Controller
         return redirect()->route('index');
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('index');
     }
