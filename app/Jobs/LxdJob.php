@@ -68,11 +68,13 @@ class LxdJob implements ShouldQueue
                     // dispatch(new SendEmailJob($email, "久等了，您的 Linux 容器已经准备好了。"))->onQueue('mail');
                     Message::send('Linux 容器已经准备好了。', $this->config['user']);
                 } catch (Exception $e) {
-                    Message::send('此时无法开设容器。', $this->config['user']);
-                    $lxd->where('id', $this->config['inst_id'])->update([
-                        'status' => 'failed',
-                        'lan_ip' => '此时无法创建，请尝试销毁后重试。'
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/delete", [
+                        'id' => $this->config['inst_id'],
+                        'token' => $this->config['token'],
                     ]);
+
+                    Message::send('此时无法开设容器。', $this->config['user']);
+                    $lxd->where('id', $this->config['inst_id'])->delete();
                 }
 
                 break;
