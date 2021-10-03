@@ -110,23 +110,25 @@
 
         <br /> <br />
 
-        <span onclick="show_buy_tip()" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</span>
-        <script>
-            function show_buy_tip() {
-                mdui.confirm(`1. 禁止将“共享的 Windows”用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户，不保留数据。<br />
-            2. 请勿长时间占用CPU与内存，连续10分钟占CPU 20%以上或者内存占用超过500Mb的，将直接删除用户，不保留数据。<br />
-            3. 浏览器部分类型的页面将会持续高强度消耗CPU资源，用完后请关闭。<br />
-            4. 如有需要安装的软件请尽量使用绿色版。<br />
-            5. 为了正常服务，请不要泄漏连接地址。<br />
-            6. 服务器会为了稳定性不定时重启。<br />
-            7. 用的愉快～`, '请仔细阅读', function() {
-                    $('#f-buy-shared-windows').submit()
-                })
-            }
-        </script>
-
-        <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
-                地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，如需安装软件请前往社区中发帖。一些软件可用绿色版免安装。</small></div>
+        <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#sub-dialog'}">新建</span>
+        <div class="mdui-dialog" id="sub-dialog">
+            <div class="mdui-dialog-title">请仔细阅读</div>
+            <div class="mdui-dialog-content">1. 禁止将“共享的 Windows”用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户，不保留数据。<br />
+                2. 请勿长时间占用CPU与内存，连续10分钟占CPU 20%以上或者内存占用超过500Mb的，将直接删除用户，不保留数据。<br />
+                3. 浏览器部分类型的页面将会持续高强度消耗CPU资源，用完后请关闭。<br />
+                4. 如有需要安装的软件请尽量使用绿色版。<br />
+                5. 为了正常服务，请不要泄漏连接地址。<br />
+                6. 服务器会为了稳定性不定时重启。<br />
+                7. 用的愉快～</div>
+            <div class="mdui-dialog-actions">
+                <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
+                <button type="button" class="mdui-btn mdui-ripple">创建</button>
+            </div>
+        </div>
     </form>
+
+    <br /><br />
+    <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
+            地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，如需安装软件请前往社区中发帖。一些软件可用绿色版免安装。</small></div>
+
 @endsection
