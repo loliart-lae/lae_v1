@@ -110,7 +110,10 @@
 
         <br /> <br />
 
-        <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#sub-dialog'}">新建</span>
+        <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+        <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
+
+
         <div class="mdui-dialog" id="sub-dialog">
             <div class="mdui-dialog-title">请仔细阅读</div>
             <div class="mdui-dialog-content">1. 禁止将“共享的 Windows”用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户，不保留数据。<br />
@@ -121,8 +124,7 @@
                 6. 服务器会为了稳定性不定时重启。<br />
                 7. 用的愉快～</div>
             <div class="mdui-dialog-actions">
-                <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
-                <button type="button" class="mdui-btn mdui-ripple">创建</button>
+                <button class="mdui-btn mdui-ripple" mdui-dialog-close>新建</button>
             </div>
         </div>
     </form>
