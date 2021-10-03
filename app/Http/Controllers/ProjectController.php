@@ -55,17 +55,28 @@ class ProjectController extends Controller
         if ($project::where('name', $request->name)->where('user_id', Auth::id())->count() > 0) {
             return redirect()->back()->with('status', '在你的账户下已有同名项目了。');
         }
-        $project->name = $request->name;
-        $project->description = $request->description;
-        $project->user_id = Auth::id();
+        if (self::create_project(Auth::id(), $request->name, $request->description)) {
+            return redirect()->route('projects.show', $project->id);
+        } else {
+            return redirect()->back()->with('status', '创建失败。');
+        }
+    }
+
+    public static function create_project($user_id, $name, $description)
+    {
+        $project = new Project();
+        $member = new ProjectMember();
+        $project->name = $name;
+        $project->description = $description;
+        $project->user_id = $user_id;
         $project->save();
 
-        $member->user_id = Auth::id();
+        $member->user_id = $user_id;
         $member->project_id = $project->id;
         $member->joined = true;
         $member->save();
 
-        return redirect()->route('projects.show', $project->id);
+        return true;
     }
 
     /**

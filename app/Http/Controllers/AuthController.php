@@ -27,6 +27,8 @@ class AuthController extends Controller
             $password = Str::random(8);
             $email_verified_at = $oauth_user->user['email_verified_at'];
             $user = User::create(compact('name', 'email', 'password', 'email_verified_at'));
+            $user_id = User::where('email', $oauth_user->getEmail())->firstOrFail()->id;
+            ProjectController::create_project($user_id, $oauth_user->getName(), '默认项目');
         }
 
         Auth::login($user);
