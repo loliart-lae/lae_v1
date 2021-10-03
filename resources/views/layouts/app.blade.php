@@ -146,7 +146,7 @@
     <div class="mdui-container mdui-m-b-5">
         <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                {{ config('app.name') }}<br />
+                {{ config('app.name') }}, <a href="https://github.com/loliart-lae/lae">Github</a><br />
                 Crafted with 💗 by <a href="{{ route('contributes') }}">Contributors</a><br />
             </p>
         </div>
