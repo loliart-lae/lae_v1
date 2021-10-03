@@ -7,7 +7,7 @@
 
     <p>在选定的项目中新建 共享的 Windows 远程桌面账号。</p>
     <br />
-    <form method="post" action="{{ route('remote_desktop.store') }}">
+    <form method="post" id="f-buy-shared-windows" action="{{ route('remote_desktop.store') }}">
         @csrf
         <span class="mdui-typo-headline">选择项目</span>
         <br />
@@ -110,7 +110,20 @@
 
         <br /> <br />
 
-        <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+        <span onclick="show_buy_tip()" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</span>
+        <script>
+            function show_buy_tip() {
+                mdui.confirm(`1. 禁止将“共享的 Windows”用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户，不保留数据。<br />
+            2. 请勿长时间占用CPU与内存，连续10分钟占CPU 20%以上或者内存占用超过500Mb的，将直接删除用户，不保留数据。<br />
+            3. 浏览器部分类型的页面将会持续高强度消耗CPU资源，用完后请关闭。<br />
+            4. 如有需要安装的软件请尽量使用绿色版。<br />
+            5. 为了正常服务，请不要泄漏连接地址。<br />
+            6. 服务器会为了稳定性不定时重启。<br />
+            7. 用的愉快～`, '请仔细阅读', function() {
+                    $('#f-buy-shared-windows').submit()
+                })
+            }
+        </script>
 
         <br /><br />
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
