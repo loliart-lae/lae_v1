@@ -57,7 +57,7 @@ class RemoteDesktopController extends Controller
             'password' => 'required|alpha_dash|min:1|max:20'
         ]);
 
-        if ($request->username == 'Administrator') {
+        if (strtolower($request->username) == 'administrator') {
             return redirect()->back()->with('status', 'Error: What are you trying to do ?');
         }
 
