@@ -22,8 +22,12 @@ class CheckAccount
             if (!$user->blocked) {
                 return $next($request);
             } else {
-                Auth::logout();
-                return $next($request);
+                $error_code = [
+                    401, 403, 404, 419, 429, 500, 503
+                ];
+                $error_code = $error_code[rand(0, count($error_code) - 1)];
+                abort($error_code);
+
             }
         }
         return $next($request);
