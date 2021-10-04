@@ -47,20 +47,29 @@ class RemoteDesktopJob implements ShouldQueue
                         'token' => $this->config['token']
                     ]);
 
-                    if ($result['status']) {
-                        $remote_desktop->where('id', $this->config['inst_id'])->update([
-                            'status' => 'active',
-                        ]);
-                        Message::send('成功新建了 共享的 Windows 远程桌面。', $this->config['user']);
-                    } else {
-                        Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
-                        Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
-                            'username' => $this->config['username'],
-                            'token' => $this->config['token']
-                        ]);
-                    }
+                    $remote_desktop->where('id', $this->config['inst_id'])->update([
+                        'status' => 'active',
+                    ]);
+                    Message::send('成功新建了 共享的 Windows 远程桌面。', $this->config['user']);
+
+                    // if ($result['status']) {
+                    //     $remote_desktop->where('id', $this->config['inst_id'])->update([
+                    //         'status' => 'active',
+                    //     ]);
+                    //     Message::send('成功新建了 共享的 Windows 远程桌面。', $this->config['user']);
+                    // } else {
+                    //     Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
+                    //     Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
+                    //         'username' => $this->config['username'],
+                    //         'token' => $this->config['token']
+                    //     ]);
+                    // }
                 } catch (Exception $e) {
                     Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
+                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
+                        'username' => $this->config['username'],
+                        'token' => $this->config['token']
+                    ]);
                 }
 
                 // dispatch(new SendEmailJob($email, "久等了，您的 共享的 Windows 远程桌面 已经准备好了。"))->onQueue('mail');
@@ -82,11 +91,13 @@ class RemoteDesktopJob implements ShouldQueue
                         'token' => $this->config['token']
                     ]);
 
-                    if ($result['status']) {
-                        Message::send('你的 共享的 Windows 远程桌面 的新密码已经启用。', $this->config['user']);
-                    } else {
-                        Message::send('此时无法更改密码。', $this->config['user']);
-                    }
+                    Message::send('你的 共享的 Windows 远程桌面 的新密码已经启用。', $this->config['user']);
+
+                    // if ($result['status']) {
+                    //     Message::send('你的 共享的 Windows 远程桌面 的新密码已经启用。', $this->config['user']);
+                    // } else {
+                    //     Message::send('此时无法更改密码。', $this->config['user']);
+                    // }
                 } catch (Exception $e) {
                     Message::send('此时无法更改 共享的 Windows 远程桌面 的密码。', $this->config['user']);
                 }
