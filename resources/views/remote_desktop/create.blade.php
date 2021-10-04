@@ -122,7 +122,8 @@
                 4. 如有需要安装的软件请尽量使用绿色版。<br />
                 5. 为了正常服务，请不要泄漏连接地址。<br />
                 6. 服务器会为了稳定性不定时重启。<br />
-                7. 用的愉快～</div>
+                7. 重要！当你要删除数据的时候，请务必清除你的所有数据，一定要万无一失。因为一下个用户将会接手你的账号。
+                8. 用的愉快～</div>
             <div class="mdui-dialog-actions">
                 <button class="mdui-btn mdui-ripple" mdui-dialog-close>新建</button>
             </div>
