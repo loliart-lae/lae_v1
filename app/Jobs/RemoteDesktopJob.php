@@ -83,6 +83,7 @@ class RemoteDesktopJob implements ShouldQueue
                     'username' => $this->config['username'],
                     'token' => $this->config['token']
                 ]);
+
                 break;
 
             case 'passwd':

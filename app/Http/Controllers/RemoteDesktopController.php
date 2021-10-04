@@ -187,9 +187,11 @@ class RemoteDesktopController extends Controller
             // 调度删除任务
             $config = [
                 'method' => 'delete',
+                'inst_id' => $remote_desktop->id,
                 'username' => $remote_desktop->username,
                 'address' => $remote_desktop->server->address,
                 'token' => $remote_desktop->server->token,
+                'user' => Auth::id()
             ];
             dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');
 
