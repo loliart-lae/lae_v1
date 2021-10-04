@@ -5,10 +5,79 @@
 ### 安装
 
 1. 复制`.env.example`，然后按需编辑字段。
+
 2. 运行`composer update`
+
 3. 运行`php artisan key:generate`
+
 4. 运行`php artisan migrate`
+
 5. 配置 Laravel 伪静态
+
+6. 配置 cron，执行`php /path/to/openappengine/artisan schedule:run`，每 1 分钟执行一次
+
+7. 运行队列,推荐使用 Supervisor
+    1. 扣费队列
+    
+       ```conf
+       [program:lae-cost]
+       process_name=%(program_name)s_%(process_num)02d
+       command=php /path/to/openappengine/artisan queue:work --queue=cost
+       autostart=true
+       autorestart=true
+       user=www
+       numprocs=1
+       redirect_stderr=true
+       stdout_logfile=/tmp/cost.log
+       stopwaitsecs=3600
+       ```
+    
+    2. LXD队列
+
+       ```conf
+       [program:lae-lxd]
+       process_name=%(program_name)s_%(process_num)02d
+       command=php /path/to/openappengine/artisan queue:work
+       autostart=true
+       autorestart=true
+       user=www
+       numprocs=1
+       redirect_stderr=true
+       stdout_logfile=/tmp/lae-lxd.log
+       stopwaitsecs=3600
+       ```
+    
+    3. 邮件队列
+    
+       ```conf
+       [program:lae-mail]
+       process_name=%(program_name)s_%(process_num)02d
+       command=php /path/to/openappengine/artisan queue:work --queue=mail
+       autostart=true
+       autorestart=true
+       user=www
+       numprocs=5
+       redirect_stderr=true
+       stdout_logfile=/tmp/cost.log
+       stopwaitsecs=3600
+       ```
+    
+    4. RDP 队列
+    
+       ```conf
+       [program:lae-rdp]
+       process_name=%(program_name)s_%(process_num)02d
+       command=php /path/to/openappengine/artisan queue:work --queue=remote_desktop
+       autostart=true
+       autorestart=true
+       user=www
+       numprocs=1
+       redirect_stderr=true
+       stdout_logfile=/tmp/lae-rdp.log
+       stopwaitsecs=3600
+       ```
+    
+       
 
 ### 注意事项
 
@@ -18,12 +87,12 @@
 
 ### 碎碎念
 
-啊，如果你有看到一些Token之类的，那些放心，我都有更改过。
+啊，如果你有看到一些 Token 之类的，那些放心，我都有更改过。
 
-还有个 AdSense，那个请忽略吧（虽然我一次都没加进去过5555555）
+还有个 AdSense，那个请忽略吧（虽然我一次都没加进去过 5555555）
 
-以及提交历史中有个音频文件（Thx: 不愿透露姓名的人），如果你想听的话checkout就行。
+以及提交历史中有个音频文件（Thx: 不愿透露姓名的人），如果你想听的话 checkout 就行。
 
 其他的话，应该就没什么了（可能
 
-祝使用愉快❤️
+祝使用愉快 ❤️
