@@ -87,6 +87,8 @@
 
         <h4 class="mdui-text-color-theme">有需要持续运行在 Windows 上的应用程序吗？</h4>
         <p>使用“共享的 Windows”吧，他没有特权，但是能够满足你的大部分应用。</p> --}}
+        <h2 class="mdui-text-color-theme">Windows 服务器维护</h2>
+        <p>一段时间后恢复。</p>
 
         <h2 class="mdui-text-color-theme">2021.10.3 01:48 附：LAE 仍需要改进</h2>
         <p>Light App Engine 仍需要改进。</p>
