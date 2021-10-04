@@ -57,7 +57,8 @@ class ForwardController extends Controller
         $this->validate($request, [
             'from' => 'integer|min:1|max:65534',
             'to' => 'integer|min:1025|max:65534',
-            'proto' => 'string'
+            'proto' => 'string',
+            'reason' => 'required'
         ]);
 
         $forward = new Forward();

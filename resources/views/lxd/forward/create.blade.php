@@ -12,19 +12,19 @@
             <div class="mdui-col-xs-3">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">容器内端口</label>
-                    <input class="mdui-textfield-input" type="number" name="from" value="{{ old('from') }}" />
+                    <input class="mdui-textfield-input" type="number" name="from" value="{{ old('from') }}" required />
                 </div>
             </div>
             <div class="mdui-col-xs-3">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">输出端口</label>
-                    <input class="mdui-textfield-input" type="number" name="to" value="{{ old('to') }}" />
+                    <input class="mdui-textfield-input" type="number" name="to" value="{{ old('to') }}" required />
                 </div>
             </div>
             <div class="mdui-col-xs-3">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">原因</label>
-                    <input class="mdui-textfield-input" type="text" name="reason" value="{{ old('reason') }}" />
+                    <input class="mdui-textfield-input" type="text" name="reason" value="{{ old('reason') }}" required />
                 </div>
             </div>
             <div class="mdui-col-xs-3">
