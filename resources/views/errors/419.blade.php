@@ -5,10 +5,4 @@
 @section('content')
     <div class="mdui-typo-display-2">Page Expired.</div><br>
     <div class="mdui-typo-display-1-opacity">请返回刷新后重试。</div>
-
-    <script type="text/javascript">
-        setTimeout(function() {
-            window.location.href = '{{ config('app.url') }}';
-        }, 2000)
-    </script>
 @endsection
