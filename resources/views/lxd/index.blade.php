@@ -20,7 +20,7 @@
                 @php($last_project_id = $lxd->project->id)
                 <h1>{{ $lxd->project->name }}</h1>
             @endif
-            <div class="mdui-panel" mdui-panel>
+            <div class="mdui-panel mdui-m-t-1" mdui-panel>
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
                         <div class="mdui-panel-item-title">{{ $i++ }}. {{ $lxd->name }}</div>
