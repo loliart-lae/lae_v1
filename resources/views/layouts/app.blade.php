@@ -137,7 +137,7 @@
 
         <div class="mdui-typo" style="margin-top: 50px">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                <br />This node host by {{ config('app.host_by') }}
+                <br />Hosted by {{ config('app.host_by') }}
             </p>
         </div>
 
