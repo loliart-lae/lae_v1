@@ -54,9 +54,9 @@ class TunnelController extends Controller
     public function store(Request $request, Tunnel $tunnel)
     {
         $this->validate($request, array(
-            "name" => 'required',
-            "protocol" => 'required',
-            "local_address" => 'required',
+            'name' => 'required',
+            'protocol' => 'required',
+            'local_address' => 'required',
             'project_id' => 'required',
             'server_id' => 'required'
         ));
@@ -118,9 +118,16 @@ class TunnelController extends Controller
                     return redirect()->back()->with('status', 'Error: 在这个服务器上已经存在相同协议的域名了。');
                 }
             }
-
         }
 
+        $this->create_tunnel($request);
+
+        return redirect()->route('tunnels.index')->with('status', 'Tunnel 隧道新建成功。');
+    }
+
+    public function create_tunnel($request)
+    {
+        $tunnel = new Tunnel();
         $tunnel->name = $request->name;
         $tunnel->protocol = $request->protocol;
         $tunnel->custom_domain = $request->custom_domain;
@@ -131,8 +138,6 @@ class TunnelController extends Controller
         $tunnel->project_id = $request->project_id;
         $tunnel->sk = $request->sk;
         $tunnel->save();
-
-        return redirect()->route('tunnels.index')->with('status', 'Tunnel 隧道新建成功。');
     }
 
     /**
