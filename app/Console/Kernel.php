@@ -30,11 +30,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             // 分钟计费
-            dispatch(new CostJob())->onQueue('cost');;
+            dispatch(new CostJob())->onQueue('cost');
         })->everyMinute();
         $schedule->call(function () {
             // 重新计算服务器配额
-            dispatch(new CalcServerJob())->onQueue('cost');;
+            dispatch(new CalcServerJob())->onQueue('cost');
         })->everyTenMinutes();
         // 生成 metrics
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
