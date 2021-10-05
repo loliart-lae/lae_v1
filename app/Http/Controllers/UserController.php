@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -114,6 +115,20 @@ class UserController extends Controller
         $status = [$self->isFollowing($to)];
 
         return response()->json($status);
+    }
 
+
+    public function generateToken()
+    {
+        $str = null;
+        while (true) {
+            $str = Uuid::uuid6()->toString();
+            if (!User::where('api_token', $str)->exists()) {
+                break;
+            }
+        }
+        User::where('id', Auth::id())->update(['api_token' => $str]);
+
+        return response()->json(['status' => 1, 'api_token' => $str]);
     }
 }
