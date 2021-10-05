@@ -72,7 +72,10 @@ Route::prefix('/')->group(function () {
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', [Controllers\UserStatusController::class, 'index'])->name('main');
+
+    Route::put('/user/generateToken', [Controllers\UserController::class, 'generateToken'])->name('user.generateToken');
     Route::put('/user/toggleFollow', [Controllers\UserController::class, 'toggleFollow'])->name('user.toggleFollow');
+
     Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
     Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->middleware('throttle:60,1')->name('status.like');
     Route::resource('/status', Controllers\UserStatusController::class);
@@ -113,6 +116,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::put('/fastVisit/{id}', [Controllers\FastVisitController::class, 'toggleAd'])->name('fast_visit.update');
     Route::resource('/fastVisit', Controllers\FastVisitController::class);
+
+    // Route::resource('/images', ImageController::class);
 
     // Route::resource('/commandJobs', Controllers\CommandJobsController::class);
 });
