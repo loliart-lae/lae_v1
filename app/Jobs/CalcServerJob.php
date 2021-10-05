@@ -44,9 +44,12 @@ class CalcServerJob implements ShouldQueue
                 $used_disk += $lxd->template->disk;
                 $memory += $lxd->template->mem;
             }
+            $free_disk = $server->disk - $used_disk;
+            $free_mem = $server->mem - $memory;
+
             Server::where('id', $server->id)->update([
-                'free_disk' => $used_disk,
-                'free_mem' => $memory
+                'free_disk' => $free_disk,
+                'free_mem' => $free_mem
             ]);
         }
     }
