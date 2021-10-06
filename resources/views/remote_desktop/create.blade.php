@@ -122,8 +122,7 @@
                 4. 如有需要安装的软件请尽量使用绿色版。<br />
                 5. 为了正常服务，请不要泄漏连接地址。<br />
                 6. 服务器会为了稳定性不定时重启。<br />
-                7. 重要！当你要删除账号的时候，请务必清除你的所有数据，一定要万无一失。因为一下个用户将可能会接手你的账号。<br />
-                8. 用的愉快～</div>
+                7. 用的愉快～</div>
             <div class="mdui-dialog-actions">
                 <button class="mdui-btn mdui-ripple" mdui-dialog-close>新建</button>
             </div>
@@ -132,6 +131,6 @@
 
     <br /><br />
     <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
-            地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，如需安装软件请前往社区中发帖。一些软件可用绿色版免安装。</small></div>
+            地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，一些软件可用绿色版免安装。</small></div>
 
 @endsection
