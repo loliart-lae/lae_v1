@@ -120,12 +120,12 @@ class TunnelController extends Controller
             }
         }
 
-        $this->create_tunnel($request);
+        $this::create_tunnel($request);
 
         return redirect()->route('tunnels.index')->with('status', 'Tunnel 隧道新建成功。');
     }
 
-    public function create_tunnel($request)
+    public static function create_tunnel($request)
     {
         $tunnel = new Tunnel();
         $tunnel->name = $request->name;
@@ -261,12 +261,22 @@ EOF;
      */
     public function destroy($id)
     {
+        if (self::deleteTunnel($id)) {
+            return redirect()->back()->with('status', 'Tunnel 隧道已删除。');
+        }
+        return redirect()->back()->with('status', 'Tunnel 隧道删除失败。');
+    }
+
+    public static function deleteTunnel($id)
+    {
         $tunnel = Tunnel::where('id', $id)->with(['server', 'project'])->firstOrFail();
         if (ProjectMembersController::userInProject($tunnel->project->id)) {
             // 删除
             Tunnel::where('id', $id)->delete();
+            return true;
+        } else {
+            return false;
         }
-        return redirect()->back()->with('status', 'Tunnel 隧道已删除。');
     }
 
     public function auth(Request $request, Tunnel $tunnel)
