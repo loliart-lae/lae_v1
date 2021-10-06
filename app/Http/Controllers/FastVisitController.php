@@ -190,6 +190,14 @@ class FastVisitController extends Controller
      */
     public function destroy($id)
     {
+        if(self::delete_fast_visit($id)) {
+            return redirect()->back()->with('status', '访问入口 删除完成。');
+        } else {
+            return redirect()->back()->with('status', '访问入口 删除失败。');
+        }
+    }
+
+    public static function delete_fast_visit($id) {
         $fastVisit = new FastVisit();
         $fastVisit_sql = $fastVisit->where('id', $id);
         $fastVisit_data = $fastVisit_sql->firstOrFail();
@@ -197,7 +205,9 @@ class FastVisitController extends Controller
         $project_id = $fastVisit_data->project->id;
         if (ProjectMembersController::userInProject($project_id)) {
             $fastVisit_sql->delete();
-            return redirect()->back()->with('status', '访问入口 删除完成。');
+            return true;
+        } else {
+            return false;
         }
     }
 }
