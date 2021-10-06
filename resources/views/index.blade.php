@@ -14,6 +14,9 @@
 
         <h2 class="mdui-text-color-theme">未经许可，请不要宣传 LAE</h2>
 
+        @guest
+
+
         {{-- <h2 class="mdui-text-color-theme">2021.10.3 01:48 附：LAE 仍需要改进</h2>
         <p>Light App Engine 仍需要改进。</p>
         <p>非常感谢用户宣传LAE。经过这次稍小流量的冲击，我们发现了自身的问题。</p>
