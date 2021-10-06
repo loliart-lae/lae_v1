@@ -99,7 +99,9 @@
         <p>访问入口后，跳转到哪里？</p>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">地址</label>
-            <input class="mdui-textfield-input" type="text" name="uri" placeholder="https://" value="{{ old('uri') }}" required />
+            <input class="mdui-textfield-input" type="text" name="uri" placeholder="https://" value="{{ old('uri') }}"
+                required />
+            <div class="mdui-textfield-helper">如果不添加协议且不开启广告，则可能会无法正常使用。</div>
         </div>
         <br />
         <br />
@@ -121,7 +123,8 @@
         <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
 
         <br /><br />
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">这个功能完全免费。<br />启用广告后所产生的积分收益将会发放到“访问入口”对应的“项目”中。</small></div>
+        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small
+                class="mdui-clearfix">这个功能完全免费。<br />启用广告后所产生的积分收益将会发放到“访问入口”对应的“项目”中。</small></div>
     </form>
 
 @endsection
