@@ -64,26 +64,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php($i = 1)
-                    @foreach ($servers as $server)
+                    @if (count($servers) > 0)
+                        @php($i = 1)
+                        @foreach ($servers as $server)
+                            <tr>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $server->name }}</td>
+                                <td>{{ $server->price }}</td>
+                                <td>{{ $server->forward_price }}</td>
+                                <td>{{ $server->network_limit }} Mbps</td>
+
+                                <td>
+                                    <label class="mdui-radio">
+                                        <input type="radio" value="{{ $server->id }} " name="server_id"
+                                            @if ($i == 2) checked @endif required />
+                                        <i class="mdui-radio-icon"></i>
+
+                                    </label>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $server->name }}</td>
-                            <td>{{ $server->price }}</td>
-                            <td>{{ $server->forward_price }}</td>
-                            <td>{{ $server->network_limit }} Mbps</td>
-
-                            <td>
-                                <label class="mdui-radio">
-                                    <input type="radio" value="{{ $server->id }} " name="server_id"
-                                        @if ($i == 2) checked @endif required />
-                                    <i class="mdui-radio-icon"></i>
-
-                                </label>
-                            </td>
-
+                            <td colspan="6" class="mdui-text-center">服务器均已售罄</td>
                         </tr>
-                    @endforeach
+                    @endif
+
                 </tbody>
             </table>
         </div>
