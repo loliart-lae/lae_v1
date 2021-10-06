@@ -79,6 +79,16 @@ class RemoteDesktopJob implements ShouldQueue
                 break;
 
             case 'delete':
+                Http::retry(5, 100)->get("http://{$this->config['address']}:821/remove", [
+                    'username' => $this->config['username'],
+                    'token' => $this->config['token']
+                ]);
+
+                Http::retry(5, 100)->get("http://{$this->config['address']}:821/logout", [
+                    'username' => $this->config['username'],
+                    'token' => $this->config['token']
+                ]);
+
                 Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
                     'username' => $this->config['username'],
                     'token' => $this->config['token']
