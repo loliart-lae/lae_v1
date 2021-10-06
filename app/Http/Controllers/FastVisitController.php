@@ -34,13 +34,10 @@ class FastVisitController extends Controller
      */
     public function create(Project $project, ProjectMember $member, FastVisitDomain $domain)
     {
-        // 列出项目
-        $projects = $member->where('user_id', Auth::id())->with('project')->get();
-
         // 列出域名
         $domains = $domain->orderBy('balance')->get();
 
-        return view('fastVisit.create', compact('projects', 'domains'));
+        return view('fastVisit.create', compact('domains'));
     }
 
     /**

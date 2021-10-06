@@ -42,8 +42,6 @@ class AppEngineController extends Controller
      */
     public function create(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate, LxdImage $lxdImage)
     {
-        // 列出项目
-        $projects = $member->where('user_id', Auth::id())->with('project')->get();
 
         // 选择服务器
         $servers = $server->where('free_disk', '>', '5')->where('free_mem', '>', '1024')->where('type', 'container')->get();
@@ -54,7 +52,7 @@ class AppEngineController extends Controller
         $images = $lxdImage->whereNull('project_id')->where('visibility', 1)->get();
 
 
-        return view('lxd.create', compact('servers', 'templates', 'projects', 'images'));
+        return view('lxd.create', compact('servers', 'templates', 'images'));
     }
 
     // public function create_in_project(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate)

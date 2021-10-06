@@ -9,41 +9,7 @@
     <br />
     <form method="post" action="{{ route('tunnels.store') }}">
         @csrf
-        <span class="mdui-typo-headline">选择项目</span>
-        <br />
-        <br />
-        <div class="mdui-table-fluid">
-            <table class="mdui-table mdui-table-hoverable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>名称</th>
-                        <th>项目积分</th>
-                        <th>选择</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php($i = 1)
-                    @foreach ($projects as $project)
-                        <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $project->project->name }}</td>
-                            <td>{{ $project->project->balance }}</td>
-
-                            <td>
-                                <label class="mdui-radio">
-                                    <input type="radio" value="{{ $project->project->id }}" name="project_id"
-                                        @if ($i == 2) checked @endif required />
-                                    <i class="mdui-radio-icon"></i>
-
-                                </label>
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        <x-choose-project-form />
 
         <br />
         <br />

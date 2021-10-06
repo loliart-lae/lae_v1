@@ -32,13 +32,10 @@ class RemoteDesktopController extends Controller
      */
     public function create(Request $request, Project $project, ProjectMember $member, Server $server)
     {
-        // 列出项目
-        $projects = $member->where('user_id', Auth::id())->with('project')->get();
-
         // 选择服务器
         $servers = $server->where('type', 'windows')->get();
 
-        return view('remote_desktop.create', compact('servers', 'projects'));
+        return view('remote_desktop.create', compact('servers'));
     }
 
     /**
