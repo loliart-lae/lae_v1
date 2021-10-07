@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', '待处理的处理项目邀请')
+@section('title', '待处理的项目邀请')
 
 @section('content')
-    <div class="mdui-typo-display-2">待处理的处理项目邀请</div>
+    <div class="mdui-typo-display-2">待处理的项目邀请</div>
 
     <br />
 
