@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\api\v1;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('/')->middleware(['auth:api'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::resource('/tunnels', v1\TunnelController::class);
+
+    Route::resource('/projects', v1\TunnelController::class);
+    Route::resource('/fastVisits', v1\FastVisitController::class);
 });
