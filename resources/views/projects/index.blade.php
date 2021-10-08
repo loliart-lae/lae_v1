@@ -22,7 +22,7 @@
                 <div>
                     <h3 id="proj-{{ $project->project->id }}" class="scroll_listen mdui-text-color-theme">
                         {{ $project->project->name }}</h3>
-                    <div class="mdui-card">
+                    <div class="mdui-card mdui-hoverable ">
                         <div class="mdui-card-primary">
                             <div class="mdui-card-primary-title">{{ $project->project->name }}</div>
                             <div class="mdui-card-primary-subtitle">{{ $project->project->description }}</div>
