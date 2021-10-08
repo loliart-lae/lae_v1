@@ -4,9 +4,6 @@
 
 @section('content')
     <div>
-        <!--
-                                    <h1 class="mdui-text-color-theme">你的信息</h1>
-                                    -->
 
         <div class="mdui-row mdui-typo">
             <div class="mdui-col-xs-12 mdui-col-sm-5">
