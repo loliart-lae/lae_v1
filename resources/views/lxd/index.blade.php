@@ -3,7 +3,7 @@
 @section('title', 'Linux 容器')
 
 @section('content')
-    <div class="mdui-typo-display-2">LXC Containers</div>
+    <div class="mdui-typo-display-2">Linux 容器</div>
 
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#webssh-dialog'}">Web SSH</button>
     &nbsp;&nbsp;
