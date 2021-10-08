@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Route;
-use hanbz\PassportClient\Facades\PassportClient;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -125,7 +123,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify']);
 
 
-Route::prefix('sudo')->middleware('can:enter-admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/', function () {
         return 'admin.index';
     })->name('admin.index');
