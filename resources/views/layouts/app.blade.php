@@ -106,6 +106,7 @@
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
                 <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+                {{-- <a href="{{ route('images.index') }}" class="mdui-ripple mdui-ripple-white">图片展廊</a> --}}
 
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
