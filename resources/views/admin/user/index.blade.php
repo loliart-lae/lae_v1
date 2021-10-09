@@ -13,17 +13,26 @@
                         <th>头像</th>
                         <th>用户名</th>
                         <th>签名</th>
+                        <th style="overflow: visible; text-align: right;">
+                            <button class="mdui-btn mdui-btn-icon">
+                                <i class="mdui-icon material-icons">chevron_left</i>
+                            </button>
+
+                            <button class="mdui-btn mdui-btn-icon">
+                                <i class="mdui-icon material-icons">chevron_right</i>
+                            </button>
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <td>
+                        <td style="width: 60px;">
                             <img class="avatar" src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
                         </td>
 
-                        <td>
+                        <td style="width: 208px;">
                             @if (is_null($user->website))
                                 {{ $user->name }}
                             @else
@@ -34,6 +43,8 @@
                         <td>
                             {{ $user->bio ?? '未设置签名' }}
                         </td>
+
+                        <td></td>
                     </tr>
                     @endforeach
                 </tbody>
