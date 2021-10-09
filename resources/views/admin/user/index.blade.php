@@ -5,29 +5,40 @@
 @section('content')
     <div class="mdui-typo-display-2">用户管理</div>
 
-    <div class="mdui-typo">
-        @foreach ($users as $user)
-            <div class="mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
-                <div class="mdui-card mdui-hoverable" style="margin-top: 5px">
-                    <div class="mdui-card-header">
-                        <img class="mdui-card-header-avatar"
-                            src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
-                        <div class="mdui-card-header-title">
+    <div class="mdui-typo mdui-p-t-3">
+        <div class="mdui-table-fluid">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>头像</th>
+                        <th>用户名</th>
+                        <th>签名</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($users as $user)
+                    <tr>
+                        <td>
+                            <img class="mdui-card-header-avatar" src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
+                        </td>
+
+                        <td>
                             @if (is_null($user->website))
                                 {{ $user->name }}
                             @else
                                 <a target="_blank" href="{{ $user->website }}">{{ $user->name }}</a>
                             @endif
-                        </div>
-                        <div class="mdui-card-header-subtitle">{{ $user->bio ?? '未设置签名' }}</div>
-                    </div>
-                    <div class="mdui-card-content mdui-p-t-1">
-                    </div>
-                    <div class="mdui-card-actions">
-                    </div>
-                </div>
-            </div>
-        @endforeach
+                        </td>
+
+                        <td>
+                            {{ $user->bio ?? '未设置签名' }}
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>        
     </div>
 
 
