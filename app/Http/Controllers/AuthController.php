@@ -20,7 +20,8 @@ class AuthController extends Controller
     {
         $oauth_user = PassportClient::driver('passport')->user();
         // dd($oauth_user);
-        $user = User::where('email', $oauth_user->getEmail())->first();
+        $user_sql = User::where('email', $oauth_user->getEmail());
+        $user = $user_sql->first();
 
         if (is_null($user)) {
             $name = $oauth_user->getName();
@@ -36,6 +37,12 @@ class AuthController extends Controller
         }
 
         Auth::login($user);
+
+        // 更新最后登录时间
+        $user_sql->update([
+            'last_login_at' => now()
+        ]);
+
 
         return redirect()->route('index');
     }
