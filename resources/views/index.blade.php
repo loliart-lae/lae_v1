@@ -29,7 +29,7 @@
         <h2 class="mdui-text-color-theme">嗯？这是什么！</h2>
         <p>往简单了说，你可以在这里充值积分。创建自己的按时计费的容器，你可以在容器中做你想做的事情，前提是不违规。在你不想使用或者没有足够的余额的时候，我们会收回它。这也意味着，你得准备好充足的积分，确保你的容器能够稳定持久的运行。
         </p>
-        <p>iVampireSP: 啊哈，这里不止有容器啦，还有“共享的 Windows”、“穿透隧道”、“Grafana”等。Light App Engine 不是我一人打造的，而是整个社区一同打造的。</p>
+        <p>iVampireSP: 啊哈，这里不止有容器啦，还有“共享的 Windows”，“穿透隧道”等。Light App Engine 不是我一人打造的，而是整个社区一同打造的。</p>
 
         <h2 class="mdui-text-color-theme">我应该如何来创建 Linux 容器？</h2>
         <p>让我们来走一下创建容器的流程：</p>
@@ -48,11 +48,6 @@
         <h2 class="mdui-text-color-theme">什么是 文档？</h2>
         <p>文档 是 Light App Engine 偏向于社区化的一个功能，我们鼓励用户在这里撰写文档。<br />
             在编写/阅读文档时，你还可以进行SSH。每当你撰写一份文档并受到别人认同时，账号积分会 +1。</p>
-
-        <h2 class="mdui-text-color-theme">什么是 Grafana?</h2>
-        <p>这是一个还测试的功能。我们为用户提供了一个 Grafana 面板。使用这个功能需要一定的技术含量。这个功能完全免费。</p>
-
-
 
         <p><em>大部分操作都需要 创建项目(创建项目时完全免费)，并且项目中有足够的余额</em></p>
 
@@ -111,11 +106,6 @@
         <h2 class="mdui-text-color-theme">什么是 文档？</h2>
         <p>文档 是 Light App Engine 偏向于社区化的一个功能，我们鼓励用户在这里撰写文档。<br />
             在编写/阅读文档时，你还可以进行SSH。每当你撰写一份文档并受到别人认同时，账号积分会 +1。</p>
-
-        <h2 class="mdui-text-color-theme">什么是 Grafana?</h2>
-        <p>这是一个还测试的功能。我们为用户提供了一个 Grafana 面板。使用这个功能需要一定的技术含量。这个功能完全免费。</p>
-
-
 
         <h1 class="mdui-text-color-theme">我不可以使用 Light App Engine 的服务做什么？</h1>
 
