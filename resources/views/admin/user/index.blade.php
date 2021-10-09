@@ -14,13 +14,7 @@
                         <th>用户名</th>
                         <th>签名</th>
                         <th style="overflow: visible; text-align: right;">
-                            <button class="mdui-btn mdui-btn-icon">
-                                <i class="mdui-icon material-icons">chevron_left</i>
-                            </button>
-
-                            <button class="mdui-btn mdui-btn-icon">
-                                <i class="mdui-icon material-icons">chevron_right</i>
-                            </button>
+                            {{ $users->links('vendor.pagination.table') }}
                         </th>
                     </tr>
                 </thead>
@@ -65,8 +59,5 @@
             border-radius: 50%;
         }
     </style>
-
-
-    {{ $users->links() }}
 
 @endsection
