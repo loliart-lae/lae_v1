@@ -19,7 +19,7 @@
                                 <a target="_blank" href="{{ $user->website }}">{{ $user->name }}</a>
                             @endif
                         </div>
-                        <div class="mdui-card-header-subtitle">{{ $user->bio ?? '啊吧啊吧啊吧' }}</div>
+                        <div class="mdui-card-header-subtitle">{{ $user->bio ?? '未设置签名' }}</div>
                     </div>
                     <div class="mdui-card-content mdui-p-t-1">
                     </div>
