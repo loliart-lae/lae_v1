@@ -16,9 +16,24 @@
                         <th style="overflow: visible; text-align: right;">
                             {{ $users->links('vendor.pagination.table') }}
 
-                            <button class="mdui-btn mdui-btn-icon">
+                            <button id="user-search" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '搜索', delay: 300}">
                                 <i class="mdui-icon material-icons">search</i>
                             </button>
+                            
+                            <div id="user-search-menu" class="mdui-menu" style="transform-origin: 100% 0px; position: absolute; top: 44px; left: 428px;">
+                                <div class="mdui-textfield">
+                                    <label class="mdui-textfield-label">用户名</label>
+                                    <input class="mdui-textfield-input" type="text" autocomplete="off" name="user_name">
+                                </div>
+
+                                <div class="mdui-textfield">
+                                    <label class="mdui-textfield-label">邮箱</label>
+                                    <input class="mdui-textfield-input" type="text" autocomplete="off" name="user_email">
+                                </div>
+
+                                <button class="mdui-btn mdui-btn-raised mdui-color-theme" type="submit">搜索</button>
+                                <button class="mdui-btn" type="reset">重置</button>
+                            </div>
                         </th>
                     </tr>
                 </thead>
@@ -61,6 +76,48 @@
             height: 28px;
             margin-left: -5px;
             border-radius: 50%;
+        }
+
+        .mdui-menu {
+            position: fixed;
+            z-index: 99999;
+            display: block;
+            box-sizing: border-box;
+            width: 168px;
+            margin: 0;
+            padding: 8px 0;
+            overflow-y: auto;
+            color: rgba(0,0,0,.87);
+            font-size: 16px;
+            list-style: none;
+            background-color: #fff;
+            border-radius: 8px;
+            transform: scale(0);
+            visibility: hidden;
+            opacity: 0;
+            transition-timing-function: cubic-bezier(0,0,.2,1);
+            transition-duration: .3s;
+            transition-property: transform,opacity,visibility;
+            will-change: transform,opacity,visibility;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+        }
+
+        .mdui-textfield {
+            
+            padding-top: 16px;
+            padding-bottom: 4px;
+            overflow: visible;
+        }
+
+        .mdui-textfield-label {
+            float: left;
+            width: 128px;
+            height: 36px;
+            margin-right: 8px;
+            font-size: 13px;
+            line-height: 36px;
+            transform: inherit;
         }
     </style>
 
