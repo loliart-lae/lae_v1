@@ -44,7 +44,11 @@
                             {{ $user->bio ?? '未设置签名' }}
                         </td>
 
-                        <td></td>
+                        <td style="text-align: right; width: 154px;">
+                            <a class="mdui-btn mdui-btn-icon mdui-text-color-theme-icon" mdui-tooltip="{content: '编辑', delay: 300}">
+                                <i class="mdui-icon material-icons">edit</i>
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
