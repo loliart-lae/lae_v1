@@ -7,7 +7,7 @@
     <div class="mdui-typo-display-2">管理员主页</div>
 
     <div class="mdui-row mdui-m-t-2">
-        <div class="mdui-card mdui-p-a-2">
+        <div class="mdui-card mdui-p-a-2" style="border-radius: 8px;">
             <div class="mdui-typo-headline">数据总量</div>
 
             <div class="mdui-col-xs-12 mdui-col-sm-2 mdui-m-t-2">
