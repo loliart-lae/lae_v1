@@ -5,7 +5,7 @@
         </button>
     @else
         <a href="{{ $paginator->previousPageUrl() }}" class="mdui-btn mdui-btn-icon">
-            <i class="mdui-icon material-icons">chevron_right</i>
+            <i class="mdui-icon material-icons">chevron_left</i>
         </a>
     @endif
 

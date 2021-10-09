@@ -5,7 +5,7 @@
 @section('content')
     <div class="mdui-typo-display-2">用户管理</div>
 
-    <div class="mdui-typo mdui-p-t-3">
+    <div class="mdui-p-t-3">
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
                 <thead>
@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="mdui-typo">
                     @foreach ($users as $user)
                     <tr>
                         <td style="width: 60px;">
