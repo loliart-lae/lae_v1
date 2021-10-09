@@ -4,8 +4,6 @@
 
 @section('content')
 
-    <script src="https://kit.fontawesome.com/4448cbb8f6.js" crossorigin="anonymous"></script>
-
     <div class="mdui-typo-display-2">管理员主页</div>
 
     <div class="mdui-row mdui-m-t-2">
