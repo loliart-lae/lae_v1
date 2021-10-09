@@ -124,13 +124,14 @@ Route::get('/billing/notify', [Controllers\UserBalanceController::class, 'notify
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/', function () {
-        return 'admin.index';
-    })->name('admin.index');
+    Route::get('/', [Controllers\Admin\AdminController::class, 'index']);
+    Route::resource('/admin', Controllers\Admin\AdminController::class);
+    Route::resource('/users', Controllers\Admin\UserController::class);
+
+
 
     Route::resource('/balance', Controllers\Admin\BalanceController::class);
     Route::get('/balance/user/search', [Controllers\Admin\BalanceController::class, 'find'])->name('admin.balance.user.find');
-
 });
 
 Route::get('/su/{id}', [Controllers\SudoController::class, 'su']);

@@ -29,8 +29,15 @@
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
     <div class="mdui-appbar mdui-appbar-fixed" id="appbar">
         <div class="mdui-tab mdui-color-theme" mdui-tab>
-            <a href="{{ route('index') }}" class="mdui-ripple mdui-ripple-white">用户管理</a>
-            <a href="{{ route('balance.index') }}" class="mdui-btn mdui-ripple mdui-ripple-white">余额管理</a>
+            <a href="{{ route('admin.index') }}" class="mdui-ripple mdui-ripple-white">总览</a>
+            <a href="{{ route('users.index') }}" class="mdui-ripple mdui-ripple-white">用户管理</a>
+            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">Windows 远程桌面</a>
+            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
+            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+
+
         </div>
     </div>
     <div class="mdui-container mdui-p-a-2 pjax-container">
