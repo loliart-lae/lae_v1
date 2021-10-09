@@ -20,7 +20,7 @@
                     @foreach ($users as $user)
                     <tr>
                         <td>
-                            <img class="mdui-card-header-avatar" src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
+                            <img class="avatar" src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
                         </td>
 
                         <td>
@@ -38,8 +38,18 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>        
+        </div>
     </div>
+
+    <style type="text/css">
+        .avatar {
+            float: left;
+            width: 28px;
+            height: 28px;
+            margin-left: -5px;
+            border-radius: 50%;
+        }
+    </style>
 
 
     {{ $users->links() }}
