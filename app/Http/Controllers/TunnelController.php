@@ -76,6 +76,10 @@ class TunnelController extends Controller
             $this->validate($request, array(
                 "custom_domain" => 'required',
             ));
+
+            if (str_contains($request->custom_domain, ',')) {
+                return redirect()->back()->with('status', 'Error: 仅支持单域名。');
+            }
         } elseif ($request->protocol == 'tcp' || $request->protocol == 'udp') {
             $request->custom_domain = null;
             $this->validate($request, array(
