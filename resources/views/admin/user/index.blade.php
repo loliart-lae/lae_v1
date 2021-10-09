@@ -14,6 +14,8 @@
                         <th>用户名</th>
                         <th>签名</th>
                         <th style="overflow: visible; text-align: right;">
+                            <span class="label mdui-text-color-theme-secondary">第 xx - xx 行， 共 xxx 行</span>
+
                             <button class="mdui-btn mdui-btn-icon">
                                 <i class="mdui-icon material-icons">chevron_left</i>
                             </button>
