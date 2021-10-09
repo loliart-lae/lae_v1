@@ -158,9 +158,15 @@ class TunnelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, \App\Http\Controllers\TunnelController $tunnelController)
     {
-        //
+        // 莫名好用
+        try {
+            return $tunnelController->show($id);
+        } catch (\Exception $e) {
+            return 'tunnel not found.';
+        }
+
     }
 
     /**
