@@ -6,7 +6,7 @@
     <div class="mdui-typo-display-2">用户管理</div>
 
     <div class="mdui-p-t-3">
-        <div class="mdui-table-fluid">
+        <div class="mdui-table-fluid" style="border-radius: 8px;">
             <table class="mdui-table mdui-table-hoverable">
                 <thead>
                     <tr>
@@ -15,6 +15,10 @@
                         <th>签名</th>
                         <th style="overflow: visible; text-align: right;">
                             {{ $users->links('vendor.pagination.table') }}
+
+                            <button class="mdui-btn mdui-btn-icon">
+                                <i class="mdui-icon material-icons">search</i>
+                            </button>
                         </th>
                     </tr>
                 </thead>
