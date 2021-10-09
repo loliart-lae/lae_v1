@@ -107,11 +107,6 @@
         <p>文档 是 Light App Engine 偏向于社区化的一个功能，我们鼓励用户在这里撰写文档。<br />
             在编写/阅读文档时，你还可以进行SSH。每当你撰写一份文档并受到别人认同时，账号积分会 +1。</p>
 
-        <h2 class="mdui-text-color-theme">什么是 Grafana?</h2>
-        <p>这是一个还测试的功能。我们为用户提供了一个 Grafana 面板。使用这个功能需要一定的技术含量。这个功能完全免费。</p>
-
-
-
         <h1 class="mdui-text-color-theme">我不可以使用 Light App Engine 的服务做什么？</h1>
 
         <ul>
