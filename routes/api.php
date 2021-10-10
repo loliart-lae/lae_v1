@@ -19,8 +19,8 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
         return $request->user();
     });
 
-    Route::resource('/tunnels', v1\TunnelController::class);
+    Route::resource('/_tunnels', v1\TunnelController::class);
 
-    Route::resource('/projects', v1\TunnelController::class);
-    Route::resource('/fastVisits', v1\FastVisitController::class);
+    Route::resource('/_projects', v1\TunnelController::class);
+    Route::resource('/_fastVisits', v1\FastVisitController::class);
 });
