@@ -9,7 +9,7 @@ class ServerBalanceCount extends Model
 {
     use HasFactory;
 
-    protected $dateFormat = 'Y-m-d H:i:s';
+    protected $dateFormat = 'Y-m-d';
 
     public function server()
     {
