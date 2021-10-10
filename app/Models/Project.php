@@ -34,7 +34,7 @@ class Project extends Model
         return $this->hasMany(ProjectMember::class, 'id', 'project_id');
     }
 
-    public function cost($project_id, $value, $reason = null)
+    public static function cost($project_id, $value)
     {
         try {
             DB::beginTransaction();
@@ -54,7 +54,7 @@ class Project extends Model
         return true;
     }
 
-    public function charge($project_id, $value, $reason = null)
+    public static function charge($project_id, $value)
     {
         try {
             DB::beginTransaction();

@@ -195,23 +195,10 @@ class ProjectController extends Controller
         // 扣费
         (float)$value = $request->value;
         if ($userBalanceLog->cost(Auth::id(), $value, 'Charge to project.')) {
-
-            // 获取项目余额
-
-            $this::do_charge($request->route('project_id'), $value);
-
+            Project::charge($request->route('project_id'), $value);
             return redirect()->back()->with('status', '项目余额已更新。');
         } else {
             return redirect()->back()->with('status', '无法更新项目余额。');
         }
-    }
-
-    public static function do_charge($project_id, float $value)
-    {
-        $project = new Project();
-        $balance = $project->where('id', $project_id)->first()->balance;
-        $currentBalance = $balance + $value;
-
-        $balance = $project->where('id', $project_id)->update(['balance' => $currentBalance]);
     }
 }
