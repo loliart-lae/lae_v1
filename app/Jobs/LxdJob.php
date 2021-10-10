@@ -48,7 +48,7 @@ class LxdJob implements ShouldQueue
         switch ($this->config['method']) {
             case 'init':
                 try {
-                    $result = Http::retry(5, 100)->timeout(1200)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                    $result = Http::retry(5, 100)->timeout(1200)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
                         'id' => $this->config['inst_id'],
                         'cpu' => $this->config['cpu'],
                         'mem' => $this->config['mem'],
@@ -68,7 +68,7 @@ class LxdJob implements ShouldQueue
                     // dispatch(new SendEmailJob($email, "久等了，您的 Linux 容器已经准备好了。"))->onQueue('mail');
                     Message::send('Linux 容器已经准备好了。', $this->config['user']);
                 } catch (Exception $e) {
-                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/delete", [
+                    Http::retry(5, 100)->get("http://{$this->config['address']}/lxd/delete", [
                         'id' => $this->config['inst_id'],
                         'token' => $this->config['token'],
                     ]);
@@ -80,7 +80,7 @@ class LxdJob implements ShouldQueue
                 break;
 
             case 'delete':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                Http::retry(5, 100)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
                     'id' => $this->config['inst_id'],
                     'token' => $this->config['token'],
                 ]);
@@ -101,7 +101,7 @@ class LxdJob implements ShouldQueue
 
             case 'start':
                 try {
-                    Http::retry(2, 1)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                    Http::retry(2, 1)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
                         'id' => $this->config['inst_id'],
                         'token' => $this->config['token'],
                     ]);
@@ -113,7 +113,7 @@ class LxdJob implements ShouldQueue
 
             case 'forward':
                 try {
-                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                    Http::retry(5, 100)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
                         'id' => $this->config['inst_id'],
                         'from' => $this->config['from'],
                         'to' => $this->config['to'],
@@ -131,7 +131,7 @@ class LxdJob implements ShouldQueue
                 break;
 
             case 'forward_delete':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                Http::retry(5, 100)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
                     'id' => $this->config['inst_id'],
                     'to' => $this->config['to'],
                     'token' => $this->config['token']
@@ -173,7 +173,7 @@ class LxdJob implements ShouldQueue
                     Message::send('无法调整容器模板，因为服务器上已经没有更多的资源了。', $this->config['user']);
                 } else {
                     try {
-                        Http::retry(5, 100)->timeout(600)->get("http://{$this->config['address']}:821/lxd/{$this->config['method']}", [
+                        Http::retry(5, 100)->timeout(600)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
                             'id' => $this->config['inst_id'],
                             'cpu' => $new_template->cpu,
                             'mem' => $new_template->mem,

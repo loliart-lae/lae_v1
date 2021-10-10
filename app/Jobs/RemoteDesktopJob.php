@@ -41,7 +41,7 @@ class RemoteDesktopJob implements ShouldQueue
         switch ($this->config['method']) {
             case 'create':
                 try {
-                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}:821/create", [
+                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/create", [
                         'username' => $this->config['username'],
                         'password' => $this->config['password'],
                         'token' => $this->config['token']
@@ -60,7 +60,7 @@ class RemoteDesktopJob implements ShouldQueue
                     // } else {
                     //     $remote_desktop->where('id', $this->config['inst_id'])->delete();
                     //     Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
-                    //     Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
+                    //     Http::retry(5, 100)->get("http://{$this->config['address']}/delete", [
                     //         'username' => $this->config['username'],
                     //         'token' => $this->config['token']
                     //     ]);
@@ -68,7 +68,7 @@ class RemoteDesktopJob implements ShouldQueue
                 } catch (Exception $e) {
                     $remote_desktop->where('id', $this->config['inst_id'])->delete();
                     Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
-                    Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
+                    Http::retry(5, 100)->get("http://{$this->config['address']}/delete", [
                         'username' => $this->config['username'],
                         'token' => $this->config['token']
                     ]);
@@ -79,17 +79,17 @@ class RemoteDesktopJob implements ShouldQueue
                 break;
 
             case 'delete':
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/remove", [
+                Http::retry(5, 100)->get("http://{$this->config['address']}/remove", [
                     'username' => $this->config['username'],
                     'token' => $this->config['token']
                 ]);
 
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/logout", [
+                Http::retry(5, 100)->get("http://{$this->config['address']}/logout", [
                     'username' => $this->config['username'],
                     'token' => $this->config['token']
                 ]);
 
-                Http::retry(5, 100)->get("http://{$this->config['address']}:821/delete", [
+                Http::retry(5, 100)->get("http://{$this->config['address']}/delete", [
                     'username' => $this->config['username'],
                     'token' => $this->config['token']
                 ]);
@@ -98,7 +98,7 @@ class RemoteDesktopJob implements ShouldQueue
 
             case 'passwd':
                 try {
-                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}:821/passwd", [
+                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/passwd", [
                         'username' => $this->config['username'],
                         'password' => $this->config['password'],
                         'token' => $this->config['token']
