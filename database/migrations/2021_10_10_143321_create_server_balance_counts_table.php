@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServerBalanceCountTable extends Migration
+class CreateServerBalanceCountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateServerBalanceCountTable extends Migration
      */
     public function up()
     {
-        Schema::create('server_balance_count', function (Blueprint $table) {
+        Schema::create('server_balance_counts', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('server_id')->nullable()->index();
