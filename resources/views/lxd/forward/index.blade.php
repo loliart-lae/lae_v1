@@ -39,7 +39,7 @@
                         <td nowrap="nowrap">{{ $forward->to }}</td>
                         <td nowrap="nowrap">TCP&UDP</td>
                         <td nowrap="nowrap">{{ $forward->reason }}</td>
-                        <td nowrap="nowrap">{{ $forward->server->address }}:{{ $forward->to }}</td>
+                        <td nowrap="nowrap">{{ $forward->server->domain }}:{{ $forward->to }}</td>
                         <td nowrap="nowrap">
                             @if ($forward->status == 'active' || $forward->status == 'failed')
                                 <a href="#"

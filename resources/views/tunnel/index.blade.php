@@ -60,7 +60,7 @@
                                     <a href="#" onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">对端</a>
                                 @break
                                 @default
-                                    {{ $tunnel->server->address }}:{{ $tunnel->remote_port }}
+                                    {{ $tunnel->server->domain }}:{{ $tunnel->remote_port }}
 
                             @endswitch
 
