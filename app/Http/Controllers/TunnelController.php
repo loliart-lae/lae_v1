@@ -313,14 +313,6 @@ EOF;
                 ));
             }
 
-            if ($sid != $request->route('id')) {
-                return response()->json(array(
-                    "reject" => true,
-                    "reject_reason" => "无法跨服务器使用隧道。",
-                    "unchange" => true,
-                ));
-            }
-
             // 检查是否存在
             $tunnel_where = $tunnel->where('server_id', $request->route('id'))->where('id', $tid);
             if ($tunnel_where->where('client_token', $token)->exists()) {
