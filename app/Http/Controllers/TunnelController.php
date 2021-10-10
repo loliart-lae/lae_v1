@@ -313,16 +313,26 @@ EOF;
                 ));
             }
 
+            if ($sid != $request->route('id')) {
+                return response()->json(array(
+                    "reject" => true,
+                    "reject_reason" => "无法跨服务器使用隧道。",
+                    "unchange" => true,
+                ));
+            }
+
             // 检查是否存在
-            $tunnel_where = $tunnel->where('server_id', $sid)->where('id', $tid);
+            $tunnel_where = $tunnel->where('server_id', $request->route('id'))->where('id', $tid);
             if ($tunnel_where->where('client_token', $token)->exists()) {
                 // 检查端口之类的是否相等
                 $tunnel_info = $tunnel_where->firstOrFail();
+
+                $error_msg = '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确。';
                 if ($request->content['proxy_type'] == 'tcp' || $request->content['proxy_type'] == 'udp') {
                     if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['remote_port'] != $tunnel_info->remote_port || $tunnel_info->remote_port < 1024) {
                         return response()->json(array(
                             "reject" => true,
-                            "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确。你可以前往Light App Engine(https://lightart.top)中重新复制。',
+                            "reject_reason" => $error_msg . '你可以前往Light App Engine(https://lightart.top)中重新复制。',
                             "unchange" => true,
                         ));
                     }
@@ -330,7 +340,7 @@ EOF;
                     if ($request->content['proxy_type'] == $tunnel_info->proxy_type || $request->content['custom_domains'][0] != $tunnel_info->custom_domain) {
                         return response()->json(array(
                             "reject" => true,
-                            "reject_reason" => '隧道 ' . $request->content['proxy_name'] . ' 的配置文件不正确。请确保配置文件复制正确，域名在Light App Engine(https://lightart.top)中绑定。',
+                            "reject_reason" => $error_msg . '域名在Light App Engine(https://lightart.top)中绑定。',
                             "unchange" => true,
                         ));
                     }

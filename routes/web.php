@@ -54,7 +54,7 @@ Route::prefix('/')->group(function () {
     Route::get('download/{name}', [Controllers\DriveController::class, 'view'])->name('download.view')->middleware('auth');
     Route::get('download/{name}/download', [Controllers\DriveController::class, 'route_download'])->name('download.download')->middleware('auth');
 
-    Route::post('/tunnel/auth', [Controllers\TunnelController::class, 'auth']);
+    Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth']);
 
 
     Route::get('/documents/my', [Controllers\DocumentController::class, 'my'])->name('documents.my');
