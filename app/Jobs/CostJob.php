@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Jobs\SendEmailJob;
 use App\Models\LxdContainer;
 use App\Models\RemoteDesktop;
+use App\Models\ServerBalanceCount;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
@@ -41,21 +42,19 @@ class CostJob implements ShouldQueue
         // 挨个获取容器并计算扣费
 
         $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
-        $project = new Project();
+        // $project = new Project();
         $forward = new Forward();
         $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
-        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=' , 'xtcp')->get();
+        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->get();
         // $server = new Server();
+        $serverBalanceCount = new ServerBalanceCount();
 
 
         foreach ($lxdContainers as $lxd) {
             // 金额
             $project_id = $lxd->project->id;
-            $project_where = $project->where('id', $project_id);
 
             $need_pay = $lxd->server->price + $lxd->template->price + (count($lxd->forward) * $lxd->server->forward_price);
-
-            $current_project_balance = $project_where->firstOrFail()->balance;
 
             // if ($current_project_balance - $need_pay >= 99.50 || $current_project_balance - $need_pay <= 100) {
             //     // 积分不足，提醒用户
@@ -64,7 +63,7 @@ class CostJob implements ShouldQueue
             //     dispatch(new SendEmailJob($email, '项目积分不足，诺要继续使用，请保持您的项目积分充足'))->onQueue('mail');
             // }
 
-            if ($current_project_balance - $need_pay < 0) {
+            if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除容器
                 // $forward_where = $forward->where('lxd_id', $lxd->id);
 
@@ -110,8 +109,9 @@ class CostJob implements ShouldQueue
                 ];
                 dispatch(new LxdJob($config));
 
-                // 扣费
-                $project_where->update(['balance' => $current_project_balance - $need_pay]);
+                $serverBalanceCount->server_id = $lxd->server_id;
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->save();
             }
         }
 
@@ -119,13 +119,10 @@ class CostJob implements ShouldQueue
         foreach ($remote_desktops as $remote_desktop) {
             // 金额
             $project_id = $remote_desktop->project->id;
-            $project_where = $project->where('id', $project_id);
 
             $need_pay = $remote_desktop->server->price;
 
-            $current_project_balance = $project_where->firstOrFail()->balance;
-
-            if ($current_project_balance - $need_pay < 0) {
+            if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除账号
 
                 RemoteDesktop::where('id', $remote_desktop->id)->delete();
@@ -139,8 +136,9 @@ class CostJob implements ShouldQueue
 
                 dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
             } else {
-                // 扣费
-                $project_where->update(['balance' => $current_project_balance - $need_pay]);
+                $serverBalanceCount->server_id = $remote_desktop->server_id;
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->save();
             }
         }
 
@@ -148,18 +146,16 @@ class CostJob implements ShouldQueue
         foreach ($tunnels as $tunnel) {
             // 金额
             $project_id = $tunnel->project->id;
-            $project_where = $project->where('id', $project_id);
 
             $need_pay = $tunnel->server->price;
 
-            $current_project_balance = $project_where->firstOrFail()->balance;
-
-            if ($current_project_balance - $need_pay < 0) {
+            if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除账号
                 Tunnel::where('id', $tunnel->id)->delete();
             } else {
-                // 扣费
-                $project_where->update(['balance' => $current_project_balance - $need_pay]);
+                $serverBalanceCount->server_id = $tunnel->server_id;
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->save();
             }
         }
     }
