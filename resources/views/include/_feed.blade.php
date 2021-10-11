@@ -49,19 +49,17 @@
                         <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '啊吧啊吧啊吧' }}</div>
                     </div>
                     <div class="mdui-card-content mdui-p-t-1">
-                        <textarea id="log_{{ $status->id }}_content"
-                            style="display:none;">{!! e($status->content) !!}</textarea>
                         <div id="log_{{ $status->id }}"></div>
                         <script>
                             $(function() {
                                 var log_view
-
+                                $('#log_{{ $status->id }}').html(null)
                                 log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
-                                    markdown: $('#log_{{ $status->id }}_content').html(),
+                                    markdown: `{!! e($status->content) !!}`,
                                     tocm: true,
                                     emoji: true,
                                     taskList: true,
-                                });
+                                })
                             })
                         </script>
                     </div>

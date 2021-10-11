@@ -89,7 +89,8 @@
                         @if (is_null($status_reply->user->website))
                             {{ $status_reply->user->name }}
                         @else
-                            <a target="_blank" href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
+                            <a target="_blank"
+                                href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
                         @endif
                         说：@if ($status_reply->user->id == Auth::id()) <a
                                 onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
@@ -105,7 +106,7 @@
                         <script>
                             $(function() {
                                 var log_view
-
+                                $('#log_{{ $status->id }}').html(null)
                                 log_view = editormd.markdownToHTML("reply_{{ $status_reply->id }}", {
                                     markdown: $('#reply_{{ $status_reply->id }}_content').html(),
                                     tocm: true,

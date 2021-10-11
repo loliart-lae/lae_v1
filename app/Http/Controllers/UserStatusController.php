@@ -159,7 +159,7 @@ class UserStatusController extends Controller
 
         $status = $status_model->where('id', $id)->firstOrFail();
         $status_replies = UserStatusReply::where('status_id', $id)->with('user')->simplePaginate(30);
-        return view('feed.comments', compact('status', 'status_replies'));
+        return view('include._comments', compact('status', 'status_replies'));
     }
 
     /**
