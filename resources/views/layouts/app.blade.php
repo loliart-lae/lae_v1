@@ -110,6 +110,8 @@
                 {{-- <a href="{{ route('images.index') }}" class="mdui-ripple mdui-ripple-white">图片展廊</a> --}}
 
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
+                <a onclick="mdui.alert('在做了再做了')" class="mdui-ripple mdui-ripple-white">静态站点</a>
+                <a onclick="mdui.alert('在做了再做了')" class="mdui-ripple mdui-ripple-white">B2B主机</a>
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
                 <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
                 <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
