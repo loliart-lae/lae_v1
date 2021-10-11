@@ -480,16 +480,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "3ee2622b57370c786f531678f6641208747f7bfc"
+                "reference": "96b0053775a544b4a6ab47654dac0621be8b4cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/3ee2622b57370c786f531678f6641208747f7bfc",
-                "reference": "3ee2622b57370c786f531678f6641208747f7bfc",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/96b0053775a544b4a6ab47654dac0621be8b4cf8",
+                "reference": "96b0053775a544b4a6ab47654dac0621be8b4cf8",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -508,9 +508,9 @@
             "require-dev": {
                 "doctrine/coding-standard": "9.0.0",
                 "jetbrains/phpstorm-stubs": "2021.1",
-                "phpstan/phpstan": "0.12.96",
+                "phpstan/phpstan": "0.12.99",
                 "phpstan/phpstan-strict-rules": "^0.12.11",
-                "phpunit/phpunit": "9.5.5",
+                "phpunit/phpunit": "9.5.10",
                 "psalm/plugin-phpunit": "0.16.1",
                 "squizlabs/php_codesniffer": "3.6.0",
                 "symfony/cache": "^5.2|^6.0",
@@ -575,7 +575,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.1.2"
+                "source": "https://github.com/doctrine/dbal/tree/3.1.3"
             },
             "funding": [
                 {
@@ -591,7 +591,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-12T20:56:32+00:00"
+            "time": "2021-10-02T16:15:05+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -1359,16 +1359,16 @@
         },
         {
             "name": "guzzlehttp/command",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/command.git",
-                "reference": "14eaba459ad9f97d11637821d95c0a5463d0d515"
+                "reference": "04b06e7f5ef37d814aeb3f4b6015b65a9d4412c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/command/zipball/14eaba459ad9f97d11637821d95c0a5463d0d515",
-                "reference": "14eaba459ad9f97d11637821d95c0a5463d0d515",
+                "url": "https://api.github.com/repos/guzzle/command/zipball/04b06e7f5ef37d814aeb3f4b6015b65a9d4412c5",
+                "reference": "04b06e7f5ef37d814aeb3f4b6015b65a9d4412c5",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1403,6 +1403,11 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
@@ -1411,14 +1416,33 @@
                     "name": "Jeremy Lindblom",
                     "email": "jeremeamia@gmail.com",
                     "homepage": "https://github.com/jeremeamia"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
                 }
             ],
             "description": "Provides the foundation for building command-based web service clients",
             "support": {
                 "issues": "https://github.com/guzzle/command/issues",
-                "source": "https://github.com/guzzle/command/tree/1.2.0"
+                "source": "https://github.com/guzzle/command/tree/1.2.1"
             },
-            "time": "2021-08-14T22:00:15+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/command",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-05T19:12:19+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1531,16 +1555,16 @@
         },
         {
             "name": "guzzlehttp/guzzle-services",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle-services.git",
-                "reference": "acd7ab1b83658ad7c1abd2a0871b825f65007202"
+                "reference": "3731f120ce6856f4c71fff7cb2a27e263fe69f84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle-services/zipball/acd7ab1b83658ad7c1abd2a0871b825f65007202",
-                "reference": "acd7ab1b83658ad7c1abd2a0871b825f65007202",
+                "url": "https://api.github.com/repos/guzzle/guzzle-services/zipball/3731f120ce6856f4c71fff7cb2a27e263fe69f84",
+                "reference": "3731f120ce6856f4c71fff7cb2a27e263fe69f84",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1579,40 +1603,59 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
-                    "name": "Jeremy Lindblom",
-                    "email": "jeremeamia@gmail.com",
-                    "homepage": "https://github.com/jeremeamia"
-                },
-                {
                     "name": "Stefano Kowalke",
                     "email": "blueduck@mail.org",
-                    "homepage": "https://github.com/konafets"
+                    "homepage": "https://github.com/Konafets"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
                 }
             ],
             "description": "Provides an implementation of the Guzzle Command library that uses Guzzle service descriptions to describe web services, serialize requests, and parse responses into easy to use model structures.",
             "support": {
                 "issues": "https://github.com/guzzle/guzzle-services/issues",
-                "source": "https://github.com/guzzle/guzzle-services/tree/1.3.0"
+                "source": "https://github.com/guzzle/guzzle-services/tree/1.3.1"
             },
-            "time": "2021-08-14T22:36:10+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/guzzle-services",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-07T13:01:35+00:00"
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.4.1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "8e7d04f1f6450fef59366c399cfad4b9383aa30d"
+                "reference": "136a635e2b4a49b9d79e9c8fee267ffb257fdba0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/8e7d04f1f6450fef59366c399cfad4b9383aa30d",
-                "reference": "8e7d04f1f6450fef59366c399cfad4b9383aa30d",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/136a635e2b4a49b9d79e9c8fee267ffb257fdba0",
+                "reference": "136a635e2b4a49b9d79e9c8fee267ffb257fdba0",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1630,7 +1673,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -1647,9 +1690,24 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
+                    "homepage": "https://github.com/Tobion"
                 }
             ],
             "description": "Guzzle promises library",
@@ -1658,22 +1716,36 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/1.4.1"
+                "source": "https://github.com/guzzle/promises/tree/1.5.0"
             },
-            "time": "2021-03-07T09:25:29+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/promises",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-07T13:05:22+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "1dc8d9cba3897165e16d12bb13d813afb1eb3fe7"
+                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1dc8d9cba3897165e16d12bb13d813afb1eb3fe7",
-                "reference": "1dc8d9cba3897165e16d12bb13d813afb1eb3fe7",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
+                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1703,7 +1775,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -1717,12 +1789,33 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
                     "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
                     "homepage": "https://github.com/Tobion"
                 },
                 {
@@ -1744,22 +1837,36 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.0.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.1.0"
             },
-            "time": "2021-06-30T20:03:07+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-06T17:43:30+00:00"
         },
         {
             "name": "guzzlehttp/uri-template",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/uri-template.git",
-                "reference": "88fcf8a3ea7489a8af6b25c9dfd3f688ddb51966"
+                "reference": "b945d74a55a25a949158444f09ec0d3c120d69e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/88fcf8a3ea7489a8af6b25c9dfd3f688ddb51966",
-                "reference": "88fcf8a3ea7489a8af6b25c9dfd3f688ddb51966",
+                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/b945d74a55a25a949158444f09ec0d3c120d69e2",
+                "reference": "b945d74a55a25a949158444f09ec0d3c120d69e2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1793,21 +1900,34 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
                     "name": "George Mponos",
                     "email": "gmponos@gmail.com",
-                    "homepage": "https://github.com/gmponos",
-                    "role": "Developer"
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
                 }
             ],
             "description": "A polyfill class for uri_template of PHP",
-            "homepage": "https://github.com/guzzlehttp/uri-template",
             "keywords": [
                 "guzzlehttp",
                 "uri-template"
             ],
             "support": {
                 "issues": "https://github.com/guzzle/uri-template/issues",
-                "source": "https://github.com/guzzle/uri-template/tree/v1.0.0"
+                "source": "https://github.com/guzzle/uri-template/tree/v1.0.1"
             },
             "funding": [
                 {
@@ -1815,11 +1935,15 @@
                     "type": "github"
                 },
                 {
-                    "url": "https://github.com/gmponos",
+                    "url": "https://github.com/Nyholm",
                     "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/uri-template",
+                    "type": "tidelift"
                 }
             ],
-            "time": "2021-08-14T22:34:51+00:00"
+            "time": "2021-10-07T12:57:01+00:00"
         },
         {
             "name": "hanbz/passport-client",
@@ -1898,16 +2022,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "2.6.1",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "0925f10b259679b5d8ca58f3a2add9255ffcda45"
+                "reference": "9a8cc99d30415ec0b3f7649e1647d03a55698545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/0925f10b259679b5d8ca58f3a2add9255ffcda45",
-                "reference": "0925f10b259679b5d8ca58f3a2add9255ffcda45",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/9a8cc99d30415ec0b3f7649e1647d03a55698545",
+                "reference": "9a8cc99d30415ec0b3f7649e1647d03a55698545",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1972,7 +2096,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/2.6.1"
+                "source": "https://github.com/Intervention/image/tree/2.7.0"
             },
             "funding": [
                 {
@@ -1984,20 +2108,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-22T14:31:53+00:00"
+            "time": "2021-10-03T14:17:12+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.62.0",
+            "version": "v8.63.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "60a7e00488167ce2babf3a2aeb3677e48aaf39be"
+                "reference": "8f3d280f36a427730c8c8fa34316c79eed38781e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/60a7e00488167ce2babf3a2aeb3677e48aaf39be",
-                "reference": "60a7e00488167ce2babf3a2aeb3677e48aaf39be",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/8f3d280f36a427730c8c8fa34316c79eed38781e",
+                "reference": "8f3d280f36a427730c8c8fa34316c79eed38781e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2161,7 +2285,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-09-28T13:30:25+00:00"
+            "time": "2021-10-05T14:04:25+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -2248,16 +2372,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v9.2.10",
+            "version": "v9.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "214ef71d4f9979b24c1ac30f8199d8da1cabff53"
+                "reference": "db9f4b955ee57434b2b38767734f08ea746aaa94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/214ef71d4f9979b24c1ac30f8199d8da1cabff53",
-                "reference": "214ef71d4f9979b24c1ac30f8199d8da1cabff53",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/db9f4b955ee57434b2b38767734f08ea746aaa94",
+                "reference": "db9f4b955ee57434b2b38767734f08ea746aaa94",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2322,20 +2446,20 @@
                 "issues": "https://github.com/laravel/scout/issues",
                 "source": "https://github.com/laravel/scout"
             },
-            "time": "2021-09-28T15:36:01+00:00"
+            "time": "2021-10-05T18:55:48+00:00"
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v1.0.0",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "2f4d826e04f2f54df30716b6d3a5dbe761b14a4e"
+                "reference": "6cfc678735f22ccedad761b8cae2bab14c3d8e5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/2f4d826e04f2f54df30716b6d3a5dbe761b14a4e",
-                "reference": "2f4d826e04f2f54df30716b6d3a5dbe761b14a4e",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/6cfc678735f22ccedad761b8cae2bab14c3d8e5b",
+                "reference": "6cfc678735f22ccedad761b8cae2bab14c3d8e5b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2387,7 +2511,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2021-09-14T15:41:19+00:00"
+            "time": "2021-10-07T14:00:57+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -2989,16 +3113,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.3.4",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "437e7a1c50044b92773b361af77620efb76fff59"
+                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/437e7a1c50044b92773b361af77620efb76fff59",
-                "reference": "437e7a1c50044b92773b361af77620efb76fff59",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd4380d6fc37626e2f799f29d91195040137eba9",
+                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3020,7 +3144,7 @@
                 "elasticsearch/elasticsearch": "^7",
                 "graylog2/gelf-php": "^1.4.2",
                 "mongodb/mongodb": "^1.8",
-                "php-amqplib/php-amqplib": "~2.4",
+                "php-amqplib/php-amqplib": "~2.4 || ^3",
                 "php-console/php-console": "^3.1.3",
                 "phpspec/prophecy": "^1.6.1",
                 "phpstan/phpstan": "^0.12.91",
@@ -3078,7 +3202,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.3.4"
+                "source": "https://github.com/Seldaek/monolog/tree/2.3.5"
             },
             "funding": [
                 {
@@ -3090,7 +3214,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-15T11:27:21+00:00"
+            "time": "2021-10-01T21:08:31+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -4047,16 +4171,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.4",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/ef29f6d262798707a9edd554e2b82517ef3a9376",
+                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4066,17 +4190,17 @@
                 ]
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
+                    "Psr\\Log\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4097,9 +4221,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/1.1.4"
+                "source": "https://github.com/php-fig/log/tree/2.0.0"
             },
-            "time": "2021-05-03T11:20:27+00:00"
+            "time": "2021-07-14T16:41:46+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -4160,16 +4284,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.10.8",
+            "version": "v0.10.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3"
+                "reference": "01281336c4ae557fe4a994544f30d3a1bc204375"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e4573f47750dd6c92dca5aee543fa77513cbd8d3",
-                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/01281336c4ae557fe4a994544f30d3a1bc204375",
+                "reference": "01281336c4ae557fe4a994544f30d3a1bc204375",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4235,22 +4359,22 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.10.8"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.10.9"
             },
-            "time": "2021-04-10T16:23:39+00:00"
+            "time": "2021-10-10T13:37:39+00:00"
         },
         {
             "name": "qcloud/cos-sdk-v5",
-            "version": "v2.3.3",
+            "version": "v2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tencentyun/cos-php-sdk-v5.git",
-                "reference": "9690eb289f5aa3c158a50e4061abfe9b9ad32421"
+                "reference": "3a21def7d1a152c4c1a8fcc85c50a133bd8cc1a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tencentyun/cos-php-sdk-v5/zipball/9690eb289f5aa3c158a50e4061abfe9b9ad32421",
-                "reference": "9690eb289f5aa3c158a50e4061abfe9b9ad32421",
+                "url": "https://api.github.com/repos/tencentyun/cos-php-sdk-v5/zipball/3a21def7d1a152c4c1a8fcc85c50a133bd8cc1a2",
+                "reference": "3a21def7d1a152c4c1a8fcc85c50a133bd8cc1a2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4262,7 +4386,7 @@
             "require": {
                 "guzzlehttp/guzzle": ">=6.2.1",
                 "guzzlehttp/guzzle-services": ">=1.1",
-                "guzzlehttp/psr7": "<=2.0",
+                "guzzlehttp/psr7": "<=2.1",
                 "php": ">=5.6"
             },
             "type": "library",
@@ -4300,9 +4424,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tencentyun/cos-php-sdk-v5/issues",
-                "source": "https://github.com/tencentyun/cos-php-sdk-v5/tree/v2.3.3"
+                "source": "https://github.com/tencentyun/cos-php-sdk-v5/tree/v2.3.4"
             },
-            "time": "2021-09-23T09:30:18+00:00"
+            "time": "2021-10-08T01:45:04+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -4356,16 +4480,16 @@
         },
         {
             "name": "ramsey/collection",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/collection.git",
-                "reference": "eaca1dc1054ddd10cbd83c1461907bee6fb528fa"
+                "reference": "cccc74ee5e328031b15640b51056ee8d3bb66c0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/collection/zipball/eaca1dc1054ddd10cbd83c1461907bee6fb528fa",
-                "reference": "eaca1dc1054ddd10cbd83c1461907bee6fb528fa",
+                "url": "https://api.github.com/repos/ramsey/collection/zipball/cccc74ee5e328031b15640b51056ee8d3bb66c0a",
+                "reference": "cccc74ee5e328031b15640b51056ee8d3bb66c0a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4425,7 +4549,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/collection/issues",
-                "source": "https://github.com/ramsey/collection/tree/1.2.1"
+                "source": "https://github.com/ramsey/collection/tree/1.2.2"
             },
             "funding": [
                 {
@@ -4437,7 +4561,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-06T03:41:06+00:00"
+            "time": "2021-10-10T03:01:02+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -7608,16 +7732,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v5.3.0",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "b3eac5c7ac896e52deab4a99068e3f4ab12d9e56"
+                "reference": "accaddf133651d4b5cf81a119f25296736ffc850"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/b3eac5c7ac896e52deab4a99068e3f4ab12d9e56",
-                "reference": "b3eac5c7ac896e52deab4a99068e3f4ab12d9e56",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/accaddf133651d4b5cf81a119f25296736ffc850",
+                "reference": "accaddf133651d4b5cf81a119f25296736ffc850",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7628,17 +7752,17 @@
             },
             "require": {
                 "ext-pcre": "*",
-                "graham-campbell/result-type": "^1.0.1",
+                "graham-campbell/result-type": "^1.0.2",
                 "php": "^7.1.3 || ^8.0",
-                "phpoption/phpoption": "^1.7.4",
-                "symfony/polyfill-ctype": "^1.17",
-                "symfony/polyfill-mbstring": "^1.17",
-                "symfony/polyfill-php80": "^1.17"
+                "phpoption/phpoption": "^1.8",
+                "symfony/polyfill-ctype": "^1.23",
+                "symfony/polyfill-mbstring": "^1.23.1",
+                "symfony/polyfill-php80": "^1.23.1"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.4.1",
                 "ext-filter": "*",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.14 || ^9.5.1"
+                "phpunit/phpunit": "^7.5.20 || ^8.5.21 || ^9.5.10"
             },
             "suggest": {
                 "ext-filter": "Required to use the boolean validator."
@@ -7661,13 +7785,11 @@
             "authors": [
                 {
                     "name": "Graham Campbell",
-                    "email": "graham@alt-three.com",
-                    "homepage": "https://gjcampbell.co.uk/"
+                    "email": "hello@gjcampbell.co.uk"
                 },
                 {
                     "name": "Vance Lucas",
-                    "email": "vance@vancelucas.com",
-                    "homepage": "https://vancelucas.com/"
+                    "email": "vance@vancelucas.com"
                 }
             ],
             "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
@@ -7678,7 +7800,7 @@
             ],
             "support": {
                 "issues": "https://github.com/vlucas/phpdotenv/issues",
-                "source": "https://github.com/vlucas/phpdotenv/tree/v5.3.0"
+                "source": "https://github.com/vlucas/phpdotenv/tree/v5.3.1"
             },
             "funding": [
                 {
@@ -7690,7 +7812,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-20T15:23:13+00:00"
+            "time": "2021-10-02T19:24:42+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -8042,16 +8164,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.13.1",
+            "version": "2.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "e3f49bef7b4165fa4b8a9dc579e7b63fa06aef78"
+                "reference": "6d89c4c99537f487ad29f646d57ebf107ef714ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/e3f49bef7b4165fa4b8a9dc579e7b63fa06aef78",
-                "reference": "e3f49bef7b4165fa4b8a9dc579e7b63fa06aef78",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/6d89c4c99537f487ad29f646d57ebf107ef714ed",
+                "reference": "6d89c4c99537f487ad29f646d57ebf107ef714ed",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8120,7 +8242,7 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
-            "time": "2021-09-13T13:01:30+00:00"
+            "time": "2021-10-08T12:34:52+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -8254,16 +8376,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.14.3",
+            "version": "2.14.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "89584ce67dd32307f1063cc43846674f4679feda"
+                "reference": "f056f1fe935d9ed86e698905a957334029899895"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/89584ce67dd32307f1063cc43846674f4679feda",
-                "reference": "89584ce67dd32307f1063cc43846674f4679feda",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/f056f1fe935d9ed86e698905a957334029899895",
+                "reference": "f056f1fe935d9ed86e698905a957334029899895",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8274,7 +8396,7 @@
             },
             "require": {
                 "php": "^5.5.9 || ^7.0 || ^8.0",
-                "psr/log": "^1.0.1"
+                "psr/log": "^1.0.1 || ^2.0 || ^3.0"
             },
             "require-dev": {
                 "mockery/mockery": "^0.9 || ^1.0",
@@ -8319,7 +8441,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.14.3"
+                "source": "https://github.com/filp/whoops/tree/2.14.4"
             },
             "funding": [
                 {
@@ -8327,7 +8449,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-19T12:00:00+00:00"
+            "time": "2021-10-03T12:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -8388,16 +8510,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.10.2",
+            "version": "v1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "0b9ddae87b5867e0ca3a68f3b645079054c7ace3"
+                "reference": "5c91d33949e43500dc1d49abc5d7c2ffb6c96f44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/0b9ddae87b5867e0ca3a68f3b645079054c7ace3",
-                "reference": "0b9ddae87b5867e0ca3a68f3b645079054c7ace3",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/5c91d33949e43500dc1d49abc5d7c2ffb6c96f44",
+                "reference": "5c91d33949e43500dc1d49abc5d7c2ffb6c96f44",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8450,7 +8572,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-09-28T15:33:02+00:00"
+            "time": "2021-10-01T13:32:17+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -8933,16 +9055,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "30f38bffc6f24293dadd1823936372dfa9e86e2f"
+                "reference": "a12f7e301eb7258bb68acd89d4aefa05c2906cae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/30f38bffc6f24293dadd1823936372dfa9e86e2f",
-                "reference": "30f38bffc6f24293dadd1823936372dfa9e86e2f",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/a12f7e301eb7258bb68acd89d4aefa05c2906cae",
+                "reference": "a12f7e301eb7258bb68acd89d4aefa05c2906cae",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8983,9 +9105,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.5.0"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.5.1"
             },
-            "time": "2021-09-17T15:28:14+00:00"
+            "time": "2021-10-02T14:08:47+00:00"
         },
         {
             "name": "phpspec/prophecy",
