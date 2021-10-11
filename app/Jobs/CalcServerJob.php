@@ -60,7 +60,7 @@ class CalcServerJob implements ShouldQueue
         // 获取 Windows 服务器 资源占用
         foreach ($windows_servers as $windows_server) {
             $result = Http::retry(5, 100)->get("http://{$windows_server->address}/status", [
-                'token' => $this->config['token']
+                'token' => $windows_server->token
             ]);
             Server::where('id', $windows_server->id)->update([
                 'cpu_usage' => $result['cpu'],
