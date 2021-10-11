@@ -21,15 +21,15 @@ class CreateStaticPagesTable extends Migration
 
             $table->string('domain')->index();
 
-            $table->string('ftp_username')->index()->nullable();
-            $table->string('ftp_password')->index()->nullable();
+            $table->string('ftp_username')->nullable()->index();
+            $table->string('ftp_password')->nullable()->index();
 
-            $table->unsignedDouble('used_disk')->nullable(0)->index();
+            $table->unsignedDouble('used_disk')->index()->nullable(0);
 
             $table->unsignedBigInteger('server_id')->index();
-            $table->foreign('server_id')->references('id')->on('servers')->cascadeOnDelete();
+            $table->foreign('server_id')->references('id')->on('servers')->onDelete('cascade');
             $table->unsignedBigInteger('project_id')->index();
-            $table->foreign('project_id')->references('id')->on('projects')->cascadeOnDelete();
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
 
             $table->timestamps();
         });
