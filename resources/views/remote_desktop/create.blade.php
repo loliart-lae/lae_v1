@@ -26,6 +26,8 @@
                         <th>CPU</th>
                         <th>内存</th>
                         <th>带宽</th>
+                        <th>CPU 使用率</th>
+                        <th>内存 使用率</th>
                         <th>基础价格(积分/分钟)</th>
                         <th>选择</th>
                     </tr>
@@ -39,6 +41,8 @@
                             <td>{{ $server->cpu }}</td>
                             <td>{{ $server->mem }}</td>
                             <td>{{ $server->network_limit }} Mbps</td>
+                            <td>{{ $server->cpu_usage }}%</td>
+                            <td>{{ $server->mem_usage }}%</td>
                             <td>{{ $server->price }}</td>
 
 

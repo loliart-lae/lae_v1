@@ -19,6 +19,8 @@
                     <th>CPU</th>
                     <th>内存</th>
                     <th>带宽</th>
+                    <th>CPU 使用率</th>
+                    <th>内存 使用率</th>
                     <th>属于服务器</th>
                     <th>连接信息</th>
                     <th>积分/分钟</th>
@@ -52,6 +54,8 @@
                         <td nowrap="nowrap">{{ $remote_desktop->server->cpu }} Core</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->mem }}M</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->network_limit }} Mbps</td>
+                        <td nowrap="nowrap">{{ $remote_desktop->server->cpu_usage }}%</td>
+                        <td nowrap="nowrap">{{ $remote_desktop->server->mem_usage }}%</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->name }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->domain }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->price }}/m
