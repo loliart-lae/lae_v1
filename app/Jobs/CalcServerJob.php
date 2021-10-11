@@ -62,7 +62,10 @@ class CalcServerJob implements ShouldQueue
             $result = Http::retry(5, 100)->get("http://{$windows_server->address}/status", [
                 'token' => $this->config['token']
             ]);
-            
+            Server::where('id', $windows_server->id)->update([
+                'cpu_usage' => $result['cpu'],
+                'mem_usage' => $result['ram']
+            ]);
         }
     }
 }
