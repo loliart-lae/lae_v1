@@ -34,7 +34,7 @@
                     @if ($remote_desktop->project->id != $project_id)
                         @php($project_id = $remote_desktop->project->id)
                         <tr>
-                            <td colspan="10" class="mdui-text-center">
+                            <td colspan="12" class="mdui-text-center">
                                 <a
                                     href="{{ route('projects.show', $remote_desktop->project->id) }}">{{ $remote_desktop->project->name }}</a>
                             </td>
@@ -81,7 +81,7 @@
                 @endforeach
                 @if ($i > 10)
                     <tr>
-                        <td colspan="11" class="mdui-text-center">
+                        <td colspan="12" class="mdui-text-center">
                             <a href="{{ route('remote_desktop.create') }}">新建个 阿噜噜噜噜噜噜吧 账号</a>
                         </td>
                     </tr>
