@@ -104,7 +104,6 @@
         }
 
         .mdui-textfield {
-            
             padding-top: 16px;
             padding-bottom: 4px;
             overflow: visible;
