@@ -31,7 +31,7 @@
         <div class="mdui-tab mdui-color-theme" mdui-tab>
             <a href="{{ route('admin.index') }}" class="mdui-ripple mdui-ripple-white">总览</a>
             <a href="{{ route('users.index') }}" class="mdui-ripple mdui-ripple-white">用户管理</a>
-            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+            <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">应用容器</a>
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">Windows 远程桌面</a>
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Linux 容器')
+@section('title', '应用容器')
 
 @section('content')
-    <div class="mdui-typo-display-2">Linux 容器</div>
+    <div class="mdui-typo-display-2">应用容器</div>
 
     <button class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#webssh-dialog'}">Web SSH</button>
     &nbsp;&nbsp;
-    <a href="{{ route('lxd.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 Linux 容器</a>
+    <a href="{{ route('lxd.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 应用容器</a>
     {{-- &nbsp;&nbsp;
     <a href="{{ route('images.index') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">镜像管理</a> --}}
     <br /><br />

@@ -103,7 +103,7 @@
                         {{ Auth::user()->name }} / <span id="userBalance"
                             style="display: contents;">{{ Auth::user()->balance }}</span></small></a>
                 <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">应用容器</a>
                 <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                 <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
                 <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>

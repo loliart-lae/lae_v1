@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', '新建容器')
+@section('title', '新建 应用容器')
 
 @section('content')
-    <div class="mdui-typo-display-2">新建容器</div>
+    <div class="mdui-typo-display-2">新建 应用容器</div>
 
-    <p>在选定的项目中新建容器。</p>
+    <p>在选定的项目中新建应用容器。</p>
     <br />
     <form method="post" action="{{ route('lxd.store') }}">
         @csrf
@@ -170,7 +170,7 @@
 
         <br /><br />
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">注意：每分钟价格 =
-                地区服务器基础价格 + 容器模板价格 + 端口转发。<br />Linux 容器默认用户名为 root，并且是无特权容器，不支持
+                地区服务器基础价格 + 容器模板价格 + 端口转发。<br />ssh默认用户名为 root，并且是无特权容器，不支持
                 Docker。<br />带宽均为共享带宽，如果带宽有调整，将会即时生效。<br />如果你的容器配置和模板配置不符，可以对容器模板进行升配/降配，然后再修改回去即可刷新。<br />禁止将“Linux
                 容器”用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户。</small></div>
     </form>
