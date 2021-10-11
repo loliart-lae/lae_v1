@@ -4,7 +4,9 @@ namespace App\Jobs;
 
 use App\Models\Server;
 use App\Models\LxdContainer;
+use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,9 +34,11 @@ class CalcServerJob implements ShouldQueue
      */
     public function handle()
     {
+        $lxdServers = Server::where('type', 'container')->get();
+        $windows_servers = Server::where('type', 'windows')->get();
 
         // 重新计算服务器剩余空间
-        $lxdServers = Server::where('type', 'container')->get();
+
 
         foreach ($lxdServers as $server) {
             $used_disk = 5;
@@ -51,6 +55,14 @@ class CalcServerJob implements ShouldQueue
                 'free_disk' => $free_disk,
                 'free_mem' => $free_mem
             ]);
+        }
+
+        // 获取 Windows 服务器 资源占用
+        foreach ($windows_servers as $windows_server) {
+            $result = Http::retry(5, 100)->get("http://{$windows_server->address}/status", [
+                'token' => $this->config['token']
+            ]);
+            
         }
     }
 }
