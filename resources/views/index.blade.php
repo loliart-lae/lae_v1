@@ -52,7 +52,7 @@
         <p><em>大部分操作都需要 创建项目(创建项目时完全免费)，并且项目中有足够的余额</em></p>
 
         <p>我们正在为 {{ App\Models\User::count() - 1 }} 个用户提供服务，并且时刻欢迎您的加入！</p>
-        <p>如果你有想法想对我说，欢迎发送邮件至<a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p> --}}
+        <p>如果你有想法想对我说，欢迎发送邮件至<a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
     @else
         <h1 class="mdui-text-color-theme">我们是？</h1>
         <p>嘿，这里是 <b>Light App Engine</b>，简称 <b>LAE</b>。</p>
