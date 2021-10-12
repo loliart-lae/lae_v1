@@ -41,8 +41,9 @@
                             <td nowrap="nowrap">{{ $server->cpu }}</td>
                             <td nowrap="nowrap">{{ $server->mem }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
-                            <td nowrap="nowrap">{{ Cache::get('windows_server_status_' . $server->id, 'Pending') }}%</td>
-                            <td nowrap="nowrap">{{ Cache::get('windows_server_status_' . $server->id, 'Pending') }}%</td>
+                            @php($status = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id, ['cpu' => 'null', 'mem' => 'null'])))
+                            <td nowrap="nowrap">{{ $status->cpu }}%</td>
+                            <td nowrap="nowrap">{{ $status->mem }}%</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
 
 
@@ -81,7 +82,8 @@
         <br /> <br />
 
         <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
-        <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
+        <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple"
+            mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
 
 
         <div class="mdui-dialog" id="sub-dialog">
