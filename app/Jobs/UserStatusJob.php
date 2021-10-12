@@ -4,12 +4,13 @@ namespace App\Jobs;
 
 use App\Models\Server;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
-use Illuminate\Support\Facades\Http;
 
 class UserStatusJob implements ShouldQueue
 {
@@ -40,10 +41,11 @@ class UserStatusJob implements ShouldQueue
             $result = Http::retry(5, 100)->get("http://{$windows_server->address}/status", [
                 'token' => $windows_server->token
             ]);
-            Server::where('id', $windows_server->id)->update([
-                'cpu_usage' => $result['cpu'],
-                'mem_usage' => $result['ram']
-            ]);
+
+            Cache::put('windows_server_' . $windows_server->id, json_encode([
+                'cpu' => $result['cpu'],
+                'mem' => $result['ram']
+            ]), 600);
         }
     }
 }
