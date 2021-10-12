@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Jobs\CostJob;
 use App\Jobs\CalcServerJob;
+use App\Jobs\ServerStatusJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -31,6 +32,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // 分钟计费
             dispatch(new CostJob())->onQueue('cost');
+            // 获取服务器资源
+            dispatch(new ServerStatusJob())->onQueue('remote_desktop');
         })->everyMinute();
         $schedule->call(function () {
             // 重新计算服务器配额
