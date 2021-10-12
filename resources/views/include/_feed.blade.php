@@ -50,12 +50,14 @@
                     </div>
                     <div class="mdui-card-content mdui-p-t-1">
                         <div id="log_{{ $status->id }}"></div>
+                        <textarea id="log_{{ $status->id }}_content"
+                            style="display:none;">{!! e($status->content) !!}</textarea>
                         <script>
                             $(function() {
                                 var log_view
                                 $('#log_{{ $status->id }}').html(null)
                                 log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
-                                    markdown: `{!! e($status->content) !!}`,
+                                    markdown: $('#log_{{ $status->id }}_content').html(),
                                     tocm: true,
                                     emoji: true,
                                     taskList: true,
