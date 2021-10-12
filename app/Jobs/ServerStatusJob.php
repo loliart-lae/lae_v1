@@ -42,7 +42,7 @@ class ServerStatusJob implements ShouldQueue
                 'token' => $windows_server->token
             ]);
 
-            Cache::put('windows_server_' . $windows_server->id, json_encode([
+            Cache::put('windows_server_status_' . $windows_server->id, json_encode([
                 'cpu' => $result['cpu'],
                 'mem' => $result['ram']
             ]), 600);
