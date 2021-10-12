@@ -97,6 +97,7 @@
                 <li>Tony Stark</li>
                 <li>xixi</li>
                 <li>FunnyStudio</li>
+                <li>HuoYiNetwork_Li</li>
                 <li>以及没有被提及的广大用户们。</li>
             </ul>
         </div>
@@ -122,7 +123,8 @@
         <p>非常感谢以下人员丰富社区知识库。</p>
         <div class="mdui-typo">
             <ol>
-                <p>暂无成员，争做第一吧。</p>
+                <li>HuoYiNetwork_Li</li>
+                <p>以及没有被提及的广大用户们。</p>
             </ol>
         </div>
     </div>
