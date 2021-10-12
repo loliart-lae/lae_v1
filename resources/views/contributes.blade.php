@@ -122,10 +122,10 @@
         <h1 class="mdui-text-color-theme">知识分享者</h1>
         <p>非常感谢以下人员丰富社区知识库。</p>
         <div class="mdui-typo">
-            <ol>
+            <ul>
                 <li>HuoYiNetwork_Li</li>
                 <p>以及没有被提及的广大用户们。</p>
-            </ol>
+            </ul>
         </div>
     </div>
 
