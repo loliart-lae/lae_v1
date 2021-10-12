@@ -44,9 +44,11 @@ class UserBalanceLog extends Model
     public function charge($user_id, $value, $reason = null)
     {
         try {
-            DB::beginTransaction();
+            // DB::beginTransaction();
             $user = new User();
-            $user_balance = $user->where('id', $user_id)->lockForUpdate()->first()->balance;
+            // $user_balance = $user->where('id', $user_id)->lockForUpdate()->first()->balance;
+            $user_balance = $user->where('id', $user_id)->first()->balance;
+
 
             $current_balance = $user_balance + $value;
 
@@ -58,7 +60,7 @@ class UserBalanceLog extends Model
             $this->reason = $reason;
 
             $this->save();
-            DB::commit();
+            // DB::commit();
         } catch (Exception $e) {
         }
 
