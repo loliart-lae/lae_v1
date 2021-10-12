@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\LxdContainer;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
@@ -36,9 +38,13 @@ class Project extends Model
 
     public static function cost($project_id, $value)
     {
+        $proj_balance = self::where('id', $project_id)->first()->balance;
+
+        $lock = Cache::lock("proj_balance_" . $project_id, $proj_balance);
+
         try {
-            DB::beginTransaction();
-            $proj_balance = self::where('id', $project_id)->lockForUpdate()->first()->balance;
+            $lock->block(5);
+            $proj_balance = self::where('id', $project_id)->first()->balance;
             $current_balance = $proj_balance - $value;
 
             if ($current_balance <= 0) {
@@ -46,26 +52,29 @@ class Project extends Model
             }
 
             self::where('id', $project_id)->update(['balance' => $current_balance]);
-            DB::commit();
-        } catch (\Exception $e) {
+        } catch (LockTimeoutException $e) {
             return false;
+        } finally {
+            optional($lock)->release();
         }
-
         return true;
     }
 
     public static function charge($project_id, $value)
     {
+        $proj_balance = self::where('id', $project_id)->first()->balance;
+
+        $lock = Cache::lock("proj_balance_" . $project_id, $proj_balance);
+        $lock->block(5);
         try {
-            DB::beginTransaction();
-            $proj_balance = self::where('id', $project_id)->lockForUpdate()->first()->balance;
+            $proj_balance = self::where('id', $project_id)->first()->balance;
             $current_balance = $proj_balance + $value;
             self::where('id', $project_id)->update(['balance' => $current_balance]);
-            DB::commit();
-        } catch (\Exception $e) {
+        }catch (LockTimeoutException $e) {
             return false;
+        } finally {
+            optional($lock)->release();
         }
-
         return true;
     }
 }

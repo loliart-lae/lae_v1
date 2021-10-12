@@ -6,7 +6,9 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserBalanceLog extends Model
@@ -16,10 +18,13 @@ class UserBalanceLog extends Model
 
     public function cost($user_id, $value, $reason = null)
     {
+        $user = new User();
+        $user_balance = $user->where('id', $user_id)->first()->balance;
+        $lock = Cache::lock("user_balance_" . $user_id, $user_balance);
+
         try {
-            // DB::beginTransaction();
-            $user = new User();
-            // $user_balance = $user->where('id', $user_id)->lockForUpdate()->first()->balance;
+            $lock->block(5);
+
             $user_balance = $user->where('id', $user_id)->first()->balance;
             $current_balance = $user_balance - $value;
 
@@ -35,19 +40,22 @@ class UserBalanceLog extends Model
             $this->reason = $reason;
 
             $this->save();
-            // DB::commit();
-        } catch (Exception $e) {
+        } catch (LockTimeoutException $e) {
+            return false;
+        } finally {
+            optional($lock)->release();
         }
-
         return true;
     }
 
     public function charge($user_id, $value, $reason = null)
     {
+        $user = new User();
+        $user_balance = $user->where('id', $user_id)->first()->balance;
+
+        $lock = Cache::lock("user_balance_" . $user_id, $user_balance);
         try {
-            DB::beginTransaction();
-            $user = new User();
-            $user_balance = $user->where('id', $user_id)->lockForUpdate()->first()->balance;
+            $lock->block(5);
 
             $current_balance = $user_balance + $value;
 
@@ -59,11 +67,11 @@ class UserBalanceLog extends Model
             $this->reason = $reason;
 
             $this->save();
-            DB::commit();
-        } catch (Exception $e) {
+        } catch (LockTimeoutException $e) {
+            return false;
+        } finally {
+            optional($lock)->release();
         }
-
-
         return true;
     }
 
