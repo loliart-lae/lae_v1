@@ -36,14 +36,14 @@
                     @php($i = 1)
                     @foreach ($servers as $server)
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $server->name }}</td>
-                            <td>{{ $server->cpu }}</td>
-                            <td>{{ $server->mem }}</td>
-                            <td>{{ $server->network_limit }} Mbps</td>
-                            <td>{{ $server->cpu_usage }}%</td>
-                            <td>{{ $server->mem_usage }}%</td>
-                            <td>{{ $server->price }}</td>
+                            <td nowrap="nowrap">{{ $i++ }}</td>
+                            <td nowrap="nowrap">{{ $server->name }}</td>
+                            <td nowrap="nowrap">{{ $server->cpu }}</td>
+                            <td nowrap="nowrap">{{ $server->mem }}</td>
+                            <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
+                            <td nowrap="nowrap">{{ $server->cpu_usage }}%</td>
+                            <td nowrap="nowrap">{{ $server->mem_usage }}%</td>
+                            <td nowrap="nowrap">{{ $server->price }}</td>
 
 
                             <td>
