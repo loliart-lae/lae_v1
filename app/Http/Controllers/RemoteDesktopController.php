@@ -94,7 +94,7 @@ class RemoteDesktopController extends Controller
             'user' => Auth::id()
         ];
 
-        dispatch(new RemoteDesktopJob($config));
+        dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');
 
         return redirect()->route('remote_desktop.index')->with('status', '正在安排您的账号...');
     }
