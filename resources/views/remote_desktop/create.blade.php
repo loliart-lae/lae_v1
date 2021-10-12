@@ -41,8 +41,8 @@
                             <td nowrap="nowrap">{{ $server->cpu }}</td>
                             <td nowrap="nowrap">{{ $server->mem }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
-                            <td nowrap="nowrap">{{ $server->cpu_usage }}%</td>
-                            <td nowrap="nowrap">{{ $server->mem_usage }}%</td>
+                            <td nowrap="nowrap">{{ Cache::get('windows_server_status_' . $server->id, 'Pending') }}%</td>
+                            <td nowrap="nowrap">{{ Cache::get('windows_server_status_' . $server->id, 'Pending') }}%</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
 
 

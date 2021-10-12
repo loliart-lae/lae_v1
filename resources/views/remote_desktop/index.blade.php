@@ -54,8 +54,8 @@
                         <td nowrap="nowrap">{{ $remote_desktop->server->cpu }} Core</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->mem }}M</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->network_limit }} Mbps</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->cpu_usage }}%</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->mem_usage }}%</td>
+                        <td nowrap="nowrap">{{ Cache::get('windows_server_status_' . $server->id, 'Pending') }}%</td>
+                        <td nowrap="nowrap">{{ Cache::get('windows_server_status_' . $server->id, 'Pending') }}%</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->name }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->domain }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->price }}/m
