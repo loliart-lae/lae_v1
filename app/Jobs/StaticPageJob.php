@@ -45,7 +45,8 @@ class StaticPageJob implements ShouldQueue
                         'password' => $this->config['password'],
                         'id' => $this->config['inst_id'],
                         'email' => $this->config['email'],
-                        'token' => $this->config['token']
+                        'token' => $this->config['token'],
+                        'domain' => $this->config['domain']
                     ]);
 
                     if ($result['status'] != 1) {
