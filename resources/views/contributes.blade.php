@@ -4,13 +4,11 @@
 
 @section('content')
     <div class="mdui-row">
-        <div class="mdui-typo-display-2">非常感谢以下人员对 {{ config('app.name') }} 的贡献</div><br>
-        <div class="mdui-typo-headline-opacity">{{ config('app.name') }} 是大家一同筑起的。</div>
+        <div class="mdui-typo-display-2">非常感谢以下人员对 {{ config('app.name') }} 的贡献</div>
+        <div class="mdui-typo-headline-opacity mdui-p-t-1">{{ config('app.name') }} 是大家一同筑起的。</div>
     </div>
-    <br />
 
-
-    <div class="mdui-row">
+    <div class="mdui-row mdui-p-t-3">
         <h1 class="mdui-text-color-theme">开发人员</h1>
 
         <div class="mdui-col-sm-12 mdui-col-md-4 mdui-m-t-1">
@@ -124,7 +122,7 @@
         <div class="mdui-typo">
             <ul>
                 <li>HuoYiNetwork_Li</li>
-                <p>以及没有被提及的广大用户们。</p>
+                <li>以及没有被提及的广大用户们。</li>
             </ul>
         </div>
     </div>
