@@ -67,7 +67,7 @@
                 @if ($i > 10)
                     <tr>
                         <td colspan="12" class="mdui-text-center">
-                            <a href="{{ route('remote_desktop.create') }}">新建个 阿噜噜噜噜噜噜吧 账号</a>
+                            <a href="{{ route('staticPage.create') }}">这个其实也可以搞Hexo之类</a>
                         </td>
                     </tr>
                 @endif
