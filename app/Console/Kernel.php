@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Jobs\CostJob;
 use App\Jobs\CalcServerJob;
+use App\Jobs\StaticPageJob;
 use App\Jobs\ServerStatusJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -43,7 +44,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             // 计算 静态托管 空间占用
-            dispatch(new CalcServerJob(['method' => 'count']))->onQueue('cost');
+            dispatch(new StaticPageJob(['method' => 'count']))->onQueue('cost');
 
         })->everyFiveMinutes();
         // 生成 metrics
