@@ -3,20 +3,21 @@
 namespace App\Jobs;
 
 use App\Models\Server;
+use App\Models\Tunnel;
 use App\Models\Forward;
 use App\Models\Project;
 use App\Jobs\SendEmailJob;
+use App\Models\StaticPage;
 use App\Models\LxdContainer;
 use App\Models\RemoteDesktop;
-use App\Models\ServerBalanceCount;
 use Illuminate\Bus\Queueable;
+use App\Models\ServerBalanceCount;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
-use App\Models\Tunnel;
 
 class CostJob implements ShouldQueue
 {
@@ -47,6 +48,7 @@ class CostJob implements ShouldQueue
         $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
         $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->get();
         // $server = new Server();
+        $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
         $serverBalanceCount = new ServerBalanceCount();
 
 
@@ -154,6 +156,32 @@ class CostJob implements ShouldQueue
                 Tunnel::where('id', $tunnel->id)->delete();
             } else {
                 $serverBalanceCount->server_id = $tunnel->server_id;
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->save();
+            }
+        }
+
+        // 获取 StaticPage 并计费
+        foreach ($staticPages as $staticPage) {
+            // 金额
+            $project_id = $staticPage->project->id;
+
+            $need_pay = $staticPage->used_disk / 10;
+
+            if (!Project::cost($project_id, $need_pay)) {
+                // 扣费失败，删除主机
+                StaticPage::where('id', $staticPage->id)->delete();
+
+                // 调度删除任务
+                $config = [
+                    'method' => 'delete',
+                    'inst_id' => $staticPage->id,
+                    'address' => $staticPage->server->address,
+                    'token' => $staticPage->server->token
+                ];
+                dispatch(new StaticPageJob($config));
+            } else {
+                $serverBalanceCount->server_id = $staticPage->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
             }
