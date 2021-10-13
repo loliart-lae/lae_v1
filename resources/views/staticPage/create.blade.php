@@ -24,6 +24,7 @@
                         <th>ID</th>
                         <th>名称</th>
                         <th>带宽</th>
+                        <th>每Mb价格</th>
                         <th>选择</th>
                     </tr>
                 </thead>
@@ -34,6 +35,7 @@
                             <td nowrap="nowrap">{{ $i++ }}</td>
                             <td nowrap="nowrap">{{ $server->name }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
+                            <td nowrap="nowrap">{{ $server->price }}</td>
                             <td>
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $server->id }} " name="server_id"
@@ -69,21 +71,14 @@
         <br /> <br />
 
         <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
-        <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple"
-            mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
-
-
-        <div class="mdui-dialog" id="sub-dialog">
-            <div class="mdui-dialog-title">请仔细阅读</div>
-            <div class="mdui-dialog-content">1. 请勿用于违法用途<br />
-            <div class="mdui-dialog-actions">
-                <button class="mdui-btn mdui-ripple" mdui-dialog-close>新建</button>
-            </div>
-        </div>
     </form>
 
     <br /><br />
-    <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix"></small></div>
+    <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
+            当前免费额度为 10Mb，超过后将按照 每Mb * 每Mb价格 收费 <br />
+            请不要用于违法用途，如有发现将直接删除所有数据并封禁LAE账号。<br />
+            开设空间后将自动申请SSL，如果失败将无法访问。<br />
+        </small></div>
 
     </div>
 @endsection
