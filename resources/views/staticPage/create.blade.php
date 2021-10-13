@@ -54,7 +54,7 @@
 
         <br /> <br />
         <span class="mdui-typo-headline">主机名称</span>
-        <p>用于标识主机</p>
+        <p>用于标识主机。</p>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">名称</label>
             <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
