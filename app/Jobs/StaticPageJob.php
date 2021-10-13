@@ -40,7 +40,7 @@ class StaticPageJob implements ShouldQueue
         switch ($this->config['method']) {
             case 'create':
                 try {
-                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/create", [
+                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/site/create", [
                         'username' => $this->config['username'],
                         'password' => $this->config['password'],
                         'id' => $this->config['inst_id'],
@@ -58,7 +58,7 @@ class StaticPageJob implements ShouldQueue
                 } catch (Exception $e) {
                     $staticPage->where('id', $this->config['inst_id'])->delete();
                     Message::send('此时无法新建 静态托管。', $this->config['user']);
-                    Http::retry(5, 100)->get("http://{$this->config['address']}/delete", [
+                    Http::retry(5, 100)->get("http://{$this->config['address']}/site/delete", [
                         'id' => $this->config['inst_id'],
                         'token' => $this->config['token']
                     ]);
@@ -69,7 +69,7 @@ class StaticPageJob implements ShouldQueue
                 break;
 
             case 'delete':
-                Http::retry(5, 100)->get("http://{$this->config['address']}/delete", [
+                Http::retry(5, 100)->get("http://{$this->config['address']}/site/delete", [
                     'id' => $this->config['inst_id'],
                     'token' => $this->config['token']
                 ]);
@@ -78,7 +78,7 @@ class StaticPageJob implements ShouldQueue
 
             case 'passwd':
                 try {
-                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/passwd", [
+                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/site/passwd", [
                         'id' => $this->config['inst_id'],
                         'password' => $this->config['password'],
                         'token' => $this->config['token']
