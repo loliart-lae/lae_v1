@@ -17,13 +17,15 @@ class StaticPageJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $config;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
     }
 
     /**
