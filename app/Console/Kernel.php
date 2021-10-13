@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             // 计算 静态托管 空间占用
-            dispatch(new StaticPageJob(['method' => 'count']));
+            dispatch(new StaticPageJob(['method' => 'count']))->onQueue('default');
 
         })->everyFiveMinutes();
         // 生成 metrics
