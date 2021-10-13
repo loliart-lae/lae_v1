@@ -95,7 +95,7 @@ class StaticPageController extends Controller
             'token' => $server_data->token,
             'username' => $staticPage->ftp_username,
             'password' => $staticPage->ftp_password,
-            'domain' => $request->domain,
+            'domain' => $staticPage->domain,
             'email' => Auth::user()->email,
             'user' => Auth::id()
         ];
