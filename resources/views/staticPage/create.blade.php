@@ -24,6 +24,7 @@
                         <th>ID</th>
                         <th>名称</th>
                         <th>带宽</th>
+                        <th>解析地址</th>
                         <th>每Mb价格</th>
                         <th>选择</th>
                     </tr>
@@ -35,6 +36,7 @@
                             <td nowrap="nowrap">{{ $i++ }}</td>
                             <td nowrap="nowrap">{{ $server->name }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
+                            <td nowrap="nowrap">{{ $server->domain }}</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
                             <td>
                                 <label class="mdui-radio">
