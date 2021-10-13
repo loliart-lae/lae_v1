@@ -19,4 +19,8 @@ class ServerController extends Controller
         return Server::where('id', $id)->where('type', 'tunnel')->exists();
     }
 
+    static public function existsStaticPage($id) {
+        return Server::where('id', $id)->where('type', 'staticPage')->exists();
+    }
+
 }
