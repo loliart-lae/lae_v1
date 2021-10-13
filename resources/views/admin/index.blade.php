@@ -5,6 +5,7 @@
 @section('content')
 
     <div class="mdui-typo-display-2">管理员主页</div>
+    <p>你好，{{ Auth::user()->name }}。</p>
 
     <div class="mdui-row mdui-m-t-2">
         <div class="mdui-card mdui-p-a-2" style="border-radius: 8px;">
