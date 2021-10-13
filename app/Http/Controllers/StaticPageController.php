@@ -163,6 +163,6 @@ class StaticPageController extends Controller
             StaticPage::where('id', $id)->delete();
         }
 
-        return redirect()->back()->with('status', '远程桌面账号已安排删除。');
+        return redirect()->back()->with('status', '静态空间 已安排删除。');
     }
 }
