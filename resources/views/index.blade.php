@@ -15,7 +15,6 @@
 
         @guest
 
-
         {{-- <h2 class="mdui-text-color-theme">2021.10.3 01:48 附：LAE 仍需要改进</h2>
         <p>Light App Engine 仍需要改进。</p>
         <p>非常感谢用户宣传LAE。经过这次稍小流量的冲击，我们发现了自身的问题。</p>
@@ -105,7 +104,7 @@
 
         <h2 class="mdui-text-color-theme">什么是 文档？</h2>
         <p>文档 是 Light App Engine 偏向于社区化的一个功能，我们鼓励用户在这里撰写文档。<br />
-            在编写/阅读文档时，你还可以进行SSH。每当你撰写一份文档并受到别人认同时，账号积分会 +1。</p>
+            在编写/阅读文档时，你还可以进行 SSH。每当你撰写一份文档并受到别人认同时，账号积分会 +1。</p>
 
         <h1 class="mdui-text-color-theme">我不可以使用 Light App Engine 的服务做什么？</h1>
 
