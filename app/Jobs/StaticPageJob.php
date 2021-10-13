@@ -73,8 +73,6 @@ class StaticPageJob implements ShouldQueue
                 break;
 
             case 'delete':
-
-
                 $result = Http::retry(5, 100)->get("http://{$this->config['address']}/site/delete", [
                     'id' => $this->config['inst_id'],
                     'token' => $this->config['token']
