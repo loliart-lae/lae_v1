@@ -6,13 +6,12 @@
     {{-- <div class="mdui-typo-display-2">嘿，你好</div><br>
     <div class="mdui-typo-headline-opacity">借助 LAE 轻量应用引擎 在互联网中快速开辟一席之地</div> --}}
 
-    <div class="mdui-typo-display-2">Light App Engine</div><br />
-    <div class="mdui-typo-headline-opacity">轻量应用引擎</div>
+    <div class="mdui-typo-display-2">Light App Engine</div>
+    <div class="mdui-typo-headline-opacity mdui-p-t-2">轻量应用引擎</div>
 
-    <div class="mdui-typo">
-        <br />
+    <div class="mdui-typo mdui-p-t-4">
 
-        <h2 class="mdui-text-color-theme">未经许可，请不要宣传 LAE</h2>
+        <p><mark>温馨提醒：请不要使用不得当的方式宣传 LAE</mark></p>
 
         @guest
 
@@ -64,7 +63,8 @@
         <p>目前的充值流程是这样的：</p>
 
         <ol>
-            <li>点击顶栏 “剩余积分”</li>
+            <li>点击顶栏 “用户名 / ***”</li>
+            <li>点击积分后的 “充值”</li>
             <li>输入金额</li>
             <li>扫码充值</li>
         </ol>
@@ -77,11 +77,11 @@
             <li><mark>项目中有足够的积分余额</mark></li>
         </ol>
 
-        <p>确保这些条件之后，你可以按照这个流程操作：</p>
+        <p>确保这些条件之后，你可以按照这个流程操作（此处以应用容器为例）：</p>
 
         <ol>
-            <li>点击 “容器管理”</li>
-            <li>点击 “新建Linux容器”</li>
+            <li>点击 “应用容器”</li>
+            <li>点击 “新建应用容器”</li>
             <li>填写基本信息，然后点击 “创建”</li>
             <li>稍等片刻后，您的容器就已经准备完成。</li>
         </ol>
@@ -116,7 +116,7 @@
         </ul>
 
         <p>Light App Engine 也为除了您以外的 {{ App\Models\User::count() - 1 }} 个用户提供服务，期待您的成果💗</p>
-        <p>如果你有想法想对我说，欢迎发送邮件至<a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
+        <p>如果你有想法想对我说，欢迎发送邮件至 <a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
 
     @endguest
 </div>
