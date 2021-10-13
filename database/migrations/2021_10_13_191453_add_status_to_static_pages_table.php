@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFtpAndDiskToStaticPagesTable extends Migration
+class AddStatusToStaticPagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class AddFtpAndDiskToStaticPagesTable extends Migration
     public function up()
     {
         Schema::table('static_pages', function (Blueprint $table) {
-            $table->string('ftp_username')->nullable()->index();
-            $table->string('ftp_password')->nullable()->index();
-            $table->unsignedDouble('used_disk')->index()->default(0);
+            $table->string('status')->default('pending')->index();
+
         });
     }
 
@@ -28,7 +27,7 @@ class AddFtpAndDiskToStaticPagesTable extends Migration
     public function down()
     {
         Schema::table('static_pages', function (Blueprint $table) {
-            //
+            $table->dropColumn('status');
         });
     }
 }
