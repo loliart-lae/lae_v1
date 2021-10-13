@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Exception;
+use App\Models\Server;
 use App\Models\Message;
 use App\Models\StaticPage;
 use Illuminate\Bus\Queueable;
@@ -84,14 +85,17 @@ class StaticPageJob implements ShouldQueue
                 break;
 
             case 'count':
-                $result = \Illuminate\Support\Facades\Http::retry(5, 100)->get("http://{$this->config['address']}/site/count", [
-                    'token' => $this->config['token']
-                ]);
+                $servers = Server::where('type', 'staticPage')->get();
+                foreach ($servers as $server) {
+                    $result = \Illuminate\Support\Facades\Http::retry(5, 100)->get("http://{$server->address}/site/count", [
+                        'token' => $server->token
+                    ]);
 
-                $result = $result['data']['info'];
+                    $result = $result['data']['info'];
 
-                foreach ($result as $data) {
-                    StaticPage::where('id', $data->id)->update(['used_disk' => $data->size]);
+                    foreach ($result as $data) {
+                        StaticPage::where('id', $data->id)->update(['used_disk' => $data->size]);
+                    }
                 }
 
                 break;
