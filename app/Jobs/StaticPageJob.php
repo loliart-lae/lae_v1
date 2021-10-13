@@ -89,11 +89,15 @@ class StaticPageJob implements ShouldQueue
                 foreach ($servers as $server) {
                     $result = \Illuminate\Support\Facades\Http::retry(5, 100)->get("http://{$server->address}/site/count", [
                         'token' => $server->token
-                    ]);
+                    ])->body();
 
-                    $result = $result['data']['info'];
+                    $result = json_decode($result);
 
-                    foreach ($result as $data) {
+                    $result = $result->data->info;
+
+                    // var_dump($result);
+
+                    foreach ($result as $data) {;
                         StaticPage::where('id', $data->id)->update(['used_disk' => $data->size]);
                     }
                 }
