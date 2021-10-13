@@ -36,8 +36,6 @@
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-
-
         </div>
     </div>
     <div class="mdui-container mdui-p-a-2 pjax-container">
