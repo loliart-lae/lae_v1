@@ -147,6 +147,22 @@ class StaticPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $staticPage = StaticPage::where('id', $id)->with(['server', 'project'])->firstOrFail();
+        if (ProjectMembersController::userInProject($staticPage->project->id)) {
+            // 调度删除任务
+            $config = [
+                'method' => 'delete',
+                'inst_id' => $staticPage->id,
+                'address' => $staticPage->server->address,
+                'token' => $staticPage->server->token,
+                'user' => Auth::id()
+            ];
+            dispatch(new StaticPageJob($config))->onQueue('remote_desktop');
+
+            // 删除
+            StaticPage::where('id', $id)->delete();
+        }
+
+        return redirect()->back()->with('status', '远程桌面账号已安排删除。');
     }
 }

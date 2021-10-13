@@ -77,7 +77,7 @@ class StaticPageJob implements ShouldQueue
             case 'passwd':
                 try {
                     $result = Http::retry(5, 100)->get("http://{$this->config['address']}/passwd", [
-                        'inst_id' => $this->config['inst)id'],
+                        'id' => $this->config['inst_id'],
                         'password' => $this->config['password'],
                         'token' => $this->config['token']
                     ]);
