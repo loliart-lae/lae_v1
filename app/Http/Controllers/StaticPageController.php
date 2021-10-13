@@ -157,7 +157,7 @@ class StaticPageController extends Controller
                 'token' => $staticPage->server->token,
                 'user' => Auth::id()
             ];
-            dispatch(new StaticPageJob($config))->onQueue('remote_desktop');
+            dispatch(new StaticPageJob($config));
 
             // 删除
             StaticPage::where('id', $id)->delete();
