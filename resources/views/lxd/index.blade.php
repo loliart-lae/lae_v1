@@ -10,7 +10,6 @@
     <a href="{{ route('lxd.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 应用容器</a>
     {{-- &nbsp;&nbsp;
     <a href="{{ route('images.index') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">镜像管理</a> --}}
-    <br /><br />
     <div class="mdui-typo">
 
         @php($i = 1)
