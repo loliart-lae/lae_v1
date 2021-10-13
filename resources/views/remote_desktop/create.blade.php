@@ -88,7 +88,7 @@
 
         <div class="mdui-dialog" id="sub-dialog">
             <div class="mdui-dialog-title">请仔细阅读</div>
-            <div class="mdui-dialog-content">1. 禁止将“共享的 Windows”用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户。<br />
+            <div class="mdui-dialog-content">1. 禁止将“共享的 Windows”用于挖矿、攻击（DDOS，CC）、QEMU、刷流量等。如有发现，将直接删除用户。<br />
                 2. 请勿长时间占用CPU与内存，连续10分钟占CPU 20%以上或者内存占用超过500Mb的，将直接删除用户<br />
                 3. 浏览器部分类型的页面将会持续高强度消耗CPU资源，用完后请关闭。<br />
                 4. 如有需要安装的软件请尽量使用绿色版。<br />
