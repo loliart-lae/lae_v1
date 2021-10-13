@@ -35,10 +35,17 @@ class Kernel extends ConsoleKernel
             // 获取服务器资源
             dispatch(new ServerStatusJob())->onQueue('remote_desktop');
         })->everyMinute();
+
         $schedule->call(function () {
             // 重新计算服务器配额
             dispatch(new CalcServerJob())->onQueue('cost');
         })->everyTenMinutes();
+
+        $schedule->call(function () {
+            // 计算 静态托管 空间占用
+            dispatch(new CalcServerJob(['method' => 'count']))->onQueue('cost');
+
+        })->everyFiveMinutes();
         // 生成 metrics
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }

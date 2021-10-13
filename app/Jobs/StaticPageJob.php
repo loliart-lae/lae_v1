@@ -83,6 +83,19 @@ class StaticPageJob implements ShouldQueue
                 }
                 break;
 
+            case 'count':
+                $result = \Illuminate\Support\Facades\Http::retry(5, 100)->get("http://{$this->config['address']}/site/count", [
+                    'token' => $this->config['token']
+                ]);
+
+                $result = $result['data']['info'];
+
+                foreach ($result as $data) {
+                    StaticPage::where('id', $data->id)->update(['used_disk' => $data->size]);
+                }
+
+                break;
+
             case 'passwd':
                 try {
                     $result = Http::retry(5, 100)->get("http://{$this->config['address']}/site/passwd", [
