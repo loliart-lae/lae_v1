@@ -166,7 +166,7 @@ class CostJob implements ShouldQueue
             // 金额
             $project_id = $staticPage->project->id;
 
-            $need_pay = $staticPage->used_disk / 10;
+            $need_pay = $staticPage->used_disk * $staticPage->server->price;
 
             if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除主机
