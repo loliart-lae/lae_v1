@@ -31,8 +31,7 @@
                                     <input class="mdui-textfield-input" type="text" autocomplete="off" name="user_email">
                                 </div>
 
-                                <button class="mdui-btn mdui-btn-raised mdui-color-theme" type="submit">搜索</button>
-                                <button class="mdui-btn" type="reset">重置</button>
+                                <button class="mdui-btn mdui-btn-raised mdui-color-theme" mdui-dialog="{target: '#search'}">搜索</button>
                             </div>
                         </th>
                     </tr>
@@ -45,7 +44,7 @@
                             <img class="avatar" src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
                         </td>
 
-                        <td style="width: 208px;">
+                        <td  nowrap="nowrap">
                             @if (is_null($user->website))
                                 {{ $user->name }}
                             @else
@@ -53,7 +52,7 @@
                             @endif
                         </td>
 
-                        <td>
+                        <td nowrap="nowrap">
                             {{ $user->bio ?? '未设置签名' }}
                         </td>
 
@@ -65,9 +64,24 @@
                     </tr>
                     @endforeach
                 </tbody>
+
+                <div class="mdui-dialog" id="search">
+                    <div class="mdui-textfield">
+                        <input class="mdui-textfield-input" type="text" placeholder="User Name"/>
+                    </div>
+                </div>
             </table>
         </div>
     </div>
+
+    <script>
+        var $ = mdui.$;
+        var tab = new mdui.Tab('#search');
+
+        $('#search').on('open.mdui.dialog', function () {
+            tab.handleUpdate();
+        });
+    </script>
 
     <style type="text/css">
         .avatar {
