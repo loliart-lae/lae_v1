@@ -198,7 +198,7 @@
             $("#pre_btn").show()
             $('.pjax-container').html(`
                 <div class="mdui-text-center mdui-m-t-5 mdui-m-b-5">
-                    <div class="mdui-spinner mdui-spinner-colorful"></div>
+                    <div class="mdui-spinner"></div>
                 </div>
                 `)
             mdui.mutation()
