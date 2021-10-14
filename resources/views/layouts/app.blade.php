@@ -90,13 +90,13 @@
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
                 <!-- 说实话我也不知道为什么这里会给未登录用户展示这个，很奇怪 我先注释掉吧
-                                                                                                                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                                                                                                                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
-                                                                                                                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
-                                                                                                                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                                                                                                                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
-                                                                                                                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-                                                                                                                -->
+                                                                                                                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
+                                                                                                                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+                                                                                                                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
+                                                                                                                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
+                                                                                                                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+                                                                                                                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+                                                                                                                        -->
             @else
                 <a href="{{ route('main') }}" class="main_link">{{ config('app.name') }}</a>
                 <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
@@ -125,16 +125,19 @@
             @endguest
         </div>
     </div>
-    <div class="@yield('container', 'mdui-container') pjax-container">
+
+    <div class="mdui-container mdui-m-t-5 mdui-m-b-5 mdui-text-center" id="load-spinner" style="opacity: 0;display:none">
+        <div class="mdui-spinner"></div>
+    </div>
+
+    <div class="@yield('container', 'mdui-container') pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">
         </div>
-
         <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
                 style="position: relative; top: -1px;margin-right: 2px;"
                 class="mdui-icon material-icons">arrow_back</i>返回</a>
 
         @yield('content')
-
 
         <div class="mdui-typo" style="margin-top: 50px">
             <p class="mdui-typo-caption-opacity mdui-text-center">
@@ -160,6 +163,7 @@
     <script src="/vendor/editor.md/lib/jquery.flowchart.min.js"></script>
     <script src="/vendor/editor.md/js/editormd.min.js"></script>
     <script>
+        mdui.mutation()
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('input[name="_token"]').val()
@@ -167,14 +171,12 @@
         })
 
         var main_link = '{{ config('app.name') }}'
-        $.pjax.defaults.timeout = 1200
+        $.pjax.defaults.timeout = 500
 
         function close_offline_tip() {
             $('#offline_tip').fadeOut()
             $('body').css('overflow', 'auto')
         }
-
-
 
         function showOfflineTip() {
             mdui.snackbar({
@@ -195,14 +197,15 @@
 
         $("#pre_btn").hide()
         $(document).on('pjax:clicked', function() {
-            $("#pre_btn").show()
-            $('.pjax-container').html(`
-                <div class="mdui-text-center mdui-m-t-5 mdui-m-b-5">
-                    <div class="mdui-spinner"></div>
-                </div>
-                `)
+            $('#load-spinner').css('display', 'block')
+            $('#load-spinner').css('opacity', 1)
             mdui.mutation()
-            $('.pjax-container').css('opacity', 1)
+
+            $("#pre_btn").show()
+            $('#main').css('opacity', 0)
+            $('#main').css('height', '100px')
+            $('#main').css('overflow', 'hidden')
+
 
             // $('.pjax-container').css('transform', 'scale(0.99)')
         })
@@ -217,7 +220,13 @@
         })
 
         $(document).on("pjax:complete", function(event) {
+            mdui.mutation()
+            $('#load-spinner').css('opacity', 0)
+            $('#load-spinner').css('display', 'none')
+            $('#main').css('height', 'unset')
+            $('#main').css('overflow', 'auto')
 
+            $('#main').css('opacity', 1)
             // $('.pjax-container').css('transform', 'unset')
         })
     </script>
