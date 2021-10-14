@@ -115,6 +115,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::put('/fastVisit/{id}', [Controllers\FastVisitController::class, 'toggleAd'])->name('fast_visit.update');
     Route::resource('/fastVisit', Controllers\FastVisitController::class);
 
+    Route::post('/staticPage/{id}/backup', [Controllers\StaticPageController::class, 'backup'])->name('staticPage.backup');
     Route::resource('/staticPage', Controllers\StaticPageController::class);
 
 
