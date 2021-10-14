@@ -41,16 +41,19 @@
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $staticPage->id }}</td>
                         <td nowrap="nowrap">{{ $staticPage->name }}</td>
-                        <td nowrap="nowrap"><a href="https://{{ $staticPage->domain }}" target="_blank">{{ $staticPage->domain }}</a></td>
-                        <td nowrap="nowrap"><a onclick="mdui.alert('FTP 用户名: ' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码:' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与“连接与解析”相同。')">显示</a></td>
+                        <td nowrap="nowrap"><a href="https://{{ $staticPage->domain }}"
+                                target="_blank">{{ $staticPage->domain }}</a></td>
+                        <td nowrap="nowrap"><a
+                                onclick="mdui.alert('FTP 用户名: ' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码:' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与“连接与解析”相同。')">显示</a>
+                        </td>
                         <td nowrap="nowrap">{{ $staticPage->used_disk }} M</td>
                         <td nowrap="nowrap">{{ $staticPage->server->name }}</td>
                         <td nowrap="nowrap">{{ $staticPage->server->domain }}</td>
                         <td nowrap="nowrap">
                             @if ($staticPage->used_disk < 10)
-                            0
+                                0
                             @else
-                            {{ $staticPage->used_disk * $staticPage->server->price }}
+                                {{ $staticPage->used_disk * $staticPage->server->price }}
                             @endif
                         </td>
 
@@ -61,10 +64,12 @@
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('staticPage.destroy', $staticPage->id) }}">@csrf
                                     @method('DELETE')</form>
-                            @elseif($staticPage->status == 'pending')
+                            @elseif ($staticPage->status == 'pending')
                                 <div class="mdui-progress">
                                     <div class="mdui-progress-indeterminate"></div>
                                 </div>
+                            @elseif ($staticPage->status == 'backup')
+                                
                             @else
                                 {{ $staticPage->status }}
                             @endif

@@ -85,7 +85,7 @@ class StaticPageJob implements ShouldQueue
             case 'count':
                 $servers = Server::where('type', 'staticPage')->get();
                 foreach ($servers as $server) {
-                    $result = \Illuminate\Support\Facades\Http::retry(5, 100)->get("http://{$server->address}/site/count", [
+                    $result = Http::retry(5, 100)->get("http://{$server->address}/site/count", [
                         'token' => $server->token
                     ])->body();
 
@@ -119,6 +119,36 @@ class StaticPageJob implements ShouldQueue
                     // }
                 } catch (Exception $e) {
                     Message::send('此时无法更改 静态托管FTP 的密码。', $this->config['user']);
+                }
+                break;
+
+            case 'backup':
+                try {
+                    Message::send('正在备份静态站点 ' . $this->config['name'] . '。', $this->config['user']);
+
+                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/site/backup", [
+                        'id' => $this->config['inst_id'],
+                        'filename' => $this->config['filename'],
+                        'token' => $this->config['token']
+                    ]);
+
+                    if ($result['status'] != 1) {
+                        if ($result['status'] != 1) {
+                            throw new Exception('error read response.');
+                        }
+                    }
+
+                    dispatch(new SendEmailJob($this->config['email'], "静态站点 {$this->config['name']} 备份完成，备份文件已保存至站点的根目录下。您可以访问<a href='https://{$this->config['domain']}'>https://{$this->config['domain']}</a>下载，或者通过FTP传输。下载/传输完成后请确认并删除备份文件。"))->onQueue('mail');
+
+                    $staticPage->where('id', $this->config['inst_id'])->update([
+                        'status' => 'active',
+                    ]);
+
+                    Message::send('静态站点 ' . $this->config['name'] . ' 备份完成。', $this->config['user']);
+
+
+                } catch (Exception $e) {
+                    Message::send('此时无法备份静态托管 ' . $this->config['name'] . '。', $this->config['user']);
                 }
                 break;
         }

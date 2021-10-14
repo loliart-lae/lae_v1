@@ -171,4 +171,32 @@ class StaticPageController extends Controller
 
         return redirect()->back()->with('status', '静态空间 已安排删除。');
     }
+
+
+    public function backup($id)
+    {
+        // 生成备份文件并放置于网站根目录
+        $staticPage = StaticPage::where('id', $id)->with(['server', 'project'])->firstOrFail();
+
+        if (ProjectMembersController::userInProject($staticPage->project->id)) {
+
+            $staticPage = StaticPage::where('id', $id)->update(['status' => 'queue']);
+
+            $config = [
+                'method' => 'backup',
+                'inst_id' => $staticPage->id,
+                'address' => $staticPage->server->address,
+                'token' => $staticPage->server->token,
+                'filename' => Str::random(20),
+                'name' => $staticPage->name,
+                'user' => Auth::id(),
+                'email' => Auth::user()->email,
+                'domain' => $staticPage->domain
+            ];
+
+
+            dispatch(new StaticPageJob($config));
+            return redirect()->back()->with('status', '已安排备份任务。');
+        }
+    }
 }
