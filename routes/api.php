@@ -21,8 +21,10 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
         return $request->user();
     });
 
-    Route::get('/servers', [api\ServerController::class, 'index']);
-    Route::get('/projects', [api\ProjectController::class, 'index']);
+    Route::get('/_servers', [api\ServerController::class, 'index']);
+    Route::get('/_projects', [api\ProjectController::class, 'index']);
+    Route::resource('/_status', api\StatusController::class);
+
 
     Route::resource('/v1/_tunnels', v1\TunnelController::class);
 
