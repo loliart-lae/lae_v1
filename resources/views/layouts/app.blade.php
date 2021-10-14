@@ -89,13 +89,13 @@
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
                 <!-- 说实话我也不知道为什么这里会给未登录用户展示这个，很奇怪 我先注释掉吧
-                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
-                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
-                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
-                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-                            -->
+                                                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
+                                                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+                                                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
+                                                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
+                                                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+                                                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+                                                            -->
             @else
                 <a href="{{ route('main') }}" class="main_link">{{ config('app.name') }}</a>
                 <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
@@ -129,7 +129,7 @@
         </div>
 
         <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
-                style="position: relative; top: -1px;margin-right: 2px"
+                style="position: relative; top: -1px;margin-right: 2px;"
                 class="mdui-icon material-icons">arrow_back</i>返回</a>
 
         @yield('content')
@@ -194,24 +194,31 @@
 
         $("#pre_btn").hide()
         $(document).on('pjax:clicked', function() {
-            $("#pre_btn").fadeIn()
-            $('.pjax-container').css('opacity', '0.7')
-            $('.pjax-container').css('transform', 'scale(0.99)')
+            $("#pre_btn").show()
+            $('.pjax-container').html(`
+                <div class="mdui-text-center mdui-m-t-5 mdui-m-b-5">
+                    <div class="mdui-spinner mdui-spinner-colorful"></div>
+                </div>
+                `)
+            mdui.mutation()
+
+
+            // $('.pjax-container').css('transform', 'scale(0.99)')
         })
         $(document).on("pjax:timeout", function(event) {
-            $('.pjax-container').css('opacity', '0.2')
-            $('.pjax-container').css('transform', 'scale(0.98)')
-            $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
-  <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
-</div>`)
+            // $('.pjax-container').css('opacity', '0.2')
+            // $('.pjax-container').css('transform', 'scale(0.98)')
+            //             $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
+        //   <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
+        // </div>`)
 
             event.preventDefault()
         })
 
         $(document).on("pjax:complete", function(event) {
             $('.main_link').html(main_link)
-            $('.pjax-container').css('opacity', '1')
-            $('.pjax-container').css('transform', 'unset')
+
+            // $('.pjax-container').css('transform', 'unset')
         })
     </script>
     @yield('script')
