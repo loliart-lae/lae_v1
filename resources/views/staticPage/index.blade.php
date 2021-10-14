@@ -60,7 +60,8 @@
                         <td nowrap="nowrap">
                             @if ($staticPage->status == 'active')
                                 <a href="#"
-                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
+                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>|<a href="#"
+                                    onclick="if (confirm('备份时间依据站点大小而定。')) { $('#f-bak-{{ $i }}').submit() }">备份</a>
                             @elseif ($staticPage->status == 'pending')
                                 <div class="mdui-progress">
                                     <div class="mdui-progress-indeterminate"></div>
@@ -75,8 +76,7 @@
                     </tr>
                     <form id="f-{{ $i }}" method="post"
                         action="{{ route('staticPage.destroy', $staticPage->id) }}">@csrf
-                        @method('DELETE')</form> |<a href="#"
-                        onclick="if (confirm('备份时间依据站点大小而定。')) { $('#f-bak-{{ $i }}').submit() }">备份</a>
+                        @method('DELETE')</form>
                     <form id="f-bak-{{ $i }}" method="post"
                         action="{{ route('staticPage.backup', $staticPage->id) }}">@csrf</form>
                 @endforeach
