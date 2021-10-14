@@ -40,7 +40,7 @@
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $staticPage->id }}</td>
                         <td nowrap="nowrap">{{ $staticPage->name }}</td>
-                        <td nowrap="nowrap"><a href="{{ $staticPage->domain }}" target="_blank">{{ $staticPage->domain }}</a></td>
+                        <td nowrap="nowrap"><a href="https://{{ $staticPage->domain }}" target="_blank">{{ $staticPage->domain }}</a></td>
                         <td nowrap="nowrap"><a onclick="mdui.alert('FTP 用户名: ' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码:' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与“连接与解析”相同。')">显示</a></td>
                         <td nowrap="nowrap">{{ $staticPage->used_disk }} M</td>
                         <td nowrap="nowrap">{{ $staticPage->server->domain }}</td>
