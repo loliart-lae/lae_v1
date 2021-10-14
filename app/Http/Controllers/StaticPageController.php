@@ -180,11 +180,11 @@ class StaticPageController extends Controller
 
         if (ProjectMembersController::userInProject($staticPage->project->id)) {
 
-            $staticPage = StaticPage::where('id', $id)->update(['status' => 'queue']);
+            StaticPage::where('id', $id)->update(['status' => 'queue']);
 
             $config = [
                 'method' => 'backup',
-                'inst_id' => $staticPage->id,
+                'inst_id' => $id,
                 'address' => $staticPage->server->address,
                 'token' => $staticPage->server->token,
                 'filename' => Str::random(20),
