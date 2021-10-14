@@ -113,7 +113,7 @@ class FastVisitController extends Controller
         } else {
             $fastVisit_sql->increment('times');
             if ($data->show_ad) {
-                ProjectController::do_charge($data->project->id, $data->domain->balance);
+                Project::charge($data->project->id, $data->domain->balance);
             }
         }
 
@@ -145,7 +145,6 @@ class FastVisitController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     }
 
     /**
@@ -187,14 +186,15 @@ class FastVisitController extends Controller
      */
     public function destroy($id)
     {
-        if(self::delete_fast_visit($id)) {
+        if (self::delete_fast_visit($id)) {
             return redirect()->back()->with('status', '访问入口 删除完成。');
         } else {
             return redirect()->back()->with('status', '访问入口 删除失败。');
         }
     }
 
-    public static function delete_fast_visit($id) {
+    public static function delete_fast_visit($id)
+    {
         $fastVisit = new FastVisit();
         $fastVisit_sql = $fastVisit->where('id', $id);
         $fastVisit_data = $fastVisit_sql->firstOrFail();
