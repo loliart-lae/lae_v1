@@ -18,6 +18,7 @@
                     <th>域名</th>
                     <th>FTP 用户名与密码</th>
                     <th>存储用量</th>
+                    <th>服务器</th>
                     <th>连接与解析</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
@@ -43,6 +44,7 @@
                         <td nowrap="nowrap"><a href="https://{{ $staticPage->domain }}" target="_blank">{{ $staticPage->domain }}</a></td>
                         <td nowrap="nowrap"><a onclick="mdui.alert('FTP 用户名: ' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码:' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与“连接与解析”相同。')">显示</a></td>
                         <td nowrap="nowrap">{{ $staticPage->used_disk }} M</td>
+                        <td nowrap="nowrap">{{ $staticPage->server->name }}</td>
                         <td nowrap="nowrap">{{ $staticPage->server->domain }}</td>
                         <td nowrap="nowrap">
                             @if ($staticPage->used_disk < 10)
