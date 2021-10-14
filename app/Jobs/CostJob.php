@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Server;
 use App\Models\Tunnel;
 use App\Models\Forward;
+use App\Models\Message;
 use App\Models\Project;
 use App\Jobs\SendEmailJob;
 use App\Models\StaticPage;
@@ -99,6 +100,7 @@ class CostJob implements ShouldQueue
                     'server_id' => $lxd->server->id,
                 ];
                 dispatch(new LxdJob($config));
+                Message::send('容器 ' . $lxd->name . '因为积分不足而自动删除。', $lxd->project->user_id);
             } else {
                 $config = [
                     'inst_id' => $lxd->id,
@@ -137,6 +139,7 @@ class CostJob implements ShouldQueue
                 ];
 
                 dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
+                Message::send('共享的 Windows 远程桌面' . $remote_desktop->username . '因为积分不足而自动删除。', $remote_desktop->project->user_id);
             } else {
                 $serverBalanceCount->server_id = $remote_desktop->server_id;
                 $serverBalanceCount->value = $need_pay;
@@ -154,6 +157,8 @@ class CostJob implements ShouldQueue
             if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除账号
                 Tunnel::where('id', $tunnel->id)->delete();
+                Message::send('穿透隧道' . $tunnel->name . '因为积分不足而自动删除。', $tunnel->project->user_id);
+
             } else {
                 $serverBalanceCount->server_id = $tunnel->server_id;
                 $serverBalanceCount->value = $need_pay;
@@ -185,6 +190,8 @@ class CostJob implements ShouldQueue
                     'token' => $staticPage->server->token
                 ];
                 dispatch(new StaticPageJob($config));
+                Message::send('静态页面' . $staticPage->name . '因为积分不足而自动删除。', $staticPage->project->user_id);
+
             } else {
                 $serverBalanceCount->server_id = $staticPage->server_id;
                 $serverBalanceCount->value = $need_pay;

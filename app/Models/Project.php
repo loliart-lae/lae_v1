@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Jobs\SendEmailJob;
 use App\Models\LxdContainer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
@@ -38,7 +39,8 @@ class Project extends Model
 
     public static function cost($project_id, $value)
     {
-        $proj_balance = self::where('id', $project_id)->first()->balance;
+        $project_sql = self::where('id', $project_id)->with('user')->first();
+        $proj_balance = $project_sql->balance;
 
         $lock = Cache::lock("proj_balance_" . $project_id, $proj_balance);
 
@@ -52,6 +54,14 @@ class Project extends Model
             }
 
             self::where('id', $project_id)->update(['balance' => $current_balance]);
+
+            if ($current_balance <= 50) {
+                if (!Cache::get('project_balance_' . $project_id . '_alerted')) {
+                    dispatch(new SendEmailJob($project_sql->user->email, $project_sql->name . " 项目的积分不足，还剩下" . $current_balance))->onQueue('mail');
+                    Message::send($project_sql->name . " 项目的积分不足，还剩下" . $current_balance, $project_sql->user->id);
+                    Cache::put('project_balance_' . $project_id . '_alerted', 1, 43200);
+                }
+            }
         } catch (LockTimeoutException $e) {
             return false;
         } finally {
@@ -70,7 +80,7 @@ class Project extends Model
             $proj_balance = self::where('id', $project_id)->first()->balance;
             $current_balance = $proj_balance + $value;
             self::where('id', $project_id)->update(['balance' => $current_balance]);
-        }catch (LockTimeoutException $e) {
+        } catch (LockTimeoutException $e) {
             return false;
         } finally {
             optional($lock)->release();
