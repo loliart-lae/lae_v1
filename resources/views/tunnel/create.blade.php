@@ -32,10 +32,10 @@
                     @php($i = 1)
                     @foreach ($servers as $server)
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $server->name }}</td>
-                            <td>{{ $server->network_limit }} Mbps</td>
-                            <td>{{ $server->price }}</td>
+                            <td nowrap="nowrap">{{ $i++ }}</td>
+                            <td nowrap="nowrap">{{ $server->name }}</td>
+                            <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
+                            <td nowrap="nowrap">{{ $server->price }}</td>
 
 
                             <td>

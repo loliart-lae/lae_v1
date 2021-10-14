@@ -82,9 +82,9 @@
                     @php($i = 1)
                     @foreach ($images as $image)
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $image->name }}</td>
-                            <td>{{ $image->image }}</td>
+                            <td nowrap="nowrap">{{ $i++ }}</td>
+                            <td nowrap="nowrap">{{ $image->name }}</td>
+                            <td nowrap="nowrap">{{ $image->image }}</td>
 
                             <td>
                                 <label class="mdui-radio">
@@ -125,14 +125,14 @@
                     @php($i = 1)
                     @foreach ($templates as $template)
                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $template->name }}</td>
-                            <td>{{ $template->cpu }}</td>
+                            <td nowrap="nowrap">{{ $i++ }}</td>
+                            <td nowrap="nowrap">{{ $template->name }}</td>
+                            <td nowrap="nowrap">{{ $template->cpu }}</td>
 
 
-                            <td>{{ $template->mem }} M</td>
-                            <td>{{ $template->disk }} G</td>
-                            <td>{{ $template->price }}</td>
+                            <td nowrap="nowrap">{{ $template->mem }} M</td>
+                            <td nowrap="nowrap">{{ $template->disk }} G</td>
+                            <td nowrap="nowrap">{{ $template->price }}</td>
                             {{-- <td>{{ $template->price * 44640 / 100 }} 元 / 月</td> --}}
                             <td>
                                 <label class="mdui-radio">
