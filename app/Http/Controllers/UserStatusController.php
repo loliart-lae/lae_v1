@@ -29,7 +29,7 @@ class UserStatusController extends Controller
         return view('main', compact('feed_items', 'display'));
     }
 
-    function global(Request $request, User $user)
+    public function global(Request $request, User $user)
     {
         $feed_items = UserStatus::orderBy('created_at', 'desc')->simplePaginate(30);
         $user = $user->find(Auth::id());
