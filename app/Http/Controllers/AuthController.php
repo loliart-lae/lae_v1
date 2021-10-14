@@ -34,9 +34,17 @@ class AuthController extends Controller
             $to = User::find(1);
             $self = User::find($user_id);
             $self->follow($to);
+        } else {
+            if ($user->name != $oauth_user->getName()) {
+                User::where('email', $oauth_user->getEmail())->update([
+                    'name' => $oauth_user->getName()
+                ]);
+            }
+
+            Auth::login($user);
+
         }
 
-        Auth::login($user);
 
         // 更新最后登录时间
         $user_sql->update([
