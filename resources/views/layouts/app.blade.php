@@ -89,13 +89,13 @@
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
                 <!-- 说实话我也不知道为什么这里会给未登录用户展示这个，很奇怪 我先注释掉吧
-                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
-                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
-                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
-                        <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-                        -->
+                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
+                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
+                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
+                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
+                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+                            <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
+                            -->
             @else
                 <a href="{{ route('main') }}" class="main_link">{{ config('app.name') }}</a>
                 <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
@@ -311,7 +311,24 @@
                     })
                 @endauth
             }
-
+            $('#topic').append(`<div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item mdui-panel-item-open">
+                    <div class="mdui-panel-item-header">
+                        <div class="mdui-panel-item-title">加入 QQ 群</div>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-panel-item-body">
+                        为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个 QQ 群：769779712。
+                        <div class="mdui-panel-item-actions">
+                            <button class="mdui-btn mdui-ripple" onclick="$.cookie('is_readed', '1', {
+                                expires: 7,
+                                path: '/'
+                            });$('#topic').hide()">我知道了，消失吧！</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            $('#topic').css('margin-bottom', '10px')
         }
     </script>
 </body>
