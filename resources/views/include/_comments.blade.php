@@ -79,7 +79,7 @@
         <div class="mdui-row">
             @foreach ($status_replies as $status_reply)
                 @php($i++)
-                <div class="mdui-col-xs-12 mdui-p-y-2">
+                <div class="mdui-col-xs-12 mdui-p-y-2 smoove" data-move-x="-{{ rand(100, 200) }}px">
                     <div class="mdui-col-xs-2 mdui-col-sm-1">
                         <img class="mdui-img-circle mdui-center"
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status_reply->user->email)) }}">
@@ -140,6 +140,11 @@
 
 
     <script>
+
+        $('.smoove').smoove({
+            offset: '3%'
+        })
+
         function toggleLike(id) {
             $.ajax({
                 type: 'PUT',

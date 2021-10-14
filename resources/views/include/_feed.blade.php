@@ -13,7 +13,7 @@
     <div id="masonry" class="mdui-row">
 
         @foreach ($feed_items as $status)
-            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
+            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 smoove" data-rotate-x="{{ rand(50, 100) }}deg" data-move-z="-{{ rand(300, 500) }}px" data-move-y="{{ rand(1, 200) }}px">
                 <div class="mdui-card mdui-hoverable user_{{ $status->user->id }}_status" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
@@ -93,14 +93,16 @@
         @endforeach
     </div>
     <script>
-        var $container = $('#masonry');
+        var $container = $('#masonry')
         $(function() {
-
             $container.masonry({
                 itemSelector: '.poll',
 
-            });
-        });
+            })
+        })
+        $('.smoove').smoove({
+            offset: '3%'
+        })
     </script>
     <div class="mdui-m-t-2 mdui-m-b-4">
         {{ $feed_items->links() }}
