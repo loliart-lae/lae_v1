@@ -88,12 +88,18 @@ class StaticPageController extends Controller
         $staticPage->server_id = $request->server_id;
         $staticPage->save();
 
+        $ftp_username = 'lae-' . $staticPage->id;
+
+        $staticPage->where('id', $staticPage->id)->update([
+            'ftp_username' => $ftp_username
+        ]);
+
         $config = [
             'method' => 'create',
             'inst_id' => $staticPage->id,
             'address' => $server_data->address,
             'token' => $server_data->token,
-            'username' => $staticPage->ftp_username,
+            'username' => $ftp_username,
             'password' => $staticPage->ftp_password,
             'domain' => $staticPage->domain,
             'email' => Auth::user()->email,
