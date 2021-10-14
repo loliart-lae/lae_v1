@@ -54,7 +54,7 @@ class StaticPageController extends Controller
             'domain' => 'required',
         ]);
 
-        if (strtolower($request->username) == config('app.domain')) {
+        if (strtolower($request->domain) == config('app.domain')) {
             return redirect()->back()->with('status', 'Error: 无法绑定这个域名。');
         }
 
@@ -68,7 +68,7 @@ class StaticPageController extends Controller
 
         $server_where = $server->where('id', $request->server_id);
         if (StaticPage::where('domain', $request->domain)->exists()) {
-            return redirect()->back()->with('status', 'Error: 同服务器上已经存在相同的域名了。');
+            return redirect()->back()->with('status', 'Error: 已经存在相同的域名了。');
         }
 
         $project_balance = Project::where('id', $request->project_id)->firstOrFail()->balance;
