@@ -138,7 +138,7 @@ class StaticPageJob implements ShouldQueue
                         }
                     }
 
-                    dispatch(new SendEmailJob($this->config['email'], "静态站点 {$this->config['name']} 备份完成，备份文件已保存至站点的根目录下。您可以访问<a href='https://{$this->config['domain']}'>https://{$this->config['domain']}</a>下载，或者通过FTP传输。下载/传输完成后请确认并删除备份文件。"))->onQueue('mail');
+                    dispatch(new SendEmailJob($this->config['email'], "静态站点 {$this->config['name']} 备份完成，备份文件已保存至站点的根目录下。您可以访问 https://{$this->config['domain']}/{$this->config['filename']}.tar.gz 下载，或者通过FTP传输。下载/传输完成后请确认并删除备份文件。"))->onQueue('mail');
 
                     $staticPage->where('id', $this->config['inst_id'])->update([
                         'status' => 'active',
