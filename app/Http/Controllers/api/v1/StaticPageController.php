@@ -23,7 +23,7 @@ class StaticPageController extends Controller
      */
     public function index()
     {
-        $staticPages = StaticPage::with(['server'])->whereHas('member', function ($query) {
+        $staticPages = StaticPage::whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
 
