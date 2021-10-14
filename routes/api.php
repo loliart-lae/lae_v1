@@ -23,4 +23,5 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
 
     Route::resource('/v1/_projects', v1\TunnelController::class);
     Route::resource('/v1/_fastVisits', v1\FastVisitController::class);
+    Route::resource('/v1/_staticPage', v1\StaticPageController::class);
 });
