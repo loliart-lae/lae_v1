@@ -13,7 +13,7 @@
     <div id="masonry" class="mdui-row">
 
         @foreach ($feed_items as $status)
-            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 smoove" data-rotate-x="{{ rand(50, 100) }}deg" data-move-z="-{{ rand(300, 500) }}px" data-move-y="{{ rand(1, 200) }}px">
+            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 smoove" data-rotate-x="{{ rand(10, 20) }}deg" data-move-z="-{{ rand(10, 30) }}px" data-move-y="{{ rand(1, 20) }}px">
                 <div class="mdui-card mdui-hoverable user_{{ $status->user->id }}_status" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
