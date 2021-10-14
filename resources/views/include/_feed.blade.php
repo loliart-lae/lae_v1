@@ -99,11 +99,14 @@
         function masonry_resize() {
             $container.masonry({
                 itemSelector: '.poll',
-
             })
         }
 
-        $(window).ready(masonry_resize)
+        $(window).ready(function() {
+            setTimeout(function() {
+                masonry_resize()
+            }, 100)
+        })
 
         $(window).resize(masonry_resize)
 
