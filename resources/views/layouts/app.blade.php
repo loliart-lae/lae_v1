@@ -95,8 +95,7 @@
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-                --}}
+                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a> --}}
             @else
                 <a href="{{ route('main') }}" class="main_link">{{ config('app.name') }}</a>
                 <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
@@ -126,9 +125,7 @@
         </div>
     </div>
 
-    <div class="mdui-container mdui-m-t-5 mdui-m-b-5 mdui-text-center" id="load-spinner" style="opacity: 0;display:none">
-        <div class="mdui-spinner"></div>
-    </div>
+    @include('include._loading')
 
     <div class="@yield('container', 'mdui-container') pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">
