@@ -31,8 +31,8 @@
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
             </div>
             <div class="mdui-card-content mdui-p-t-1">
-                <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! e($status->content) !!}</textarea>
                 <div id="log_{{ $status->id }}"></div>
+                <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! e($status->content) !!}</textarea>
                 <script>
                     $(function() {
                         var log_view
