@@ -98,7 +98,12 @@ class RemoteDesktopJob implements ShouldQueue
 
             case 'passwd':
                 try {
-                    $result = Http::retry(5, 100)->get("http://{$this->config['address']}/passwd", [
+                    Http::retry(5, 100)->get("http://{$this->config['address']}/logout", [
+                        'username' => $this->config['username'],
+                        'token' => $this->config['token']
+                    ]);
+
+                    Http::retry(5, 100)->get("http://{$this->config['address']}/passwd", [
                         'username' => $this->config['username'],
                         'password' => $this->config['password'],
                         'token' => $this->config['token']
