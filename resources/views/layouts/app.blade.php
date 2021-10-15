@@ -130,9 +130,9 @@
     <div class="@yield('container', 'mdui-container') pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">
         </div>
-        <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
+        {{-- <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
                 style="position: relative; top: -1px;margin-right: 2px;"
-                class="mdui-icon material-icons">arrow_back</i>返回</a>
+                class="mdui-icon material-icons">arrow_back</i>返回</a> --}}
 
         @yield('content')
 
@@ -192,13 +192,13 @@
 
         $(document).pjax('a', '.pjax-container')
 
-        $("#pre_btn").hide()
+        // $("#pre_btn").hide()
         $(document).on('pjax:clicked', function() {
             $('#load-spinner').css('display', 'block')
             $('#load-spinner').css('opacity', 1)
             mdui.mutation()
 
-            $("#pre_btn").show()
+            // $("#pre_btn").show()
             $('#main').css('opacity', 0)
             $('#main').css('height', '100px')
             $('#main').css('overflow', 'hidden')
