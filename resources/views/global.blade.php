@@ -13,8 +13,7 @@
             @csrf
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4"
-                    required autofocus placeholder="如何才能让互联网更开放呢？Light App Engine 到底需要该怎么做........."></textarea>
-                <div class="mdui-textfield-helper">还需要更多...更多......</div>
+                    required autofocus placeholder="有没有想和大家分享的内容？"></textarea>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
         </form>
