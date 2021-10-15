@@ -350,6 +350,8 @@
             $('#topic').css('margin-bottom', '10px')
         }
     </script>
+
+    @include('include._extend')
 </body>
 
 </html>
