@@ -168,7 +168,7 @@
         })
 
         var main_link = '{{ config('app.name') }}'
-        $.pjax.defaults.timeout = 500
+        $.pjax.defaults.timeout = 1500
 
         function close_offline_tip() {
             $('#offline_tip').fadeOut()
@@ -207,6 +207,10 @@
             // $('.pjax-container').css('transform', 'scale(0.99)')
         })
         $(document).on("pjax:timeout", function(event) {
+            $('#load-spinner-text').html('仍在加载...')
+            $('#load-spinner-text').animate({
+                opacity: 1
+            })
             // $('.pjax-container').css('opacity', '0.2')
             // $('.pjax-container').css('transform', 'scale(0.98)')
             //             $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
@@ -220,6 +224,8 @@
             mdui.mutation()
             $('#load-spinner').css('opacity', 0)
             $('#load-spinner').css('display', 'none')
+            $('#load-spinner-text').css('opacity', 0)
+
             $('#main').css('height', 'unset')
             $('#main').css('overflow', 'auto')
 
