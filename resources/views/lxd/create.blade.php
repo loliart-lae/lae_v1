@@ -143,7 +143,7 @@
             </table>
         </div>
 
-        <div class="mdui-row mdui-p-t-2 mdui-p-l-1">
+        <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
             <span class="mdui-typo-headline">Root 密码</span>
             <p>只允许字母、数字，短破折号（-）和下划线（_），可到容器内再次修改。</p>
             <div class="mdui-textfield mdui-textfield-floating-label">
@@ -152,16 +152,15 @@
             </div>
         </div>
 
-        <br /> <br />
-        <span class="mdui-typo-headline">最后，设置容器名称</span>
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">名称</label>
-            <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
+        <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
+            <span class="mdui-typo-headline">最后，设置容器名称</span>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">名称</label>
+                <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
+            </div>
         </div>
 
-        <br /> <br />
-
-        <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+        <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple mdui-p-y-2">新建</button>
 
         <br /><br />
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
