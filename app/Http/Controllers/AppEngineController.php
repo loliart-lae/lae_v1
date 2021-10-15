@@ -223,10 +223,6 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $lxdTemplate = new LxdTemplate();
 
-        if ($request->template_id == 8) {
-            return redirect()->back()->with('status', '别嫖了别嫖了，土都快吃完了。');
-        }
-
         $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template', 'server')->firstOrFail();
 
         if (!ProjectMembersController::userInProject($lxd->project_id)) {
@@ -239,12 +235,6 @@ class AppEngineController extends Controller
 
         $lxdContainer_where = $lxdContainer->where('id', $id);
         $lxdContainer_data = $lxdContainer_where->firstOrFail();
-
-        // 检查修改前修改后是否相同
-        if ($request->template_id == $lxdContainer_data->template_id) {
-            return redirect()->back()->with('status', '修改了个寂寞。');
-        }
-
 
         // 将容器标记为 resizing
         $lxdContainer_where->update(['status' => 'resizing', 'template_id' => $request->template_id]);
@@ -262,7 +252,7 @@ class AppEngineController extends Controller
 
         dispatch(new LxdJob($config));
 
-        return redirect()->route('lxd.index')->with('status', '正在调整容器');
+        return redirect()->route('lxd.index')->with('status', '正在调整容器模板。');
     }
 
     /**
