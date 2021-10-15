@@ -11,7 +11,8 @@
 
     <div class="mdui-typo mdui-p-t-4">
 
-        <p><mark>温馨提醒：请不要使用不得当的方式宣传 LAE</mark></p>
+        <p><mark>温馨提醒 ①：请不要使用不得当的方式宣传 LAE</mark></p>
+        <p><mark>温馨提醒 ②：平台积分与 RMB 兑换汇率为 100:1，请在预估价格时候注意辨识</mark></p>
 
         @guest
 
