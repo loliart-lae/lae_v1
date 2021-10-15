@@ -52,7 +52,7 @@ class AuthController extends Controller
         ]);
 
 
-        return redirect()->route('main');
+        return redirect()->route('index');
     }
 
     public function logout()
