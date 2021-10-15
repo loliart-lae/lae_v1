@@ -11,11 +11,10 @@
         @csrf
         <x-choose-project-form />
 
-        <br />
-        <br />
-        <span class="mdui-typo-headline">选择地区服务器</span>
-        <p class="mdui-typo-subheading">地区服务器影响着访问速度以及连通性，稳定性，以及基础价格。</p>
-        <br />
+        <div class="mdui-p-l-1">
+            <span class="mdui-typo-headline">选择地区服务器</span>
+            <p class="mdui-typo-subheading">地区服务器影响着访问速度以及连通性，稳定性，以及基础价格。</p>
+        </div>
 
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
