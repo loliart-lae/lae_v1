@@ -1,4 +1,6 @@
-<span class="mdui-typo-headline mdui-p-y-1">选择项目</span>
+<div class="mdui-row mdui-p-y-2">
+    <span class="mdui-typo-headline">选择项目</span>
+</div>
 
 <div class="mdui-table-fluid">
     <table class="mdui-table mdui-table-hoverable">
