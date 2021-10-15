@@ -102,7 +102,6 @@
         </div>
     </form>
 
-    <br /><br />
     <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
         注意：每分钟价格 = 地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，一些软件可用绿色版免安装。
     </small></div>
