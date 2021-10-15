@@ -6,16 +6,15 @@
     <div class="mdui-typo-display-2">新建 Tunnel 隧道</div>
 
     <p>在选定的项目中新建 Tunnel 隧道</p>
-    <br />
+    
     <form method="post" action="{{ route('tunnels.store') }}">
         @csrf
         <x-choose-project-form />
 
-        <br />
-        <br />
-        <span class="mdui-typo-headline">选择 Tunnel 隧道 服务器</span>
-        <p class="mdui-typo-subheading">Tunnel 隧道服务器影响着访问速度以及连通性，稳定性，以及基础价格。</p>
-        <br />
+        <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
+            <span class="mdui-typo-headline">选择 Tunnel 隧道 服务器</span>
+            <p class="mdui-typo-subheading">Tunnel 隧道服务器影响着访问速度以及连通性，稳定性，以及基础价格。</p>
+        </div>
 
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
@@ -54,28 +53,28 @@
         </div>
 
 
-        <br /> <br />
-        <span class="mdui-typo-headline">隧道的名称</span>
-        <p>只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位。该名称用于标识。</p>
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">隧道名称</label>
-            <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
+        <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
+            <span class="mdui-typo-headline">隧道的名称</span>
+            <p>只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位。该名称用于标识。</p>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">隧道名称</label>
+                <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
+            </div>
         </div>
 
-        <br /> <br />
-        <span class="mdui-typo-headline">隧道协议</span>
-        <p>根据您的使用场景以及应用选择。</p>
-        <select name="protocol" class="mdui-select" mdui-select mdui-select="options" required>
-            <option value="http">HTTP - 适合不加密，明文传输的网页浏览业务。</option>
-            <option value="https">HTTPS - 适合加密，对安全性较强的业务。</option>
-            <option value="tcp">TCP - 即时通讯或者游戏等对可靠性要求较高的业务。</option>
-            <option value="udp">UDP - 适合数据可靠性较低的业务。</option>
-            <option value="xtcp">XTCP - 免费！P2P传输，需要双方都启动客户端，并且不能保证穿透成功。</option>
-        </select>
-        <br /> <br />
-        <br /> <br />
+        <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
+            <span class="mdui-typo-headline">隧道协议</span>
+            <p>根据您的使用场景以及应用选择。</p>
+            <select name="protocol" class="mdui-select" mdui-select mdui-select="options" required>
+                <option value="http">HTTP - 适合不加密，明文传输的网页浏览业务。</option>
+                <option value="https">HTTPS - 适合加密，对安全性较强的业务。</option>
+                <option value="tcp">TCP - 即时通讯或者游戏等对可靠性要求较高的业务。</option>
+                <option value="udp">UDP - 适合数据可靠性较低的业务。</option>
+                <option value="xtcp">XTCP - 免费！P2P传输，需要双方都启动客户端，并且不能保证穿透成功。</option>
+            </select>
+        </div>
 
-        <div class="mdui-row">
+        <div class="mdui-row mdui-p-t-1">
             <div class="mdui-col-xs-6">
                 <span class="mdui-typo-headline">内网地址</span>
                 <p>被映射主机的地址，比如 127.0.0.1:80</p>
