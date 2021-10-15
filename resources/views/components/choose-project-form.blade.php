@@ -1,4 +1,4 @@
-<div class="mdui-row mdui-p-y-2">
+<div class="mdui-container mdui-row mdui-p-y-2">
     <span class="mdui-typo-headline">选择项目</span>
 </div>
 
