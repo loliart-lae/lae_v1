@@ -13,6 +13,10 @@
             margin-top: 0 !important
         }
 
+        .editormd-html-preview img {
+            border-radius: 2px
+        }
+
     </style>
     <div class="mdui-typo">
         <div class="mdui-card" style="margin-top: 5px;box-shadow: none;background: transparent">
@@ -140,7 +144,6 @@
 
 
     <script>
-
         $('.smoove').smoove({
             offset: '3%'
         })
