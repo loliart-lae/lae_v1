@@ -139,7 +139,7 @@
 
         @yield('content')
 
-        <div class="mdui-typo" style="margin-top: 50px">
+        <div class="mdui-typo mdui-p-t-5">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 Hosted by {{ config('app.host_by') }}
             </p>
