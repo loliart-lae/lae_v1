@@ -15,7 +15,7 @@
 
     </style>
     <div class="mdui-typo">
-        <div class="mdui-card" style="margin-top: 5px">
+        <div class="mdui-card" style="margin-top: 5px;box-shadow: none;background: transparent">
             <div class="mdui-card-header">
                 <img class="mdui-card-header-avatar"
                     src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
