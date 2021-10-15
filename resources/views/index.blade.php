@@ -119,7 +119,9 @@
                 $('#load-spinner').css('opacity', '1')
                 mdui.mutation()
                 $(document).ready(function() {
-                    $('#goto-main').click()
+                    setTimeout(function() {
+                        $('#goto-main').click()
+                    }, 500)
                 })
             </script>
         @endguest
