@@ -351,7 +351,7 @@
         }
     </script>
 
-    @include('include._extend')
+    @include('extend.footer')
 </body>
 
 </html>

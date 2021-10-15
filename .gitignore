@@ -16,4 +16,3 @@ yarn-error.log
 .DS_Store
 public/sitemap.xml
 .env
-resources/views/include/_extend.blade.php
