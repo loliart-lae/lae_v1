@@ -1,6 +1,5 @@
-<span class="mdui-typo-headline">选择项目</span>
-<br />
-<br />
+<span class="mdui-typo-headline mdui-p-y-1">选择项目</span>
+
 <div class="mdui-table-fluid">
     <table class="mdui-table mdui-table-hoverable">
         <thead>
@@ -19,7 +18,7 @@
                     <td nowrap="nowrap">{{ $project->project->name }}</td>
                     <td nowrap="nowrap">{{ $project->project->balance }}</td>
 
-                    <td nowrap="nowrap">
+                    <td>
                         <label class="mdui-radio">
                             <input type="radio" value="{{ $project->project->id }}" name="project_id"
                                 @if ($i == 2) checked @endif required />
@@ -27,7 +26,6 @@
 
                         </label>
                     </td>
-
                 </tr>
             @endforeach
         </tbody>
