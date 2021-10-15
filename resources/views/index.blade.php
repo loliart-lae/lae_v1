@@ -111,6 +111,7 @@
             <p>如果你有想法想对我说，欢迎发送邮件至 <a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
 
         @else
+            <div class="mdui-text-center mdui-typo-caption-opacity mdui-text-center">Powered by Light App Engine</div>
             @include('include._loading')
             <a id="goto-main" style="display: none" href="{{ route('main') }}"></a>
             <script>
@@ -118,9 +119,8 @@
                 $('#load-spinner').css('opacity', '1')
                 mdui.mutation()
                 $(document).ready(function() {
-                    $('#goto-main').click()
+                    // $('#goto-main').click()
                 })
-
             </script>
         @endguest
     </div>
