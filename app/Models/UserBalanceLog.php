@@ -19,13 +19,13 @@ class UserBalanceLog extends Model
     public function cost($user_id, $value, $reason = null)
     {
         $user = new User();
-        $user_balance = $user->where('id', $user_id)->first()->balance;
+        $user_balance = $user->where('id', $user_id)->firstOrFail()->balance;
         $lock = Cache::lock("user_balance_" . $user_id, $user_balance);
 
         try {
             $lock->block(5);
 
-            $user_balance = $user->where('id', $user_id)->first()->balance;
+            $user_balance = $user->where('id', $user_id)->firstOrFail()->balance;
             $current_balance = $user_balance - $value;
 
             if ($current_balance <= 0) {
@@ -51,7 +51,7 @@ class UserBalanceLog extends Model
     public function charge($user_id, $value, $reason = null)
     {
         $user = new User();
-        $user_balance = $user->where('id', $user_id)->first()->balance;
+        $user_balance = $user->where('id', $user_id)->firstOrFail()->balance;
 
         $lock = Cache::lock("user_balance_" . $user_id, $user_balance);
         try {
