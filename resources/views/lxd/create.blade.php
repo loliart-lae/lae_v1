@@ -143,14 +143,14 @@
             </table>
         </div>
 
-        <div class="mdui-row mdui-p-y-2 mdui-p-l-1">
+        <div class="mdui-row mdui-p-t-2 mdui-p-l-1">
             <span class="mdui-typo-headline">Root 密码</span>
             <p>只允许字母、数字，短破折号（-）和下划线（_），可到容器内再次修改。</p>
             <div class="mdui-textfield mdui-textfield-floating-label">
                 <label class="mdui-textfield-label">密码</label>
                 <input class="mdui-textfield-input" type="password" name="password" value="{{ old('password') }}" required />
             </div>
-        <div>
+        </div>
 
         <br /> <br />
         <span class="mdui-typo-headline">最后，设置容器名称</span>
