@@ -11,7 +11,7 @@
         @csrf
         <x-choose-project-form />
 
-        <div class="mdui-row mdui-p-t-3 mdui-p-b-2 mdui-p-l-1">
+        <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
             <span class="mdui-typo-headline">选择地区服务器</span>
             <p class="mdui-typo-subheading">地区服务器影响着访问速度以及连通性，稳定性，以及基础价格。</p>
         </div>
@@ -60,13 +60,10 @@
             </table>
         </div>
 
-
-        <br />
-        <br />
-        <br />
-        <span class="mdui-typo-headline">选择镜像</span>
-        <p class="mdui-typo-subheading">不同镜像拥有着不同操作系统以及操作方式。</p>
-        <br />
+        <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
+            <span class="mdui-typo-headline">选择镜像</span>
+            <p class="mdui-typo-subheading">不同镜像拥有着不同操作系统以及操作方式。</p>
+        </div>
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
                 <thead>
@@ -100,12 +97,10 @@
             </table>
         </div>
 
-        <br />
-        <br />
-        <br />
-        <span class="mdui-typo-headline">选择容器模板</span>
-        <p class="mdui-typo-subheading">容器模板影响着计费，计费每 1 分钟进行一次。</p>
-        <br />
+        <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
+            <span class="mdui-typo-headline">选择容器模板</span>
+            <p class="mdui-typo-subheading">容器模板影响着计费，计费每 1 分钟进行一次。</p>
+        </div>
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
                 <thead>
