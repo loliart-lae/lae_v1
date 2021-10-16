@@ -28,6 +28,11 @@
             </div>
 
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
+                <div class="mdui-typo-body-1-opacity">服务器数量</div>
+                <div class="mdui-typo-display-1 mdui-m-t-1">{{ App\Models\Server::count() }}</div>
+            </div>
+
+            <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
                 <div class="mdui-typo-body-1-opacity">Linux 容器 数量</div>
                 <div class="mdui-typo-display-1 mdui-m-t-1">{{ $lxdContainers }}</div>
             </div>
