@@ -31,7 +31,7 @@
                             placeholder="http(s)://" />
                     </div>
 
-                    <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-profile">修改</button> &nbsp;&nbsp;
+                    <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-profile">修改</button>
                     <span onclick="updateToken()" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-token">更新访问密钥</span>
                 </form>
             </div>
