@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\EasyPanelVirtualHost;
 use App\Models\Server;
 use App\Models\LxdContainer;
 use Illuminate\Bus\Queueable;
@@ -33,12 +34,13 @@ class CalcServerJob implements ShouldQueue
     public function handle()
     {
         $lxdServers = Server::where('type', 'container')->get();
+        $easyPanels = Server::where('type', 'easypanel')->get();
 
         // 重新计算服务器剩余空间
         foreach ($lxdServers as $server) {
             $used_disk = 5;
             $memory = 1024;
-            $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('server_id', $server->id)->get();
+            $lxdContainers = LxdContainer::with(['template', 'server', 'forward'])->where('server_id', $server->id)->get();
             foreach ($lxdContainers as $lxd) {
                 $used_disk += $lxd->template->disk;
                 $memory += $lxd->template->mem;
@@ -49,6 +51,20 @@ class CalcServerJob implements ShouldQueue
             Server::where('id', $server->id)->update([
                 'free_disk' => $free_disk,
                 'free_mem' => $free_mem
+            ]);
+        }
+
+        foreach ($easyPanels as $server) {
+            $used_disk = 5;
+            $memory = 1024;
+            $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['template', 'server'])->where('server_id', $server->id)->get();
+            foreach ($easyPanelVirtualHosts as $easyPanelVirtualHost) {
+                $used_disk += $easyPanelVirtualHost->db_quota + $easyPanelVirtualHost->web_quota;
+            }
+            $free_disk = $server->disk - $used_disk;
+
+            Server::where('id', $server->id)->update([
+                'free_disk' => $free_disk,
             ]);
         }
 

@@ -90,6 +90,14 @@ class EasyPanelController extends Controller
         $server_where = $server->where('id', $request->server_id);
         $server_data = $server_where->firstOrFail();
 
+        // 检测硬盘是否足够
+        $quota = $easyPanelTemplate_data->web_quota + $easyPanelTemplate_data->db_quota;
+        if (!$server_data->free_disk - $quota > 1024) {
+            return redirect()->back()->with('status', '服务器硬盘配额已满，请尝试更换服务器。');
+        }
+        $server_where->update(['free_disk' => $server_data->free_disk - $quota]);
+
+
         // 保存
         $easyPanelVirtualHost->name = $request->name;
 
@@ -191,7 +199,6 @@ class EasyPanelController extends Controller
             ];
 
             dispatch(new EasyPanelJob($config))->onQueue('default');
-
         }
 
         return redirect()->back()->with('status', '密码已安排重置，请复制您的新密码:' . $new_pwd);
