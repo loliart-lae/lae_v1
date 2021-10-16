@@ -28,7 +28,9 @@ class ServerBalanceCountController extends Controller
         $balance = 0;
 
         foreach ($data as $d) {
-            if (!in_array($d->user->email, $bypass_list)) {
+            if (is_null($d->user)) {
+                $balance += $d->value;
+            } elseif (!in_array($d->user->email, $bypass_list)) {
                 $balance += $d->value;
             }
         }
@@ -57,7 +59,9 @@ class ServerBalanceCountController extends Controller
         $balance = 0;
 
         foreach ($data as $d) {
-            if (!in_array($d->user->email, $bypass_list)) {
+            if (is_null($d->user)) {
+                $balance += $d->value;
+            } elseif (!in_array($d->user->email, $bypass_list)) {
                 $balance += $d->value;
             }
         }
