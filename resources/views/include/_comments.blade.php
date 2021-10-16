@@ -54,9 +54,11 @@
                 <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                     class="mdui-btn mdui-ripple mdui-btn-icon">
                     @if (is_null($status->like))
-                        <i class="mdui-icon material-icons umami--click--like-from-comment umami--click--like" style="color: unset">star_border</i>
+                        <i class="mdui-icon material-icons umami--click--like-from-comment umami--click--like"
+                            style="color: unset">star_border</i>
                     @elseif ($status->like->is_liked)
-                        <i style="color:#36a6e8" class="mdui-icon material-icons umami--click--unlike-from-comment umami--click--unlike">star</i>
+                        <i style="color:#36a6e8"
+                            class="mdui-icon material-icons umami--click--unlike-from-comment umami--click--unlike">star</i>
                     @else
                         <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                     @endif
@@ -97,7 +99,8 @@
                                 href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
                         @endif
                         说：@if ($status_reply->user->id == Auth::id()) <a
-                                onclick="$('#statusReply-{{ $i }}').submit()" href="#" class="umami--click--delete-status-reply">删除</a>
+                                onclick="$('#statusReply-{{ $i }}').submit()" href="#"
+                                class="umami--click--delete-status-reply">删除</a>
                             <form id="statusReply-{{ $i }}" style="display: none" method="post"
                                 action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
                             </form>
@@ -108,7 +111,7 @@
                         <textarea id="reply_{{ $status_reply->id }}_content"
                             style="display:none;">{!! e($status_reply->content) !!}</textarea>
                         <script>
-                            $(function() {
+                            $(document).ready(function() {
                                 var log_view
                                 $('#log_{{ $status->id }}').html(null)
                                 log_view = editormd.markdownToHTML("reply_{{ $status_reply->id }}", {
@@ -132,10 +135,11 @@
             @csrf
             @method('PUT')
             <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input umami--input--status-reply" rows="4" name="content" placeholder="保持友善～" maxlength="140"
-                    required></textarea>
+                <textarea class="mdui-textfield-input umami--input--status-reply" rows="4" name="content"
+                    placeholder="保持友善～" maxlength="140" required></textarea>
             </div>
-            <button type="submit" class="mdui-btn mdui-ripple mdui-color-theme umami--click--status-reply-confirm">回复</button>
+            <button type="submit"
+                class="mdui-btn mdui-ripple mdui-color-theme umami--click--status-reply-confirm">回复</button>
         </form>
 
     </div>
