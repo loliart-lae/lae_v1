@@ -15,6 +15,7 @@ use App\Models\RemoteDesktop;
 use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProjectMembersController;
+use App\Models\EasyPanelVirtualHost;
 
 class ProjectController extends Controller
 {
@@ -165,6 +166,9 @@ class ProjectController extends Controller
             }
             if (StaticPage::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 静态站点。');
+            }
+            if (EasyPanelVirtualHost::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 EasyPanel 站点');
             }
             // if (Forum::where('project_id', $id)->count() > 0) {
             //     return redirect()->route('projects.index')->with('status', '项目中还有未删除的 社区论坛。');
