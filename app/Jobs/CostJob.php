@@ -115,6 +115,7 @@ class CostJob implements ShouldQueue
 
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $lxd->server_id;
+                $serverBalanceCount->user_id = $lxd->project->user_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
             }
@@ -144,6 +145,7 @@ class CostJob implements ShouldQueue
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $remote_desktop->server_id;
+                $serverBalanceCount->user_id = $remote_desktop->project->user_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
             }
@@ -164,6 +166,7 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $tunnel->server_id;
                 $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->user_id = $tunnel->project->user_id;
                 $serverBalanceCount->save();
             }
         }
@@ -197,7 +200,9 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $staticPage->server_id;
                 $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->user_id = $staticPage->project->user_id;
                 $serverBalanceCount->save();
+
             }
         }
 
@@ -226,6 +231,7 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $easyPanelVirtualHost->server_id;
                 $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->user_id = $easyPanelVirtualHost->project->user_id;
                 $serverBalanceCount->save();
             }
         }
