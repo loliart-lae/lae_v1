@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Drive;
 use App\Models\Tunnel;
 use App\Models\Project;
+use App\Models\FastVisit;
+use App\Models\StaticPage;
 use App\Models\LxdContainer;
 use Illuminate\Http\Request;
 use App\Models\ProjectInvite;
@@ -14,7 +15,6 @@ use App\Models\RemoteDesktop;
 use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProjectMembersController;
-use App\Models\Forum;
 
 class ProjectController extends Controller
 {
@@ -159,6 +159,12 @@ class ProjectController extends Controller
             }
             if (Drive::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 存储。');
+            }
+            if (FastVisit::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 快捷访问。');
+            }
+            if (StaticPage::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 静态站点。');
             }
             // if (Forum::where('project_id', $id)->count() > 0) {
             //     return redirect()->route('projects.index')->with('status', '项目中还有未删除的 社区论坛。');
