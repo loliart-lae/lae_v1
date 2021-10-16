@@ -110,6 +110,7 @@
                 {{-- <a href="{{ route('images.index') }}" class="mdui-ripple mdui-ripple-white">图片展廊</a> --}}
 
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
+                <a href="{{ route('easyPanel.index') }}" class="mdui-ripple mdui-ripple-white umami--click--easypanel">EasyPanel 站点</a>
                 <a href="{{ route('staticPage.index') }}" class="mdui-ripple mdui-ripple-white umami--click--staticPage">静态站点</a>
                 {{-- <a onclick="mdui.alert('在做了再做了')" class="mdui-ripple mdui-ripple-white">B2B主机</a> --}}
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}

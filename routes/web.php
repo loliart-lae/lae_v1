@@ -118,6 +118,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/staticPage/{id}/backup', [Controllers\StaticPageController::class, 'backup'])->name('staticPage.backup');
     Route::resource('/staticPage', Controllers\StaticPageController::class);
 
+    Route::resource('/easyPanel', Controllers\EasyPanelController::class);
+
+
 
     // Route::resource('/images', ImageController::class);
 

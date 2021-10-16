@@ -23,4 +23,8 @@ class ServerController extends Controller
         return Server::where('id', $id)->where('type', 'staticPage')->exists();
     }
 
+    static public function existsEasyPanel($id) {
+        return Server::where('id', $id)->where('type', 'easypanel')->exists();
+    }
+
 }

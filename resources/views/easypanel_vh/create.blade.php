@@ -5,7 +5,7 @@
 @section('content')
     <div class="mdui-typo-display-2">新建 Easypanel 虚拟主机</div>
 
-    <form method="post" action="{{ route('ep.store') }}">
+    <form method="post" action="{{ route('easyPanel.store') }}">
         @csrf
         <x-choose-project-form />
 
@@ -69,9 +69,10 @@
                     <tr>
                         <th>ID</th>
                         <th>名称</th>
-                        <th>CPU</th>
-                        <th>内存</th>
-                        <th>硬盘</th>
+                        <th>类型</th>
+                        <th>空间容量</th>
+                        <th>数据库容量</th>
+                        <th>速度限制</th>
                         <th>积分/分钟</th>
                         <th>月预估</th>
                         <th>选择</th>
@@ -83,11 +84,18 @@
                         <tr>
                             <td nowrap="nowrap">{{ $i++ }}</td>
                             <td nowrap="nowrap">{{ $template->name }}</td>
-                            <td nowrap="nowrap">{{ $template->cpu }}</td>
+                            <td nowrap="nowrap">
+                                @if ($template->is_cdn)
+                                CDN
+                                @else
+                                虚拟主机
+                                @endif
+                            </td>
+                            <td nowrap="nowrap">{{ $template->web_quota }} M</td>
 
 
-                            <td nowrap="nowrap">{{ $template->mem }} M</td>
-                            <td nowrap="nowrap">{{ $template->disk }} G</td>
+                            <td nowrap="nowrap">{{ $template->db_quota }} M</td>
+                            <td nowrap="nowrap">{{ $template->speed_limit }} Mbps</td>
                             <td nowrap="nowrap">{{ $template->price }}</td>
                             <td>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
                             </td>
@@ -108,17 +116,7 @@
         </div>
 
         <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
-            <span class="mdui-typo-headline">Root 密码</span>
-            <p>只允许字母、数字，短破折号（-）和下划线（_），可到容器内再次修改。</p>
-            <div class="mdui-textfield mdui-textfield-floating-label">
-                <label class="mdui-textfield-label">密码</label>
-                <input class="mdui-textfield-input" type="password" name="password" value="{{ old('password') }}"
-                    required />
-            </div>
-        </div>
-
-        <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
-            <span class="mdui-typo-headline">最后，设置容器名称</span>
+            <span class="mdui-typo-headline">你想给这个虚拟主机起什么名字？</span>
             <div class="mdui-textfield mdui-textfield-floating-label">
                 <label class="mdui-textfield-label">名称</label>
                 <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
@@ -131,11 +129,8 @@
         </div>
 
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
-                注意：每分钟价格 = 地区服务器基础价格 + 容器模板价格 + 端口转发。<br />
-                ssh 默认用户名为 root，并且是无特权容器，不支持 Docker。<br />
                 带宽均为共享带宽，如带宽有调整，将会即时生效。<br />
-                如果你的容器配置和模板配置不符，可对容器模板进行升配/降配，再修改回去即可刷新。<br />
-                禁止将容器用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户。
+                禁止用于违法犯罪用途，否则直接删除账号并不保留任何数据。
             </small></div>
     </form>
 @endsection
