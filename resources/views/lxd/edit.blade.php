@@ -57,7 +57,7 @@
         </div>
 
         <br /><br />
-        <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">修改</button>
+        <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--lxd-update">修改</button>
 
 
     </form>

@@ -159,7 +159,7 @@
         </div>
 
         <div class="mdui-row mdui-p-y-2">
-            <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+            <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--lxd-new">新建</button>
         </div>
 
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">

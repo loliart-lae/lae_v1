@@ -54,9 +54,9 @@
                 <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                     class="mdui-btn mdui-ripple mdui-btn-icon">
                     @if (is_null($status->like))
-                        <i class="mdui-icon material-icons" style="color: unset">star_border</i>
+                        <i class="mdui-icon material-icons umami--click--like-from-comment umami--click--like" style="color: unset">star_border</i>
                     @elseif ($status->like->is_liked)
-                        <i style="color:#36a6e8" class="mdui-icon material-icons">star</i>
+                        <i style="color:#36a6e8" class="mdui-icon material-icons umami--click--unlike-from-comment umami--click--unlike">star</i>
                     @else
                         <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                     @endif
@@ -69,7 +69,7 @@
                         onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="mdui-btn mdui-ripple">删除</button>
+                        <button type="submit" class="mdui-btn mdui-ripple umami--click--status-delete">删除</button>
                     </form>
                 @endcan
             </div>
@@ -97,7 +97,7 @@
                                 href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
                         @endif
                         说：@if ($status_reply->user->id == Auth::id()) <a
-                                onclick="$('#statusReply-{{ $i }}').submit()" href="#">删除</a>
+                                onclick="$('#statusReply-{{ $i }}').submit()" href="#" class="umami--click--delete-status-reply">删除</a>
                             <form id="statusReply-{{ $i }}" style="display: none" method="post"
                                 action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
                             </form>
@@ -132,10 +132,10 @@
             @csrf
             @method('PUT')
             <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input" rows="4" name="content" placeholder="保持友善～" maxlength="140"
+                <textarea class="mdui-textfield-input umami--input--status-reply" rows="4" name="content" placeholder="保持友善～" maxlength="140"
                     required></textarea>
             </div>
-            <button type="submit" class="mdui-btn mdui-ripple mdui-color-theme">回复</button>
+            <button type="submit" class="mdui-btn mdui-ripple mdui-color-theme umami--click--status-reply-confirm">回复</button>
         </form>
 
     </div>

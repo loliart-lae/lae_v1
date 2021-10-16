@@ -12,7 +12,7 @@
 
     <br /><br />
     <p>感谢你看到这里。如果您的浏览器没有自动跳转，请点击下方按钮。</p>
-    <a href="{{ $data->uri }}" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">手动前往 {{ $data->name }}</a>
+    <a href="{{ $data->uri }}" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent umami--click--manual-goto-link">手动前往 {{ $data->name }}</a>
     <script type="text/javascript">
         setTimeout(function() {
             window.location.href = '{{ $data->uri }}';

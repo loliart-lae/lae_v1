@@ -79,7 +79,7 @@
         </div>
 
         <div class="mdui-row mdui-p-y-2">
-            <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+            <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-remote-desktop">新建</button>
             <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple"
                 mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
 
@@ -94,7 +94,7 @@
                     6. 服务器会为了稳定性不定时重启。<br />
                     7. 用的愉快～</div>
                 <div class="mdui-dialog-actions">
-                    <button class="mdui-btn mdui-ripple" mdui-dialog-close>新建</button>
+                    <button class="mdui-btn mdui-ripple umami--click--show-remote-desktop-dialog" mdui-dialog-close>新建</button>
                 </div>
             </div>
         </div>

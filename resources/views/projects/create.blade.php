@@ -15,6 +15,6 @@
             <label class="mdui-textfield-label">介绍</label>
             <input class="mdui-textfield-input" type="text" name="description" />
         </div>
-        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-project">新建</button>
     </form>
 @endsection

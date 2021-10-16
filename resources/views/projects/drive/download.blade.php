@@ -19,7 +19,7 @@
         @if ($data->left < 0)
             <button disabled class="mdui-btn mdui-color-theme-accent mdui-ripple">你的帐户中没有足够的积分来下载</button>
         @else
-            <a href="#" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="window.open('{{ route('download.download', $data->fileName) }}');">下载 {{ $data->name }}</a>
+            <a href="#" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--download-file" onclick="window.open('{{ route('download.download', $data->fileName) }}');">下载 {{ $data->name }}</a>
         @endif
     </div>
 

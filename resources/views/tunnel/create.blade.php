@@ -6,7 +6,7 @@
     <div class="mdui-typo-display-2">新建 Tunnel 隧道</div>
 
     <p>在选定的项目中新建 Tunnel 隧道</p>
-    
+
     <form method="post" action="{{ route('tunnels.store') }}">
         @csrf
         <x-choose-project-form />
@@ -112,7 +112,7 @@
         </div>
 
         <div class="mdui-row mdui-p-y-2">
-            <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+            <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-tunnel">新建</button>
         </div>
 
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">

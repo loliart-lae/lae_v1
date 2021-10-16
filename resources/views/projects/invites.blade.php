@@ -35,9 +35,9 @@
                                 @csrf
                                 @method('POST')
                             </form>
-                            <td nowrap="nowrap"><a class="mdui-text-color-theme" style="text-decoration: none"
+                            <td nowrap="nowrap"><a class="mdui-text-color-theme umami--click--invite-accept" style="text-decoration: none"
                                     href="javascript: $('#f_{{ $invite->id }}_accept').submit();">同意</a> 或者 <a
-                                    class="mdui-text-color-theme" style="text-decoration: none"
+                                    class="mdui-text-color-theme umami--click--accept-deny" style="text-decoration: none"
                                     href="javascript: $('#f_{{ $invite->id }}_deny').submit();">拒绝</a></td>
                         @endif
 

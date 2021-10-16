@@ -70,7 +70,7 @@
         </div>
 
         <div class="mdui-row mdui-p-y-2">
-            <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+            <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-staticPage">新建</button>
         </div>
     </form>
 

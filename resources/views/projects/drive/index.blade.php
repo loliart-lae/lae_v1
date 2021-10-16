@@ -28,7 +28,7 @@
             <tbody class="mdui-typo">
                 <tr>
                     <td colspan="11" class="mdui-text-center">
-                        <a href="{{ route('storage.create', Request::route('project_id')) }}?path={{ $path ?? '' }}">新建文件夹
+                        <a class="umami--click--storage-new" href="{{ route('storage.create', Request::route('project_id')) }}?path={{ $path ?? '' }}">新建文件夹
                             或者 上传文件</a>
                     </td>
                 </tr>

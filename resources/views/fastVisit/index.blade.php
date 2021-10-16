@@ -6,7 +6,7 @@
     <div class="mdui-typo-display-2">快捷访问</div>
     <p>快捷访问可以设置访问网址时的跳转的URI。</p>
 
-    <a class="mdui-btn mdui-color-theme-accent mdui-ripple" href="{{ route('fastVisit.create') }}">新建入口</a>
+    <a class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-new-fastVisit" href="{{ route('fastVisit.create') }}">新建入口</a>
     <br />
     <br />
     <div class="mdui-table-fluid">
@@ -41,12 +41,12 @@
                         <td nowrap="nowrap">{{ $i++ }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->id }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->name }}</td>
-                        <td nowrap="nowrap"><a class="can_copy"
+                        <td nowrap="nowrap"><a class="can_copy umami--click--fastVisit-copy"
                                 data-clipboard-text="https://{{ $fastVisit->domain->domain }}/v/{{ $fastVisit->slug }}">{{ $fastVisit->slug }}</a>
                         </td>
                         <td nowrap>{{ $fastVisit->domain->domain }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->uri }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap="nowrap" class="umami--click--toggle-ad">
                             @if ($fastVisit->show_ad)
                                 <label class="mdui-switch">
                                     <input id="check_ad_{{ $fastVisit->id }}"

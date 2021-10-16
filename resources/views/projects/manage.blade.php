@@ -13,31 +13,31 @@
     <br />
     项目积分:{{ $project_info->balance }}</span>
     @if ($project_info->balance < 100)
-        <span mdui-tooltip="{content: '点击显示详细信息'}" onclick="balance_low()">&nbsp;!项目积分过少!</span>
+        <span mdui-tooltip="{content: '点击显示详细信息'}" class="umami--click--show-balance-low" onclick="balance_low()">&nbsp;!项目积分过少!</span>
     @endif
     <br />
     <br />
 
-    <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple"
+    <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--invite-member-to-project"
         mdui-dialog="{target: '#invite-dialog'}">邀请新成员到项目</a>
-    <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple"
+    <a style="margin: 3px" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-charge"
         mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>
     <a style="margin: 3px" href="{{ route('invite.index', $project_info->id) }}"
-        class="mdui-btn mdui-color-theme-accent mdui-ripple">邀请状态</a>
+        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-invite-status">邀请状态</a>
     <a style="margin: 3px" href="{{ route('storage.index', $project_info->id) }}"
-        class="mdui-btn mdui-color-theme-accent mdui-ripple">存储</a>
+        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-storage">存储</a>
 
     @if ($project_info->user_id != Auth::id())
         <form style="display: inline;" method="POST" action="{{ route('projects.leave', $project_info->id) }}">
             @csrf
             <button style="margin: 3px" onclick="if(!confirm('离开后，将不会退回任何资金，也无法撤销该操作。')) return false"
-                class="mdui-btn mdui-color-theme-accent mdui-ripple">离开</button>
+                class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-leave-confirm">离开</button>
         </form>
     @else
         <a style="margin: 3px" href="{{ route('projects.edit', $project_info->id) }}"
-            class="mdui-btn mdui-color-theme-accent mdui-ripple">修改</a>
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-edit">修改</a>
         <a style="margin: 3px" href="{{ route('projects.destroy', $project_info->id) }}"
-            class="mdui-btn mdui-color-theme-accent mdui-ripple" mdui-dialog="{target: '#destroy-dialog'}">解散</a>
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-delete" mdui-dialog="{target: '#destroy-dialog'}">解散</a>
     @endif
 
 

@@ -12,16 +12,16 @@
         <span class="mdui-typo-headline">输入充值金额</span>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">输入 RMB</label>
-            <input class="mdui-textfield-input" type="number" name="balance" value="1" required />
+            <input class="mdui-textfield-input umami--input--charge-balance" type="number" name="balance" value="1" required />
         </div>
 
-        <label class="mdui-radio">
+        <label class="mdui-radio" class="umami--click--use-wechat-pay">
             <input type="radio" name="payment" value="wechat" checked />
             <i class="mdui-radio-icon"></i>
             微信支付
         </label>
         &nbsp;&nbsp;&nbsp;
-        <label class="mdui-radio">
+        <label class="mdui-radio" class="umami--click--use-alipay">
             <input type="radio" name="payment" value="alipay" />
             <i class="mdui-radio-icon"></i>
             支付宝
@@ -29,7 +29,7 @@
 
         <br /> <br />
         <p>注意：积分是虚拟物品，不支持退款。请合理充值。</p>
-        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">充值</button>
+        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--do-charge">充值</button>
 
     </form>
 

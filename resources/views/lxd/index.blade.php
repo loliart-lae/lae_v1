@@ -21,7 +21,7 @@
             @endif
             <div class="mdui-panel mdui-m-t-1" mdui-panel>
                 <div class="mdui-panel-item">
-                    <div class="mdui-panel-item-header">
+                    <div class="mdui-panel-item-header umami--click--show-lxd-panel">
                         <div class="mdui-panel-item-title">{{ $i++ }}. {{ $lxd->name }}</div>
                         <div class="mdui-panel-item-summary">
                             @if ($lxd->status == 'running')
@@ -67,7 +67,7 @@
 
                         <div class="mdui-panel-item-actions">
                             @if ($lxd->status == 'running')
-                                <a class="mdui-btn mdui-ripple"
+                                <a class="mdui-btn mdui-ripple umami--click--goto-forwards"
                                     href="{{ route('forward.index', $lxd->id) }}">{{ $forwards }} 端口</a>
                             @else
                                 <button class="mdui-btn mdui-ripple" mdui-panel-item-close>
@@ -79,7 +79,7 @@
                             @if ($lxd->status == 'running' || $lxd->status == 'failed')
                                 <button
                                     onclick="if (confirm('确认删除吗？删除将会清除全部数据，并且无法找回！')) {$('#f-{{ $i }}').submit()} else {return false}"
-                                    class="mdui-btn mdui-ripple">销毁</button>
+                                    class="mdui-btn mdui-ripple umami--click--lxd-delete">销毁</button>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>
                             @elseif ($lxd->status == 'making')

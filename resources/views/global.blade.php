@@ -12,15 +12,15 @@
         <form method="POST" action="{{ route('status.store') }}">
             @csrf
             <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4"
+                <textarea class="mdui-textfield-input hitokoto_placeholder umami--input--status" name="content" maxlength="140" rows="4"
                     required autofocus placeholder="有没有想和大家分享的内容？"></textarea>
             </div>
-            <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
+            <button class="mdui-btn mdui-color-theme mdui-ripple umami--click--publish-status">发布</button>
         </form>
 
 
 
-        <h4><a href="{{ route('main') }}">我的时间河</a>&nbsp;|&nbsp;全站时间河</h4>
+        <h4><a href="{{ route('main') }}" class="umami--click--user-toggle-timeriver">我的时间河</a>&nbsp;|&nbsp;全站时间河</h4>
         @include('include._feed')
 
     </div>

@@ -37,10 +37,10 @@
                                             onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
                                     @elseif (in_array($status->user->id, $ids))
                                         <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-theme mdui-icon material-icons">favorite</i>
+                                            class="mdui-text-color-theme mdui-icon material-icons umami--click--unfollow-user">favorite</i>
                                     @else
                                         <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-black-secondary mdui-icon material-icons">favorite</i>
+                                            class="mdui-text-color-black-secondary mdui-icon material-icons umami--click--follow-user">favorite</i>
                                     @endif
                                 @endif
 
@@ -69,9 +69,9 @@
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
                             @if (is_null($status->like))
-                                <i class="mdui-icon material-icons" style="color: unset">star_border</i>
+                                <i class="mdui-icon material-icons umami--click--like" style="color: unset">star_border</i>
                             @elseif ($status->like->is_liked)
-                                <i style="color:#36a6e8" class="mdui-icon material-icons">star</i>
+                                <i style="color:#36a6e8" class="mdui-icon material-icons umami--click--unlike">star</i>
                             @else
                                 <i class="mdui-icon material-icons" style="color: unset">star_border</i>
                             @endif
@@ -84,7 +84,7 @@
                                 method="POST" onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="mdui-btn mdui-ripple">删除</button>
+                                <button type="submit" class="mdui-btn mdui-ripple umami--click--status-delete">删除</button>
                             </form>
                         @endcan
                     </div>

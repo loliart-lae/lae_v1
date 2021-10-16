@@ -16,6 +16,6 @@
             <label class="mdui-textfield-label">介绍</label>
             <input class="mdui-textfield-input" type="text" name="description" value="{{ $project->description }}" />
         </div>
-        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">保存</button>
+        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--edit-project">保存</button>
     </form>
 @endsection

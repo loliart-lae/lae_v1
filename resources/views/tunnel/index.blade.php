@@ -5,9 +5,9 @@
 @section('content')
     <div class="mdui-typo-display-2">穿透隧道</div>
 
-    <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建隧道</a>
+    <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">新建隧道</a>
     &nbsp;&nbsp;
-    <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple">下载 Frp
+    <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-download-frp-client">下载 Frp
         各平台客户端</a>
 
     {{-- <a href="" class="mdui-btn mdui-color-theme-accent mdui-ripple">启动集</a> --}}
@@ -36,7 +36,7 @@
                     @if ($tunnel->project->id != $project_id)
                         @php($project_id = $tunnel->project->id)
                         <tr>
-                            <td colspan="11" class="mdui-text-center">
+                            <td colspan="11" class="mdui-text-center umami--click--goto-project">
                                 <a
                                     href="{{ route('projects.show', $tunnel->project->id) }}">{{ $tunnel->project->name }}</a>
                             </td>
@@ -101,7 +101,7 @@
                 @endforeach
                 @if ($i > 10)
                     <tr>
-                        <td colspan="11" class="mdui-text-center">
+                        <td colspan="11" class="mdui-text-center umami--click--tunnel-miao">
                             <a href="{{ route('tunnels.create') }}">Create A Frp Tunnel Please (miao~)</a>
                         </td>
                     </tr>

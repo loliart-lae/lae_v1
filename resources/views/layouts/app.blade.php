@@ -85,10 +85,10 @@
         @endauth"
             mdui-tab>
             @guest
-                <a href="{{ route('index') }}" class="main_link">{{ config('app.name') }}</a>
-                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">登录</a>
+                <a href="{{ route('index') }}" class="main_link umami--click--guest-main-link">{{ config('app.name') }}</a>
+                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white umami--click--gust-login">登录</a>
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
-                <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white">我们的初心</a>
+                <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white umami--click--why-begin">我们的初心</a>
                 {{-- 说实话我也不知道为什么这里会给未登录用户展示这个，很奇怪 我先注释掉吧
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
@@ -97,27 +97,27 @@
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
                     <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a> --}}
             @else
-                <a href="{{ route('main') }}" class="main_link">{{ config('app.name') }}</a>
-                <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white"
+                <a href="{{ route('main') }}" class="main_link umami--click--main-link">{{ config('app.name') }}</a>
+                <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white umami--click--user-index"
                     style="white-space: nowrap"><small>
                         {{ Auth::user()->name }} / <span id="userBalance"
                             style="display: contents;">{{ Auth::user()->balance }}</span></small></a>
-                <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white">应用容器</a>
-                <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
-                <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
+                <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white umami--click--project">项目管理</a>
+                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white umami--click--ae">应用容器</a>
+                <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white umami--click--shared-windows">共享的 Windows</a>
+                <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white umami--click--tunnel">穿透隧道</a>
+                <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white umami--click--fastVisit">快捷访问</a>
                 {{-- <a href="{{ route('images.index') }}" class="mdui-ripple mdui-ripple-white">图片展廊</a> --}}
 
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
-                <a href="{{ route('staticPage.index') }}" class="mdui-ripple mdui-ripple-white">静态站点</a>
+                <a href="{{ route('staticPage.index') }}" class="mdui-ripple mdui-ripple-white umami--click--staticPage">静态站点</a>
                 {{-- <a onclick="mdui.alert('在做了再做了')" class="mdui-ripple mdui-ripple-white">B2B主机</a> --}}
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
-                <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white">文档中心</a>
-                <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white">社区论坛</a>
+                <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white umami--click--document">文档中心</a>
+                <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white umami--click--forum">社区论坛</a>
 
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                    class="mdui-ripple mdui-ripple-white">退出登录</a>
+                    class="mdui-ripple mdui-ripple-white umami--click--logout">退出登录</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
@@ -147,8 +147,8 @@
     <div class="mdui-container mdui-m-b-5">
         <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                {{ config('app.name') }}, <a href="https://github.com/loliart-lae/lae">Github</a><br />
-                Crafted with 💗 by <a href="{{ route('contributes') }}">Contributors</a><br />
+                {{ config('app.name') }}, <a class="umami--click--lae-github-repo" href="https://github.com/loliart-lae/lae">Github</a><br />
+                Crafted with 💗 by <a class="umami--click--contributes" href="{{ route('contributes') }}">Contributors</a><br />
             </p>
         </div>
     </div>
@@ -339,7 +339,7 @@
                     <div class="mdui-panel-item-body">
                         为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个 QQ 群：769779712。
                         <div class="mdui-panel-item-actions">
-                            <button class="mdui-btn mdui-ripple" onclick="$.cookie('is_readed', '1', {
+                            <button class="mdui-btn mdui-ripple umami--click--hide-topic" onclick="$.cookie('is_readed', '1', {
                                 expires: 7,
                                 path: '/'
                             });$('#topic').hide()">我知道了，消失吧！</button>

@@ -39,7 +39,7 @@
                     {{ $document->title }} <br /> {{ $document->description }}
                     <br />
                     @csrf
-                    <label for="useful">觉得这份文档对您有用吗？</label>
+                    <label for="useful" class="umami--click--document-useful">觉得这份文档对您有用吗？</label>
                     <input type="checkbox" id="useful" onchange="toggleUseful()" @if($is_liked ?? 0) checked @endif  />
                 </p>
             </div>

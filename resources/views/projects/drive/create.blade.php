@@ -21,7 +21,7 @@
             <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
         </div>
 
-        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
+        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--create-folder">新建</button>
     </form>
     <br />
     <br />
@@ -39,7 +39,7 @@
                 <small class="form-text text-muted">选择文件并上传到 "/{{ $path }}" 下</small>
             </div>
             <br />
-               <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple">上传</button>
+               <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--upload-file">上传</button>
         </form>
     </div>
 @endsection

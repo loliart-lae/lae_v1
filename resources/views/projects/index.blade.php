@@ -5,8 +5,8 @@
 @section('content')
     <div class="mdui-typo-display-2">我所在的项目</div>
 
-    <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建项目</a> &nbsp; <a
-        href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">
+    <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-project">新建项目</a> &nbsp; <a
+        href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-invites-list">
         @if ($invites > 0)
             {{ $invites }} 个
         @else
@@ -32,20 +32,20 @@
                         </div>
                         <div class="mdui-card-actions">
                             <a href="{{ route('projects.show', $project->project->id) }}"
-                                class="mdui-btn mdui-ripple">管理</a>
+                                class="mdui-btn mdui-ripple umami--click--project-manage">管理</a>
                             <a href="{{ route('storage.index', $project->project->id) }}"
-                                class="mdui-btn mdui-ripple">存储</a>
+                                class="mdui-btn mdui-ripple umami--click--project-storage">存储</a>
 
                             @if ($project->project->user_id != Auth::id())
                                 <form style="display: inline;" method="POST"
                                     action="{{ route('projects.leave', $project->project->id) }}">
                                     @csrf
                                     <button onclick="if(!confirm('离开后，将不会退回任何资金，也无法撤销该操作。')) return false"
-                                        class="mdui-btn mdui-ripple">离开</button>
+                                        class="mdui-btn mdui-ripple umami--click--project-leave">离开</button>
                                 </form>
                             @else
                                 <a href="{{ route('projects.edit', $project->project->id) }}"
-                                    class="mdui-btn mdui-ripple">修改</a>
+                                    class="mdui-btn mdui-ripple umami--click--project-edit">修改</a>
                             @endif
                         </div>
                     </div>
