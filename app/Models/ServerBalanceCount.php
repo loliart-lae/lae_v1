@@ -15,4 +15,9 @@ class ServerBalanceCount extends Model
     {
         return $this->hasOne(Server::class, 'id', 'server_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
