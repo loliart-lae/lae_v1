@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', '新建 应用容器')
+@section('title', '新建 Easypanel 虚拟主机')
 
 @section('content')
-    <div class="mdui-typo-display-2">新建 应用容器</div>
+    <div class="mdui-typo-display-2">新建 Easypanel 虚拟主机</div>
 
-    <form method="post" action="{{ route('lxd.store') }}">
+    <form method="post" action="{{ route('ep.store') }}">
         @csrf
         <x-choose-project-form />
 
@@ -21,7 +21,6 @@
                         <th>ID</th>
                         <th>名称</th>
                         <th>基础价格(积分/分钟)</th>
-                        <th>转发价格(积分/分钟)</th>
                         <th>带宽限制</th>
                         <th>月预估</th>
                         <th>选择</th>
@@ -35,11 +34,9 @@
                                 <td nowrap="nowrap">{{ $i++ }}</td>
                                 <td nowrap="nowrap">{{ $server->name }}</td>
                                 <td nowrap="nowrap">{{ $server->price }}</td>
-                                <td nowrap="nowrap">{{ $server->forward_price }}</td>
                                 <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
-                                <td>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
-
-
+                                <td>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元
+                                    / 月</td>
 
                                 <td>
                                     <label class="mdui-radio">
@@ -54,7 +51,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="7" class="mdui-text-center">服务器均已售罄</td>
+                            <td colspan="6" class="mdui-text-center">服务器均已售罄</td>
                         </tr>
                     @endif
 
@@ -63,45 +60,8 @@
         </div>
 
         <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
-            <span class="mdui-typo-headline">选择镜像</span>
-            <p class="mdui-typo-subheading">不同镜像拥有着不同操作系统以及操作方式。</p>
-        </div>
-        <div class="mdui-table-fluid">
-            <table class="mdui-table mdui-table-hoverable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>镜像</th>
-                        <th>源</th>
-                        <th>选择</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php($i = 1)
-                    @foreach ($images as $image)
-                        <tr>
-                            <td nowrap="nowrap">{{ $i++ }}</td>
-                            <td nowrap="nowrap">{{ $image->name }}</td>
-                            <td nowrap="nowrap">{{ $image->image }}</td>
-
-                            <td>
-                                <label class="mdui-radio">
-                                    <input type="radio" value="{{ $image->id }}" name="image_id"
-                                        @if ($i == 2) checked @endif required />
-                                    <i class="mdui-radio-icon"></i>
-
-                                </label>
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
-            <span class="mdui-typo-headline">选择容器模板</span>
-            <p class="mdui-typo-subheading">容器模板影响着计费，计费每 1 分钟进行一次。</p>
+            <span class="mdui-typo-headline">选择配置模板</span>
+            <p class="mdui-typo-subheading">配置模板影响着计费以及性能，计费每 1 分钟进行一次。</p>
         </div>
         <div class="mdui-table-fluid">
             <table class="mdui-table mdui-table-hoverable">
@@ -129,13 +89,15 @@
                             <td nowrap="nowrap">{{ $template->mem }} M</td>
                             <td nowrap="nowrap">{{ $template->disk }} G</td>
                             <td nowrap="nowrap">{{ $template->price }}</td>
-                            <td>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
+                            <td>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
+                            </td>
 
                             <td>
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $template->id }}" name="template_id"
                                         @if ($i == 2) checked @endif required />
                                     <i class="mdui-radio-icon"></i>
+
                                 </label>
                             </td>
 

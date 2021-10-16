@@ -24,6 +24,7 @@
                         <th>名称</th>
                         <th>共享带宽</th>
                         <th>积分/分钟</th>
+                        <th>月预估</th>
                         <th>选择</th>
                     </tr>
                 </thead>
@@ -35,6 +36,9 @@
                             <td nowrap="nowrap">{{ $server->name }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
+                            <td>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
+                            </td>
+
 
                             <td>
                                 <label class="mdui-radio">
@@ -87,8 +91,7 @@
                 <p>将内网地址的端口映射为，如果是 HTTP/HTTPS/XTCP 协议，则该项可以不填写。</p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">公网端口</label>
-                    <input class="mdui-textfield-input" type="text" name="remote_port"
-                        value="{{ old('remote_port') }}" />
+                    <input class="mdui-textfield-input" type="text" name="remote_port" value="{{ old('remote_port') }}" />
                 </div>
             </div>
             <div class="mdui-col-xs-6">
@@ -112,14 +115,15 @@
         </div>
 
         <div class="mdui-row mdui-p-y-2">
-            <button type="submit" class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-tunnel">新建</button>
+            <button type="submit"
+                class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-tunnel">新建</button>
         </div>
 
         <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
-            注意：每分钟价格 = 地区服务器基础价格<br />
-            Tunnel 隧道 一旦创建成功后将无法修改<br />
-            XTCP 免费，带宽受限于你的网络上行速度。
-        </small></div>
+                注意：每分钟价格 = 地区服务器基础价格<br />
+                Tunnel 隧道 一旦创建成功后将无法修改<br />
+                XTCP 免费，带宽受限于你的网络上行速度。
+            </small></div>
     </form>
 
     <script>

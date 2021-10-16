@@ -26,6 +26,7 @@
                         <th>CPU 使用率</th>
                         <th>内存 使用率</th>
                         <th>基础价格(积分/分钟)</th>
+                        <th>月预估</th>
                         <th>选择</th>
                     </tr>
                 </thead>
@@ -38,10 +39,13 @@
                             <td nowrap="nowrap">{{ $server->cpu }}</td>
                             <td nowrap="nowrap">{{ $server->mem }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
-                            @php($status = json_decode(Cache::get('windows_server_status_' . $server->id, ['cpu' => 'null', 'mem' => 'null'])))
+                            @php($status = json_decode(Cache::get('windows_server_status_' . $server->id, json_encode(['cpu' => 'null', 'mem' => 'null']))))
                             <td nowrap="nowrap">{{ $status->cpu }}%</td>
                             <td nowrap="nowrap">{{ $status->mem }}%</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
+                            <td>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
+                            </td>
+
 
 
                             <td>
@@ -74,12 +78,14 @@
             <p>只允许字母、数字，短破折号（-）和下划线（_）。</p>
             <div class="mdui-textfield mdui-textfield-floating-label">
                 <label class="mdui-textfield-label">密码</label>
-                <input class="mdui-textfield-input" type="password" name="password" value="{{ old('password') }}" required />
+                <input class="mdui-textfield-input" type="password" name="password" value="{{ old('password') }}"
+                    required />
             </div>
         </div>
 
         <div class="mdui-row mdui-p-y-2">
-            <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-remote-desktop">新建</button>
+            <button type="submit"
+                class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--new-remote-desktop">新建</button>
             <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple"
                 mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
 
@@ -94,14 +100,15 @@
                     6. 服务器会为了稳定性不定时重启。<br />
                     7. 用的愉快～</div>
                 <div class="mdui-dialog-actions">
-                    <button class="mdui-btn mdui-ripple umami--click--show-remote-desktop-dialog" mdui-dialog-close>新建</button>
+                    <button class="mdui-btn mdui-ripple umami--click--show-remote-desktop-dialog"
+                        mdui-dialog-close>新建</button>
                 </div>
             </div>
         </div>
     </form>
 
     <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
-        注意：每分钟价格 = 地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，一些软件可用绿色版免安装。
-    </small></div>
+            注意：每分钟价格 = 地区服务器基础价格<br />共享的 Windows 远程桌面 没有管理员账号，一些软件可用绿色版免安装。
+        </small></div>
 
 @endsection
