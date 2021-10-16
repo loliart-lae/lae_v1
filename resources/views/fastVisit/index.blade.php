@@ -6,9 +6,10 @@
     <div class="mdui-typo-display-2">快捷访问</div>
     <p>快捷访问可以设置访问网址时的跳转的URI。</p>
 
-    <a class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-new-fastVisit" href="{{ route('fastVisit.create') }}">新建入口</a>
-    <br />
-    <br />
+    <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
+        <a class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-new-fastVisit" href="{{ route('fastVisit.create') }}">新建入口</a>
+    </div>
+
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
             <thead>

@@ -5,8 +5,9 @@
 @section('content')
     <div class="mdui-typo-display-2">静态主机托管</div>
 
-    <a href="{{ route('staticPage.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 静态托管</a>
-    <br /><br />
+    <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
+        <a href="{{ route('staticPage.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple">新建 静态托管</a>
+    </div>
 
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
