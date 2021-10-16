@@ -55,7 +55,7 @@
                         <td nowrap="nowrap">{{ $remote_desktop->server->cpu }} Core</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->mem }}M</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->network_limit }} Mbps</td>
-                        @php($status = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id, $default), true))
+                        @php($status = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id), true))
                         <td nowrap="nowrap">{{ $status['cpu'] }}%</td>
                         <td nowrap="nowrap">{{ $status['mem'] }}%</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->name }}</td>
