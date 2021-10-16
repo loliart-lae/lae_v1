@@ -5,8 +5,6 @@
 @section('content')
     <div class="mdui-typo-display-2">新建共享的 Windows 远程桌面账号</div>
 
-    <p>在选定的项目中新建 共享的 Windows 远程桌面账号。</p>
-
     <form method="post" id="f-buy-shared-windows" action="{{ route('remote_desktop.store') }}">
         @csrf
         <x-choose-project-form />
@@ -84,7 +82,7 @@
             <button type="submit" class="mdui-m-l-1 mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple">新建</button>
             <span class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple"
                 mdui-dialog="{target: '#sub-dialog'}">必看(使用须知)</span>
-            
+
 
             <div class="mdui-dialog" id="sub-dialog">
                 <div class="mdui-dialog-title">请仔细阅读</div>

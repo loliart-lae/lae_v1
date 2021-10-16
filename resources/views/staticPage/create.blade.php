@@ -5,8 +5,6 @@
 @section('content')
     <div class="mdui-typo-display-2">新建 静态托管</div>
 
-    <p>在选定的项目中新建 共享的 Windows 远程桌面账号。</p>
-    
     <form method="post" id="f-buy-shared-windows" action="{{ route('staticPage.store') }}">
         @csrf
         <x-choose-project-form />

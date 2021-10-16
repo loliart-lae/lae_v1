@@ -5,8 +5,6 @@
 @section('content')
     <div class="mdui-typo-display-2">新建 应用容器</div>
 
-    <p>在选定的项目中新建应用容器。</p>
-
     <form method="post" action="{{ route('lxd.store') }}">
         @csrf
         <x-choose-project-form />
