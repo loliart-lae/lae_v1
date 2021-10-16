@@ -18,7 +18,7 @@
             <button class="mdui-btn mdui-color-theme mdui-ripple umami--click--publish-status">发布</button>
         </form>
 
-        <div class="mdui-m-l-1">
+        <div class="mdui-m-l-1 mdui-m-r-1">
             <h4><a href="{{ route('main') }}" class="umami--click--user-toggle-timeriver">我的时间河</a>&nbsp;|&nbsp;全站时间河</h4>
             @include('include._feed')
         </div>
