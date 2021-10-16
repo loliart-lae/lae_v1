@@ -52,8 +52,6 @@ class CostJob implements ShouldQueue
         // $server = new Server();
         $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
         $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->get();
-        $serverBalanceCount = new ServerBalanceCount();
-
 
         foreach ($lxdContainers as $lxd) {
             // 金额
@@ -115,6 +113,7 @@ class CostJob implements ShouldQueue
                 ];
                 dispatch(new LxdJob($config));
 
+                $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $lxd->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
@@ -143,6 +142,7 @@ class CostJob implements ShouldQueue
                 dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
                 Message::send('共享的 Windows 远程桌面' . $remote_desktop->username . '因为积分不足而自动删除。', $remote_desktop->project->user_id);
             } else {
+                $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $remote_desktop->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
@@ -161,6 +161,7 @@ class CostJob implements ShouldQueue
                 Tunnel::where('id', $tunnel->id)->delete();
                 Message::send('穿透隧道' . $tunnel->name . '因为积分不足而自动删除。', $tunnel->project->user_id);
             } else {
+                $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $tunnel->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
@@ -193,6 +194,7 @@ class CostJob implements ShouldQueue
                 dispatch(new StaticPageJob($config));
                 Message::send('静态页面' . $staticPage->name . '因为积分不足而自动删除。', $staticPage->project->user_id);
             } else {
+                $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $staticPage->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
@@ -221,6 +223,7 @@ class CostJob implements ShouldQueue
                 dispatch(new EasyPanelJob($config));
                 Message::send('EasyPanel 主机' . $easyPanelVirtualHost->name . '因为积分不足而自动删除。', $easyPanelVirtualHost->project->user_id);
             } else {
+                $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $easyPanelVirtualHost->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
