@@ -36,7 +36,6 @@
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
 
-
                             <td>
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $server->id }} " name="server_id"
