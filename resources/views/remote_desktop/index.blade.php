@@ -29,7 +29,6 @@
             </thead>
             <tbody class="mdui-typo">
                 @php($i = 1)
-                @php($default = ['cpu' => 'null', 'mem' => 'null'])
                 @php($project_id = 0)
                 @foreach ($remote_desktops as $remote_desktop)
                     @if ($remote_desktop->project->id != $project_id)
@@ -55,7 +54,7 @@
                         <td nowrap="nowrap">{{ $remote_desktop->server->cpu }} Core</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->mem }}M</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->network_limit }} Mbps</td>
-                        @php($status = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id), true))
+                        @php($status = json_decode(Cache::get('windows_server_status_' . 2), true))
                         <td nowrap="nowrap">{{ $status['cpu'] }}%</td>
                         <td nowrap="nowrap">{{ $status['mem'] }}%</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->name }}</td>
