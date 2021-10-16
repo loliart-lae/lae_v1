@@ -58,7 +58,7 @@
             </div>
 
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
-                <div class="mdui-typo-body-1-opacity">EasyPanel 数量</div>
+                <div class="mdui-typo-body-1-opacity">EasyPanel 站点数量</div>
                 <div class="mdui-typo-display-1 mdui-m-t-1">{{ $easyPanels }}</div>
             </div>
 
