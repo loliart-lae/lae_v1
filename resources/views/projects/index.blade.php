@@ -5,8 +5,8 @@
 @section('content')
     <div class="mdui-typo-display-2">我所在的项目</div>
 
-    <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-project">新建项目</a> &nbsp; <a
-        href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-invites-list">
+    <a href="{{ route('projects.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-project">新建项目</a>
+    <a href="{{ route('invites.list') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-invites-list">
         @if ($invites > 0)
             {{ $invites }} 个
         @else

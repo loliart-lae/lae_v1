@@ -5,13 +5,18 @@
 @section('content')
     <div class="mdui-typo-display-2">穿透隧道</div>
 
-    <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">新建隧道</a>
-    &nbsp;&nbsp;
-    <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-download-frp-client">下载 Frp
-        各平台客户端</a>
+    <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
+
+        <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">
+            新建隧道
+        </a>
+        
+        <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-download-frp-client">
+            下载 Frp 各平台客户端
+        </a>
+    </div>
 
     {{-- <a href="" class="mdui-btn mdui-color-theme-accent mdui-ripple">启动集</a> --}}
-    <br /><br />
     <div class="mdui-table-fluid">
         <table class="mdui-table mdui-table-hoverable">
             <thead>
