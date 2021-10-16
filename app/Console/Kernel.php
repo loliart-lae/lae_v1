@@ -17,7 +17,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\ServerLastMonthCount::class,
+        Commands\ServerNowCount::class,
     ];
 
     /**
