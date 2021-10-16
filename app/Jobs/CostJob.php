@@ -13,6 +13,7 @@ use App\Models\LxdContainer;
 use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
 use App\Models\ServerBalanceCount;
+use App\Models\EasyPanelVirtualHost;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -50,6 +51,7 @@ class CostJob implements ShouldQueue
         $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->get();
         // $server = new Server();
         $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
+        $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->get();
         $serverBalanceCount = new ServerBalanceCount();
 
 
@@ -158,7 +160,6 @@ class CostJob implements ShouldQueue
                 // 扣费失败，删除账号
                 Tunnel::where('id', $tunnel->id)->delete();
                 Message::send('穿透隧道' . $tunnel->name . '因为积分不足而自动删除。', $tunnel->project->user_id);
-
             } else {
                 $serverBalanceCount->server_id = $tunnel->server_id;
                 $serverBalanceCount->value = $need_pay;
@@ -191,9 +192,36 @@ class CostJob implements ShouldQueue
                 ];
                 dispatch(new StaticPageJob($config));
                 Message::send('静态页面' . $staticPage->name . '因为积分不足而自动删除。', $staticPage->project->user_id);
-
             } else {
                 $serverBalanceCount->server_id = $staticPage->server_id;
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->save();
+            }
+        }
+
+        // 获取 EasyPanel 并计费
+        foreach ($easyPanelVirtualHosts as $easyPanelVirtualHost) {
+            // 金额
+            $project_id = $easyPanelVirtualHost->project->id;
+
+            $need_pay = $easyPanelVirtualHost->server->price + $easyPanelVirtualHost->template->price;
+
+            if (!Project::cost($project_id, $need_pay)) {
+                // 扣费失败，删除主机
+                EasyPanelVirtualHost::where('id', $easyPanelVirtualHost->id)->delete();
+
+                // 调度删除任务
+                $config = [
+                    'method' => 'del_vh',
+                    'name' => $easyPanelVirtualHost->name,
+                    'inst_id' => $easyPanelVirtualHost->id,
+                    'address' => $easyPanelVirtualHost->server->address,
+                    'token' => $easyPanelVirtualHost->server->token
+                ];
+                dispatch(new EasyPanelJob($config));
+                Message::send('EasyPanel 主机' . $easyPanelVirtualHost->name . '因为积分不足而自动删除。', $easyPanelVirtualHost->project->user_id);
+            } else {
+                $serverBalanceCount->server_id = $easyPanelVirtualHost->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->save();
             }
