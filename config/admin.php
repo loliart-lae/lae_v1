@@ -10,6 +10,7 @@ return [
         'Bing_Yanchi@outlook.com',
         'minecraftkite@outlook.com',
         'java20131114@gmail.com',
-        '1374996108@qq.com'
+        '1374996108@qq.com',
+        'ivampiresp@163.com'
     ]
 ];
