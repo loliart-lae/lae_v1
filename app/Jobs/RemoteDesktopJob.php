@@ -51,20 +51,6 @@ class RemoteDesktopJob implements ShouldQueue
                         'status' => 'active',
                     ]);
                     Message::send('成功新建了 共享的 Windows 远程桌面。', $this->config['user']);
-
-                    // if ($result['status']) {
-                    //     $remote_desktop->where('id', $this->config['inst_id'])->update([
-                    //         'status' => 'active',
-                    //     ]);
-                    //     Message::send('成功新建了 共享的 Windows 远程桌面。', $this->config['user']);
-                    // } else {
-                    //     $remote_desktop->where('id', $this->config['inst_id'])->delete();
-                    //     Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
-                    //     Http::retry(5, 100)->get("http://{$this->config['address']}/delete", [
-                    //         'username' => $this->config['username'],
-                    //         'token' => $this->config['token']
-                    //     ]);
-                    // }
                 } catch (Exception $e) {
                     $remote_desktop->where('id', $this->config['inst_id'])->delete();
                     Message::send('此时无法新建 共享的 Windows 远程桌面。', $this->config['user']);
