@@ -62,7 +62,7 @@
                         <textarea id="log_{{ $status->id }}_content"
                             style="display:none;">{!! e($status->content) !!}</textarea>
                         <script>
-                            $(function() {
+                            $(document).ready(function() {
                                 var log_view
                                 $('#log_{{ $status->id }}').html(null)
                                 log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
