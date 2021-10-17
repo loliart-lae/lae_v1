@@ -85,7 +85,8 @@
         @endauth"
             mdui-tab>
             @guest
-                <a href="{{ route('index') }}" class="main_link umami--click--guest-main-link">{{ config('app.name') }}</a>
+                <a href="{{ route('index') }}"
+                    class="main_link umami--click--guest-main-link">{{ config('app.name') }}</a>
                 <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white umami--click--gust-login">登录</a>
                 {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
                 <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white umami--click--why-begin">我们的初心</a>
@@ -102,20 +103,28 @@
                     style="white-space: nowrap"><small>
                         {{ Auth::user()->name }} / <span id="userBalance"
                             style="display: contents;">{{ Auth::user()->balance }}</span></small></a>
-                <a href="{{ route('projects.index') }}" class="mdui-ripple mdui-ripple-white umami--click--project">项目管理</a>
+                <a href="{{ route('projects.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--project">项目管理</a>
                 <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white umami--click--ae">应用容器</a>
-                <a href="{{ route('remote_desktop.index') }}" class="mdui-ripple mdui-ripple-white umami--click--shared-windows">共享的 Windows</a>
-                <a href="{{ route('tunnels.index') }}" class="mdui-ripple mdui-ripple-white umami--click--tunnel">穿透隧道</a>
-                <a href="{{ route('fastVisit.index') }}" class="mdui-ripple mdui-ripple-white umami--click--fastVisit">快捷访问</a>
+                <a href="{{ route('remote_desktop.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--shared-windows">共享的 Windows</a>
+                <a href="{{ route('tunnels.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--tunnel">穿透隧道</a>
+                <a href="{{ route('fastVisit.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--fastVisit">快捷访问</a>
                 {{-- <a href="{{ route('images.index') }}" class="mdui-ripple mdui-ripple-white">图片展廊</a> --}}
 
                 {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
-                <a href="{{ route('easyPanel.index') }}" class="mdui-ripple mdui-ripple-white umami--click--easypanel">EasyPanel 站点</a>
-                <a href="{{ route('staticPage.index') }}" class="mdui-ripple mdui-ripple-white umami--click--staticPage">静态站点</a>
+                <a href="{{ route('easyPanel.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--easypanel">EasyPanel 站点</a>
+                <a href="{{ route('staticPage.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--staticPage">静态站点</a>
                 {{-- <a onclick="mdui.alert('在做了再做了')" class="mdui-ripple mdui-ripple-white">B2B主机</a> --}}
                 {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
-                <a href="{{ route('documents.index') }}" class="mdui-ripple mdui-ripple-white umami--click--document">文档中心</a>
-                <a target="_blank" href="https://f.lightart.top" class="mdui-ripple mdui-ripple-white umami--click--forum">社区论坛</a>
+                <a href="{{ route('documents.index') }}"
+                    class="mdui-ripple mdui-ripple-white umami--click--document">文档中心</a>
+                <a target="_blank" href="https://f.lightart.top"
+                    class="mdui-ripple mdui-ripple-white umami--click--forum">社区论坛</a>
 
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                     class="mdui-ripple mdui-ripple-white umami--click--logout">退出登录</a>
@@ -128,14 +137,16 @@
 
     @include('include._loading')
 
-    <div class="@yield('container', 'mdui-container') pjax-container" id="main">
+    <div class="mdui-container pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">
         </div>
         {{-- <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
                 style="position: relative; top: -1px;margin-right: 2px;"
                 class="mdui-icon material-icons">arrow_back</i>返回</a> --}}
 
-        @yield('content')
+        <div class="mdui-m-t-3">
+            @yield('content')
+        </div>
 
         <div class="mdui-typo mdui-p-t-5">
             <p class="mdui-typo-caption-opacity mdui-text-center">
@@ -148,8 +159,10 @@
     <div class="mdui-container mdui-m-b-5">
         <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
-                {{ config('app.name') }}, <a class="umami--click--lae-github-repo" href="https://github.com/loliart-lae/lae">Github</a><br />
-                Crafted with 💗 by <a class="umami--click--contributes" href="{{ route('contributes') }}">Contributors</a><br />
+                {{ config('app.name') }}, <a class="umami--click--lae-github-repo"
+                    href="https://github.com/loliart-lae/lae">Github</a><br />
+                Crafted with 💗 by <a class="umami--click--contributes"
+                    href="{{ route('contributes') }}">Contributors</a><br />
             </p>
         </div>
     </div>

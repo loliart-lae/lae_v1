@@ -15,7 +15,10 @@
             <div class="mdui-col-xs-12 mdui-col-sm-7">
                 <div class="mdui-typo-display-1">{{ $user->name }}</div>
 
-                <p>积分：{{ $user->balance }}，<a href="{{ route('billing.index') }}" class="umami--click--goto-charge">充值</a></p>
+                <p>积分: {{ $user->balance }}，<a href="{{ route('billing.index') }}"
+                        class="umami--click--goto-charge">充值</a></p>
+                <p>字段: <a href="{{ route('field.index') }}" class="umami--click--goto-field">显示字段</a>
+                </p>
 
                 <form method="POST" action="{{ route('user.update', $user->id) }}">
                     @csrf
@@ -31,8 +34,10 @@
                             placeholder="http(s)://" />
                     </div>
 
-                    <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-profile">修改</button>
-                    <span onclick="updateToken()" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-token">更新访问密钥</span>
+                    <button type="submit"
+                        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-profile">修改</button>
+                    <span onclick="updateToken()"
+                        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-token">更新访问密钥</span>
                 </form>
             </div>
         </div>
@@ -53,7 +58,9 @@
                                 buttonText: '复制',
                                 position: 'right-bottom',
                                 onButtonClick: function() {
-                                    $('body').append(`<span style="display: none" class="can_copy" data-clipboard-text="${data.api_token}"></span>`)
+                                    $('body').append(
+                                        `<span style="display: none" class="can_copy" data-clipboard-text="${data.api_token}"></span>`
+                                        )
                                     $('.can_copy').click()
                                     $('.can_copy').remove()
                                 }

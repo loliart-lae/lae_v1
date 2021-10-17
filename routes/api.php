@@ -16,6 +16,8 @@ use App\Http\Controllers\api\v1;
 |
 */
 
+Route::get('/v1/_field/{id}', [v1\UserFieldController::class, 'show']);
+
 Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
@@ -31,4 +33,5 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::resource('/v1/_projects', v1\TunnelController::class);
     Route::resource('/v1/_fastVisits', v1\FastVisitController::class);
     Route::resource('/v1/_staticPage', v1\StaticPageController::class);
+    Route::resource('/v1/_field', v1\UserFieldController::class);
 });
