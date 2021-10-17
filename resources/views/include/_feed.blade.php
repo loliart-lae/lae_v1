@@ -101,7 +101,7 @@
             })
         }
 
-        $(document).ready(function() {
+        $(window).load(function() {
             setTimeout(function() {
                 masonry_resize()
             }, 100)
