@@ -62,7 +62,7 @@
                         <textarea id="log_{{ $status->id }}_content"
                             style="display:none;">{!! e($status->content) !!}</textarea>
                         <script>
-                            setTimeout(function() {
+                            $(function() {
                                 var log_view
                                 $('#log_{{ $status->id }}').html(null)
                                 log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
@@ -71,7 +71,7 @@
                                     emoji: true,
                                     taskList: true,
                                 })
-                            }, 200)
+                            })
                         </script>
                     </div>
                     <div class="mdui-card-actions">
