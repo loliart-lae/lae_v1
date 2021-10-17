@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Exception;
 use App\Models\Message;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
 use App\Models\EasyPanelVirtualHost;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Queue\SerializesModels;
@@ -78,7 +79,9 @@ class EasyPanelJob implements ShouldQueue
                         'htaccess' => 1,
                     ]);
 
+                    Log::info($result);
                     if ($result['result'] != 200) {
+                        Message::send('此时无法创建虚拟主机。', $this->config['user']);
                         throw new \Exception('无法创建虚拟主机');
                     }
                     $easyPanelVirtualHost->where('id', $this->config['inst_id'])->update([
