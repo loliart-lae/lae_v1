@@ -87,7 +87,7 @@ class EasyPanelJob implements ShouldQueue
                         'status' => 'active',
                     ]);
 
-                    Message::send('虚拟主机 已经准备好了。FTP与数据库密码为: ' . $this->config['passwd'], $this->config['user']);
+                    Message::send('虚拟主机 已经准备好了。FTP与数据库密码为: ' . $this->config['password'], $this->config['user']);
                 } catch (Exception $e) {
                     Log::error($e);
                     Log::error($result);
