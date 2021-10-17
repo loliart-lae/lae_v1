@@ -2,7 +2,8 @@
 return [
     'admin_users' => [
         'im@ivampiresp.com',
-        'Bing_Yanchi@outlook.com'
+        'Bing_Yanchi@outlook.com',
+        'ivampiresp@163.com'
     ],
     'bypass_users' => [
         'im@ivampiresp.com',
