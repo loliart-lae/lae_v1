@@ -24,14 +24,15 @@ class UserStatusController extends Controller
         if (Auth::check()) {
             $feed_items = Auth::user()->feed()->simplePaginate(30);
         }
-
         $display = 0;
         return view('main', compact('feed_items', 'display'));
     }
 
     public function global(Request $request, User $user)
     {
-        $feed_items = UserStatus::orderBy('created_at', 'desc')->simplePaginate(30);
+        $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['like' => function ($query) {
+            $query->where('user_id', Auth::id());
+        }])->simplePaginate(30);
         $user = $user->find(Auth::id());
         $followings = $user->followings->toArray();
         $ids = [];

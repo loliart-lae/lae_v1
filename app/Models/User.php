@@ -63,10 +63,13 @@ class User extends Authenticatable
         }
         $ids[] = Auth::id();
 
-        return UserStatus::whereIn('user_id', $ids)->with(['user' => function ($query) {
+        $result =  UserStatus::whereIn('user_id', $ids)->with(['user' => function ($query) {
             $query->select(['id', 'name', 'email', 'bio']);
-        }], ['like' => function ($query) {
+        }, 'like' => function ($query) {
             $query->where('user_id', Auth::id());
         }])->orderBy('created_at', 'desc');
+
+
+        return $result;
     }
 }
