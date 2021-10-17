@@ -101,13 +101,11 @@
             })
         }
 
-        $(window).ready(function() {
+        $(document).ready(function() {
             setTimeout(function() {
                 masonry_resize()
             }, 100)
         })
-
-        $(window).resize(masonry_resize)
 
         // $('.smoove').smoove({
         //     offset: '3%'
