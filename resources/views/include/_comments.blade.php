@@ -19,6 +19,7 @@
 
     </style>
     <div class="mdui-typo">
+        @php($admins = config('admin.admin_users'))
         <div class="mdui-card" style="margin-top: 5px;box-shadow: none;background: transparent">
             <div class="mdui-card-header">
                 <img class="mdui-card-header-avatar"
@@ -31,6 +32,15 @@
                     @endif
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
+                    <div style="display: inline;
+                        position: absolute;
+                        right: 16px;
+                        margin-top: 3px;cursor: pointer">
+                        @if (in_array($status->user->email, $admins))
+                            <i mdui-tooltip="{content: '官方人员'}"
+                                class="mdui-icon material-icons verified_user">verified_user</i>
+                        @endif
+                    </div>
                 </div>
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
             </div>
