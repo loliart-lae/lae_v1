@@ -46,7 +46,7 @@
 
                             </div>
                         </div>
-                        <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '啊吧啊吧啊吧' }}</div>
+                        <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? null }}</div>
                     </div>
                     <div class="mdui-card-content mdui-p-t-1">
                         <div id="log_{{ $status->id }}"></div>
