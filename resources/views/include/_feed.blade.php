@@ -9,8 +9,13 @@
             margin-top: 0 !important
         }
 
+        .verified_user {
+            font-size: 21px;
+        }
+
     </style>
     <div id="masonry" class="mdui-row">
+        @php($admins = config('admin.admin_users'))
 
         @foreach ($feed_items as $status)
             <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
@@ -30,6 +35,10 @@
                                 position: absolute;
                                 right: 16px;
                                 margin-top: 3px;cursor: pointer" class="follow_{{ $status->user->id }}">
+                                @if (in_array($status->user->email, $admins))
+                                    <i mdui-tooltip="{content: '官方人员'}"
+                                        class="mdui-icon material-icons verified_user">verified_user</i>
+                                @endif
                                 @if ($display ?? '' != 0)
                                     @if ($status->user->id == Auth::id())
                                         <i mdui-tooltip="{content: '这是你'}"
@@ -69,7 +78,8 @@
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
                             @if (is_null($status->like))
-                                <i class="mdui-icon material-icons umami--click--like" style="color: unset">star_border</i>
+                                <i class="mdui-icon material-icons umami--click--like"
+                                    style="color: unset">star_border</i>
                             @elseif ($status->like->is_liked)
                                 <i style="color:#36a6e8" class="mdui-icon material-icons umami--click--unlike">star</i>
                             @else
