@@ -35,10 +35,12 @@
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
             </div>
             <div class="mdui-card-content mdui-p-t-1">
+                <div id="log_{{ $status->id }}_spinner" class="mdui-spinner"></div>
                 <div id="log_{{ $status->id }}"></div>
                 <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! e($status->content) !!}</textarea>
                 <script>
                     setTimeout(function() {
+                        $('#log_{{ $status->id }}_spinner').remove();
                         var log_view
                         log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
                             markdown: $('#log_{{ $status->id }}_content').html(),
