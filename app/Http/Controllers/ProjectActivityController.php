@@ -11,7 +11,7 @@ class ProjectActivityController extends Controller
 
     public function index(Request $request)
     {
-        $activities = ProjectActivity::where('project_id', $request->route('project_id'))->with('user')->simplePaginate(100);
+        $activities = ProjectActivity::where('project_id', $request->route('project_id'))->with('user')->orderBy('created_at', 'desc')->simplePaginate(100);
         return view('projects.activities', compact('activities'));
     }
 
