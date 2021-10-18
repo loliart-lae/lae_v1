@@ -3,7 +3,7 @@
 @section('title', '新建 Easypanel 虚拟主机')
 
 @section('content')
-    <div class="mdui-typo-display-2">新建 Easypanel 虚拟主机</div>
+    <div class="mdui-typo-display-2">新建 EasyPanel 虚拟主机</div>
 
     <form method="post" action="{{ route('easyPanel.store') }}">
         @csrf

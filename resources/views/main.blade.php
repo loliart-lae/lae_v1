@@ -26,7 +26,7 @@
     <script>
         // mdui.dialog({
         //     content: `嗨～～～～～～～～～～<br />几日未见，Light App Engine 的仪表盘已经焕然一新。
-    //     <br />它现在已经变成了 时间长河，Light App Engine 也不局限于云计算(我们也从未考虑过只做云计算)，Light App Engine 未来可能会更倾向社区，功能将随着社区的需求而更新。`,
+        //     <br />它现在已经变成了 时间长河，Light App Engine 也不局限于云计算(我们也从未考虑过只做云计算)，Light App Engine 未来可能会更倾向社区，功能将随着社区的需求而更新。`,
         //     buttons: [{
         //         text: '确认',
         //         onClick: function(inst) {
