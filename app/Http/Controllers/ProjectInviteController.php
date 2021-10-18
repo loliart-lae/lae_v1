@@ -50,7 +50,8 @@ class ProjectInviteController extends Controller
         if (!$user_id = $user->where('email', $request->email)->exists()) {
             return redirect()->back()->with('status', '用户不存在。');
         }
-        $user_id = $user->where('email', $request->email)->first()->id;
+        $user_data = $user->where('email', $request->email)->first();
+        $user_id = $user_data->id;
 
         // 存在
         // 检查是否已存在项目中
@@ -70,6 +71,9 @@ class ProjectInviteController extends Controller
                 $invite->invite_user_id = $user_id;
                 $invite->status = false;
                 $invite->save();
+
+                ProjectActivityController::save($request->route('project_id'), '邀请了 ' . $user_data->name);
+
 
                 Message::send("嗨，你收到一条项目邀请。", $user_id);
 
