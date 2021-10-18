@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.5",
         "overtrue/laravel-follow": "^3.0",
         "overtrue/laravel-socialite": "~3.0",
+        "renatomarinho/laravel-page-speed": "^2.0",
         "spatie/laravel-pjax": "^2.1",
         "symfony/yaml": "^5.3",
         "wangningkai/laravel-editor-md": "^1.1"
