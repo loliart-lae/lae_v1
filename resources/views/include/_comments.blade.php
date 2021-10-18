@@ -123,7 +123,12 @@
                                 @else
                                     <br />
                                 @endif
-                                    </div>
+
+                                @if (in_array($status_reply->user->email, $admins))
+                                <i mdui-tooltip="{content: '官方人员'}"
+                                    class="mdui-icon material-icons verified_user">verified_user</i>
+                                @endif
+                            </div>
                         </div>
                         
                         
