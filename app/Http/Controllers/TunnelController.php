@@ -9,6 +9,7 @@ use App\Models\Tunnel;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\ProjectMember;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Nonstandard\UuidV6;
 use Illuminate\Support\Facades\Auth;
@@ -169,7 +170,7 @@ class TunnelController extends Controller
 [common]
 server_addr = $address
 server_port = 1024
-user = lightart_top
+user = $tunnel->client_token
 token = lightart_top
 
 EOF;
@@ -290,27 +291,21 @@ EOF;
 
     public function auth(Request $request, Tunnel $tunnel)
     {
-        if ($request->op == 'Login') {
-            if ($request->content['user'] == 'lightart_top' || $request->content['user'] == 'lightart_top_visitor') {
-                // 存在
-                return response()->json(array(
-                    "reject" => false,
-                    "unchange" => true,
-                ));
-            } else {
+        Log::info($request);
+        if ($request->op == 'NewProxy') {
+            Log::info($request);
+            if (!$tunnel->where('server_id', $request->route('id'))->where('client_token', $request->content['user'])->exists()) {
                 return response()->json(array(
                     "reject" => true,
-                    "reject_reason" => "用户不被允许。",
+                    "reject_reason" => "用户不存在",
                     "unchange" => true,
                 ));
             }
-        } else if ($request->op == 'NewProxy') {
-
             try {
                 // 分割字符串 // proxy_type // $request->user['user]
                 $client = explode('|', $request->content['proxy_name']);
                 // 0: 服务器ID 1: 隧道ID
-                $sid = explode('.', $client[0])[1];
+                // $sid = explode('.', $client[0])[1];
                 $tid = $client[1];
                 $token = $client[2];
             } catch (Exception $e) {
@@ -356,6 +351,19 @@ EOF;
                     "reject_reason" => "隧道不存在",
                     "unchange" => true,
                 ));
+            }
+        } elseif ($request->op == 'Ping') {
+            $tunnel_orm = $tunnel->where('server_id', $request->route('id'))->where('client_token', $request->content['user']);
+            if (!$tunnel_orm->exists()) {
+                return response()->json(array(
+                    "reject" => true,
+                    "reject_reason" => "隧道不存在",
+                    "unchange" => true,
+                ));
+            } else {
+                $tunnel_orm->update([
+                    'ping' => Carbon::now()
+                ]);
             }
         }
     }

@@ -7,11 +7,13 @@
 
     <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
 
-        <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">
+        <a href="{{ route('tunnels.create') }}"
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">
             新建隧道
         </a>
 
-        <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-download-frp-client">
+        <a target="_blank" href="https://security.nwl.im/frp/0.37.1/"
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-download-frp-client">
             下载 Frp 各平台客户端
         </a>
     </div>
@@ -29,6 +31,7 @@
                     <th>CNAME</th>
                     <th>共享带宽</th>
                     <th>属于服务器</th>
+                    <th>上次更新</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
                 </tr>
@@ -78,8 +81,22 @@
                         </td>
                         <td nowrap="nowrap">{{ $tunnel->server->name }}</td>
                         <td nowrap="nowrap">
+                            @if ((new \Illuminate\Support\Carbon)->diffInSeconds((new \Illuminate\Support\Carbon)->parse($tunnel->ping), false) > -70)
+                            @php($online = 1)
+                            <span class="mdui-text-color-green">{{ $tunnel->ping }}</span>
+                            @else
+                            @php($online = 0)
+                            <span>{{ $tunnel->ping }}</span>
+                            @endif
+                        </td>
+
+                        <td nowrap="nowrap">
                             @if ($tunnel->protocol != 'xtcp')
+                                @if ($online)
                                 {{ $tunnel->server->price }}/m
+                                @else
+                                {{ $tunnel->server->price / 1.5 }}/m
+                                @endif
                             @else
                                 免费
                             @endif
@@ -104,7 +121,7 @@
                 @endforeach
                 @if ($i > 10)
                     <tr>
-                        <td colspan="11" class="mdui-text-center umami--click--tunnel-miao">
+                        <td colspan="12" class="mdui-text-center umami--click--tunnel-miao">
                             <a href="{{ route('tunnels.create') }}">Create A Frp Tunnel Please (miao~)</a>
                         </td>
                     </tr>
