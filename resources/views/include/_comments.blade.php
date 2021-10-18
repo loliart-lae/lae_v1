@@ -114,8 +114,8 @@
                                 说：
                             </div>
                             <div class="mdui-float-right">
-                                @if ($status_reply->user->id == Auth::id()) <a
-                                        onclick="$('#statusReply-{{ $i }}').submit()" href="#"
+                                @if ($status_reply->user->id == Auth::id()) 
+                                    <a onclick="$('#statusReply-{{ $i }}').submit()" href="#"
                                         class="umami--click--delete-status-reply">删除</a>
                                     <form id="statusReply-{{ $i }}" style="display: none" method="post"
                                         action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
