@@ -1,9 +1,10 @@
-.mdui-theme-primary-blue .mdui-color-theme, .mdui-theme-primary-blue .mdui-tab .mdui-tab-active {
+.mdui-theme-primary-blue .mdui-color-theme,
+.mdui-tab .mdui-tab-active {
     color: #fff !important;
 }
 
-.mdui-tab a{
-    color: #fff !important
+.mdui-tab a {
+    color: #fff !important;
 }
 .mdui-tab-scrollable {
     padding-left: 0 !important;
