@@ -135,6 +135,8 @@
                         </script>
                     </div>
                 </div>
+
+                <div class="mdui-divider mdui-p-y-1"></div>
             @endforeach
         </div>
 
