@@ -175,79 +175,9 @@
     <script src="/vendor/editor.md/js/editormd.min.js"></script>
     <script>
         mdui.mutation()
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('input[name="_token"]').val()
-            }
-        })
-
-        var main_link = '{{ config('app.name') }}'
-        $.pjax.defaults.timeout = 1500
-
-        function close_offline_tip() {
-            $('#offline_tip').fadeOut()
-            $('body').css('overflow', 'auto')
-        }
-
-        function showOfflineTip() {
-            mdui.snackbar({
-                message: '无法连接到 LAE',
-                position: 'right-bottom',
-                buttonText: '显示',
-                onButtonClick: function() {
-                    $('#offline_tip').fadeIn()
-                    $('body').css('overflow', 'hidden')
-                }
-            })
-        }
-
-        window.addEventListener('online', close_offline_tip)
-        window.addEventListener('offline', showOfflineTip)
-
-        $(document).pjax('a', '.pjax-container')
-
-        // $("#pre_btn").hide()
-        $(document).on('pjax:clicked', function() {
-            $('#load-spinner').css('display', 'block')
-            $('#load-spinner').css('opacity', 1)
-            mdui.mutation()
-
-            // $("#pre_btn").show()
-            $('#main').css('opacity', 0)
-            $('#main').css('height', '100px')
-            $('#main').css('overflow', 'hidden')
-
-
-            // $('.pjax-container').css('transform', 'scale(0.99)')
-        })
-        $(document).on("pjax:timeout", function(event) {
-            $('#load-spinner-text').html('仍在加载...')
-            $('#load-spinner-text').animate({
-                opacity: 1
-            })
-            // $('.pjax-container').css('opacity', '0.2')
-            // $('.pjax-container').css('transform', 'scale(0.98)')
-            //             $('.main_link').html(`<div class="mdui-progress" style="background-color: rgb(48 48 48)">
-        //   <div class="mdui-progress-indeterminate" style="background-color: #2196f3"></div>
-        // </div>`)
-
-            event.preventDefault()
-        })
-
-        $(document).on("pjax:complete", function(event) {
-            mdui.mutation()
-            $('#load-spinner').css('opacity', 0)
-            $('#load-spinner').css('display', 'none')
-            $('#load-spinner-text').css('opacity', 0)
-
-            $('#main').css('height', 'unset')
-            $('#main').css('overflow', 'auto')
-
-            $('#main').css('opacity', 1)
-            // $('.pjax-container').css('transform', 'unset')
-        })
+        let main_link = '{{ config('app.name') }}'
     </script>
-    @yield('script')
+    <script src="{{ mix('js/pjax.js') }}"></script>
     @auth
         <script>
             setInterval(function() {
