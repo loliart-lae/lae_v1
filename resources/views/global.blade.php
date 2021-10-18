@@ -7,7 +7,6 @@
         <span class="mdui-typo-headline">嗨, {{ Auth::user()->name }}。</span>
         <br />
         <span class="mdui-typo-headline-opacity hitokoto_text"></span>
-        <br /><br />
 
         <form method="POST" action="{{ route('status.store') }}">
             @csrf
