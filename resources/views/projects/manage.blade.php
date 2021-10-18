@@ -13,7 +13,8 @@
     <br />
     项目积分:{{ $project_info->balance }}</span>
     @if ($project_info->balance < 100)
-        <span mdui-tooltip="{content: '点击显示详细信息'}" class="umami--click--show-balance-low" onclick="balance_low()">&nbsp;!项目积分过少!</span>
+        <span mdui-tooltip="{content: '点击显示详细信息'}" class="umami--click--show-balance-low"
+            onclick="balance_low()">&nbsp;!项目积分过少!</span>
     @endif
     <br />
     <br />
@@ -37,7 +38,8 @@
         <a style="margin: 3px" href="{{ route('projects.edit', $project_info->id) }}"
             class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-edit">修改</a>
         <a style="margin: 3px" href="{{ route('projects.destroy', $project_info->id) }}"
-            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-delete" mdui-dialog="{target: '#destroy-dialog'}">解散</a>
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--project-delete"
+            mdui-dialog="{target: '#destroy-dialog'}">解散</a>
     @endif
 
 
@@ -162,12 +164,6 @@
         </div>
     </div>
 
-
-
-@endsection
-
-
-@section('script')
     <script>
         function balance_low() {
             mdui.snackbar({
@@ -180,4 +176,5 @@
             balance_low()
         @endif
     </script>
+
 @endsection
