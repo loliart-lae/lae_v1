@@ -125,8 +125,13 @@
                                 @endif
 
                                 @if (in_array($status_reply->user->email, $admins))
-                                <i mdui-tooltip="{content: '官方人员'}"
-                                    class="mdui-icon material-icons verified_user">verified_user</i>
+                                <div style="display: inline;
+                                position: absolute;
+                                right: 16px;
+                                margin-top: 3px;cursor: pointer">
+                                    <i mdui-tooltip="{content: '官方人员'}"
+                                        class="mdui-icon material-icons verified_user">verified_user</i>
+                                </div>
                                 @endif
                             </div>
                         </div>
