@@ -112,7 +112,9 @@
         }
 
         $(window).ready(function() {
-            masonry_resize()
+            setTimeout(function() {
+                masonry_resize()
+            }, 100)
         })
 
         // $('.smoove').smoove({
