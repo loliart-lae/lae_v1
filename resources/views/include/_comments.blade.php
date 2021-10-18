@@ -42,7 +42,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? '咕噜咕噜咕噜' }}</div>
+                <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? null }}</div>
             </div>
             <div class="mdui-card-content mdui-p-t-1">
                 <div id="log_{{ $status->id }}_spinner" class="mdui-spinner"></div>
@@ -114,7 +114,7 @@
                                 说：
                             </div>
                             <div class="mdui-float-right">
-                                @if ($status_reply->user->id == Auth::id()) 
+                                @if ($status_reply->user->id == Auth::id())
                                     <a onclick="$('#statusReply-{{ $i }}').submit()" href="#"
                                         class="umami--click--delete-status-reply">删除</a>
                                     <form id="statusReply-{{ $i }}" style="display: none" method="post"
