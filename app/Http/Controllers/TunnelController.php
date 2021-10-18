@@ -159,7 +159,7 @@ class TunnelController extends Controller
             return redirect()->to('/')->with('status', '你没有合适的权限。');
         }
 
-        ProjectActivityController::save($tunnel->project->id, '展示了穿透隧道的配置文件 ' . $tunnel->name);
+        ProjectActivityController::save($tunnel->project->id, '展示了穿透隧道' . $tunnel->name . ' 的配置文件。');
 
 
         $address = $tunnel->server->address;
