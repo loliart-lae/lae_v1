@@ -139,7 +139,7 @@
                 <div class="mdui-divider"></div>
             @endforeach
         </div>
-        <br /> <br />
+
         <div>
             {{ $status_replies->links() }}
         </div>
