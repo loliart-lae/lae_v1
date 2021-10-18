@@ -120,8 +120,6 @@
                                     <form id="statusReply-{{ $i }}" style="display: none" method="post"
                                         action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
                                     </form>
-                                @else
-                                    <br />
                                 @endif
 
                                 @if (in_array($status_reply->user->email, $admins))
