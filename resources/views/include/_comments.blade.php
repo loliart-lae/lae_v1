@@ -125,18 +125,11 @@
                                 @endif
 
                                 @if (in_array($status_reply->user->email, $admins))
-                                <div style="display: inline;
-                                position: absolute;
-                                right: 16px;
-                                margin-top: 3px;cursor: pointer">
-                                    <i mdui-tooltip="{content: '官方人员'}"
-                                        class="mdui-icon material-icons verified_user">verified_user</i>
-                                </div>
+                                <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
                                 @endif
                             </div>
                         </div>
-                        
-                        
+
                         <div id="reply_{{ $status_reply->id }}"></div>
                         <textarea id="reply_{{ $status_reply->id }}_content"
                             style="display:none;">{!! e($status_reply->content) !!}</textarea>
