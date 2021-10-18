@@ -102,22 +102,31 @@
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status_reply->user->email)) }}">
                     </div>
                     <div class="mdui-col-xs-11">
-                        {{ $i }}.
-                        @if (is_null($status_reply->user->website))
-                            {{ $status_reply->user->name }}
-                        @else
-                            <a target="_blank"
-                                href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
-                        @endif
-                        说：@if ($status_reply->user->id == Auth::id()) <a
-                                onclick="$('#statusReply-{{ $i }}').submit()" href="#"
-                                class="umami--click--delete-status-reply">删除</a>
-                            <form id="statusReply-{{ $i }}" style="display: none" method="post"
-                                action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
-                            </form>
-                        @else
-                            <br />
-                        @endif
+                        <div class="mdui-clearfix">
+                            <div class="mdui-float-left">
+                                {{ $i }}.
+                                @if (is_null($status_reply->user->website))
+                                    {{ $status_reply->user->name }}
+                                @else
+                                    <a target="_blank"
+                                        href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
+                                @endif
+                                说：
+                            </div>
+                            <div class="mdui-float-right">
+                                @if ($status_reply->user->id == Auth::id()) <a
+                                        onclick="$('#statusReply-{{ $i }}').submit()" href="#"
+                                        class="umami--click--delete-status-reply">删除</a>
+                                    <form id="statusReply-{{ $i }}" style="display: none" method="post"
+                                        action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
+                                    </form>
+                                @else
+                                    <br />
+                                @endif
+                                    </div>
+                        </div>
+                        
+                        
                         <div id="reply_{{ $status_reply->id }}"></div>
                         <textarea id="reply_{{ $status_reply->id }}_content"
                             style="display:none;">{!! e($status_reply->content) !!}</textarea>
