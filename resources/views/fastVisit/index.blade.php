@@ -15,7 +15,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>名称</th>
                     <th>短语(点击复制)</th>
                     <th>域</th>
@@ -40,7 +39,6 @@
                     @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $fastVisit->id }}</td>
                         <td nowrap="nowrap">{{ $fastVisit->name }}</td>
                         <td nowrap="nowrap"><a class="can_copy umami--click--fastVisit-copy"
                                 data-clipboard-text="https://{{ $fastVisit->domain->domain }}/v/{{ $fastVisit->slug }}">{{ $fastVisit->slug }}</a>

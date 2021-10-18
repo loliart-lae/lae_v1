@@ -42,7 +42,6 @@
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
-                        <p>内部 ID：{{ $lxd->id }}</p>
                         <p>名称：{{ $lxd->name }}</p>
                         <p>核心：{{ $lxd->template->cpu }} Core</p>
                         <p>内存：{{ $lxd->template->mem }}M</p>
@@ -99,90 +98,6 @@
             </div>
         @endforeach
     </div>
-    {{-- <div class="mdui-table-fluid mdui-typo">
-        <table class="mdui-table mdui-table-hoverable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>内部 ID</th>
-                    <th>显示名称</th>
-                    <th>CPU</th>
-                    <th>内存</th>
-                    <th>硬盘</th>
-                    <th>内部 IP</th>
-                    <th>带宽限制</th>
-                    <th>使用模板</th>
-                    <th>属于服务器</th>
-                    <th>属于项目</th>
-                    <th>端口转发</th>
-                    <th>价格</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="14" class="mdui-text-center">
-                        <a href="{{ route('lxd.create') }}">新建 Linux 容器</a>
-                    </td>
-                </tr>
-                @php($i = 1)
-                @foreach ($lxdContainers as $lxd)
-                    <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $lxd->id }}</td>
-                        <td nowrap="nowrap">{{ $lxd->name }}</td>
-                        <td nowrap="nowrap">{{ $lxd->template->cpu }} Core</td>
-                        <td nowrap="nowrap">{{ $lxd->template->mem }}M</td>
-                        <td nowrap="nowrap">{{ $lxd->template->disk }} G</td>
-                        <td nowrap="nowrap">{{ $lxd->lan_ip }}</td>
-                        <td nowrap="nowrap">{{ $lxd->server->network_limit }} Mbps</td>
-                        <td nowrap="nowrap">
-                            @if ($lxd->status == 'running')
-                                <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
-                            @else
-                                {{ $lxd->template->name }}
-                            @endif
-                        </td>
-                        <td nowrap="nowrap">{{ $lxd->server->name }}</td>
-                        <td nowrap="nowrap"><a
-                                href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
-                        </td>
-                        @php($forwards = count($lxd->forward))
-                        <td nowrap="nowrap">
-                            @if ($lxd->status == 'running')
-                                <a href="{{ route('forward.index', $lxd->id) }}">{{ $forwards }} 端口</a>
-                            @else
-                                正在调度
-                            @endif
-
-
-                        </td>
-                        <td nowrap="nowrap">
-                            {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
-                        </td>
-
-                        <td nowrap="nowrap">
-                            @if ($lxd->status == 'running')
-                                <a href="#" onclick="$('#f-{{ $i }}').submit()">删除</a>
-                                <form id="f-{{ $i }}" method="post"
-                                    action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>
-                            @else
-                                {{ $lxd->status }}
-                            @endif
-                        </td>
-
-                    </tr>
-                @endforeach
-                @if ($i > 10)
-                    <tr>
-                        <td colspan="12" class="mdui-text-center">
-                            <a href="{{ route('lxd.create') }}">来 1 份容器，谢谢</a>
-                        </td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>
-    </div> --}}
 
     <div class="mdui-dialog" id="webssh-dialog">
         <div class="mdui-dialog-title">连接到 Web SSH</div>

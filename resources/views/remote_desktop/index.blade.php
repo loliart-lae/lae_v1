@@ -14,7 +14,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>用户名</th>
                     <th>CPU</th>
                     <th>内存</th>
@@ -42,7 +41,6 @@
                     @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->id }}</td>
                         <td nowrap="nowrap">
                             @if ($remote_desktop->status == 'active')
                                 <a

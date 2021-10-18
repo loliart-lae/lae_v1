@@ -10,7 +10,7 @@
         <a href="{{ route('tunnels.create') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">
             新建隧道
         </a>
-        
+
         <a target="_blank" href="https://security.nwl.im/frp/0.37.1/" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-download-frp-client">
             下载 Frp 各平台客户端
         </a>
@@ -22,7 +22,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>名称</th>
                     <th>协议</th>
                     <th>内部地址</th>
@@ -49,7 +48,6 @@
                     @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $tunnel->id }}</td>
                         <td nowrap="nowrap">{{ $tunnel->name }}</td>
                         <td nowrap="nowrap">{{ strtoupper($tunnel->protocol) }}</td>
                         <td nowrap="nowrap">{{ $tunnel->local_address }}</td>

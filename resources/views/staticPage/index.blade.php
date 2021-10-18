@@ -14,7 +14,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>名称</th>
                     <th>域名</th>
                     <th>FTP 用户名与密码</th>
@@ -40,7 +39,6 @@
                     @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $staticPage->id }}</td>
                         <td nowrap="nowrap">{{ $staticPage->name }}</td>
                         <td nowrap="nowrap"><a href="https://{{ $staticPage->domain }}"
                                 target="_blank">{{ $staticPage->domain }}</a></td>

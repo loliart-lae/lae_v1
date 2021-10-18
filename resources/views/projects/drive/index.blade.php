@@ -18,7 +18,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>文件名称</th>
                     <th>类型</th>
                     <th>大小</th>
@@ -36,7 +35,6 @@
                 @foreach ($drive as $file)
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $file->id }}</td>
                         <td nowrap="nowrap">@if (is_null($file->mimetype))
                             <a href="{{ route('storage.show', Request::route('project_id')) }}?path={{ $file->path }}">{{ $file->name }}</a>
                             @else

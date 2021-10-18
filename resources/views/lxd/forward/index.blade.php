@@ -15,7 +15,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>容器内端口</th>
                     <th>输出端口</th>
                     <th>协议</th>
@@ -34,7 +33,6 @@
                 @foreach ($forwards as $forward)
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $forward->id }}</td>
                         <td nowrap="nowrap">{{ $forward->from }}</td>
                         <td nowrap="nowrap">{{ $forward->to }}</td>
                         <td nowrap="nowrap">TCP&UDP</td>

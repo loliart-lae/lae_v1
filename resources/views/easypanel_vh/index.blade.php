@@ -12,7 +12,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>名称</th>
                     <th>空间容量</th>
                     <th>数据库容量</th>
@@ -36,7 +35,6 @@
                     @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $ep->id }}</td>
                         <td nowrap="nowrap">{{ $ep->name }}</td>
 
                         <td nowrap="nowrap">{{ $ep->template->web_quota }} M</td>

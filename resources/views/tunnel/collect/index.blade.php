@@ -11,7 +11,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>内部 ID</th>
                     <th>名称</th>
                     <th>协议</th>
                     <th>内部地址</th>
@@ -33,7 +32,6 @@
                 @foreach ($tunnels as $tunnel)
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $tunnel->id }}</td>
                         <td nowrap="nowrap">{{ $tunnel->name }}</td>
                         <td nowrap="nowrap">{{ $tunnel->protocol }}</td>
                         <td nowrap="nowrap">{{ $tunnel->local_address }}</td>
