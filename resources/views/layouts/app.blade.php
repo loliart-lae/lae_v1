@@ -52,7 +52,7 @@
     </style>
 
     <!-- JavaScripts -->
-    <script src="/js/mdui.js?bypasscache=202109150854"></script>
+    <script src="/js/mdui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.1/base64.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
@@ -79,7 +79,7 @@
         </div>
 
     </div>
-    <div class="mdui-appbar mdui-appbar-fixed" id="appbar" mdui-headroom>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-headroom-unpinned-top" id="appbar" mdui-headroom>
         <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width @auth
         mdui-tab-centered
         @endauth"
@@ -148,15 +148,16 @@
             @yield('content')
         </div>
 
-        <div class="mdui-typo mdui-p-t-5">
+        {{-- <div class="mdui-typo mdui-p-t-5">
+            <!-- 由于这个地方总是出bug，所以我就把它删了 -->
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 Hosted by {{ config('app.host_by') }}
             </p>
-        </div>
+        </div> --}}
 
     </div>
 
-    <div class="mdui-container mdui-m-b-5">
+    <div class="mdui-container mdui-m-b-5 mdui-p-t-5 load-hidden">
         <div class="mdui-typo">
             <p class="mdui-typo-caption-opacity mdui-text-center">
                 {{ config('app.name') }}, <a class="umami--click--lae-github-repo"
@@ -176,6 +177,23 @@
     <script>
         mdui.mutation()
         let main_link = '{{ config('app.name') }}'
+
+        function close_offline_tip() {
+            $('#offline_tip').fadeOut()
+            $('body').css('overflow', 'auto')
+        }
+
+        function showOfflineTip() {
+            mdui.snackbar({
+                message: '无法连接到 LAE',
+                position: 'right-bottom',
+                buttonText: '显示',
+                onButtonClick: function() {
+                    $('#offline_tip').fadeIn()
+                    $('body').css('overflow', 'hidden')
+                }
+            })
+        }
     </script>
     <script src="{{ mix('js/pjax.js') }}"></script>
     @auth
