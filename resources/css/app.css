@@ -36,11 +36,11 @@
     cursor: pointer;
 }
 .editormd-html-preview > h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.editormd-html-preview > h2,
+.editormd-html-preview > h3,
+.editormd-html-preview > h4,
+.editormd-html-preview > h5,
+.editormd-html-preview > h6 {
     margin-top: 0 !important;
 }
 .editormd-html-preview img {
