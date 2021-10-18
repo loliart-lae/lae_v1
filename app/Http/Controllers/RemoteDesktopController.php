@@ -84,6 +84,8 @@ class RemoteDesktopController extends Controller
         $remote_desktop->project_id = $request->project_id;
         $remote_desktop->save();
 
+        ProjectActivityController::save($request->project_id, '新建了 共享的 Windows 远程桌面: ' . $remote_desktop->username);
+
         $config = [
             'method' => 'create',
             'inst_id' => $remote_desktop->id,
@@ -156,6 +158,8 @@ class RemoteDesktopController extends Controller
 
         $server_where = $server->where('id', $remote_desktop_data->server_id);
         $server_data = $server_where->firstOrFail();
+        ProjectActivityController::save($request->project_id, '修改了 共享的 Windows 远程桌面: ' . $remote_desktop_data->username . ' 的密码。');
+
 
         $config = [
             'method' => 'passwd',
@@ -193,6 +197,8 @@ class RemoteDesktopController extends Controller
             dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');
 
             // 删除
+            ProjectActivityController::save($remote_desktop->project->id, '删除了 共享的 Windows 远程桌面: ' . $remote_desktop->username);
+
             RemoteDesktop::where('id', $id)->delete();
         }
 

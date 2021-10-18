@@ -19,8 +19,6 @@ class ForwardController extends Controller
      */
     public function index(Request $request, Forward $forward)
     {
-
-
         $server_info = LxdContainer::where('id', $request->route('lxd_id'))->with('server', 'project')->firstOrFail();
 
         if (!ProjectMembersController::userInProject($server_info->project->id)) {

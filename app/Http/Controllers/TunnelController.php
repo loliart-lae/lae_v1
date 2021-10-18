@@ -123,6 +123,9 @@ class TunnelController extends Controller
 
         $this::create_tunnel($request);
 
+        ProjectActivityController::save($request->project_id, '新建了 穿透隧道 ' . $request->name);
+
+
         return redirect()->route('tunnels.index')->with('status', 'Tunnel 隧道新建成功。');
     }
 
@@ -155,6 +158,9 @@ class TunnelController extends Controller
         if (!ProjectMembersController::userInProject($tunnel->project->id)) {
             return redirect()->to('/')->with('status', '你没有合适的权限。');
         }
+
+        ProjectActivityController::save($tunnel->project->id, '展示了穿透隧道的配置文件 ' . $tunnel->name);
+
 
         $address = $tunnel->server->address;
 
@@ -274,6 +280,8 @@ EOF;
         if (ProjectMembersController::userInProject($tunnel->project->id)) {
             // 删除
             Tunnel::where('id', $id)->delete();
+            ProjectActivityController::save($tunnel->project->id, '删除了 穿透隧道 ' . $tunnel->name);
+
             return true;
         } else {
             return false;
@@ -314,7 +322,7 @@ EOF;
             }
 
             // 检查是否存在
-            $tunnel_where = $tunnel->where('server_id', $request->route('id'))->where('id', $tid);
+            $tunnel_where = $tunnel->where('server_id', $request->route('id'))->where('id', $tid)->with(['project']);
             if ($tunnel_where->where('client_token', $token)->exists()) {
                 // 检查端口之类的是否相等
                 $tunnel_info = $tunnel_where->firstOrFail();
@@ -337,6 +345,9 @@ EOF;
                         ));
                     }
                 }
+
+                ProjectActivityController::save($tunnel_info->project->id, '登录事件 穿透隧道 ' . $tunnel_info->name . ' 登录成功。');
+
 
                 return response()->json(array(
                     "reject" => false,

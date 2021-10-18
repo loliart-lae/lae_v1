@@ -104,6 +104,7 @@ class ProjectMembersController extends Controller
             // 删除
             $member->where('project_id', $request->route('project_id'))->where('user_id', $request->route('member'))->delete();
 
+            ProjectActivityController::save($project_sql->id, '请出成员。');
 
             Message::send("你被请出项目 {$project_sql->name}。", $request->route('member'));
 
@@ -111,7 +112,8 @@ class ProjectMembersController extends Controller
         } else abort(404);
     }
 
-    public static function userInProject($id) {
+    public static function userInProject($id)
+    {
         $member = new ProjectMember();
         return $member->where('user_id', Auth::id())->where('project_id', $id)->exists();
     }

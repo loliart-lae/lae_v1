@@ -192,6 +192,7 @@ class ProjectController extends Controller
 
     public function leave(Request $request, ProjectMember $member)
     {
+        ProjectActivityController::save($request->route('project_id'), '离开了项目。 ');
         // 删除用户
         $member->where('user_id', Auth::id())->where('project_id', $request->route('project_id'))->delete();
         return redirect()->back()->with('status', 'success');

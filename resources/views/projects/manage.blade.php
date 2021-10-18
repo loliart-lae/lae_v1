@@ -25,6 +25,8 @@
         mdui-dialog="{target: '#charge-dialog'}">汇款积分至项目</a>
     <a style="margin: 3px" href="{{ route('invite.index', $project_info->id) }}"
         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-invite-status">邀请状态</a>
+    <a style="margin: 3px" href="{{ route('projects.activities', $project_info->id) }}"
+        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-invite-status">审计记录</a>
     <a style="margin: 3px" href="{{ route('storage.index', $project_info->id) }}"
         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-storage">存储</a>
 

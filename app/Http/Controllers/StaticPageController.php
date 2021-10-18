@@ -88,6 +88,8 @@ class StaticPageController extends Controller
         $staticPage->server_id = $request->server_id;
         $staticPage->save();
 
+        ProjectActivityController::save($request->project_id, '新建了静态站点: ' . $staticPage->name);
+
         $ftp_username = 'lae-ftp-' . $staticPage->id;
 
         $staticPage->where('id', $staticPage->id)->update([
@@ -167,6 +169,8 @@ class StaticPageController extends Controller
 
             // 删除
             StaticPage::where('id', $id)->delete();
+
+            ProjectActivityController::save($staticPage->project->id, '删除了静态托管: ' . $staticPage->name);
         }
 
         return redirect()->back()->with('status', '静态空间 已安排删除。');
@@ -181,6 +185,9 @@ class StaticPageController extends Controller
         if (ProjectMembersController::userInProject($staticPage->project->id)) {
 
             StaticPage::where('id', $id)->update(['status' => 'queue']);
+
+            ProjectActivityController::save($staticPage->project->id, '备份了静态托管: ' . $staticPage->name);
+
 
             $config = [
                 'method' => 'backup',

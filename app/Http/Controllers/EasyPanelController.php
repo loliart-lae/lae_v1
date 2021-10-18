@@ -122,6 +122,9 @@ class EasyPanelController extends Controller
         $easyPanelVirtualHost->template_id = $request->template_id;
         $easyPanelVirtualHost->save();
 
+        ProjectActivityController::save($request->project_id, '新建了 EasyPanel ' . $request->name . '。');
+
+
         if ($easyPanelTemplate_data->cdn) {
             $domain = 1;
         } else {
@@ -184,16 +187,19 @@ class EasyPanelController extends Controller
     public function update(Request $request, $id)
     {
         $easyPanelVirtualHost = new EasyPanelVirtualHost();
-        $easyPanelTemplate_data = $easyPanelVirtualHost->where('id', $id)->with(['server', 'project', 'template'])->firstOrFail();
-        if (ProjectMembersController::userInProject($easyPanelTemplate_data->project->id)) {
+        $easyPanelVirtualHost_data = $easyPanelVirtualHost->where('id', $id)->with(['server', 'project', 'template'])->firstOrFail();
+        if (ProjectMembersController::userInProject($easyPanelVirtualHost_data->project->id)) {
             $new_pwd = Str::random(15);
+
+            ProjectActivityController::save($easyPanelVirtualHost_data->project->id, '修改了 EasyPanel ' . $easyPanelVirtualHost_data->name . '的密码，新的密码为 ' . $new_pwd . '。');
+
             // 调度删除任务 not finished
             $config = [
                 'method' => 'change_password',
                 'inst_id' => $id,
-                'username' => $easyPanelTemplate_data->username,
-                'address' => $easyPanelTemplate_data->server->address,
-                'token' => $easyPanelTemplate_data->server->token,
+                'username' => $easyPanelVirtualHost_data->username,
+                'address' => $easyPanelVirtualHost_data->server->address,
+                'token' => $easyPanelVirtualHost_data->server->token,
                 'password' => $new_pwd,
                 'user' => Auth::id()
             ];
@@ -213,15 +219,15 @@ class EasyPanelController extends Controller
     public function destroy($id)
     {
         $easyPanelVirtualHost = new EasyPanelVirtualHost();
-        $easyPanelTemplate_data = $easyPanelVirtualHost->where('id', $id)->with(['server', 'project', 'template'])->firstOrFail();
-        if (ProjectMembersController::userInProject($easyPanelTemplate_data->project->id)) {
+        $easyPanelVirtualHost_data = $easyPanelVirtualHost->where('id', $id)->with(['server', 'project', 'template'])->firstOrFail();
+        if (ProjectMembersController::userInProject($easyPanelVirtualHost_data->project->id)) {
             // 调度删除任务
             $config = [
                 'method' => 'del_vh',
                 'inst_id' => $id,
-                'username' => $easyPanelTemplate_data->username,
-                'address' => $easyPanelTemplate_data->server->address,
-                'token' => $easyPanelTemplate_data->server->token,
+                'username' => $easyPanelVirtualHost_data->username,
+                'address' => $easyPanelVirtualHost_data->server->address,
+                'token' => $easyPanelVirtualHost_data->server->token,
                 'user' => Auth::id()
             ];
 
@@ -229,6 +235,8 @@ class EasyPanelController extends Controller
 
             // 删除
             EasyPanelVirtualHost::where('id', $id)->delete();
+            ProjectActivityController::save($easyPanelVirtualHost_data->project->id, '删除了 EasyPanel ' . $easyPanelVirtualHost_data->name . '。');
+
         }
 
         return redirect()->back()->with('status', 'EasyPanel 虚拟主机已安排删除。');

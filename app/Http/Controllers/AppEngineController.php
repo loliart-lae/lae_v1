@@ -147,6 +147,8 @@ class AppEngineController extends Controller
             $lxdContainer->image_id = $request->image_id;
             $lxdContainer->save();
 
+            ProjectActivityController::save($project_id, '新建了 ' . $request->name . ' 应用容器');
+
             $config = [
                 'address' => $server_data->address,
                 'token' => $server_data->token,
@@ -239,6 +241,9 @@ class AppEngineController extends Controller
         // 将容器标记为 resizing
         $lxdContainer_where->update(['status' => 'resizing', 'template_id' => $request->template_id]);
 
+        ProjectActivityController::save($lxd->project_id, '修改了应用容器 ' . $lxd->name . '的 模板');
+
+
         $config = [
             'method' => 'resize',
             'inst_id' => $id,
@@ -276,6 +281,9 @@ class AppEngineController extends Controller
         $project_id = $lxdContainer_data->project_id;
         $server_where_id = $lxdContainer_data->server;
         if (ProjectMembersController::userInProject($project_id)) {
+
+            ProjectActivityController::save($project_id, '删除了应用容器 ' . $lxdContainer_data->name);
+
             // 调度删除任务
             $config = [
                 'inst_id' => $id,

@@ -142,6 +142,8 @@ class ProjectInviteController extends Controller
         $invite->where('id', $request->route('id'))->where('invite_user_id', Auth::id())->delete();
 
         Message::send(Auth::user()->name . " 已加入项目 {$invite_sql->project->name}。", $invite_sql->project->user_id);
+        ProjectActivityController::save($invite_sql->project_id, '已加入项目。');
+
         return redirect()->back()->with('status', '已同意。');
     }
 

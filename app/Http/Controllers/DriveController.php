@@ -128,6 +128,7 @@ class DriveController extends Controller
 
         $drive->save();
 
+        ProjectActivityController::save($request->route('project_id'), '上传/新建了 ' . $drive->name);
         return redirect()->back()->with('status', '保存成功.');
     }
 
@@ -244,6 +245,7 @@ class DriveController extends Controller
 
 
         $drive->where('project_id', $request->route('project_id'))->where('id', $request->route('storage'))->delete();
+        ProjectActivityController::save($request->route('project_id'), '删除了文件。');
         return redirect()->back()->with('status', '删除成功。');
     }
 

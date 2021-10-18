@@ -81,6 +81,9 @@ class FastVisitController extends Controller
             $fastVisit->times = 0;
             $fastVisit->save();
 
+            ProjectActivityController::save($project_id, '新建了 快捷访问 ' . $fastVisit->name . '。');
+
+
             return redirect()->route('fastVisit.index')->with('status', '新建成功。');
         }
     }
@@ -163,15 +166,21 @@ class FastVisitController extends Controller
         $project_id = $request->project_id;
         if (ProjectMembersController::userInProject($project_id)) {
             $fastVisit_sql = $fastVisit->where('id', $id);
-            $showAd = $fastVisit_sql->firstOrFail()->show_ad;
+            $data = $fastVisit->where('id', $id)->firstOrFail();
+            $showAd = $data->show_ad;
             if ($showAd) {
                 $showAd = false;
+                $status = '关';
             } else {
                 $showAd = true;
+                $status = '开';
             }
             $fastVisit_sql->update([
                 'show_ad' => $showAd
             ]);
+
+            ProjectActivityController::save($project_id, '更改了 快捷访问 ' . $data->name . ' 的广告状态为 ' . $status . ' 。');
+
             return response()->json(['status' => 'success', 'message' => $showAd]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'You do not have permission to edit this.']);
@@ -201,6 +210,8 @@ class FastVisitController extends Controller
 
         $project_id = $fastVisit_data->project->id;
         if (ProjectMembersController::userInProject($project_id)) {
+            ProjectActivityController::save($project_id, '删除了 快捷访问 ' . $fastVisit_data->name . ' 。');
+
             $fastVisit_sql->delete();
             return true;
         } else {
