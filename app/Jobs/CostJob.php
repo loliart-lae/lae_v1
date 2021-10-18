@@ -43,6 +43,7 @@ class CostJob implements ShouldQueue
      */
     public function handle()
     {
+        ini_set('memory_limit', '1024M');
         DB::connection()->disableQueryLog();
 
         // 挨个获取容器并计算扣费
