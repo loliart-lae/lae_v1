@@ -1,19 +1,4 @@
 @if ($feed_items->count() > 0)
-    <style>
-        .editormd-html-preview>h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-top: 0 !important
-        }
-
-        .verified_user {
-            font-size: 21px;
-        }
-
-    </style>
     <div id="masonry" class="mdui-row">
         @php($admins = config('admin.admin_users'))
 

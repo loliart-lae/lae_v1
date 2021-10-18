@@ -17,39 +17,6 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 
     <title>@yield('title') - {{ config('app.name') }}</title>
-    <style>
-        .mdui-theme-primary-blue .mdui-color-theme {
-            color: white !important
-        }
-
-        .mdui-tab-scrollable {
-            padding-left: 0
-        }
-
-        .mdui-btn {
-            border-radius: 4px
-        }
-
-        .mdui-card,
-        .mdui-table-fluid,
-        .mdui-dialog,
-        .mdui-panel-item {
-            border-radius: 5px
-        }
-
-        .pjax-container {
-            transition: all 0.3s ease-in-out
-        }
-
-        .mdui-typo-display-2 {
-            margin-bottom: 10px
-        }
-
-        .can_copy {
-            cursor: pointer
-        }
-
-    </style>
 
     <!-- JavaScripts -->
     <script src="/js/mdui.js"></script>
