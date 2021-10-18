@@ -42,9 +42,6 @@
             mdui-dialog="{target: '#destroy-dialog'}">解散</a>
     @endif
 
-
-
-
     <h1 class="mdui-text-color-theme">项目人员管理</h1>
 
     <div class="mdui-table-fluid">
