@@ -207,6 +207,7 @@ class ProjectController extends Controller
         (float)$value = $request->value;
         if ($userBalanceLog->cost(Auth::id(), $value, 'Charge to project.')) {
             Project::charge($request->route('project_id'), $value);
+            ProjectActivityController::save($request->route('project_id'), '为项目汇入积分 ' . $value);
             return redirect()->back()->with('status', '项目余额已更新。');
         } else {
             return redirect()->back()->with('status', '无法更新项目余额。');
