@@ -144,8 +144,9 @@
                             })
                         </script>
                     </div>
+
+                    <div class="mdui-divider-inset"></div>
                 </div>
-                <div class="mdui-divider-inset"></div>
             @endforeach
         </div>
 
