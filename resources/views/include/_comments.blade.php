@@ -143,9 +143,8 @@
                                 });
                             })
                         </script>
-
-                        <div class="mdui-divider-inset"></div>
                     </div>
+                    <div class="mdui-divider-inset"></div>
                 </div>
             @endforeach
         </div>
