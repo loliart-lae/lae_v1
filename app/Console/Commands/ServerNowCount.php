@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ServerBalanceCountController;
 
 class ServerNowCount extends Command
@@ -38,6 +39,8 @@ class ServerNowCount extends Command
      */
     public function handle()
     {
+        DB::connection()->disableQueryLog();
+
         $this->info('正在统计数据，可能会比较慢。');
         $balance = new ServerBalanceCountController();
         $data = $balance->thisMonth($this->option('sid'));

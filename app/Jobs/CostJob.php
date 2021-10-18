@@ -13,6 +13,7 @@ use App\Models\LxdContainer;
 use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
 use App\Models\ServerBalanceCount;
+use Illuminate\Support\Facades\DB;
 use App\Models\EasyPanelVirtualHost;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
@@ -42,6 +43,8 @@ class CostJob implements ShouldQueue
      */
     public function handle()
     {
+        DB::connection()->disableQueryLog();
+
         // 挨个获取容器并计算扣费
 
         $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
@@ -157,6 +160,9 @@ class CostJob implements ShouldQueue
             $project_id = $tunnel->project->id;
 
             $need_pay = $tunnel->server->price;
+            if ((new \Illuminate\Support\Carbon)->diffInSeconds((new \Illuminate\Support\Carbon)->parse($tunnel->ping), false) > -70) {
+                $need_pay /= 1.5;
+            }
 
             if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除账号
@@ -202,7 +208,6 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->user_id = $staticPage->project->user_id;
                 $serverBalanceCount->save();
-
             }
         }
 
