@@ -161,9 +161,10 @@ class CostJob implements ShouldQueue
             $project_id = $tunnel->project->id;
 
             $need_pay = $tunnel->server->price;
-            if ((new \Illuminate\Support\Carbon)->diffInSeconds((new \Illuminate\Support\Carbon)->parse($tunnel->ping), false) > -70) {
+            if (!is_null($tunnel->ping) || (new \Illuminate\Support\Carbon)->diffInSeconds((new \Illuminate\Support\Carbon)->parse($tunnel->ping), false) > -70) {
                 $need_pay /= 1.5;
             }
+
 
             if (!Project::cost($project_id, $need_pay)) {
                 // 扣费失败，删除账号

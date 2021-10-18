@@ -81,21 +81,25 @@
                         </td>
                         <td nowrap="nowrap">{{ $tunnel->server->name }}</td>
                         <td nowrap="nowrap">
-                            @if ((new \Illuminate\Support\Carbon)->diffInSeconds((new \Illuminate\Support\Carbon)->parse($tunnel->ping), false) > -70)
-                            @php($online = 1)
-                            <span class="mdui-text-color-green">{{ $tunnel->ping }}</span>
+                            @if (is_null($tunnel->ping))
+                                没有更新
+                                @php($online = 0)
+                            @elseif ((new \Illuminate\Support\Carbon)->diffInSeconds((new
+                                \Illuminate\Support\Carbon)->parse($tunnel->ping), false) > -70)
+                                @php($online = 1)
+                                <span class="mdui-text-color-green">{{ $tunnel->ping }}</span>
                             @else
-                            @php($online = 0)
-                            <span>{{ $tunnel->ping }}</span>
+                                @php($online = 0)
+                                <span>{{ $tunnel->ping }}</span>
                             @endif
                         </td>
 
                         <td nowrap="nowrap">
                             @if ($tunnel->protocol != 'xtcp')
                                 @if ($online)
-                                {{ $tunnel->server->price }}/m
+                                    {{ $tunnel->server->price }}/m
                                 @else
-                                {{ $tunnel->server->price / 1.5 }}/m
+                                    {{ $tunnel->server->price / 1.5 }}/m
                                 @endif
                             @else
                                 免费
