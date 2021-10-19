@@ -84,7 +84,9 @@
                     <input class="mdui-textfield-input" type="text" name="local_address"
                         value="{{ old('local_address') }}" required />
                 </div>
+            </div>
 
+            <div class="mdui-col-xs-6" id="domain-input">
                 <div id="remote-input" style="display: none">
                     <span class="mdui-typo-headline">公网端口</span>
                     <p>公网访问时所使用的端口。</p>
@@ -94,8 +96,8 @@
                             value="{{ old('remote_port') }}" />
                     </div>
                 </div>
-
             </div>
+
             <div class="mdui-col-xs-6" id="domain-input">
                 <span class="mdui-typo-headline">域名</span>
                 <p>创建完成后将此域名 CNAME 记录到对应服务器的域名。<br /></p>
@@ -105,6 +107,7 @@
                         value="{{ old('custom_domain') }}" />
                 </div>
             </div>
+            
             <div class="mdui-col-xs-6" id="sk-input" style="display: none">
                 <span class="mdui-typo-headline">XTCP 密钥</span>
                 <p>只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
