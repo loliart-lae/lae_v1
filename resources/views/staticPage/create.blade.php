@@ -22,7 +22,7 @@
                         <th>名称</th>
                         <th>带宽</th>
                         <th>解析地址</th>
-                        <th>每Mb价格</th>
+                        <th>每 Mb 价格</th>
                         <th>选择</th>
                     </tr>
                 </thead>

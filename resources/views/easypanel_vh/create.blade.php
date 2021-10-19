@@ -49,8 +49,7 @@
                             <td nowrap="nowrap">{{ $template->db_quota }} M</td>
                             <td nowrap="nowrap">{{ $template->speed_limit }} Mbps</td>
                             <td nowrap="nowrap">{{ $template->price }}</td>
-                            <td>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
-                            </td>
+                            <td nowrap="nowrap">{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
 
                             <td>
                                 <label class="mdui-radio">
