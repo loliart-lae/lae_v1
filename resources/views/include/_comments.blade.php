@@ -65,13 +65,13 @@
                 <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                     class="mdui-btn mdui-ripple mdui-btn-icon">
                     @if (is_null($status->like))
-                        <i class="mdui-icon material-icons umami--click--like-from-comment umami--click--like"
+                        <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons umami--click--like-from-comment umami--click--like"
                             style="color: unset">star_border</i>
                     @elseif ($status->like->is_liked)
-                        <i style="color:#36a6e8"
+                        <i mdui-tooltip="{content: '已点赞'}" style="color:#36a6e8"
                             class="mdui-icon material-icons umami--click--unlike-from-comment umami--click--unlike">star</i>
                     @else
-                        <i class="mdui-icon material-icons" style="color: unset">star_border</i>
+                        <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons" style="color: unset">star_border</i>
                     @endif
                 </button>
                 <button onclick="return false" class="mdui-btn mdui-ripple">@php($replies = count($status->replies))
