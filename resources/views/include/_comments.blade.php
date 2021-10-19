@@ -115,22 +115,22 @@
                                 说：
                             </div>
                             <div class="mdui-float-right">
-                                @if ($status_reply->user->id == Auth::id())
-                                    <form style="display: initial;" action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="mdui-btn mdui-ripple mdui-btn-icon">
-                                            <i mdui-tooltip="{content: '删除回复', position: 'auto'}" class="mdui-icon material-icons">delete</i>
-                                        </button>
-                                    </form>
-                                @endif
-
                                 @if (in_array($status_reply->user->email, $admins))
                                 <button class="mdui-btn mdui-ripple mdui-btn-icon">
                                     <i mdui-tooltip="{content: '官方人员', position: 'auto'}" class="mdui-icon material-icons verified_user">verified_user</i>
                                 </button>
                                 @else
                                 <button class="mdui-btn mdui-ripple mdui-btn-icon" disabled></button>
+                                @endif
+
+                                @if ($status_reply->user->id == Auth::id())
+                                <form style="display: initial;" action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="mdui-btn mdui-ripple mdui-btn-icon">
+                                        <i mdui-tooltip="{content: '删除回复', position: 'auto'}" class="mdui-icon material-icons">delete</i>
+                                    </button>
+                                </form>
                                 @endif
                             </div>
                         </div>
