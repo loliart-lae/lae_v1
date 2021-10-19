@@ -138,6 +138,7 @@
             if (val == 'http' || val == 'https') {
                 $('#sk-input').fadeOut()
                 $('#remote-input').fadeOut()
+                $('#domain-input').fadeIn()
             } else if (val == 'tcp' || val == 'udp') {
                 $('#sk-input').fadeOut()
                 $('#domain-input').fadeOut()
