@@ -19,24 +19,26 @@
                             <div style="display: inline;
                                 position: absolute;
                                 right: 16px;
-                                margin-top: 3px;cursor: pointer" class="follow_{{ $status->user->id }}">
+                                margin-top: 3px;cursor: pointer">
                                 @if (in_array($status->user->email, $admins))
                                     <i mdui-tooltip="{content: '官方人员'}"
                                         class="mdui-icon material-icons verified_user">verified_user</i>
                                 @endif
-                                @if ($display ?? '' != 0)
-                                    @if ($status->user->id == Auth::id())
-                                        <i mdui-tooltip="{content: '这是你'}"
-                                            class="mdui-text-color-theme mdui-icon material-icons"
-                                            onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
-                                    @elseif (in_array($status->user->id, $ids))
-                                        <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-theme mdui-icon material-icons umami--click--unfollow-user">favorite</i>
-                                    @else
-                                        <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
-                                            class="mdui-text-color-black-secondary mdui-icon material-icons umami--click--follow-user">favorite</i>
+                                <span class="follow_{{ $status->user->id }}">
+                                    @if ($display ?? '' != 0)
+                                        @if ($status->user->id == Auth::id())
+                                            <i mdui-tooltip="{content: '这是你'}"
+                                                class="mdui-text-color-theme mdui-icon material-icons"
+                                                onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
+                                        @elseif (in_array($status->user->id, $ids))
+                                            <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
+                                                class="mdui-text-color-theme mdui-icon material-icons umami--click--unfollow-user">favorite</i>
+                                        @else
+                                            <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
+                                                class="mdui-text-color-black-secondary mdui-icon material-icons umami--click--follow-user">favorite</i>
+                                        @endif
                                     @endif
-                                @endif
+                                </span>
 
                             </div>
                         </div>
