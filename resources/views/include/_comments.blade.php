@@ -150,6 +150,10 @@
                         </script>
                     </div>
                 </div>
+
+                <div class="mdui-col-xs-12 mdui-p-y-1">
+                    <div class="mdui-divider"></div>
+                </div>
             @endforeach
         </div>
 
