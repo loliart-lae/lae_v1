@@ -119,7 +119,7 @@
                                     <form style="display: initial;" action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="mdui-btn mdui-ripple umami--click--delete-status-reply">删除</button>
+                                        <button type="submit" class="mdui-btn mdui-ripple umami--click--delete-status-reply">删除回复</button>
                                     </form>
                                 @endif
 
