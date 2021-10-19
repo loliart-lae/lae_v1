@@ -43,7 +43,7 @@
                             <td nowrap="nowrap">{{ $status->cpu }}%</td>
                             <td nowrap="nowrap">{{ $status->mem }}%</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
-                            <td>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
+                            <td nowrap="nowrap">{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
                             </td>
 
 

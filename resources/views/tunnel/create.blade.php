@@ -36,9 +36,7 @@
                             <td nowrap="nowrap">{{ $server->name }}</td>
                             <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
                             <td nowrap="nowrap">{{ $server->price }}</td>
-                            <td>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
-                            </td>
-
+                            <td nowrap="nowrap">{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
 
                             <td>
                                 <label class="mdui-radio">
@@ -77,7 +75,7 @@
             </select>
         </div>
 
-        <div class="mdui-row mdui-p-t-1">
+        <div class="mdui-row mdui-p-t-4">
             <div class="mdui-col-xs-6">
                 <span class="mdui-typo-headline">内网地址</span>
                 <p>被映射主机的地址，比如 127.0.0.1:80</p>
@@ -86,31 +84,31 @@
                     <input class="mdui-textfield-input" type="text" name="local_address"
                         value="{{ old('local_address') }}" required />
                 </div>
-
-                <div id="remote-input" style="display: none">
-                    <span class="mdui-typo-headline">公网端口</span>
-                    <p>将内网地址的端口映射为，如果是 HTTP/HTTPS/XTCP 协议，则该项可以不填写。</p>
-                    <div class="mdui-textfield mdui-textfield-floating-label">
-                        <label class="mdui-textfield-label">公网端口</label>
-                        <input class="mdui-textfield-input" type="text" name="remote_port"
-                            value="{{ old('remote_port') }}" />
-                    </div>
-                </div>
-
             </div>
+
+            <div class="mdui-col-xs-6" id="remote-input" style="display: none">
+                <span class="mdui-typo-headline">公网端口</span>
+                <p>公网访问时所使用的端口。</p>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">公网端口</label>
+                    <input class="mdui-textfield-input" type="text" name="remote_port"
+                        value="{{ old('remote_port') }}" />
+                </div>
+            </div>
+
             <div class="mdui-col-xs-6" id="domain-input">
                 <span class="mdui-typo-headline">域名</span>
-                <p>仅在 HTTP 与 HTTPS 中生效。<br /></p>
+                <p>创建完成后将此域名 CNAME 记录到对应服务器的域名。<br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">域名</label>
                     <input class="mdui-textfield-input" type="text" name="custom_domain"
                         value="{{ old('custom_domain') }}" />
                 </div>
             </div>
+
             <div class="mdui-col-xs-6" id="sk-input" style="display: none">
                 <span class="mdui-typo-headline">XTCP 密钥</span>
-                <p>如果你选择了XTCP，则该项目是必填的。如果为其他协议，请忽略。<br />
-                    只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
+                <p>只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <label class="mdui-textfield-label">XTCP 密钥</label>
                     <input class="mdui-textfield-input" type="text" name="sk" value="{{ old('sk') }}" />
