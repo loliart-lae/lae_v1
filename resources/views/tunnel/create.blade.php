@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="mdui-col-xs-6" id="domain-input">
+            <div class="mdui-col-xs-6" id="domain-input" style="display: none">
                 <span class="mdui-typo-headline">域名</span>
                 <p>创建完成后将此域名 CNAME 记录到对应服务器的域名。<br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
