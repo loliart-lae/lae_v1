@@ -150,10 +150,12 @@
                         </script>
                     </div>
                 </div>
-
+                
+                @if ($i != $replies)
                 <div class="mdui-col-xs-12 mdui-p-y-1">
                     <div class="mdui-divider"></div>
                 </div>
+                @endif
             @endforeach
         </div>
 
