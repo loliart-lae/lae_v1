@@ -37,7 +37,7 @@
                         right: 16px;
                         margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
-                            <button class="mdui-btn mdui-ripple">
+                            <button class="mdui-btn mdui-ripple mdui-btn-icon">
                                 <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
                             </button>
                         @endif
@@ -124,7 +124,9 @@
                                 @endif
 
                                 @if (in_array($status_reply->user->email, $admins))
-                                <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
+                                <button class="mdui-btn mdui-ripple mdui-btn-icon">
+                                    <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
+                                </button>
                                 @endif
                             </div>
                         </div>
