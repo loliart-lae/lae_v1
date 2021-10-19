@@ -121,13 +121,6 @@
                                         @method('DELETE')
                                         <button type="submit" class="mdui-btn mdui-ripple umami--click--delete-status-reply">删除</button>
                                     </form>
-                                    <!--
-                                    <a onclick="$('#statusReply-{{ $i }}').submit()" href="#"
-                                        class="umami--click--delete-status-reply">删除</a>
-                                    <form id="statusReply-{{ $i }}" style="display: none" method="post"
-                                        action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
-                                    </form>
-                                    -->
                                 @endif
 
                                 @if (in_array($status_reply->user->email, $admins))
@@ -135,7 +128,7 @@
                                     <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
                                 </button>
                                 @else
-                                <button class="mdui-btn mdui-ripple mdui-btn-icon"></button>
+                                <button class="mdui-btn mdui-ripple mdui-btn-icon" disabled></button>
                                 @endif
                             </div>
                         </div>
