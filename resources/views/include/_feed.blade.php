@@ -99,7 +99,7 @@
         $(window).ready(function() {
             setTimeout(function() {
                 masonry_resize()
-            }, 100)
+            }, 500)
         })
 
         // $('.smoove').smoove({
