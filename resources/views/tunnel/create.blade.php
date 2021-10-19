@@ -65,10 +65,10 @@
             </div>
         </div>
 
-        <div class="mdui-row mdui-p-t-4 mdui-p-l-1">
+        <div class="mdui-row mdui-p-t-4 mdui-p-l-1 mdui-m-b-2">
             <span class="mdui-typo-headline">隧道协议</span>
             <p>根据您的使用场景以及应用选择。</p>
-            <select name="protocol" class="mdui-select" mdui-select mdui-select="options" required>
+            <select name="protocol" class="mdui-select" id="protocol" mdui-select mdui-select="options" required>
                 <option value="http">HTTP - 适合不加密，明文传输的网页浏览业务。</option>
                 <option value="https">HTTPS - 适合加密，对安全性较强的业务。</option>
                 <option value="tcp">TCP - 即时通讯或者游戏等对可靠性要求较高的业务。</option>
@@ -87,14 +87,18 @@
                         value="{{ old('local_address') }}" required />
                 </div>
 
-                <span class="mdui-typo-headline">公网端口</span>
-                <p>将内网地址的端口映射为，如果是 HTTP/HTTPS/XTCP 协议，则该项可以不填写。</p>
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">公网端口</label>
-                    <input class="mdui-textfield-input" type="text" name="remote_port" value="{{ old('remote_port') }}" />
+                <div id="remote-input" style="display: none">
+                    <span class="mdui-typo-headline">公网端口</span>
+                    <p>将内网地址的端口映射为，如果是 HTTP/HTTPS/XTCP 协议，则该项可以不填写。</p>
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <label class="mdui-textfield-label">公网端口</label>
+                        <input class="mdui-textfield-input" type="text" name="remote_port"
+                            value="{{ old('remote_port') }}" />
+                    </div>
                 </div>
+
             </div>
-            <div class="mdui-col-xs-6">
+            <div class="mdui-col-xs-6" id="domain-input">
                 <span class="mdui-typo-headline">域名</span>
                 <p>仅在 HTTP 与 HTTPS 中生效。<br /></p>
                 <div class="mdui-textfield mdui-textfield-floating-label">
@@ -103,7 +107,7 @@
                         value="{{ old('custom_domain') }}" />
                 </div>
             </div>
-            <div class="mdui-col-xs-6">
+            <div class="mdui-col-xs-6" id="sk-input" style="display: none">
                 <span class="mdui-typo-headline">XTCP 密钥</span>
                 <p>如果你选择了XTCP，则该项目是必填的。如果为其他协议，请忽略。<br />
                     只允许字母、数字，短破折号（-）和下划线（_）,至少 3 位，最多 15 位并且无法修改。</p>
@@ -128,5 +132,21 @@
 
     <script>
         mdui.mutation()
+
+        $('#protocol').change(function() {
+            let val = $('#protocol').val()
+            if (val == 'http' || val == 'https') {
+                $('#sk-input').fadeOut()
+                $('#remote-input').fadeOut()
+            } else if (val == 'tcp' || val == 'udp') {
+                $('#sk-input').fadeOut()
+                $('#domain-input').fadeOut()
+                $('#remote-input').fadeIn()
+            } else if (val == 'xtcp') {
+                $('#remote-input').fadeOut()
+                $('#domain-input').fadeOut()
+                $('#sk-input').fadeIn()
+            }
+        })
     </script>
 @endsection
