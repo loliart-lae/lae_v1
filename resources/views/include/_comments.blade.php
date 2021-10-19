@@ -116,7 +116,7 @@
                             </div>
                             <div class="mdui-float-right">
                                 @if ($status_reply->user->id == Auth::id())
-                                    <form style="display: none;" action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
+                                    <form action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="mdui-btn mdui-ripple umami--click--status-delete">删除</button>
