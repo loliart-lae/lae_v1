@@ -112,7 +112,7 @@
                             @php($tip = ' 删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')
                         @endif
                         <td nowrap="nowrap"><a href="#"
-                                onclick="window.open('{{ route('tunnels.show', $tunnel->id) }}')">配置文件</a> |
+                                onclick="open_tunnel_config({{ $tunnel->id }})">配置文件</a> |
                             <a href="#"
                                 onclick="if (confirm('{{ $tip }}')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
@@ -133,6 +133,17 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        function open_tunnel_config(id) {
+            $.ajax({
+                url: 'tunnels/' + id,
+                success: function(data) {
+                    mdui.confirm(`<pre>${data}</pre>`);
+                }
+            })
+        }
+    </script>
 
 
 @endsection
