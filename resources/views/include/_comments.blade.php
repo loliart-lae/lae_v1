@@ -116,10 +116,10 @@
                             </div>
                             <div class="mdui-float-right">
                                 @if ($status_reply->user->id == Auth::id())
-                                    <a onclick="$('#statusReply-{{ $i }}').submit()" href="#"
-                                        class="umami--click--delete-status-reply">删除</a>
-                                    <form id="statusReply-{{ $i }}" style="display: none" method="post"
-                                        action="{{ route('status.reply.destroy', $status_reply->id) }}">@csrf @method('DELETE')
+                                    <form style="display: none;" action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="mdui-btn mdui-ripple umami--click--status-delete">删除</button>
                                     </form>
                                 @endif
 
