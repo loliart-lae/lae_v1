@@ -102,7 +102,7 @@
                         <img class="mdui-img-circle mdui-center"
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status_reply->user->email)) }}">
                     </div>
-                    <div class="mdui-col-xs-11">
+                    <div class="mdui-col-xs-10">
                         <div class="mdui-clearfix">
                             <div class="mdui-float-left">
                                 {{ $i }}.
