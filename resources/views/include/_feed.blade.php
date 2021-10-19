@@ -31,10 +31,10 @@
                                                 class="mdui-text-color-theme mdui-icon material-icons"
                                                 onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
                                         @elseif (in_array($status->user->id, $ids))
-                                            <i mdui-tooltip="{content: '已点赞'}" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
+                                            <i mdui-tooltip="{content: '已关注'}" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
                                                 class="mdui-text-color-theme mdui-icon material-icons umami--click--unfollow-user">favorite</i>
                                         @else
-                                            <i mdui-tooltip="{content: '点赞'}" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
+                                            <i mdui-tooltip="{content: '关注'}" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
                                                 class="mdui-text-color-black-secondary mdui-icon material-icons umami--click--follow-user">favorite</i>
                                         @endif
                                     @endif
