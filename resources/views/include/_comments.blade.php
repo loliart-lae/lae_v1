@@ -125,7 +125,7 @@
 
                                 @if (in_array($status_reply->user->email, $admins))
                                 <button class="mdui-btn mdui-ripple mdui-btn-icon">
-                                    <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
+                                    <i mdui-tooltip="{content: '官方人员', position: 'auto'}" class="mdui-icon material-icons verified_user">verified_user</i>
                                 </button>
                                 @else
                                 <button class="mdui-btn mdui-ripple mdui-btn-icon" disabled></button>
