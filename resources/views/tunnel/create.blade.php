@@ -87,13 +87,12 @@
             </div>
 
             <div class="mdui-col-xs-6" id="remote-input" style="display: none">
-                    <span class="mdui-typo-headline">公网端口</span>
-                    <p>公网访问时所使用的端口。</p>
-                    <div class="mdui-textfield mdui-textfield-floating-label">
-                        <label class="mdui-textfield-label">公网端口</label>
-                        <input class="mdui-textfield-input" type="text" name="remote_port"
-                            value="{{ old('remote_port') }}" />
-                    </div>
+                <span class="mdui-typo-headline">公网端口</span>
+                <p>公网访问时所使用的端口。</p>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">公网端口</label>
+                    <input class="mdui-textfield-input" type="text" name="remote_port"
+                        value="{{ old('remote_port') }}" />
                 </div>
             </div>
 
