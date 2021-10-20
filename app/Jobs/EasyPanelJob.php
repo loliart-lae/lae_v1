@@ -125,7 +125,7 @@ class EasyPanelJob implements ShouldQueue
                     'c' => $this->c,
                     'json' => 1,
                     'name' => $this->config['username'],
-                    'password' => $this->config['password']
+                    'passwd' => $this->config['password']
                 ]);
 
                 if ($result['result'] != 200) {
