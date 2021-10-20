@@ -193,6 +193,8 @@ class EasyPanelController extends Controller
 
             ProjectActivityController::save($easyPanelVirtualHost_data->project->id, '修改了 EasyPanel ' . $easyPanelVirtualHost_data->name . '的密码，新的密码为 ' . $new_pwd . '。');
 
+            EasyPanelVirtualHost::where('id', $id)->update(['password' => $new_pwd]);
+
             // 调度删除任务 not finished
             $config = [
                 'method' => 'change_password',
