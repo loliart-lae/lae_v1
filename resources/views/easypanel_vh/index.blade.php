@@ -46,7 +46,7 @@
                         <td nowrap>
                             @if ($ep->status == 'active')
                                 <form style="display: none" id="fastLogin-{{ $i }}"
-                                    action="http://{{ $ep->server->domain }}}/vhost/index.php?c=session&a=login" method="post" target="_blank">
+                                    action="http://{{ $ep->server->domain }}/vhost/index.php?c=session&a=login" method="post" target="_blank">
                                     <input type="hidden" name="username" value="{{ $ep->username }}" />
                                     <input type="hidden" name="passwd" value="{{ $ep->password }}" />
                                 </form>
