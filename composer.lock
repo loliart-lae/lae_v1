@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e43a030088205269fba89f928f4a4290",
+    "content-hash": "a3f5320a6e96a01150321ac29bedfb5d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3807,6 +3807,83 @@
             "time": "2021-10-17T16:08:30+00:00"
         },
         {
+            "name": "php-curl-class/php-curl-class",
+            "version": "8.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-curl-class/php-curl-class.git",
+                "reference": "c97c96d5d422b4085aba32ace096c3e404dde607"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c97c96d5d422b4085aba32ace096c3e404dde607",
+                "reference": "c97c96d5d422b4085aba32ace096c3e404dde607",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Curl\\": "src/Curl/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Zach Borboa"
+                }
+            ],
+            "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
+            "homepage": "https://github.com/php-curl-class/php-curl-class",
+            "keywords": [
+                "API-Client",
+                "api",
+                "class",
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http-client",
+                "http-proxy",
+                "json",
+                "php",
+                "php-curl",
+                "php-curl-library",
+                "proxy",
+                "requests",
+                "restful",
+                "web-scraper",
+                "web-scraping ",
+                "web-service",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/php-curl-class/php-curl-class/issues",
+                "source": "https://github.com/php-curl-class/php-curl-class/tree/8.10.0"
+            },
+            "time": "2021-06-23T14:34:00+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.8.0",
             "source": {
@@ -4733,6 +4810,58 @@
                 "source": "https://github.com/renatomarinho/laravel-page-speed/tree/2.0.0"
             },
             "time": "2021-01-15T21:21:00+00:00"
+        },
+        {
+            "name": "saleh7/proxmox-ve_php_api",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Saleh7/ProxmoxVE_PHP_API.git",
+                "reference": "cfbd299d5e73f41aa4dd9dc44d2f879d3b67f470"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Saleh7/ProxmoxVE_PHP_API/zipball/cfbd299d5e73f41aa4dd9dc44d2f879d3b67f470",
+                "reference": "cfbd299d5e73f41aa4dd9dc44d2f879d3b67f470",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php-curl-class/php-curl-class": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Proxmox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saleh",
+                    "email": "Saleh7@protonmail.ch"
+                }
+            ],
+            "description": "ProxmoxVE PHP API",
+            "keywords": [
+                "PVE",
+                "Proxmox",
+                "api",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/Saleh7/ProxmoxVE_PHP_API/issues",
+                "source": "https://github.com/Saleh7/ProxmoxVE_PHP_API/tree/v1.0.2"
+            },
+            "time": "2021-10-19T09:43:22+00:00"
         },
         {
             "name": "spatie/laravel-pjax",
