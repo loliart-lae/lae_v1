@@ -53,8 +53,6 @@
                                 <div class="mdui-progress">
                                     <div class="mdui-progress-indeterminate"></div>
                                 </div>
-                            @elseif ($ep->status == 'backup')
-                                正在备份
                             @else
                                 {{ $ep->status }}
                             @endif
