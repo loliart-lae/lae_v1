@@ -34,20 +34,20 @@
                         </tr>
                     @endif
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $ep->name }}</td>
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $ep->name }}</td>
 
-                        <td nowrap="nowrap">{{ $ep->template->web_quota }} M</td>
-                        <td nowrap="nowrap">{{ $ep->template->db_quota }} M</td>
-                        <td nowrap="nowrap">{{ $ep->server->name }}</td>
-                        <td nowrap="nowrap">{{ $ep->server->network_limit }} Mbps</td>
-                        <td nowrap="nowrap">{{ $ep->server->price + $ep->template->price }}</td>
+                        <td nowrap>{{ $ep->template->web_quota }} M</td>
+                        <td nowrap>{{ $ep->template->db_quota }} M</td>
+                        <td nowrap>{{ $ep->server->name }}</td>
+                        <td nowrap>{{ $ep->server->network_limit }} Mbps</td>
+                        <td nowrap>{{ $ep->server->price + $ep->template->price }}</td>
 
-                        <td nowrap="nowrap">
+                        <td nowrap>
                             @if ($ep->status == 'active')
                                 <a href="#"
-                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>|<a
-                                    href="#" onclick="$('#f-pwd-{{ $i }}').submit()">重置密码</a>|<a href="#"
+                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a> | <a
+                                    href="#" onclick="$('#f-pwd-{{ $i }}').submit()">重置密码</a> | <a href="#"
                                     onclick="$('#f-login-{{ $i }}').submit()">进入</a>
                             @elseif ($ep->status == 'pending')
                                 <div class="mdui-progress">
@@ -79,7 +79,7 @@
                 @if ($i > 10)
                     <tr>
                         <td colspan="12" class="mdui-text-center">
-                            <a href="{{ route('easyPanel.create') }}">这个其实也可以搞Hexo之类</a>
+                            <a href="{{ route('easyPanel.create') }}">这个其实也可以搞 Hexo 之类</a>
                         </td>
                     </tr>
                 @endif
