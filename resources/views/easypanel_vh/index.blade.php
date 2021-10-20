@@ -48,7 +48,7 @@
                                 <a href="#"
                                     onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
                                 | <a href="#" onclick="$('#f-pwd-{{ $i }}').submit()">重置密码</a> | <a href="#"
-                                    onclick="$('#f-login-{{ $i }}').submit()">进入</a>
+                                    onclick="postLogin('{{ $ep->server->domain }}', '{{ $ep->username }}', '{{ $ep->password }}')">进入</a>
                             @elseif ($ep->status == 'pending')
                                 <div class="mdui-progress">
                                     <div class="mdui-progress-indeterminate"></div>
@@ -65,24 +65,29 @@
                     <form id="f-pwd-{{ $i }}" method="post"
                         action="{{ route('easyPanel.update', $ep->id) }}">@csrf
                         @method('PUT')</form>
-
-                    <form id="f-login-{{ $i }}"
-                        action="http://{{ $ep->server->domain }}/vhost/index.php?c=session&a=login" method="post"
-                        target="_blank">
-                        <input type="hidden" name="username" value="{{ $ep->username }}" />
-                        <input type="hidden" name="passwd" value="{{ $ep->password }}" />
-                    </form>
-
                 @endforeach
                 @if ($i > 10)
                     <tr>
                         <td colspan="12" class="mdui-text-center">
-                            <a href="{{ route('easyPanel.create') }}">这个其实也可以搞 Hexo 之类</a>
+                            <a href="{{ route('easyPanel.create') }}">咕</a>
                         </td>
                     </tr>
                 @endif
             </tbody>
         </table>
+        <script>
+            function postLogin(url, username, password) {
+                $('body').append(`<div style="none">
+                    <form id="fastLogin-${username}"
+                            action="http://${url}/vhost/index.php?c=session&a=login" method="post"
+                            target="_blank">
+                            <input type="hidden" name="username" value="${username}" />
+                            <input type="hidden" name="passwd" value="${password}" />
+                        </form>
+                    </div>`)
+                $('#fastLogin-' + username).submit()
+            }
+        </script>
     </div>
 
 
