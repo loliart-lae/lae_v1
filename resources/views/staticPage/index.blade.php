@@ -43,7 +43,7 @@
                         <td nowrap><a href="https://{{ $staticPage->domain }}"
                                 target="_blank">{{ $staticPage->domain }}</a></td>
                         <td nowrap><a
-                                onclick="mdui.alert('FTP 用户名: ' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码:' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与“连接与解析”相同。')">显示</a>
+                                onclick="mdui.alert('FTP 用户名：' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码：' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与 “连接与解析” 相同。')">显示</a>
                         </td>
                         <td nowrap>{{ $staticPage->used_disk }} M</td>
                         <td nowrap>{{ $staticPage->server->name }}</td>
