@@ -67,7 +67,7 @@ class RemoteDesktopController extends Controller
         }
 
         $server_where = $server->where('id', $request->server_id);
-        if (RemoteDesktop::where('username', $request->username)->exists()) {
+        if (RemoteDesktop::where('username', $request->username)->where('server_id', $request->server_id)->exists()) {
             return redirect()->back()->with('status', 'Error: 同服务器上已经存在该用户名了。');
         }
 
