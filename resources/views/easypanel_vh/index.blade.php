@@ -46,8 +46,8 @@
                         <td nowrap>
                             @if ($ep->status == 'active')
                                 <a href="#"
-                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a> | <a
-                                    href="#" onclick="$('#f-pwd-{{ $i }}').submit()">重置密码</a> | <a href="#"
+                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
+                                | <a href="#" onclick="$('#f-pwd-{{ $i }}').submit()">重置密码</a> | <a href="#"
                                     onclick="$('#f-login-{{ $i }}').submit()">进入</a>
                             @elseif ($ep->status == 'pending')
                                 <div class="mdui-progress">
