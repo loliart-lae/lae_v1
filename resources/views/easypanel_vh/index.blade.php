@@ -45,10 +45,10 @@
 
                         <td nowrap>
                             @if ($ep->status == 'active')
-                                <form id="fastLogin-${username}" action="http://${url}/vhost/index.php?c=session&a=login"
-                                    method="post" target="_blank">
-                                    <input type="hidden" name="username" value="${username}" />
-                                    <input type="hidden" name="passwd" value="${password}" />
+                                <form style="display: none" id="fastLogin-{{ $i }}"
+                                    action="http://${url}/vhost/index.php?c=session&a=login" method="post" target="_blank">
+                                    <input type="hidden" name="username" value="{{ $ep->username }}" />
+                                    <input type="hidden" name="passwd" value="{{ $ep->password }}" />
                                 </form>
                                 <a href="#"
                                     onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
