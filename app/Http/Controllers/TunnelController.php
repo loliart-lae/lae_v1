@@ -291,9 +291,9 @@ EOF;
 
     public function auth(Request $request, Tunnel $tunnel)
     {
-        Log::info($request);
+        // Log::info($request);
         if ($request->op == 'NewProxy') {
-            Log::info($request);
+            // Log::info($request);
             if (!$tunnel->where('server_id', $request->route('id'))->where('client_token', $request->content['user'])->exists()) {
                 return response()->json(array(
                     "reject" => true,
