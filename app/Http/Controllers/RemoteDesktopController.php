@@ -158,7 +158,7 @@ class RemoteDesktopController extends Controller
 
         $server_where = $server->where('id', $remote_desktop_data->server_id);
         $server_data = $server_where->firstOrFail();
-        ProjectActivityController::save($request->project_id, '修改了 共享的 Windows 远程桌面: ' . $remote_desktop_data->username . ' 的密码。');
+        ProjectActivityController::save($remote_desktop_data->project_id, '修改了 共享的 Windows 远程桌面: ' . $remote_desktop_data->username . ' 的密码。');
 
 
         $config = [
