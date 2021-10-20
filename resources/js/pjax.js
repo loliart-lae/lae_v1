@@ -13,32 +13,32 @@ $(document).pjax('a', '.pjax-container')
 
 // $("#pre_btn").hide()
 $(document).on('pjax:clicked', function () {
-    $('#main').html(`<div class="loading">
-    <h4></h4>
-    <h5></h5>
-</div>`)
-    // $('#load-spinner').css('top', '12vh')
-    // $('#main').css('opacity', 0)
-    // $('.load-hidden').fadeOut(100);
+//     $('#main').html(`<div class="loading">
+//     <h4></h4>
+//     <h5></h5>
+// </div>`)
+    $('#load-spinner').css('top', '12vh')
+    $('#main').css('opacity', 0)
+    $('.load-hidden').fadeOut(100);
 })
 $(document).on("pjax:timeout", function (event) {
-    // $('#main').css('overflow', 'hidden')
-    // $('#load-spinner-text').html('仍在加载...')
-    // $('#load-spinner-text').animate({
-    //     opacity: 1
-    // })
-    // $('#load-spinner').css('top', '14vh')
+    $('#main').css('overflow', 'hidden')
+    $('#load-spinner-text').html('仍在加载...')
+    $('#load-spinner-text').animate({
+        opacity: 1
+    })
+    $('#load-spinner').css('top', '14vh')
 
     event.preventDefault()
 })
 
 $(document).on("pjax:complete", function (event) {
-    // $('#load-spinner-text').css('opacity', 0)
-    // $('#load-spinner').css('top', '-10vh')
+    $('#load-spinner-text').css('opacity', 0)
+    $('#load-spinner').css('top', '-10vh')
 
-    // $('#main').css('height', 'auto')
-    // $('#main').css('overflow', 'unset')
-    // $('#main').css('opacity', 1)
-    // $('.load-hidden').fadeIn(100);
+    $('#main').css('height', 'auto')
+    $('#main').css('overflow', 'unset')
+    $('#main').css('opacity', 1)
+    $('.load-hidden').fadeIn(100);
 
 })
