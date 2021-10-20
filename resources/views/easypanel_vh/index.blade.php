@@ -45,10 +45,16 @@
 
                         <td nowrap>
                             @if ($ep->status == 'active')
+                                <form style="visibility: hidden" id="f-login-{{ $i }}"
+                                    action="{{ $ep->server->domain }}" method="post">
+                                    <input type="hidden" name="username" value="{{ $ep->username }}" />
+                                    <input type="hidden" name="passwd" value="{{ $ep->password }}" />
+                                </form>
+
                                 <a href="#"
                                     onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
                                 | <a href="#" onclick="$('#f-pwd-{{ $i }}').submit()">重置密码</a> | <a href="#"
-                                    onclick="postLogin('{{ $ep->server->domain }}', '{{ $ep->username }}', '{{ $ep->password }}')">进入</a>
+                                    onclick="$('#f-login-{{ $i }}')">进入</a>
                             @elseif ($ep->status == 'pending')
                                 <div class="mdui-progress">
                                     <div class="mdui-progress-indeterminate"></div>
@@ -75,19 +81,6 @@
                 @endif
             </tbody>
         </table>
-        <script>
-            function postLogin(url, username, password) {
-                $('body').append(`<div style="none">
-                    <form id="fastLogin-${username}"
-                            action="http://${url}/vhost/index.php?c=session&a=login" method="post"
-                            target="_blank">
-                            <input type="hidden" name="username" value="${username}" />
-                            <input type="hidden" name="passwd" value="${password}" />
-                        </form>
-                    </div>`)
-                $('#fastLogin-' + username).submit()
-            }
-        </script>
     </div>
 
 
