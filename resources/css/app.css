@@ -49,3 +49,43 @@
 .verified_user {
     font-size: 21px;
 }
+:root {
+    --loading-grey: #ededed;
+}
+
+.loading h4,
+.loading h5,
+.loading .content {
+    background-color: var(--loading-grey);
+    background: linear-gradient(
+            100deg,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0) 60%
+        )
+        var(--loading-grey);
+    background-size: 200% 100%;
+    background-position-x: 180%;
+    animation: 1s loading ease-in-out infinite;
+    font-size: 1rem;
+}
+
+.loading h4 {
+    min-height: 5rem;
+    border-radius: 4px;
+    animation-delay: 0.05s;
+    width: 80%;
+}
+
+.loading h5 {
+    min-height: 2rem;
+    border-radius: 4px;
+    animation-delay: 0.05s;
+    width: 100px;
+}
+
+@keyframes loading {
+    to {
+        background-position-x: -20%;
+    }
+}

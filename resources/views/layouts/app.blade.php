@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    @include('include._loading')
+    {{-- @include('include._loading') --}}
 
     <div class="mdui-container pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">
