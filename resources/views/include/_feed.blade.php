@@ -31,10 +31,10 @@
                                                 class="mdui-text-color-theme mdui-icon material-icons"
                                                 onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
                                         @elseif (in_array($status->user->id, $ids))
-                                            <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
+                                            <i mdui-tooltip="{content: '已关注'}" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
                                                 class="mdui-text-color-theme mdui-icon material-icons umami--click--unfollow-user">favorite</i>
                                         @else
-                                            <i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
+                                            <i mdui-tooltip="{content: '关注'}" onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
                                                 class="mdui-text-color-black-secondary mdui-icon material-icons umami--click--follow-user">favorite</i>
                                         @endif
                                     @endif
@@ -65,12 +65,12 @@
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
                             @if (is_null($status->like))
-                                <i class="mdui-icon material-icons umami--click--like"
+                                <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons umami--click--like"
                                     style="color: unset">star_border</i>
                             @elseif ($status->like->is_liked)
-                                <i style="color:#36a6e8" class="mdui-icon material-icons umami--click--unlike">star</i>
+                                <i mdui-tooltip="{content: '已点赞'}" style="color:#36a6e8" class="mdui-icon material-icons umami--click--unlike">star</i>
                             @else
-                                <i class="mdui-icon material-icons" style="color: unset">star_border</i>
+                                <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons" style="color: unset">star_border</i>
                             @endif
                         </button>
                         <a href="{{ route('status.show', $status->id) }}"
