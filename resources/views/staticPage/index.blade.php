@@ -38,17 +38,17 @@
                         </tr>
                     @endif
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $staticPage->name }}</td>
-                        <td nowrap="nowrap"><a href="https://{{ $staticPage->domain }}"
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $staticPage->name }}</td>
+                        <td nowrap><a href="https://{{ $staticPage->domain }}"
                                 target="_blank">{{ $staticPage->domain }}</a></td>
-                        <td nowrap="nowrap"><a
-                                onclick="mdui.alert('FTP 用户名: ' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码:' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与“连接与解析”相同。')">显示</a>
+                        <td nowrap><a
+                                onclick="mdui.alert('FTP 用户名：' + '{{ $staticPage->ftp_username }}' + '<br /> FTP 密码：' + '{{ $staticPage->ftp_password }}' + '<br /><br />' + '连接地址与 “连接与解析” 相同。')">显示</a>
                         </td>
-                        <td nowrap="nowrap">{{ $staticPage->used_disk }} M</td>
-                        <td nowrap="nowrap">{{ $staticPage->server->name }}</td>
-                        <td nowrap="nowrap">{{ $staticPage->server->domain }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap>{{ $staticPage->used_disk }} M</td>
+                        <td nowrap>{{ $staticPage->server->name }}</td>
+                        <td nowrap>{{ $staticPage->server->domain }}</td>
+                        <td nowrap>
                             @if ($staticPage->used_disk < 10)
                                 0
                             @else
@@ -56,10 +56,10 @@
                             @endif
                         </td>
 
-                        <td nowrap="nowrap">
+                        <td nowrap>
                             @if ($staticPage->status == 'active')
                                 <a href="#"
-                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>|<a href="#"
+                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a> | <a href="#"
                                     onclick="if (confirm('备份时间依据站点大小而定。')) { $('#f-bak-{{ $i }}').submit() }">备份</a>
                             @elseif ($staticPage->status == 'pending')
                                 <div class="mdui-progress">
@@ -82,7 +82,7 @@
                 @if ($i > 10)
                     <tr>
                         <td colspan="12" class="mdui-text-center">
-                            <a href="{{ route('staticPage.create') }}">这个其实也可以搞Hexo之类</a>
+                            <a href="{{ route('staticPage.create') }}">这个其实也可以搞 Hexo 之类</a>
                         </td>
                     </tr>
                 @endif

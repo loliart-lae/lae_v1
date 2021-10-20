@@ -38,14 +38,14 @@
                         </tr>
                     @endif
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $fastVisit->name }}</td>
-                        <td nowrap="nowrap"><a class="can_copy umami--click--fastVisit-copy"
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $fastVisit->name }}</td>
+                        <td nowrap><a class="can_copy umami--click--fastVisit-copy"
                                 data-clipboard-text="https://{{ $fastVisit->domain->domain }}/v/{{ $fastVisit->slug }}">{{ $fastVisit->slug }}</a>
                         </td>
                         <td nowrap>{{ $fastVisit->domain->domain }}</td>
-                        <td nowrap="nowrap">{{ $fastVisit->uri }}</td>
-                        <td nowrap="nowrap" class="umami--click--toggle-ad">
+                        <td nowrap>{{ $fastVisit->uri }}</td>
+                        <td nowrap class="umami--click--toggle-ad">
                             @if ($fastVisit->show_ad)
                                 <label class="mdui-switch">
                                     <input id="check_ad_{{ $fastVisit->id }}"
@@ -61,8 +61,8 @@
                                 </label>
                             @endif
                         </td>
-                        <td nowrap="nowrap">{{ $fastVisit->times }}</td>
-                        <td>
+                        <td nowrap>{{ $fastVisit->times }}</td>
+                        <td nowrap>
                             <a onclick="if (confirm('删除后，这个访问入口将无法使用。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             <form id="f-{{ $i }}" method="post"
                                 action="{{ route('fastVisit.destroy', $fastVisit->id) }}">
