@@ -69,14 +69,14 @@ class ForwardController extends Controller
         if (ProjectMembersController::userInProject($lxd_data->project_id)) {
 
             if ($lxd_data->status == 'off') {
-                ProjectActivityController::save($lxd_data->project_id, '尝试操作应用容器 ' . $lxd_data->name . '的端口，但是失败了。因为没有打开电源。');
+                ProjectActivityController::save($lxd_data->project_id, '尝试操作应用容器 ' . $lxd_data->name . ' 的端口，但是失败了。因为没有打开电源。');
                 return redirect()->back()->with('status', '关机状态下无法操作端口。');
             }
 
             $server_id = $lxd_data->server_id;
 
             if ($forward->where('server_id', $server_id)->where('to', $request->to)->exists()) {
-                ProjectActivityController::save($lxd_data->project_id, '尝试操作应用容器 ' . $lxd_data->name . '的端口，但是失败了。因为已经存在外部端口。');
+                ProjectActivityController::save($lxd_data->project_id, '尝试操作应用容器 ' . $lxd_data->name . ' 的端口，但是失败了。因为已经存在外部端口。');
                 return redirect()->back()->with('status', '建立通道失败，因为已存在外部端口。');
             }
 
