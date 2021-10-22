@@ -58,7 +58,7 @@
                         <p>内部 IP：{{ $lxd->lan_ip }}</p>
                         <p>网络限制：{{ $lxd->server->network_limit }} Mbps</p>
                         <p>模板名称：
-                            @if ($lxd->status == 'running')
+                            @if ($lxd->status == 'running' || $lxd->status == 'off')
                                 <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
                             @else
                                 {{ $lxd->template->name }}
