@@ -66,38 +66,47 @@ class ForwardController extends Controller
         // 检查同服务器是否已存在forward.to
         $lxd_data = $lxd->where('id', $lxd_id)->with('server')->firstOrFail();
 
+        if (ProjectMembersController::userInProject($lxd_data->project_id)) {
 
-        $server_id = $lxd_data->server_id;
+            if ($lxd_data->status == 'off') {
+                return redirect()->back()->with('status', '关机状态下无法操作端口。');
+                ProjectActivityController::save($lxd_data->project_id, '尝试操作应用容器 ' . $lxd_data->name . '的端口，但是失败了。因为没有打开电源。');
+            }
 
-        if ($forward->where('server_id', $server_id)->where('to', $request->to)->exists()) {
-            return redirect()->back()->with('status', '建立通道失败，因为已存在外部端口。');
+            $server_id = $lxd_data->server_id;
+
+            if ($forward->where('server_id', $server_id)->where('to', $request->to)->exists()) {
+                return redirect()->back()->with('status', '建立通道失败，因为已存在外部端口。');
+                ProjectActivityController::save($lxd_data->project_id, '尝试操作应用容器 ' . $lxd_data->name . '的端口，但是失败了。因为已经存在外部端口。');
+            }
+
+
+            $forward->lxd_id = $lxd_id;
+            $forward->from = $request->from;
+            $forward->to = $request->to;
+            $forward->reason = $request->reason;
+            // $forward->proto = $request->proto;
+            $forward->server_id = $server_id;
+            $forward->project_id = $lxd_data->project_id;
+            $forward->save();
+
+            // 获取内部IP
+
+
+            $config = [
+                'forward_id' => $forward->id,
+                'method' => 'forward',
+                'inst_id' => $lxd_id,
+                'token' => $lxd_data->server->token,
+                'address' => $lxd_data->server->address,
+                'from' => $request->from,
+                'to' => $request->to,
+                'user' => Auth::id()
+            ];
+
+            dispatch(new LxdJob($config));
+            ProjectActivityController::save($lxd_data->project_id, '新增了应用容器 ' . $lxd_data->name . '的端口转发: ' . $forward->from . '->' . $forward->to);
         }
-
-
-        $forward->lxd_id = $lxd_id;
-        $forward->from = $request->from;
-        $forward->to = $request->to;
-        $forward->reason = $request->reason;
-        // $forward->proto = $request->proto;
-        $forward->server_id = $server_id;
-        $forward->project_id = $lxd_data->project_id;
-        $forward->save();
-
-        // 获取内部IP
-
-
-        $config = [
-            'forward_id' => $forward->id,
-            'method' => 'forward',
-            'inst_id' => $lxd_id,
-            'token' => $lxd_data->server->token,
-            'address' => $lxd_data->server->address,
-            'from' => $request->from,
-            'to' => $request->to,
-            'user' => Auth::id()
-        ];
-
-        dispatch(new LxdJob($config));
 
         return redirect()->back()->with('status', '正在准备您的端口。');
     }
@@ -144,19 +153,21 @@ class ForwardController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $member = new ProjectMember();
         $forward = new Forward();
         $lxd_id = $request->route('lxd_id');
         $id = $request->route('forward');
 
         $forward_data = $forward->where('id', $id)->with('server')->firstOrFail();
-        if ($forward_data->status != 'active' && $forward_data->status != 'failed') {
-            return redirect()->back()->with('status', '无法删除，因为转发还没有准备好。');
-        }
+        $lxd_data = LxdContainer::where('id', $lxd_id)->firstOrFail();
 
         $project_id = $forward_data->project_id;
         $server_where_id = $forward_data->server;
+
         if (ProjectMembersController::userInProject($project_id)) {
+            if ($forward_data->status != 'active' && $forward_data->status != 'failed') {
+                return redirect()->back()->with('status', '无法删除，因为转发还没有准备好。');
+                ProjectActivityController::save($lxd_data->project_id, '尝试删除应用容器 ' . $lxd_data->name . '的端口，但是失败了。因为转发还没有准备好。');
+            }
             // 调度删除任务
             $config = [
                 'forward_id' => $id,
@@ -169,9 +180,9 @@ class ForwardController extends Controller
             ];
             dispatch(new LxdJob($config));
 
-
             // 删除
             $forward->where('id', $id)->delete();
+            ProjectActivityController::save($project_id, '删除了应用容器 ' . $lxd_data->name . '的端口转发: ' . $forward_data->from . '->' . $forward_data->to);
         }
 
         return redirect()->back()->with('status', '转发已安排删除。');

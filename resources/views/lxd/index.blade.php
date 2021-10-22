@@ -78,9 +78,7 @@
                                     href="{{ route('forward.index', $lxd->id) }}">{{ $forwards }} 端口</a>
                             @else
                                 <button class="mdui-btn mdui-ripple" mdui-panel-item-close>
-                                    <div class="mdui-progress">
-                                        <div class="mdui-progress-indeterminate"></div>
-                                    </div>
+                                    无法操作
                                 </button>
                             @endif
                             @if ($lxd->status == 'running' || $lxd->status == 'failed')
