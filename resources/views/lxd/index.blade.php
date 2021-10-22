@@ -81,13 +81,6 @@
                                     class="mdui-btn mdui-ripple umami--click--lxd-delete">销毁</button>
                                 <form id="f-{{ $i }}" method="post"
                                     action="{{ route('lxd.destroy', $lxd->id) }}">@csrf @method('DELETE')</form>
-                            @elseif ($lxd->status == 'making')
-                                <button class="mdui-btn mdui-ripple">
-                                    正在生成镜像
-                                    <div class="mdui-progress">
-                                        <div class="mdui-progress-indeterminate"></div>
-                                    </div>
-                                </button>
                             @else
                                 <button class="mdui-btn mdui-ripple">{{ $lxd->status }}</button>
                             @endif
