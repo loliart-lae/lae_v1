@@ -17,6 +17,11 @@
             border-radius: 2px
         }
 
+        .verified_user_btn {
+            position: absolute;
+            right: 0
+        }
+
     </style>
     <div class="mdui-typo">
         @php($admins = config('admin.admin_users'))
@@ -37,7 +42,7 @@
                         right: 16px;
                         margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
-                            <button class="mdui-btn mdui-ripple mdui-btn-icon">
+                            <button class="mdui-btn mdui-ripple mdui-btn-icon verified_user_btn">
                                 <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
                             </button>
                         @endif
@@ -152,7 +157,7 @@
                         </script>
                     </div>
                 </div>
-                
+
                 @if ($i != $replies)
                 <div class="mdui-col-xs-12 mdui-p-y-1">
                     <div class="mdui-divider"></div>
