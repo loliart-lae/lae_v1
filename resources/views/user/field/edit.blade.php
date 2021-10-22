@@ -8,7 +8,7 @@
     <form method="post" action="{{ route('field.update', $field->id) }}">
         @csrf
         @method('PUT')
-        <div class="mdui-textfield mdui-textfield-floating-label">
+        <div class="mdui-textfield">
             <label class="mdui-textfield-label">名称</label>
             <input class="mdui-textfield-input" type="text" name="name" value="{{ $field->name }}" />
         </div>
