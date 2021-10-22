@@ -36,7 +36,10 @@
                                     <div class="mdui-progress-indeterminate"></div>
                                 </div>
                             @else
-                                {{ $lxd->lan_ip }}
+                                <div id="power-{{ $lxd->id }}">
+                                    <i class="mdui-icon material-icons power-btn mdui-text-color-green"
+                                        onclick="power({{ $lxd->id }}, {{ $lxd->project_id }})">power_settings_new</i>
+                                </div>
                             @endif
                         </div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
@@ -138,6 +141,26 @@
             }
 
             mdui.mutation()
+
+            function power(id, project_id) {
+                $.ajax({
+                    type: 'PUT',
+                    url: '{{ url()->current() }}' + '/' + id + '/power',
+                    data: {
+                        'project_id': project_id
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.power == 'running') {
+                            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-green')
+                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-red')
+                        } else {
+                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-green')
+                            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-red')
+                        }
+                    }
+                })
+            }
         </script>
     </div>
 

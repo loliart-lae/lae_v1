@@ -48,7 +48,7 @@ class CostJob implements ShouldQueue
 
         // 挨个获取容器并计算扣费
 
-        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->where('status', 'running')->get();
+        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->get();
         // $project = new Project();
         $forward = new Forward();
         $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
@@ -60,6 +60,10 @@ class CostJob implements ShouldQueue
         foreach ($lxdContainers as $lxd) {
             // 金额
             $project_id = $lxd->project->id;
+
+            if ($lxd->status == 'off') {
+                $need_pay = $lxd->server->price + $lxd->template->price + (count($lxd->forward) * $lxd->server->forward_price) * 0.9;
+            }
 
             $need_pay = $lxd->server->price + $lxd->template->price + (count($lxd->forward) * $lxd->server->forward_price);
 
@@ -106,17 +110,6 @@ class CostJob implements ShouldQueue
                 dispatch(new LxdJob($config));
                 Message::send('容器 ' . $lxd->name . '因为积分不足而自动删除。', $lxd->project->user_id);
             } else {
-                $config = [
-                    'inst_id' => $lxd->id,
-                    'method' => 'start',
-                    'address' => $lxd->server->address,
-                    'token' => $lxd->server->token,
-                    'user' => $lxd->project->user_id,
-                    'server_name' => $lxd->server->name,
-                    'inst_name' => $lxd->name
-                ];
-                dispatch(new LxdJob($config));
-
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $lxd->server_id;
                 $serverBalanceCount->user_id = $lxd->project->user_id;

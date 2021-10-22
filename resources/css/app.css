@@ -89,3 +89,8 @@
         background-position-x: -20%;
     }
 }
+
+.power-btn {
+    user-select: none;
+    cursor: pointer;
+}

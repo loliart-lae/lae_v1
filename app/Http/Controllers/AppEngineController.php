@@ -305,4 +305,50 @@ class AppEngineController extends Controller
 
         return redirect()->back()->with('status', '容器已安排删除。');
     }
+
+    public function togglePower(Request $request, $id)
+    {
+        $lxdContainer = new LxdContainer();
+
+        $this->validate($request, [
+            'project_id' => 'required'
+        ]);
+        $project_id = $request->project_id;
+        if (ProjectMembersController::userInProject($project_id)) {
+            $lxdContainer_where = $lxdContainer->with(['server', 'project'])->where('id', $id);
+            $data = $lxdContainer->where('id', $id)->firstOrFail();
+            $power = $data->status;
+            if ($power == 'off') {
+                $power = 'running';
+                $status = '开';
+                $method = 'start';
+            } elseif ($power == 'running') {
+                $power = 'off';
+                $status = '关';
+                $method = 'stop';
+            }
+            $lxdContainer_where->update([
+                'status' => $power
+            ]);
+
+            ProjectActivityController::save($project_id, '操作容器' . $data->name . ' 的电源状态为 ' . $status . ' 。');
+            $config = [
+                'inst_id' => $data->id,
+                'method' => $method,
+                'address' => $data->server->address,
+                'token' => $data->server->token,
+                'user' => $data->project->user_id,
+                'server_name' => $data->server->name,
+                'inst_name' => $data->name
+            ];
+            dispatch(new LxdJob($config));
+
+            return response()->json(
+                [
+                    'status' => 1,
+                    'power' => $power
+                ]
+            );
+        }
+    }
 }

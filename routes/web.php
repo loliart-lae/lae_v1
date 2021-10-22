@@ -102,6 +102,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/projects/{project_id}/storage/files', [Controllers\DriveController::class, 'files'])->name('storage.show');
 
 
+    Route::any('/lxd/{id}/power', [Controllers\AppEngineController::class, 'togglePower'])->name('lxd.power');
     Route::resource('/lxd', Controllers\AppEngineController::class);
     Route::get('/lxd/{project_id}/create', [Controllers\AppEngineController::class, 'create_in_project'])->name('lxd.create_in_project');
     Route::resource('/lxd/{lxd_id}/forward', Controllers\ForwardController::class);

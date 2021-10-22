@@ -111,6 +111,13 @@ class LxdJob implements ShouldQueue
 
                 break;
 
+            case 'stop':
+                Http::retry(2, 1)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
+                    'id' => $this->config['inst_id'],
+                    'token' => $this->config['token'],
+                ]);
+
+                break;
             case 'forward':
                 try {
                     Http::retry(5, 100)->get("http://{$this->config['address']}/lxd/{$this->config['method']}", [
