@@ -64,7 +64,12 @@
                                 href="{{ route('projects.show', $lxd->project->id) }}">{{ $lxd->project->name }}</a>
                         </p>
                         <p>
-                            积分/分钟：{{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                            积分/分钟：
+                            @if ($status == 'running')
+                                {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
+                            @else
+                                {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price * 0.9 }}/m
+                            @endif
                         </p>
 
                         <div class="mdui-panel-item-actions">
