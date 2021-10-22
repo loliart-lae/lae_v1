@@ -193,7 +193,7 @@ class LxdJob implements ShouldQueue
                         ]);
 
                         $lxd->where('id', $this->config['inst_id'])->update([
-                            'status' => 'running',
+                            'status' => $this->config['status'],
                         ]);
                         Message::send('容器模板已经调整完成。', $this->config['user']);
                     } catch (Exception $e) {

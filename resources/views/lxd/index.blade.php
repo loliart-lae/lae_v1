@@ -163,15 +163,23 @@
                     },
                     dataType: 'json',
                     success: function(data) {
-                        if (data.power == 'running') {
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-yellow')
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-red')
-                            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-green')
+                        if (data.status) {
+                            if (data.power == 'running') {
+                                $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-yellow')
+                                $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-red')
+                                $('#power-' + id + ' .power-btn').addClass('mdui-text-color-green')
+                            } else {
+                                $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-yellow')
+                                $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-green')
+                                $('#power-' + id + ' .power-btn').addClass('mdui-text-color-red')
+                            }
                         } else {
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-yellow')
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-green')
-                            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-red')
+                            mdui.snackbar({
+                                'position': 'right-bottom',
+                                'message': data.msg
+                            })
                         }
+
                     }
                 })
             }
