@@ -7,7 +7,8 @@
     <p>快捷访问可以设置访问网址时的跳转的URI。</p>
 
     <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
-        <a class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-new-fastVisit" href="{{ route('fastVisit.create') }}">新建入口</a>
+        <a class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-new-fastVisit"
+            href="{{ route('fastVisit.create') }}">新建入口</a>
     </div>
 
     <div class="mdui-table-fluid">
@@ -82,6 +83,10 @@
                 @endif
             </tbody>
         </table>
+    </div>
+
+    <div class="mdui-m-t-2">
+        {{ $fastVisits->links() }}
     </div>
 
     <script>
