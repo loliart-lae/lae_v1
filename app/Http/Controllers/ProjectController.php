@@ -158,9 +158,6 @@ class ProjectController extends Controller
             if (Tunnel::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 穿透隧道。');
             }
-            if (Drive::where('project_id', $id)->count() > 0) {
-                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 存储。');
-            }
             if (FastVisit::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 快捷访问。');
             }

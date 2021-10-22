@@ -27,8 +27,6 @@
         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-invite-status">邀请状态</a>
     <a style="margin: 3px" href="{{ route('projects.activities', $project_info->id) }}"
         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-invite-status">审计记录</a>
-    <a style="margin: 3px" href="{{ route('storage.index', $project_info->id) }}"
-        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-storage">存储</a>
 
     @if ($project_info->user_id != Auth::id())
         <form style="display: inline;" method="POST" action="{{ route('projects.leave', $project_info->id) }}">

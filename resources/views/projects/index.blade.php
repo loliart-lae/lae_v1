@@ -33,8 +33,6 @@
                         <div class="mdui-card-actions">
                             <a href="{{ route('projects.show', $project->project->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--project-manage">管理</a>
-                            <a href="{{ route('storage.index', $project->project->id) }}"
-                                class="mdui-btn mdui-ripple umami--click--project-storage">存储</a>
 
                             @if ($project->project->user_id != Auth::id())
                                 <form style="display: inline;" method="POST"

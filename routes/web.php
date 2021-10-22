@@ -51,9 +51,6 @@ Route::prefix('/')->group(function () {
         return view('webSSH');
     })->name('webSSH');
 
-    Route::get('download/{name}', [Controllers\DriveController::class, 'view'])->name('download.view')->middleware('auth');
-    Route::get('download/{name}/download', [Controllers\DriveController::class, 'route_download'])->name('download.download')->middleware('auth');
-
     Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth']);
 
 
@@ -96,10 +93,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/projects/{project_id}/leave', [Controllers\ProjectController::class, 'leave'])->name('projects.leave');
     Route::post('/projects/{project_id}/charge', [Controllers\ProjectController::class, 'charge'])->name('projects.charge');
     Route::resource('/projects/{project_id}/invite', Controllers\ProjectInviteController::class);
-
-
-    Route::resource('/projects/{project_id}/storage', Controllers\DriveController::class)->except(['show', 'edit', 'update']);
-    Route::get('/projects/{project_id}/storage/files', [Controllers\DriveController::class, 'files'])->name('storage.show');
 
 
     Route::any('/lxd/{id}/power', [Controllers\AppEngineController::class, 'togglePower'])->name('lxd.power');
