@@ -105,7 +105,7 @@ class ForwardController extends Controller
             ];
 
             dispatch(new LxdJob($config));
-            ProjectActivityController::save($lxd_data->project_id, '新增了应用容器 ' . $lxd_data->name . '的端口转发: ' . $forward->from . '->' . $forward->to);
+            ProjectActivityController::save($lxd_data->project_id, '新增了应用容器 ' . $lxd_data->name . ' 的端口转发: ' . $forward->from . '->' . $forward->to);
         }
 
         return redirect()->back()->with('status', '正在准备您的端口。');
@@ -165,7 +165,7 @@ class ForwardController extends Controller
 
         if (ProjectMembersController::userInProject($project_id)) {
             if ($forward_data->status != 'active' && $forward_data->status != 'failed') {
-                ProjectActivityController::save($lxd_data->project_id, '尝试删除应用容器 ' . $lxd_data->name . '的端口，但是失败了。因为转发还没有准备好。');
+                ProjectActivityController::save($lxd_data->project_id, '尝试删除应用容器 ' . $lxd_data->name . ' 的端口，但是失败了。因为转发还没有准备好。');
                 return redirect()->back()->with('status', '无法删除，因为转发还没有准备好。');
             }
             // 调度删除任务
@@ -182,7 +182,7 @@ class ForwardController extends Controller
 
             // 删除
             $forward->where('id', $id)->delete();
-            ProjectActivityController::save($project_id, '删除了应用容器 ' . $lxd_data->name . '的端口转发: ' . $forward_data->from . '->' . $forward_data->to);
+            ProjectActivityController::save($project_id, '删除了应用容器 ' . $lxd_data->name . ' 的端口转发: ' . $forward_data->from . '->' . $forward_data->to);
         }
 
         return redirect()->back()->with('status', '转发已安排删除。');
