@@ -65,7 +65,7 @@
                         </p>
                         <p>
                             积分/分钟：
-                            @if ($status == 'running')
+                            @if ($lxd->status == 'running')
                                 {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price }}/m
                             @else
                                 {{ $lxd->server->price + $lxd->template->price + $forwards * $lxd->server->forward_price * 0.9 }}/m
