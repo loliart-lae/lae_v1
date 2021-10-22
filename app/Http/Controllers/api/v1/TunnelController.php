@@ -37,7 +37,7 @@ class TunnelController extends Controller
      */
     public function create(Server $server)
     {
-        $servers = $server->where('type', 'tunnel')->get();
+        $servers = $server->where('type', 'tunnel')->select(['id', 'name', 'domain', 'price', 'network_limit'])->get();
         return response()->json([
             'status' => 1,
             'data' => $servers
