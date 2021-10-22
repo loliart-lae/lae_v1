@@ -24,7 +24,7 @@
                     <div class="mdui-panel-item-header umami--click--show-lxd-panel">
                         <div class="mdui-panel-item-title">{{ $i++ }}. {{ $lxd->name }}</div>
                         <div class="mdui-panel-item-summary">
-                            @if ($lxd->status == 'running')
+                            @if ($lxd->status == 'running' || $lxd->status == 'off')
                                 <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
                             @else
                                 {{ $lxd->template->name }}
@@ -58,10 +58,7 @@
                         <p>内部 IP：{{ $lxd->lan_ip }}</p>
                         <p>网络限制：{{ $lxd->server->network_limit }} Mbps {{ $lxd->status }}</p>
                         <p>模板名称：
-                            {{-- 为什么会这样呢？ --}}
                             @if ($lxd->status == 'running' || $lxd->status == 'off')
-                                <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
-                            @elseif ($lxd->status == 'off')
                                 <a href="{{ route('lxd.edit', $lxd->id) }}">{{ $lxd->template->name }}</a>
                             @else
                                 {{ $lxd->template->name }}
