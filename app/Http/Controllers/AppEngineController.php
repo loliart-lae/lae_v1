@@ -194,7 +194,7 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $lxdTemplate = new LxdTemplate();
 
-        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template')->firstOrFail();
+        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->where('status', 'off')->with('template')->firstOrFail();
 
         if (!ProjectMembersController::userInProject($lxd->project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
@@ -225,7 +225,7 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $lxdTemplate = new LxdTemplate();
 
-        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->with('template', 'server')->firstOrFail();
+        $lxd = $lxdContainer->where('id', $id)->where('status', 'running')->where('status', 'off')->with('template', 'server')->firstOrFail();
 
         if (!ProjectMembersController::userInProject($lxd->project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
