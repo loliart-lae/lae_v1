@@ -15,9 +15,6 @@
                 <tr>
                     <th>ID</th>
                     <th>用户名</th>
-                    <th>CPU</th>
-                    <th>内存</th>
-                    <th>带宽</th>
                     <th>CPU 使用率</th>
                     <th>内存 使用率</th>
                     <th>属于服务器</th>
@@ -49,9 +46,6 @@
                                 {{ $remote_desktop->username }}
                             @endif
                         </td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->cpu }} Core</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->mem }}M</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->network_limit }} Mbps</td>
                         @php($resource = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id), true))
                         <td nowrap="nowrap">{{ $resource['cpu'] ?? 0 }}%</td>
                         <td nowrap="nowrap">{{ $resource['mem'] ?? 0 }}%</td>
