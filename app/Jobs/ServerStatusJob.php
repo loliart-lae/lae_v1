@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Exception;
 use App\Models\Server;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Http;
@@ -38,9 +39,15 @@ class ServerStatusJob implements ShouldQueue
 
         // 获取 Windows 服务器 资源占用
         foreach ($windows_servers as $windows_server) {
-            $result = Http::retry(5, 100)->get("http://{$windows_server->address}/status", [
-                'token' => $windows_server->token
-            ]);
+            try {
+                $result = Http::retry(5, 100)->get("http://{$windows_server->address}/status", [
+                    'token' => $windows_server->token
+                ]);
+            } catch (Exception $e) {
+                $result['cpu'] = 'unknown';
+                $result['mem'] = 'unknown';
+            }
+
 
             Cache::put('windows_server_status_' . $windows_server->id, json_encode([
                 'cpu' => $result['cpu'],
