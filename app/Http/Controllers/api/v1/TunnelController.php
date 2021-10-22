@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\ProjectMembersController;
+use App\Models\Server;
 
 class TunnelController extends Controller
 {
@@ -34,9 +35,13 @@ class TunnelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Server $server)
     {
-        //
+        $servers = $server->where('type', 'tunnel')->get();
+        return response()->json([
+            'status' => 1,
+            'data' => $servers
+        ]);
     }
 
     /**
@@ -166,7 +171,6 @@ class TunnelController extends Controller
         } catch (\Exception $e) {
             return 'tunnel not found.';
         }
-
     }
 
     /**
