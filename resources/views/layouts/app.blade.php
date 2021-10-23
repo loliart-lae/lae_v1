@@ -20,109 +20,43 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
 
     <!-- JavaScripts -->
-    <script src="/js/mdui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+        integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.1/base64.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-smoove/0.2.9/jquery.smoove.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
-    <div id="offline_tip" style="width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99999;
-    backdrop-filter: blur(20px) saturate(200%);display:none;opacity:1">
-        <div style="width:100%;position: absolute;
-    top: 50%;
-    margin-top: -75px;text-align:center">
-            <h1 style="font-weight: 200;">无法连接到服务器<br /></h1>
-            <p><span onclick="close_offline_tip()" style="cursor: pointer">此提示将在通信恢复后自动关闭，您也可以点击这里手动关闭。</span></p>
+    <x-body-script />
+
+    <header class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+                mdui-drawer="{target: '#main-drawer', swipe: true, overlay:true}"><i
+                    class="mdui-icon material-icons">menu</i></span>
+            <a href="/" class="mdui-typo-title">{{ config('app.name') }}</a>
+            <div class="mdui-toolbar-spacer"></div>
         </div>
+    </header>
 
-    </div>
-    <div class="mdui-appbar mdui-appbar-fixed mdui-headroom-unpinned-top" id="appbar" mdui-headroom>
-        <div class="mdui-tab mdui-color-theme mdui-tab-scrollable mdui-tab-full-width @auth
-        mdui-tab-centered
-        @endauth"
-            mdui-tab>
-            @guest
-                <a href="{{ route('index') }}"
-                    class="main_link umami--click--guest-main-link">{{ config('app.name') }}</a>
-                <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white umami--click--gust-login">登录</a>
-                {{-- <a href="{{ route('why') }}" class="mdui-ripple mdui-ripple-white">为什么选择</a> --}}
-                <a href="{{ route('why_begin') }}" class="mdui-ripple mdui-ripple-white umami--click--why-begin">我们的初心</a>
-                {{-- 说实话我也不知道为什么这里会给未登录用户展示这个，很奇怪 我先注释掉吧
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">项目管理</a>
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">Linux 容器</a>
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">共享的 Windows</a>
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">穿透隧道</a>
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">快捷访问</a>
-                    <a href="{{ route('login') }}" class="mdui-ripple mdui-ripple-white">文档中心</a> --}}
-            @else
-                <a href="{{ route('main') }}" class="main_link umami--click--main-link">{{ config('app.name') }}</a>
-                <a href="{{ route('user.index') }}" class="mdui-ripple mdui-ripple-white umami--click--user-index"
-                    style="white-space: nowrap"><small>
-                        {{ Auth::user()->name }} / <span id="userBalance"
-                            style="display: contents;">{{ Auth::user()->balance }}</span></small></a>
-                <a href="{{ route('projects.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--project">项目管理</a>
-                <a href="{{ route('lxd.index') }}" class="mdui-ripple mdui-ripple-white umami--click--ae">应用容器</a>
-                <a href="{{ route('remote_desktop.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--shared-windows">共享的 Windows</a>
-                <a href="{{ route('tunnels.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--tunnel">穿透隧道</a>
-                <a href="{{ route('fastVisit.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--fastVisit">快捷访问</a>
-                {{-- <a href="{{ route('images.index') }}" class="mdui-ripple mdui-ripple-white">图片展廊</a> --}}
-
-                {{-- <a href="{{ route('forums.index') }}" class="mdui-ripple mdui-ripple-white">社区论坛</a> --}}
-                <a href="{{ route('easyPanel.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--easypanel">EasyPanel 站点</a>
-                <a href="{{ route('staticPage.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--staticPage">静态站点</a>
-                {{-- <a onclick="mdui.alert('在做了再做了')" class="mdui-ripple mdui-ripple-white">B2B主机</a> --}}
-                {{-- <a href="{{ route('commandJobs.index') }}" class="mdui-ripple mdui-ripple-white">脚本队列</a> --}}
-                <a href="{{ route('documents.index') }}"
-                    class="mdui-ripple mdui-ripple-white umami--click--document">文档中心</a>
-                <a target="_blank" href="https://f.lightart.top"
-                    class="mdui-ripple mdui-ripple-white umami--click--forum">社区论坛</a>
-
-                <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                    class="mdui-ripple mdui-ripple-white umami--click--logout">退出登录</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            @endguest
+    <div class="mdui-drawer mdui-color-white mdui-drawer-close mdui-drawer-full-height" id="main-drawer">
+        <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+            <x-main-menu />
         </div>
     </div>
+
+    <x-offline-tip />
 
     @include('include._loading')
 
     <div class="mdui-container pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">
         </div>
-        {{-- <a id="pre_btn" href="{{ url()->previous() }}" class="mdui-btn mdui-ripple mdui-m-b-1"><i
-                style="position: relative; top: -1px;margin-right: 2px;"
-                class="mdui-icon material-icons">arrow_back</i>返回</a> --}}
-
         <div class="mdui-m-t-3">
             @yield('content')
         </div>
-
-        {{-- <div class="mdui-typo mdui-p-t-5">
-            <!-- 由于这个地方总是出bug，所以我就把它删了 -->
-            <p class="mdui-typo-caption-opacity mdui-text-center">
-                Hosted by {{ config('app.host_by') }}
-            </p>
-        </div> --}}
-
     </div>
 
     <div class="mdui-container mdui-m-b-5 mdui-p-t-5 load-hidden">
