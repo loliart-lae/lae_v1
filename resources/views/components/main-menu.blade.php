@@ -29,7 +29,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--project" href="{{ route('projects.index') }}">
-                <span class="material-icons">emoji_objects</span>
+                <span class="mdui-list-item-icon mdui-icon material-icons">emoji_objects</span>
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
