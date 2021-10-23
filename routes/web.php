@@ -82,6 +82,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/billing/return', [Controllers\UserBalanceController::class, 'return']);
     Route::get('/billing/thankyou', [Controllers\UserBalanceController::class, 'thankyou'])->name('billing.thankyou');
     Route::resource('/billing', Controllers\UserBalanceController::class);
+    Route::get('/user/messages', [Controllers\UserController::class, 'messages'])->name('user.messages');
+    Route::get('/user/balanceLog', [Controllers\UserController::class, 'balanceLog'])->name('user.balanceLog');
+
     Route::resource('/user', Controllers\UserController::class);
 
     Route::get('invites', [Controllers\ProjectInviteController::class, 'invites'])->name('invites.list');
