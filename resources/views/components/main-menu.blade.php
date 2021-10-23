@@ -36,7 +36,7 @@
 
             <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
                 href="{{ route('remote_desktop.index') }}">
-                <svg t="1634993381814" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2402" width="24" height="24">
+                <svg t="1634993381814" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2402" width="24" height="24" class="mdui-list-item-icon">
                     <path d="M426.285714 574.857143v372l-389.714285-53.714286v-318.285714h389.714285z m0-424.571429v376.571429H36.571429V204z m561.142857 424.571429v449.142857l-518.285714-71.428571v-377.714286h518.285714z m0-501.714286v453.714286H469.142857V144.571429z" p-id="2403"></path>
                 </svg>
                 <div class="mdui-list-item-content">共享的 Windows</div>
