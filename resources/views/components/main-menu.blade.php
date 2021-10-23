@@ -12,7 +12,7 @@
                 <div class="mdui-list-item-content">登录</div>
             </a>
             <a class="mdui-list-item mdui-ripple umami--click--why-begin" href="{{ route('why_begin') }}">
-                <i class="mdui-list-item-icon mdui-icon fab fa-accessible-icon"></i>
+                <i class="mdui-list-item-icon mdui-icon fa-solid fa-heart-pulse"></i>
                 <div class="mdui-list-item-content">我们的初心</div>
             </a>
         @else
@@ -34,12 +34,12 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fab fa-linux"></i>
+                <i class="mdui-list-item-icon mdui-icon fa-brands fa-linux"></i>
                 <div class="mdui-list-item-content">应用容器</div>
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--shared-windows" href="{{ route('remote_desktop.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fab fa-windows"></i>
+                <i class="mdui-list-item-icon mdui-icon fa-brands fa-windows"></i>
                 <div class="mdui-list-item-content">共享的 Windows</div>
             </a>
 
