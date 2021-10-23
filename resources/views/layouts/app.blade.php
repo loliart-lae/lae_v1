@@ -25,8 +25,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.1/base64.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<<<<<<< HEAD
     <script src="https://cdn.bootcdn.net/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
+=======
+>>>>>>> a77474bb6eacd6c345b4b783782f8f1c509be836
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
