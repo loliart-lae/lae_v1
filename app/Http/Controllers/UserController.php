@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $messages = Message::where('user_id', $user->id)->simplePaginate(100);
+        $messages = Message::where('user_id', $user->id)->orderBy('id', 'desc')->simplePaginate(100);
         return view('user.index', compact('user', 'messages'));
     }
 
