@@ -54,7 +54,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
-                <i class="mdui-list-item-icon fa-solid fa-map"></i>
+                <i class="mdui-list-item-icon mdui-icon fa-solid fa-map"></i>
                 <div class="mdui-list-item-content">EasyPanel 站点</div>
             </a>
 
