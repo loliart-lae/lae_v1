@@ -25,7 +25,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--project" href="{{ route('projects.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fab fa-project-diagram"></i>
+                <i class="mdui-list-item-icon mdui-icon fas fa-project-diagram"></i>
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
@@ -41,7 +41,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('tunnels.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fas fa-archway"></i>
+                <i class="mdui-list-item-icon mdui-icon fab fa-archway"></i>
                 <div class="mdui-list-item-content">穿透隧道</div>
             </a>
 
