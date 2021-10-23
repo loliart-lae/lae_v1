@@ -28,6 +28,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery-smoove/0.2.9/jquery.smoove.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
 </head>
 
