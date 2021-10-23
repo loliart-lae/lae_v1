@@ -34,14 +34,13 @@
                 <div class="mdui-list-item-content">应用容器</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
-                href="{{ route('remote_desktop.index') }}">
+            <a class="mdui-list-item mdui-ripple umami--click--shared-windows" href="{{ route('remote_desktop.index') }}">
                 <i class="mdui-list-item-icon mdui-icon fab fa-windows"></i>
                 <div class="mdui-list-item-content">共享的 Windows</div>
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('tunnels.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fab fa-archway"></i>
+                <i class="mdui-list-item-icon mdui-icon fas fa-archway"></i>
                 <div class="mdui-list-item-content">穿透隧道</div>
             </a>
 
