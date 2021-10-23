@@ -12,7 +12,7 @@
                 <div class="mdui-list-item-content">登录</div>
             </a>
             <a class="mdui-list-item mdui-ripple umami--click--why-begin" href="{{ route('why_begin') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">directions_run</i>
+                <i class="mdui-list-item-icon mdui-icon fab fa-accessible-icon"></i>
                 <div class="mdui-list-item-content">我们的初心</div>
             </a>
         @else
