@@ -2,6 +2,7 @@
     <div class="mdui-list" id="main-list">
         @guest
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('index') }}">
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
             <a class="mdui-list-item mdui-rippl umami--click--gust-login" href="{{ route('login') }}">
@@ -14,6 +15,7 @@
             </a>
         @else
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('main') }}">
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
 
