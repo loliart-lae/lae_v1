@@ -4,11 +4,11 @@
     <div class="mdui-list" id="main-list">
         @guest
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('index') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">home</span>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
             <a class="mdui-list-item mdui-rippl umami--click--gust-login" href="{{ route('login') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">assignment_ind</i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">login</span>
                 <div class="mdui-list-item-content">登录</div>
             </a>
             <a class="mdui-list-item mdui-ripple umami--click--why-begin" href="{{ route('why_begin') }}">
@@ -17,12 +17,12 @@
             </a>
         @else
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('main') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">home</span>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--user-index" href="{{ route('user.index') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">account_circle</i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">account_circle</span>
                 <div class="mdui-list-item-content"><small>
                         {{ Auth::user()->name }} / <span id="userBalance"
                             style="display: contents;">{{ Auth::user()->balance }}</span></small></div>
