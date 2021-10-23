@@ -1,21 +1,32 @@
+body {
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out
+}
+
 .mdui-theme-primary-blue .mdui-color-theme,
 .mdui-tab .mdui-tab-active {
-    color: #fff !important;
+    color: #fff !important
 }
 
 .mdui-tab a {
-    color: #fff !important;
+    color: #fff !important
 }
+
 .mdui-tab-scrollable {
-    padding-left: 0 !important;
+    padding-left: 0 !important
 }
-.mdui-btn {
+
+.mdui-container .mdui-btn {
     border-radius: 4px !important;
     -webkit-border-radius: 4px !important;
     -moz-border-radius: 4px !important;
     -ms-border-radius: 4px !important;
-    -o-border-radius: 4px !important;
+    -o-border-radius: 4px !important
 }
+
 .mdui-card,
 .mdui-dialog,
 .mdui-panel-item,
@@ -24,73 +35,71 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    -o-border-radius: 5px
 }
+
 .pjax-container {
     transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out
 }
+
 .mdui-typo-display-2 {
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
+
 .can_copy {
-    cursor: pointer;
+    cursor: pointer
 }
+
 .editormd-html-preview > h1,
 .editormd-html-preview > h2,
 .editormd-html-preview > h3,
 .editormd-html-preview > h4,
 .editormd-html-preview > h5,
 .editormd-html-preview > h6 {
-    margin-top: 0 !important;
+    margin-top: 0 !important
 }
+
 .editormd-html-preview img {
     border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px
 }
+
 .verified_user {
-    font-size: 21px;
-}
-:root {
-    --loading-grey: #ededed;
-}
-
-.loading h4,
-.loading h5,
-.loading .content {
-    background-color: var(--loading-grey);
-    background: linear-gradient(
-            100deg,
-            rgba(255, 255, 255, 0) 40%,
-            rgba(255, 255, 255, 0.5) 50%,
-            rgba(255, 255, 255, 0) 60%
-        )
-        var(--loading-grey);
-    background-size: 200% 100%;
-    background-position-x: 180%;
-    animation: 1s loading ease-in-out infinite;
-    font-size: 1rem;
-}
-
-.loading h4 {
-    min-height: 5rem;
-    border-radius: 4px;
-    animation-delay: 0.05s;
-    width: 80%;
-}
-
-.loading h5 {
-    min-height: 2rem;
-    border-radius: 4px;
-    animation-delay: 0.05s;
-    width: 100px;
-}
-
-@keyframes loading {
-    to {
-        background-position-x: -20%;
-    }
+    font-size: 21px
 }
 
 .power-btn {
     user-select: none;
-    cursor: pointer;
+    cursor: pointer
+}
+
+.mdui-drawer {
+    background-color: white !important;
+    padding-right: 5px
+}
+
+.mdui-drawer .mdui-list-item {
+    border-radius: 0 50px 50px 0;
+    -webkit-border-radius: 0 50px 50px 0;
+    -moz-border-radius: 0 50px 50px 0;
+    -ms-border-radius: 0 50px 50px 0;
+    -o-border-radius: 0 50px 50px 0;
+}
+
+.mdui-drawer .mdui-list-item-active {
+    color: #40c4ff !important
+}
+
+@media (prefers-color-scheme: dark) {
+    .mdui-drawer {
+        background-color: #303030 !important;
+        color: #fff !important
+    }
 }
