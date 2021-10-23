@@ -56,7 +56,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--staticPage" href="{{ route('staticPage.index') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                <i class="mdui-list-item-icon mdui-icon material-icons">web</i>
                 <div class="mdui-list-item-content">静态站点</div>
             </a>
 
