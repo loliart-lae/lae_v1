@@ -1,11 +1,3 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('input[name="_token"]').val()
-    }
-})
-
-$.pjax.defaults.timeout = 1500
-
 var mainMenu = {
     update: function () {
         let url = window.location.protocol + '//' + window.location.host + window.location.pathname
@@ -15,6 +7,14 @@ var mainMenu = {
         }
     }
 }
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('input[name="_token"]').val()
+    }
+})
+
+$.pjax.defaults.timeout = 1500
 
 window.addEventListener('online', close_offline_tip)
 window.addEventListener('offline', showOfflineTip)
