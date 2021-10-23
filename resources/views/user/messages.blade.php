@@ -17,7 +17,7 @@
                 @foreach ($messages as $message)
                     <tr>
                         <td nowrap>{{ $message->id }}</td>
-                        <td nowrap>{!! e($status->content) !!}</td>
+                        <td nowrap>{!! e($message->content) !!}</td>
                         <td nowrap>{{ $message->created_at }}</td>
                     </tr>
                 @endforeach
