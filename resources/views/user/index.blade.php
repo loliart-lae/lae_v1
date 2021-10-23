@@ -42,6 +42,28 @@
             </div>
         </div>
     </div>
+    <div class="mdui-table-fluid mdui-m-t-5">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>内容</th>
+                    <th>通知时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($messages as $message)
+                    <tr>
+                        <td nowrap>{{ $message->id }}</td>
+                        <td nowrap>{{ $message->content }}</td>
+                        <td nowrap>{{ $message->created_at }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    {{ $messages->links() }}
 
     <script>
         new ClipboardJS('.can_copy')
@@ -60,7 +82,7 @@
                                 onButtonClick: function() {
                                     $('body').append(
                                         `<span style="display: none" class="can_copy" data-clipboard-text="${data.api_token}"></span>`
-                                        )
+                                    )
                                     $('.can_copy').click()
                                     $('.can_copy').remove()
                                 }

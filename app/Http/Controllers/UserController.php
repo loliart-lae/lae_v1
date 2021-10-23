@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('user.index', compact('user'));
+        $messages = Message::where('user_id', $user->id)->simplePaginate(100);
+        return view('user.index', compact('user', 'messages'));
     }
 
     /**
