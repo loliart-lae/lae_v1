@@ -52,7 +52,7 @@
                             @if ($staticPage->used_disk < 10)
                                 0
                             @else
-                                {{ $staticPage->used_disk * $staticPage->server->price }}
+                                {{ $staticPage->used_disk * $staticPage->server->price * 0.01 }}
                             @endif
                         </td>
 

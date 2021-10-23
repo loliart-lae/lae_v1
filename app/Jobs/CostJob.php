@@ -180,7 +180,7 @@ class CostJob implements ShouldQueue
             if ($staticPage->used_disk < 10) {
                 $need_pay = 0;
             } else {
-                $need_pay = $staticPage->used_disk * $staticPage->server->price;
+                $need_pay = $staticPage->used_disk * $staticPage->server->price * 0.01;
             }
 
 
