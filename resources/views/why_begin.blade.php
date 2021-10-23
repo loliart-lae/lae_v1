@@ -5,6 +5,7 @@
 @section('content')
 
     <div class="mdui-typo-display-2">初心未变</div>
+    <div class="mdui-typo-display-1 animate__animated animate__hinge">借助 LAE 轻量应用引擎 在互联网中快速开辟一席之地</div>
 
     <p>Light App Engine 的初心，就是想让更多怀抱梦想的人们以低廉的价格轻松上云。</p>
 
