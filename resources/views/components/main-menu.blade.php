@@ -12,7 +12,7 @@
                 <div class="mdui-list-item-content">登录</div>
             </a>
             <a class="mdui-list-item mdui-ripple umami--click--why-begin" href="{{ route('why_begin') }}">
-                <i class="mdui-list-item-icon mdui-icon fa-solid fa-heart-pulse"></i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">volunteer_activism</span>
                 <div class="mdui-list-item-content">我们的初心</div>
             </a>
         @else
@@ -44,7 +44,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('tunnels.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fa-solid fa-archway"></i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">dns</span>
                 <div class="mdui-list-item-content">穿透隧道</div>
             </a>
 
@@ -54,7 +54,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fa-solid fa-map"></i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">view_carousel</span>
                 <div class="mdui-list-item-content">EasyPanel 站点</div>
             </a>
 
