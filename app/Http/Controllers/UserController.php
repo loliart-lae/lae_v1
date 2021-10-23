@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
+use App\Models\UserBalanceLog;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +19,19 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $messages = Message::where('user_id', $user->id)->orderBy('id', 'desc')->simplePaginate(100);
-        return view('user.index', compact('user', 'messages'));
+        return view('user.index', compact('user'));
+    }
+
+    public function messages()
+    {
+        $messages = Message::where('user_id', Auth::id())->orderBy('id', 'desc')->simplePaginate(100);
+        return view('user.messages', compact('messages'));
+    }
+
+    public function balanceLog()
+    {
+        $balanceLogs = UserBalanceLog::where('user_id', Auth::id())->orderBy('id', 'desc')->simplePaginate(100);
+        return view('user.balanceLog', compact('balanceLogs'));
     }
 
     /**
