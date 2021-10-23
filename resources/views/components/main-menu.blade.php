@@ -64,7 +64,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
-                <i class="mdui-list-item-icon mdui-icon material-icons">art_track</i>
+                <span class="mdui-list-item-icon mdui-icon material-icons">article</span>
                 <div class="mdui-list-item-content">文档中心</div>
             </a>
 
