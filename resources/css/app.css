@@ -94,7 +94,7 @@ body {
 }
 
 .mdui-drawer .mdui-list-item-active {
-    color: #40c4ff !important
+    color: #2196F3 !important
 }
 
 @media (prefers-color-scheme: dark) {
