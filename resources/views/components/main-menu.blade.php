@@ -66,7 +66,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--forum" target="_blank" href="https://f.lightart.top">
-                <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+                <i class="mdui-list-item-icon mdui-icon material-icons">mode_comment</i>
                 <div class="mdui-list-item-content">社区论坛</div>
             </a>
 
