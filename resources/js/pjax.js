@@ -6,17 +6,22 @@ $.ajaxSetup({
 
 $.pjax.defaults.timeout = 1500
 
+var mainMenu = {
+    update: function () {
+        let url = window.location.protocol + '//' + window.location.host + window.location.pathname
+        if ($("#main-list a[href='" + url + "']").length > 0) {
+            $('#main-list .mdui-list-item').removeClass('mdui-list-item-active')
+            $("#main-list a[href='" + url + "']").addClass('mdui-list-item-active')
+        }
+    }
+}
+
 window.addEventListener('online', close_offline_tip)
 window.addEventListener('offline', showOfflineTip)
 
 $(document).pjax('a', '.pjax-container')
 
-// $("#pre_btn").hide()
 $(document).on('pjax:clicked', function () {
-//     $('#main').html(`<div class="loading">
-//     <h4></h4>
-//     <h5></h5>
-// </div>`)
     $('#load-spinner').css('top', '12vh')
     $('#main').css('opacity', 0)
     $('.load-hidden').fadeOut(100);
@@ -33,6 +38,8 @@ $(document).on("pjax:timeout", function (event) {
 })
 
 $(document).on("pjax:complete", function (event) {
+    mainMenu.update()
+
     $('#load-spinner-text').css('opacity', 0)
     $('#load-spinner').css('top', '-10vh')
 
@@ -40,5 +47,12 @@ $(document).on("pjax:complete", function (event) {
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
     $('.load-hidden').fadeIn(100);
-
 })
+
+if (window.history && window.history.pushState) {
+    window.onpopstate = function () {
+        mainMenu.update()
+    }
+}
+
+mainMenu.update()
