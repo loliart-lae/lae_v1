@@ -1,3 +1,5 @@
+<script src="https://kit.fontawesome.com/4448cbb8f6.js" crossorigin="anonymous"></script>
+
 <div>
     <div class="mdui-list" id="main-list">
         @guest
@@ -84,5 +86,3 @@
         @endguest
     </div>
 </div>
-
-<script src="https://kit.fontawesome.com/4448cbb8f6.js" crossorigin="anonymous"></script>
