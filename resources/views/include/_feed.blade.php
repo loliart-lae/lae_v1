@@ -68,13 +68,13 @@
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
                             @if (is_null($status->like))
-                                <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons umami--click--like"
+                                <i class="mdui-icon material-icons umami--click--like"
                                     style="color: unset">star_border</i>
                             @elseif ($status->like->is_liked)
-                                <i mdui-tooltip="{content: '已点赞'}" style="color:#36a6e8"
+                                <i style="color:#36a6e8"
                                     class="mdui-icon material-icons umami--click--unlike">star</i>
                             @else
-                                <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons"
+                                <i class="mdui-icon material-icons"
                                     style="color: unset">star_border</i>
                             @endif
                         </button>
