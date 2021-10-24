@@ -94,6 +94,7 @@
                     href="https://github.com/loliart-lae/lae">Github</a><br />
                 Crafted with 💗 by <a class="umami--click--contributes"
                     href="{{ route('contributes') }}">Contributors</a><br />
+                    Powered by LoliArt & Yistars
             </p>
         </div>
     </div>
