@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
         integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
@@ -45,24 +44,32 @@
                 </span>
                 <ul class="mdui-menu" id="app-menu" style="border-radius: 10px">
                     <li class="mdui-menu-item">
-                        <a href="{{ route('user.index') }}" class="mdui-ripple">{{ Auth::user()->name }}</a>
+                        <a href="{{ route('user.index') }}" class="mdui-ripple">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">person</i>
+                            {{ Auth::user()->name }}</a>
                     </li>
                     <li class="mdui-menu-item">
-                        <a href="{{ route('billing.index') }}" class="mdui-ripple">积分:
+                        <a href="{{ route('billing.index') }}" class="mdui-ripple">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">account_balance_wallet</i>
                             {{ Auth::user()->balance }}</a>
                     </li>
                     <li class="mdui-menu-item">
-                        <a href="{{ route('user.messages') }}" class="mdui-ripple umami--click--show-messages">历史消息</a>
+                        <a href="{{ route('user.messages') }}" class="mdui-ripple umami--click--show-messages">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">timeline</i>
+                            历史消息</a>
                     </li>
                     <li class="mdui-menu-item">
-                        <a href="{{ route('user.balanceLog') }}"
-                            class="mdui-ripple umami--click--show-balanceLog">积分历史</a>
+                        <a href="{{ route('user.balanceLog') }}" class="mdui-ripple umami--click--show-balanceLog">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">history</i>积分历史
+                        </a>
                     </li>
 
                     <li class="mdui-divider"></li>
                     <li class="mdui-menu-item">
                         <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                            class="mdui-ripple">退出登录</a>
+                            class="mdui-ripple">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">logout</i>
+                            退出登录</a>
                     </li>
                 </ul>
             @endauth
@@ -94,7 +101,7 @@
                     href="https://github.com/loliart-lae/lae">Github</a><br />
                 Crafted with 💗 by <a class="umami--click--contributes"
                     href="{{ route('contributes') }}">Contributors</a><br />
-                    Powered by LoliArt & Yistars
+                Powered by LoliArt & Yistars
             </p>
         </div>
     </div>
