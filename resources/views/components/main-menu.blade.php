@@ -1,5 +1,3 @@
-<script src="https://kit.fontawesome.com/4448cbb8f6.js" crossorigin="anonymous"></script>
-
 <div>
     <div class="mdui-list" id="main-list">
         @guest
@@ -34,12 +32,17 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fa-brands fa-linux"></i>
+                <i class="mdui-list-item-icon mdui-icons material-icons material-icons-outlined">
+                    takeout_dining
+                </i>
                 <div class="mdui-list-item-content">应用容器</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--shared-windows" href="{{ route('remote_desktop.index') }}">
-                <i class="mdui-list-item-icon mdui-icon fa-brands fa-windows"></i>
+            <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
+                href="{{ route('remote_desktop.index') }}">
+                <i class="mdui-list-item-icon mdui-icons material-icons material-icons-outlined">
+                    desktop_windows
+                </i>
                 <div class="mdui-list-item-content">共享的 Windows</div>
             </a>
 

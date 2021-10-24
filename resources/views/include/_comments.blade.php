@@ -38,13 +38,14 @@
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div style="display: inline;
-                        position: absolute;
-                        right: 16px;
-                        margin-top: 3px;cursor: pointer">
+                            position: absolute;
+                            right: 16px;
+                            margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
-                            <button class="mdui-btn mdui-ripple mdui-btn-icon verified_user_btn">
-                                <i mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons verified_user">verified_user</i>
-                            </button>
+                            <span mdui-tooltip="{content: '官方人员'}"
+                                class="mdui-icon material-icons material-icons-outlined verified_user">
+                                verified_user
+                            </span>
                         @endif
                     </div>
                 </div>
@@ -71,13 +72,15 @@
                 <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                     class="mdui-btn mdui-ripple mdui-btn-icon">
                     @if (is_null($status->like))
-                        <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons umami--click--like-from-comment umami--click--like"
+                        <i mdui-tooltip="{content: '点赞'}"
+                            class="mdui-icon material-icons umami--click--like-from-comment umami--click--like"
                             style="color: unset">star_border</i>
                     @elseif ($status->like->is_liked)
                         <i mdui-tooltip="{content: '已点赞'}" style="color:#36a6e8"
                             class="mdui-icon material-icons umami--click--unlike-from-comment umami--click--unlike">star</i>
                     @else
-                        <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons" style="color: unset">star_border</i>
+                        <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons"
+                            style="color: unset">star_border</i>
                     @endif
                 </button>
                 <button onclick="return false" class="mdui-btn mdui-ripple">@php($replies = count($status->replies))
@@ -121,21 +124,24 @@
                             </div>
                             <div class="mdui-float-right">
                                 @if (in_array($status_reply->user->email, $admins))
-                                <button class="mdui-btn mdui-ripple mdui-btn-icon">
-                                    <i mdui-tooltip="{content: '官方人员', position: 'auto'}" class="mdui-icon material-icons verified_user">verified_user</i>
-                                </button>
+                                    <button class="mdui-btn mdui-ripple mdui-btn-icon">
+                                        <i mdui-tooltip="{content: '官方人员', position: 'auto'}"
+                                            class="mdui-icon material-icons verified_user">verified_user</i>
+                                    </button>
                                 @else
-                                <button class="mdui-btn mdui-ripple mdui-btn-icon" disabled></button>
+                                    <button class="mdui-btn mdui-ripple mdui-btn-icon" disabled></button>
                                 @endif
 
                                 @if ($status_reply->user->id == Auth::id())
-                                <form style="display: initial;" action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="mdui-btn mdui-ripple mdui-btn-icon">
-                                        <i mdui-tooltip="{content: '删除回复', position: 'auto'}" class="mdui-icon material-icons">delete</i>
-                                    </button>
-                                </form>
+                                    <form style="display: initial;"
+                                        action="{{ route('status.reply.destroy', $status_reply->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="mdui-btn mdui-ripple mdui-btn-icon">
+                                            <i mdui-tooltip="{content: '删除回复', position: 'auto'}"
+                                                class="mdui-icon material-icons">delete</i>
+                                        </button>
+                                    </form>
                                 @endif
                             </div>
                         </div>
@@ -159,9 +165,9 @@
                 </div>
 
                 @if ($i != $replies)
-                <div class="mdui-col-xs-12 mdui-p-y-1">
-                    <div class="mdui-divider"></div>
-                </div>
+                    <div class="mdui-col-xs-12 mdui-p-y-1">
+                        <div class="mdui-divider"></div>
+                    </div>
                 @endif
             @endforeach
         </div>

@@ -71,6 +71,10 @@ body {
     -o-border-radius: 2px
 }
 
+.mdui-card .mdui-icon {
+    color: rgba(0, 0, 0, 0.54);;
+}
+
 .verified_user {
     font-size: 21px
 }
