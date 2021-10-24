@@ -15,10 +15,8 @@
                 <tr>
                     <th>ID</th>
                     <th>用户名</th>
-                    <th>CPU 使用率</th>
-                    <th>内存 使用率</th>
-                    <th>属于服务器</th>
                     <th>连接信息</th>
+                    <th>属于服务器(CPU/MEM)%</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
                 </tr>
@@ -38,6 +36,7 @@
                     @endif
                     <tr>
                         <td nowrap="nowrap">{{ $i++ }}</td>
+                        <td nowrap="nowrap">{{ $remote_desktop->server->domain }}</td>
                         <td nowrap="nowrap">
                             @if ($remote_desktop->status == 'active')
                                 <a
@@ -47,10 +46,7 @@
                             @endif
                         </td>
                         @php($resource = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id), true))
-                        <td nowrap="nowrap">{{ $resource['cpu'] ?? 0 }}%</td>
-                        <td nowrap="nowrap">{{ $resource['mem'] ?? 0 }}%</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->name }}</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->domain }}</td>
+                        <td nowrap="nowrap">{{ $remote_desktop->server->name }} {{ $resource['cpu'] ?? 0 }}% / {{ $resource['mem'] ?? 0  }}%</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->price }}/m
                         </td>
 
