@@ -41,7 +41,6 @@ class LxdJob implements ShouldQueue
      */
     public function handle()
     {
-
         $lxd = new LxdContainer();
         $forward = new Forward();
 
@@ -65,8 +64,8 @@ class LxdJob implements ShouldQueue
                         'status' => 'running',
                         'lan_ip' => $result['lan_ip'],
                     ]);
-                    // dispatch(new SendEmailJob($email, "久等了，您的 Linux 容器已经准备好了。"))->onQueue('mail');
-                    Message::send('Linux 容器已经准备好了。', $this->config['user']);
+                    // dispatch(new SendEmailJob($email, "久等了，您的 应用容器已经准备好了。"))->onQueue('mail');
+                    Message::send('应用容器 已经准备好了。', $this->config['user']);
                 } catch (Exception $e) {
                     Http::retry(5, 100)->get("http://{$this->config['address']}/lxd/delete", [
                         'id' => $this->config['inst_id'],
@@ -106,7 +105,7 @@ class LxdJob implements ShouldQueue
                         'token' => $this->config['token'],
                     ]);
                 } catch (Exception $e) {
-                    Message::send($this->config['server_name'] . ' 的健康检查出现问题， LAE正在紧急修复。<br />受影响的 Linux 容器: ' . $this->config['inst_name'] . '', $this->config['user']);
+                    Message::send($this->config['server_name'] . ' 的健康检查出现问题， LAE正在紧急修复。<br />受影响的 应用容器: ' . $this->config['inst_name'] . '', $this->config['user']);
                 }
 
                 break;
