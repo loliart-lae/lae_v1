@@ -40,7 +40,7 @@ class AppEngineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate, LxdImage $lxdImage)
+    public function create(Server $server, LxdTemplate $lxdTemplate, LxdImage $lxdImage)
     {
 
         // 选择服务器
