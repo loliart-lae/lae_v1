@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
         integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
+      rel="stylesheet">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
@@ -25,8 +27,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.1/base64.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
@@ -36,12 +36,12 @@
         <div class="mdui-toolbar mdui-color-theme">
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
                 mdui-drawer="{target: '#main-drawer', swipe: true, overlay:true}"><i
-                    class="mdui-icon material-icons">menu</i></span>
+                    class="mdui-icon material-icons-outlined">menu</i></span>
             <a href="/" class="mdui-typo-title" style="font-weight: 400;">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @auth
                 <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-menu="{target: '#app-menu'}">
-                    <i class="mdui-icon material-icons">more_vert</i>
+                    <i class="mdui-icon material-icons-outlined">more_vert</i>
                 </span>
                 <ul class="mdui-menu" id="app-menu" style="border-radius: 10px">
                     <li class="mdui-menu-item">
@@ -226,7 +226,7 @@
                 <div class="mdui-panel-item mdui-panel-item-open">
                     <div class="mdui-panel-item-header">
                         <div class="mdui-panel-item-title">加入 QQ 群</div>
-                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons-outlined">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
                         为了更方便的与用户们交流与提供更加实时的技术支持，我们创建了一个 QQ 群：769779712。
