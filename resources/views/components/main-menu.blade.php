@@ -31,7 +31,7 @@
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('workspace.index') }}">
+            <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">
                     widgets
                 </span>
