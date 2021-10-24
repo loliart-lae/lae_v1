@@ -101,6 +101,10 @@ body {
     color: #2196f3 !important;
 }
 
+#main-drawer {
+    width: auto
+}
+
 .mdui-appbar .mdui-toolbar {
     height: 56px !important;
 }
