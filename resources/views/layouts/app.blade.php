@@ -37,8 +37,35 @@
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
                 mdui-drawer="{target: '#main-drawer', swipe: true, overlay:true}"><i
                     class="mdui-icon material-icons">menu</i></span>
-            <a href="/" class="mdui-typo-title">{{ config('app.name') }}</a>
+            <a href="/" class="mdui-typo-title" style="font-weight: 400;">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
+            @auth
+                <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-menu="{target: '#app-menu'}">
+                    <i class="mdui-icon material-icons">more_vert</i>
+                </span>
+                <ul class="mdui-menu" id="app-menu" style="border-radius: 10px">
+                    <li class="mdui-menu-item">
+                        <a href="{{ route('user.index') }}" class="mdui-ripple">{{ Auth::user()->name }}</a>
+                    </li>
+                    <li class="mdui-menu-item">
+                        <a href="{{ route('billing.index') }}" class="mdui-ripple">积分:
+                            {{ Auth::user()->balance }}</a>
+                    </li>
+                    <li class="mdui-menu-item">
+                        <a href="{{ route('user.messages') }}" class="mdui-ripple umami--click--show-messages">历史消息</a>
+                    </li>
+                    <li class="mdui-menu-item">
+                        <a href="{{ route('user.balanceLog') }}"
+                            class="mdui-ripple umami--click--show-balanceLog">积分历史</a>
+                    </li>
+
+                    <li class="mdui-divider"></li>
+                    <li class="mdui-menu-item">
+                        <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                            class="mdui-ripple">退出登录</a>
+                    </li>
+                </ul>
+            @endauth
         </div>
     </header>
 
@@ -98,7 +125,6 @@
             })
         }
     </script>
-    <script src="{{ mix('js/pjax.js') }}"></script>
     @auth
         <script>
             setInterval(function() {
@@ -165,6 +191,7 @@
             }, 1000)
         </script>
     @endauth
+    <script src="{{ mix('js/pjax.js') }}"></script>
     <script>
         @if (session('status'))
             mdui.snackbar({

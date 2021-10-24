@@ -38,10 +38,6 @@
                         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-profile">修改</button>
                     <span onclick="updateToken()"
                         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-token">更新访问密钥</span>
-                    <a href="{{ route('user.messages') }}"
-                        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-messages">历史消息</a>
-                    <a href="{{ route('user.balanceLog') }}"
-                        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--show-balanceLog">积分历史</a>
                 </form>
             </div>
         </div>
