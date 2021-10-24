@@ -16,7 +16,7 @@
                     <th>ID</th>
                     <th>用户名</th>
                     <th>连接信息</th>
-                    <th>属于服务器(CPU/MEM)%</th>
+                    <th>(CPU/MEM)% 属于服务器</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
                 </tr>
@@ -46,7 +46,7 @@
                             @endif
                         </td>
                         @php($resource = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id), true))
-                        <td nowrap="nowrap">{{ $remote_desktop->server->name }} {{ $resource['cpu'] ?? 0 }}% / {{ $resource['mem'] ?? 0  }}%</td>
+                        <td nowrap="nowrap">{{ $resource['cpu'] ?? 0 }}% / {{ $resource['mem'] ?? 0  }}% {{ $remote_desktop->server->name }}</td>
                         <td nowrap="nowrap">{{ $remote_desktop->server->price }}/m
                         </td>
 
