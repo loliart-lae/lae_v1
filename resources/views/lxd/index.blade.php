@@ -38,17 +38,17 @@
                             @else
                                 <div id="power-{{ $lxd->id }}">
                                     @if ($lxd->status == 'running')
-                                        <i class="mdui-icon material-icons power-btn mdui-text-color-green"
+                                        <i class="mdui-icon material-icons-outlined power-btn mdui-text-color-green"
                                             onclick="power({{ $lxd->id }}, {{ $lxd->project_id }})">power_settings_new</i>
                                     @else
-                                        <i class="mdui-icon material-icons power-btn mdui-text-color-red"
+                                        <i class="mdui-icon material-icons-outlined power-btn mdui-text-color-red"
                                             onclick="power({{ $lxd->id }}, {{ $lxd->project_id }})">power_settings_new</i>
                                     @endif
 
                                 </div>
                             @endif
                         </div>
-                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons-outlined">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
                         <p>名称：{{ $lxd->name }}</p>

@@ -17,9 +17,9 @@
                             {{ $users->links('vendor.pagination.table') }}
 
                             <button id="user-search" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '搜索', delay: 300}">
-                                <i class="mdui-icon material-icons">search</i>
+                                <i class="mdui-icon material-icons-outlined">search</i>
                             </button>
-                            
+
                             <div id="user-search-menu" class="mdui-menu" style="transform-origin: 100% 0px; position: absolute; top: 44px; left: 428px;">
                                 <div class="mdui-textfield">
                                     <label class="mdui-textfield-label">用户名</label>
@@ -58,7 +58,7 @@
 
                         <td style="text-align: right; width: 154px;">
                             <a class="mdui-btn mdui-btn-icon mdui-text-color-theme-icon" mdui-tooltip="{content: '编辑', delay: 300}">
-                                <i class="mdui-icon material-icons">edit</i>
+                                <i class="mdui-icon material-icons-outlined">edit</i>
                             </a>
                         </td>
                     </tr>

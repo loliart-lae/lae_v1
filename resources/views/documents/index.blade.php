@@ -27,11 +27,11 @@
             @csrf
             <div class="mdui-textfield mdui-textfield-expandable">
                 <button onclick="return false" class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
-                        class="mdui-icon material-icons">search</i></button>
+                        class="mdui-icon material-icons-outlined">search</i></button>
                 <input class="mdui-textfield-input" name="title" type="text" placeholder="Search" />
 
                 <button type="submit" class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
-                        class="mdui-icon material-icons">done</i></button>
+                        class="mdui-icon material-icons-outlined">done</i></button>
 
             </div>
         </form>

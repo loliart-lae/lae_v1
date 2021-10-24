@@ -21,7 +21,8 @@
                                 right: 16px;
                                 margin-top: 3px;cursor: pointer">
                                 @if (in_array($status->user->email, $admins))
-                                    <span mdui-tooltip="{content: '官方人员'}" class="mdui-icon material-icons material-icons-outlined verified_user">
+                                    <span mdui-tooltip="{content: '官方人员'}"
+                                        class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
                                         verified_user
                                     </span>
                                 @endif
@@ -29,16 +30,16 @@
                                     @if ($display ?? '' != 0)
                                         @if ($status->user->id == Auth::id())
                                             <i mdui-tooltip="{content: '这是你'}"
-                                                class="mdui-text-color-theme mdui-icon material-icons"
+                                                class="mdui-text-color-theme mdui-icon material-icons-outlined"
                                                 onclick="$(this).addClass('animate__animated animate__tada')">account_circle</i>
                                         @elseif (in_array($status->user->id, $ids))
                                             <i mdui-tooltip="{content: '已关注'}"
                                                 onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
-                                                class="mdui-text-color-theme mdui-icon material-icons umami--click--unfollow-user">favorite</i>
+                                                class="mdui-text-color-theme mdui-icon material-icons-outlined umami--click--unfollow-user">favorite</i>
                                         @else
                                             <i mdui-tooltip="{content: '关注'}"
                                                 onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow({{ $status->user->id }})"
-                                                class="mdui-text-color-black-secondary mdui-icon material-icons umami--click--follow-user">favorite</i>
+                                                class="mdui-text-color-black-secondary mdui-icon material-icons-outlined umami--click--follow-user">favorite</i>
                                         @endif
                                     @endif
                                 </span>
@@ -68,14 +69,12 @@
                         <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                             class="mdui-btn mdui-ripple mdui-btn-icon">
                             @if (is_null($status->like))
-                                <i class="mdui-icon material-icons umami--click--like"
+                                <i class="mdui-icon material-icons-outlined umami--click--like"
                                     style="color: unset">star_border</i>
                             @elseif ($status->like->is_liked)
-                                <i style="color:#36a6e8"
-                                    class="mdui-icon material-icons umami--click--unlike">star</i>
+                                <i style="color:#36a6e8" class="mdui-icon material-icons-outlined umami--click--unlike">star</i>
                             @else
-                                <i class="mdui-icon material-icons"
-                                    style="color: unset">star_border</i>
+                                <i class="mdui-icon material-icons-outlined" style="color: unset">star_border</i>
                             @endif
                         </button>
                         <a href="{{ route('status.show', $status->id) }}"
@@ -127,11 +126,10 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.status == 1) {
-                        $('#status_' + id).css('color', '#36a6e8')
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star</i>`)
+                        $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star</i>`)
+                        $('#status_' + id + ' i').css('color', '#36a6e8')
                     } else {
-                        $('#status_' + id).css('color', 'unset')
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star_border</i>`)
+                        $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star_border</i>`)
                     }
                 },
                 error: function(data) {
@@ -162,7 +160,7 @@
                     if (data[0] == true) {
                         $('.follow_' + id).html(
                             `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})"
-                                            class="follow_${id} mdui-text-color-theme mdui-icon material-icons animate__heartBeat">favorite</i>`
+                                            class="follow_${id} mdui-text-color-theme mdui-icon material-icons-outlined animate__heartBeat">favorite</i>`
                         )
                     } else {
                         var user_statuses = $('.user_' + id + '_status');
@@ -174,7 +172,7 @@
 
 
                         $('.follow_' + id).html(
-                            `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons animate__animated animate__flip">favorite</i>`
+                            `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons-outlined animate__animated animate__flip">favorite</i>`
                         )
                     }
 

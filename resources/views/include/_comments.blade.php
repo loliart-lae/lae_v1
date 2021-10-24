@@ -38,12 +38,12 @@
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div style="display: inline;
-                            position: absolute;
-                            right: 16px;
-                            margin-top: 3px;cursor: pointer">
+                                        position: absolute;
+                                        right: 16px;
+                                        margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
                             <span mdui-tooltip="{content: '官方人员'}"
-                                class="mdui-icon material-icons material-icons-outlined verified_user">
+                                class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
                                 verified_user
                             </span>
                         @endif
@@ -72,15 +72,13 @@
                 <button id="status_{{ $status->id }}" onclick="toggleLike({{ $status->id }})"
                     class="mdui-btn mdui-ripple mdui-btn-icon">
                     @if (is_null($status->like))
-                        <i mdui-tooltip="{content: '点赞'}"
-                            class="mdui-icon material-icons umami--click--like-from-comment umami--click--like"
+                        <i class="mdui-icon material-icons-outlined umami--click--like-from-comment umami--click--like"
                             style="color: unset">star_border</i>
                     @elseif ($status->like->is_liked)
-                        <i mdui-tooltip="{content: '已点赞'}" style="color:#36a6e8"
-                            class="mdui-icon material-icons umami--click--unlike-from-comment umami--click--unlike">star</i>
+                        <i style="color:#36a6e8"
+                            class="mdui-icon material-icons-outlined umami--click--unlike-from-comment umami--click--unlike">star</i>
                     @else
-                        <i mdui-tooltip="{content: '点赞'}" class="mdui-icon material-icons"
-                            style="color: unset">star_border</i>
+                        <i class="mdui-icon material-icons-outlined" style="color: unset">star_border</i>
                     @endif
                 </button>
                 <button onclick="return false" class="mdui-btn mdui-ripple">@php($replies = count($status->replies))
@@ -126,7 +124,7 @@
                                 @if (in_array($status_reply->user->email, $admins))
                                     <button class="mdui-btn mdui-ripple mdui-btn-icon">
                                         <i mdui-tooltip="{content: '官方人员', position: 'auto'}"
-                                            class="mdui-icon material-icons verified_user">verified_user</i>
+                                            class="mdui-icon material-icons-outlined verified_user">verified_user</i>
                                     </button>
                                 @else
                                     <button class="mdui-btn mdui-ripple mdui-btn-icon" disabled></button>
@@ -139,7 +137,7 @@
                                         @method('DELETE')
                                         <button class="mdui-btn mdui-ripple mdui-btn-icon">
                                             <i mdui-tooltip="{content: '删除回复', position: 'auto'}"
-                                                class="mdui-icon material-icons">delete</i>
+                                                class="mdui-icon material-icons-outlined">delete</i>
                                         </button>
                                     </form>
                                 @endif
@@ -207,11 +205,10 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.status == 1) {
-                        $('#status_' + id).css('color', '#36a6e8')
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star</i>`)
+                        $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star</i>`)
+                        $('#status_' + id + ' i').css('color', '#36a6e8')
                     } else {
-                        $('#status_' + id).css('color', 'unset')
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons">star_border</i>`)
+                        $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star_border</i>`)
                     }
                 },
                 error: function(data) {
