@@ -31,11 +31,18 @@
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
+            {{-- <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('workspace.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">
                     widgets
                 </span>
                 <div class="mdui-list-item-content">应用容器</div>
+            </a> --}}
+
+            <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">
+                    workspaces
+                </span>
+                <div class="mdui-list-item-content">工作空间</div>
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
