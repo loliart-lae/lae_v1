@@ -13,7 +13,7 @@
             @csrf
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4" required
-                    autofocus placeholder="@if (Auth::user()->balance > 10) {{ Auth::user()->name }}，分享是快乐的，在这里留下一句话就可以快速分享了。 @else 不用担心你的积分来源，它不光能充值获取，为社区做出贡献依旧能获取！去 “全站时间河”看看吧！ @endif "></textarea>
+                    placeholder="@if (Auth::user()->balance > 10) {{ Auth::user()->name }}，分享是快乐的，在这里留下一句话就可以快速分享了。 @else 不用担心你的积分来源，它不光能充值获取，为社区做出贡献依旧能获取！去 “全站时间河”看看吧！ @endif "></textarea>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
         </form>
