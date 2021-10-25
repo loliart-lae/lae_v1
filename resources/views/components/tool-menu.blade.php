@@ -35,7 +35,7 @@
                  @foreach ($sponsors as $sponsor)
                      <ul class="mdui-menu mdui-menu-cascade">
                          <li class="mdui-menu-item">
-                             <a href="#" class="mdui-ripple">
+                             <a href="{{ $sponsor->link }}" class="mdui-ripple">
                                  <i class="mdui-menu-item-icon"></i>{{ $sponsor->name }}
                              </a>
                              @if (count($sponsor->SponsorAds) > 0)
