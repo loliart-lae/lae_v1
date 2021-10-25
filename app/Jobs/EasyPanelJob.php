@@ -47,7 +47,7 @@ class EasyPanelJob implements ShouldQueue
         switch ($this->config['method']) {
             case 'add_vh':
                 try {
-                    $result = Http::retry(5, 100)->timeout(1200)->asForm()->post("http://{$this->config['address']}/api/index.php", [
+                    $result = Http::retry(5, 2)->timeout(1200)->asForm()->post("http://{$this->config['address']}/api/index.php", [
                         'a' => $this->config['method'],
                         'r' => $this->r,
                         's' => $this->sKey,
@@ -91,7 +91,7 @@ class EasyPanelJob implements ShouldQueue
                 } catch (Exception $e) {
                     Log::error($e);
                     Log::error($result);
-                    Http::retry(5, 100)->get("http://{$this->config['address']}/api/index.php", [
+                    Http::retry(5, 2)->get("http://{$this->config['address']}/api/index.php", [
                         'id' => $this->config['inst_id'],
                         'token' => $this->config['token'],
                     ]);
@@ -102,7 +102,7 @@ class EasyPanelJob implements ShouldQueue
                 break;
 
             case 'del_vh':
-                $result = Http::retry(5, 100)->timeout(1200)->asForm()->post("http://{$this->config['address']}/api/index.php", [
+                $result = Http::retry(5, 2)->timeout(10)->asForm()->post("http://{$this->config['address']}/api/index.php", [
                     'a' => $this->config['method'],
                     'r' => $this->r,
                     's' => $this->sKey,
@@ -118,7 +118,7 @@ class EasyPanelJob implements ShouldQueue
                 break;
 
             case 'change_password':
-                $result = Http::retry(5, 100)->timeout(1200)->asForm()->post("http://{$this->config['address']}/api/index.php", [
+                $result = Http::retry(5, 2)->timeout(10)->asForm()->post("http://{$this->config['address']}/api/index.php", [
                     'a' => $this->config['method'],
                     'r' => $this->r,
                     's' => $this->sKey,
