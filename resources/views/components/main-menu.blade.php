@@ -64,12 +64,12 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">dashboard</span>
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">connect_without_contact</span>
                 <div class="mdui-list-item-content">EasyPanel 站点</div>
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--staticPage" href="{{ route('staticPage.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">language</span>
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">public</span>
                 <div class="mdui-list-item-content">静态站点</div>
             </a>
 
