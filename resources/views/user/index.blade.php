@@ -15,7 +15,7 @@
             <div class="mdui-col-xs-12 mdui-col-sm-7">
                 <div class="mdui-typo-display-1">{{ $user->name }}</div>
 
-                <p>积分: {{ $user->balance }}，<a href="{{ route('billing.index') }}"
+                <p>积分: <span class="userBalance">{{ $user->balance }}</span>，<a href="{{ route('billing.index') }}"
                         class="umami--click--goto-charge">充值</a></p>
                 <p>字段: <a href="{{ route('field.index') }}" class="umami--click--goto-field">显示字段</a>
                 </p>

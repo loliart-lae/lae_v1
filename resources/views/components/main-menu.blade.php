@@ -22,7 +22,7 @@
             <a class="mdui-list-item mdui-ripple umami--click--user-index" href="{{ route('user.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">account_circle</span>
                 <div class="mdui-list-item-content"><small>
-                        {{ Auth::user()->name }} / <span id="userBalance"
+                        {{ Auth::user()->name }} / <span class="userBalance" id="userBalance"
                             style="display: contents;">{{ Auth::user()->balance }}</span></small></div>
             </a>
 
