@@ -36,8 +36,10 @@
                                 <td nowrap>{{ $server->name }}</td>
                                 <td nowrap>{{ $server->price }}</td>
                                 <td nowrap>{{ $server->forward_price }}</td>
-                                <td nowrap>{{ $server->network_limit / 1024 }} Mbps</td>
-                                <td nowrap>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
+                                <td nowrap>{{ $server->network_limit }} Mbps</td>
+                                <td nowrap>
+                                    {{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 /
+                                    月</td>
 
                                 <td>
                                     <label class="mdui-radio">
@@ -127,7 +129,9 @@
                             <td nowrap>{{ $template->mem }} M</td>
                             <td nowrap>{{ $template->disk }} G</td>
                             <td nowrap>{{ $template->price }}</td>
-                            <td nowrap>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
+                            <td nowrap>
+                                {{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
+                            </td>
 
                             <td>
                                 <label class="mdui-radio">
