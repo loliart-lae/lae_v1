@@ -47,7 +47,7 @@
 
 
                             <td nowrap>{{ $template->db_quota }} M</td>
-                            <td nowrap>{{ $template->speed_limit / 1024 }} Mbps</td>
+                            <td nowrap>{{ $template->speed_limit }} Mbps</td>
                             <td nowrap>{{ $template->price }}</td>
                             <td nowrap>
                                 {{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月
