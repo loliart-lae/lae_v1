@@ -36,7 +36,7 @@
                                 <td nowrap="nowrap">{{ $server->name }}</td>
                                 <td nowrap="nowrap">{{ $server->price }}</td>
                                 <td nowrap="nowrap">{{ $server->forward_price }}</td>
-                                <td nowrap="nowrap">{{ $server->network_limit }} Kbps</td>
+                                <td nowrap="nowrap">{{ $server->network_limit / 1024 }} Mbps</td>
                                 <td nowrap="nowrap">{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
 
                                 <td>
