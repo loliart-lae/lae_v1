@@ -2,10 +2,12 @@
 
 namespace App\View\Components;
 
+use App\Models\Sponsor;
 use Illuminate\View\Component;
 
 class ToolMenu extends Component
 {
+    public $sponsors;
     /**
      * Create a new component instance.
      *
@@ -13,7 +15,10 @@ class ToolMenu extends Component
      */
     public function __construct()
     {
-        //
+        $this->sponsors = Sponsor::whereNull('sponsor_id')
+        ->with('SponsorAds')
+        ->get();
+
     }
 
     /**

@@ -1,4 +1,4 @@
- <ul class="mdui-menu" id="app-menu" style="border-radius: 10px">
+ <ul class="mdui-menu @if (!Agent::isMobile()) mdui-menu-cascade @endif" id="app-menu" style="border-radius: 10px">
      <li class="mdui-menu-item">
          <a href="{{ route('user.index') }}" class="mdui-ripple">
              <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">person</i>
@@ -16,10 +16,39 @@
      </li>
      <li class="mdui-menu-item">
          <a href="{{ route('user.balanceLog') }}" class="mdui-ripple umami--click--show-balanceLog">
-             <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">history</i>积分历史
+             <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">history</i>
+             积分历史
          </a>
      </li>
 
+     @if (!Agent::isMobile())
+
+         @if (count($sponsors) > 0)
+             <li class="mdui-divider"></li>
+             <li class="mdui-menu-item">
+                 <a href="#" class="mdui-ripple">
+                     <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">looks</i>
+                     共建者与赞助商
+                     <span class="mdui-menu-item-more"></span>
+                 </a>
+                 @foreach ($sponsors as $sponsor)
+                     <ul class="mdui-menu mdui-menu-cascade">
+                         <li class="mdui-menu-item">
+                             <a href="#" class="mdui-ripple">
+                                 <i class="mdui-menu-item-icon"></i>{{ $sponsor->name }}
+                             </a>
+                             <ul class="mdui-menu mdui-menu-cascade">
+                                 @foreach ($sponsor->SponsorAds as $ad)
+                                     @include('include._sponsorAds', ['ad' => $ad])
+                                 @endforeach
+                             </ul>
+                         </li>
+                     </ul>
+                 @endforeach
+             </li>
+
+         @endif
+     @endif
      <li class="mdui-divider"></li>
      <li class="mdui-menu-item">
          <a onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="mdui-ripple">
