@@ -145,7 +145,7 @@ class EasyPanelController extends Controller
             'ftp' => 1,
             'ftp_usl' => $easyPanelTemplate_data->ftp_usl,
             'ftp_dsl' => $easyPanelTemplate_data->ftp_dsl,
-            'speed_limit' => $easyPanelTemplate_data->speed_limit,
+            'speed_limit' => $easyPanelTemplate_data->speed_limit * 1024,
             'email' => Auth::user()->email,
             'user' => Auth::id()
         ];
