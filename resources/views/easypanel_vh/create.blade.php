@@ -34,22 +34,22 @@
                     @php($i = 1)
                     @foreach ($templates as $template)
                         <tr>
-                            <td nowrap="nowrap">{{ $i++ }}</td>
-                            <td nowrap="nowrap">{{ $template->name }}</td>
-                            <td nowrap="nowrap">
+                            <td nowrap>{{ $i++ }}</td>
+                            <td nowrap>{{ $template->name }}</td>
+                            <td nowrap>
                                 @if ($template->is_cdn)
                                 CDN
                                 @else
                                 虚拟主机
                                 @endif
                             </td>
-                            <td nowrap="nowrap">{{ $template->web_quota }} M</td>
+                            <td nowrap>{{ $template->web_quota }} M</td>
 
 
-                            <td nowrap="nowrap">{{ $template->db_quota }} M</td>
-                            <td nowrap="nowrap">{{ $template->speed_limit }} Mbps</td>
-                            <td nowrap="nowrap">{{ $template->price }}</td>
-                            <td nowrap="nowrap">{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
+                            <td nowrap>{{ $template->db_quota }} M</td>
+                            <td nowrap>{{ $template->speed_limit }} Mbps</td>
+                            <td nowrap>{{ $template->price }}</td>
+                            <td nowrap>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
 
                             <td>
                                 <label class="mdui-radio">

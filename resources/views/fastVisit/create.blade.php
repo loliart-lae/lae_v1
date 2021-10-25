@@ -27,11 +27,11 @@
                     @php($i = 1)
                     @foreach ($domains as $domain)
                         <tr>
-                            <td nowrap="nowrap">{{ $i++ }}</td>
-                            <td nowrap="nowrap">{{ $domain->domain }}</td>
-                            <td nowrap="nowrap">{{ $domain->balance }}</td>
+                            <td nowrap>{{ $i++ }}</td>
+                            <td nowrap>{{ $domain->domain }}</td>
+                            <td nowrap>{{ $domain->balance }}</td>
 
-                            <td nowrap="nowrap">
+                            <td nowrap>
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $domain->id }}" name="domain_id"
                                         @if ($i == 2) checked @endif required />

@@ -32,12 +32,12 @@
                         @php($i = 1)
                         @foreach ($servers as $server)
                             <tr>
-                                <td nowrap="nowrap">{{ $i++ }}</td>
-                                <td nowrap="nowrap">{{ $server->name }}</td>
-                                <td nowrap="nowrap">{{ $server->price }}</td>
-                                <td nowrap="nowrap">{{ $server->forward_price }}</td>
-                                <td nowrap="nowrap">{{ $server->network_limit / 1024 }} Mbps</td>
-                                <td nowrap="nowrap">{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
+                                <td nowrap>{{ $i++ }}</td>
+                                <td nowrap>{{ $server->name }}</td>
+                                <td nowrap>{{ $server->price }}</td>
+                                <td nowrap>{{ $server->forward_price }}</td>
+                                <td nowrap>{{ $server->network_limit / 1024 }} Mbps</td>
+                                <td nowrap>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
 
                                 <td>
                                     <label class="mdui-radio">
@@ -78,9 +78,9 @@
                     @php($i = 1)
                     @foreach ($images as $image)
                         <tr>
-                            <td nowrap="nowrap">{{ $i++ }}</td>
-                            <td nowrap="nowrap">{{ $image->name }}</td>
-                            <td nowrap="nowrap">{{ $image->image }}</td>
+                            <td nowrap>{{ $i++ }}</td>
+                            <td nowrap>{{ $image->name }}</td>
+                            <td nowrap>{{ $image->image }}</td>
 
                             <td>
                                 <label class="mdui-radio">
@@ -119,15 +119,15 @@
                     @php($i = 1)
                     @foreach ($templates as $template)
                         <tr>
-                            <td nowrap="nowrap">{{ $i++ }}</td>
-                            <td nowrap="nowrap">{{ $template->name }}</td>
-                            <td nowrap="nowrap">{{ $template->cpu }}</td>
+                            <td nowrap>{{ $i++ }}</td>
+                            <td nowrap>{{ $template->name }}</td>
+                            <td nowrap>{{ $template->cpu }}</td>
 
 
-                            <td nowrap="nowrap">{{ $template->mem }} M</td>
-                            <td nowrap="nowrap">{{ $template->disk }} G</td>
-                            <td nowrap="nowrap">{{ $template->price }}</td>
-                            <td nowrap="nowrap">{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
+                            <td nowrap>{{ $template->mem }} M</td>
+                            <td nowrap>{{ $template->disk }} G</td>
+                            <td nowrap>{{ $template->price }}</td>
+                            <td nowrap>{{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2)}} 元 / 月</td>
 
                             <td>
                                 <label class="mdui-radio">

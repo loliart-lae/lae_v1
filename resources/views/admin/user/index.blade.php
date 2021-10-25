@@ -44,7 +44,7 @@
                             <img class="avatar" src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($user->email)) }}" />
                         </td>
 
-                        <td  nowrap="nowrap">
+                        <td  nowrap>
                             @if (is_null($user->website))
                                 {{ $user->name }}
                             @else
@@ -52,7 +52,7 @@
                             @endif
                         </td>
 
-                        <td nowrap="nowrap">
+                        <td nowrap>
                             {{ $user->bio ?? '未设置签名' }}
                         </td>
 

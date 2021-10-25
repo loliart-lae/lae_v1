@@ -21,9 +21,9 @@
                 @php($i = 1)
                 @foreach ($invites as $invite)
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $invite->project->name }}</td>
-                        <td nowrap="nowrap">{{ $invite->user->name }}</td>
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $invite->project->name }}</td>
+                        <td nowrap>{{ $invite->user->name }}</td>
                         @if ($invite->status == false)
                             <form id="f_{{ $invite->id }}_accept" method="post"
                                 action="{{ route('invites.accept', $invite->id) }}">
@@ -35,7 +35,7 @@
                                 @csrf
                                 @method('POST')
                             </form>
-                            <td nowrap="nowrap"><a class="mdui-text-color-theme umami--click--invite-accept" style="text-decoration: none"
+                            <td nowrap><a class="mdui-text-color-theme umami--click--invite-accept" style="text-decoration: none"
                                     href="javascript: $('#f_{{ $invite->id }}_accept').submit();">同意</a> 或者 <a
                                     class="mdui-text-color-theme umami--click--accept-deny" style="text-decoration: none"
                                     href="javascript: $('#f_{{ $invite->id }}_deny').submit();">拒绝</a></td>

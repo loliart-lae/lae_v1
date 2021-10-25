@@ -32,13 +32,13 @@
                 </tr>
                 @foreach ($forwards as $forward)
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $forward->from }}</td>
-                        <td nowrap="nowrap">{{ $forward->to }}</td>
-                        <td nowrap="nowrap">TCP&UDP</td>
-                        <td nowrap="nowrap">{{ $forward->reason }}</td>
-                        <td nowrap="nowrap">{{ $forward->server->domain }}:{{ $forward->to }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $forward->from }}</td>
+                        <td nowrap>{{ $forward->to }}</td>
+                        <td nowrap>TCP&UDP</td>
+                        <td nowrap>{{ $forward->reason }}</td>
+                        <td nowrap>{{ $forward->server->domain }}:{{ $forward->to }}</td>
+                        <td nowrap>
                             @if ($forward->status == 'active' || $forward->status == 'failed')
                                 <a href="#"
                                     onclick="if (confirm('删除后，将无法通过该端口访问业务，并且端口也可能被他人占用。')) { $('#f-{{ $i }}').submit() } else { return false }">@if ($forward->status == 'failed') 失败 @endif

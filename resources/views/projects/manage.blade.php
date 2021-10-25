@@ -59,9 +59,9 @@
                 @php($i = 1)
                 @foreach ($members as $member)
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $member->user->name }}</td>
-                        <td nowrap="nowrap">{{ $member->user->email }}</td>
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $member->user->name }}</td>
+                        <td nowrap>{{ $member->user->email }}</td>
 
                         @if (Auth::id() == $project_info->user_id)
                             @if (Auth::id() != $member->user->id)
@@ -86,12 +86,12 @@
                                     </div>
                                 </div>
                             @else
-                                <td nowrap="nowrap">您自己</td>
+                                <td nowrap>您自己</td>
                             @endif
                         @else
-                            <td nowrap="nowrap">无权操作</td>
+                            <td nowrap>无权操作</td>
                         @endif
-                        <td nowrap="nowrap">{{ $member->created_at }}</td>
+                        <td nowrap>{{ $member->created_at }}</td>
 
                     </tr>
                 @endforeach

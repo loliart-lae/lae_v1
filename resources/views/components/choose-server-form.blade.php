@@ -20,11 +20,11 @@
                 @php($i = 1)
                 @foreach ($servers as $server)
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $server->name }}</td>
-                        <td nowrap="nowrap">{{ $server->price }}</td>
-                        <td nowrap="nowrap">{{ $server->network_limit }} Mbps</td>
-                        <td nowrap="nowrap">{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $server->name }}</td>
+                        <td nowrap>{{ $server->price }}</td>
+                        <td nowrap>{{ $server->network_limit }} Mbps</td>
+                        <td nowrap>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
 
                         <td>
                             <label class="mdui-radio">

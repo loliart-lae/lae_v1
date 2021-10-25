@@ -21,10 +21,10 @@
                 @php($i = 1)
                 @foreach ($activities as $activity)
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $activity->user->name }}</td>
-                        <td nowrap="nowrap">{{ $activity->msg }}</td>
-                        <td nowrap="nowrap">{{ $activity->created_at }}</td>
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $activity->user->name }}</td>
+                        <td nowrap>{{ $activity->msg }}</td>
+                        <td nowrap>{{ $activity->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>

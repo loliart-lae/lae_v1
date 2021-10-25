@@ -23,17 +23,17 @@
                 @php($i = 1)
                 @foreach ($fields as $field)
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $field->name }}</td>
-                        <td nowrap="nowrap">{{ $field->created_at }}</td>
-                        {{-- <td nowrap="nowrap">
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $field->name }}</td>
+                        <td nowrap>{{ $field->created_at }}</td>
+                        {{-- <td nowrap>
                             @if ($field->is_public)
                             已公开
                             @else
                             未公开
                             @endif
                         </td> --}}
-                        <td nowrap="nowrap">
+                        <td nowrap>
                             <a href="#"
                                 onclick="if (confirm('删除后，该字段将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
                             |

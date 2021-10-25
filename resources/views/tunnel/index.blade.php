@@ -50,11 +50,11 @@
                         </tr>
                     @endif
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $tunnel->name }}</td>
-                        <td nowrap="nowrap">{{ strtoupper($tunnel->protocol) }}</td>
-                        <td nowrap="nowrap">{{ $tunnel->local_address }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $tunnel->name }}</td>
+                        <td nowrap>{{ strtoupper($tunnel->protocol) }}</td>
+                        <td nowrap>{{ $tunnel->local_address }}</td>
+                        <td nowrap>
                             @switch($tunnel->protocol)
                                 @case('http')
                                     {{ $tunnel->custom_domain }}
@@ -71,16 +71,16 @@
                             @endswitch
 
                         </td>
-                        <td nowrap="nowrap">{{ $tunnel->server->address }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap>{{ $tunnel->server->address }}</td>
+                        <td nowrap>
                             @if ($tunnel->protocol != 'xtcp')
                                 {{ $tunnel->server->network_limit }} Mbps
                             @else
                                 取决于客户机
                             @endif
                         </td>
-                        <td nowrap="nowrap">{{ $tunnel->server->name }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap>{{ $tunnel->server->name }}</td>
+                        <td nowrap>
                             @if (is_null($tunnel->ping))
                                 没有更新
                                 @php($online = 0)
@@ -94,7 +94,7 @@
                             @endif
                         </td>
 
-                        <td nowrap="nowrap">
+                        <td nowrap>
                             @if ($tunnel->protocol != 'xtcp')
                                 @if ($online)
                                     {{ $tunnel->server->price }}/m
@@ -111,7 +111,7 @@
                         @else
                             @php($tip = ' 删除后，该隧道将无法再次启动，并且还有可能面临端口被占用的风险。')
                         @endif
-                        <td nowrap="nowrap"><a href="#"
+                        <td nowrap><a href="#"
                                 onclick="open_tunnel_config({{ $tunnel->id }})">配置文件</a> |
                             <a href="#"
                                 onclick="if (confirm('{{ $tip }}')) { $('#f-{{ $i }}').submit() }">删除</a>

@@ -25,11 +25,11 @@
                     @php($i = 1)
                     @foreach ($projects as $project)
                         <tr>
-                            <td nowrap="nowrap">{{ $i++ }}</td>
-                            <td nowrap="nowrap">{{ $project->project->name }}</td>
-                            <td nowrap="nowrap">{{ $project->project->balance }}</td>
+                            <td nowrap>{{ $i++ }}</td>
+                            <td nowrap>{{ $project->project->name }}</td>
+                            <td nowrap>{{ $project->project->balance }}</td>
 
-                            <td nowrap="nowrap">
+                            <td nowrap>
                                 <label class="mdui-radio">
                                     <input type="radio" value="{{ $project->project->id }}" name="project_id"
                                         @if ($i == 2) checked @endif required />
@@ -105,7 +105,7 @@
             <option value="udp">UDP - 适合数据可靠性较低的业务。</option>
         </select>
         <br /> <br />
-        
+
         <div class="mdui-row">
             <div class="mdui-col-xs-6">
                 <span class="mdui-typo-headline">内网地址</span>

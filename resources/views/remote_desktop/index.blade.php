@@ -35,9 +35,9 @@
                         </tr>
                     @endif
                     <tr>
-                        <td nowrap="nowrap">{{ $i++ }}</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->domain }}</td>
-                        <td nowrap="nowrap">
+                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $remote_desktop->server->domain }}</td>
+                        <td nowrap>
                             @if ($remote_desktop->status == 'active')
                                 <a
                                     href="{{ route('remote_desktop.edit', $remote_desktop->id) }}">{{ $remote_desktop->username }}</a>
@@ -46,11 +46,11 @@
                             @endif
                         </td>
                         @php($resource = json_decode(Cache::get('windows_server_status_' . $remote_desktop->server->id), true))
-                        <td nowrap="nowrap">{{ $resource['cpu'] ?? 0 }}% / {{ $resource['mem'] ?? 0  }}% {{ $remote_desktop->server->name }}</td>
-                        <td nowrap="nowrap">{{ $remote_desktop->server->price }}/m
+                        <td nowrap>{{ $resource['cpu'] ?? 0 }}% / {{ $resource['mem'] ?? 0  }}% {{ $remote_desktop->server->name }}</td>
+                        <td nowrap>{{ $remote_desktop->server->price }}/m
                         </td>
 
-                        <td nowrap="nowrap">
+                        <td nowrap>
                             @if ($remote_desktop->status == 'active')
                                 <a href="#"
                                     onclick="if (confirm('删除后，该用户所有数据都会丢失并且无法找回！')) { $('#f-{{ $i }}').submit() }">删除</a>

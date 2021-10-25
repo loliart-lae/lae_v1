@@ -16,9 +16,9 @@
             @php($i = 1)
             @foreach ($projects as $project)
                 <tr>
-                    <td nowrap="nowrap">{{ $i++ }}</td>
-                    <td nowrap="nowrap">{{ $project->project->name }}</td>
-                    <td nowrap="nowrap">{{ $project->project->balance }}</td>
+                    <td nowrap>{{ $i++ }}</td>
+                    <td nowrap>{{ $project->project->name }}</td>
+                    <td nowrap>{{ $project->project->balance }}</td>
 
                     <td>
                         <label class="mdui-radio">
