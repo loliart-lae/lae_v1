@@ -115,3 +115,15 @@ body {
         color: #fff;
     }
 }
+
+.mdui-menu-cascade {
+    border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    -ms-border-radius: 5px !important;
+    -o-border-radius: 5px !important;
+}
+
+.material-icons {
+    font-family: 'Material Icons Outlined';
+}
