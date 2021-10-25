@@ -31,17 +31,20 @@
                      共建者与赞助商
                      <span class="mdui-menu-item-more"></span>
                  </a>
+
                  @foreach ($sponsors as $sponsor)
                      <ul class="mdui-menu mdui-menu-cascade">
                          <li class="mdui-menu-item">
                              <a href="#" class="mdui-ripple">
                                  <i class="mdui-menu-item-icon"></i>{{ $sponsor->name }}
                              </a>
-                             <ul class="mdui-menu mdui-menu-cascade">
-                                 @foreach ($sponsor->SponsorAds as $ad)
-                                     @include('include._sponsorAds', ['ad' => $ad])
-                                 @endforeach
-                             </ul>
+                             @if (count($sponsor->SponsorAds) > 0)
+                                 <ul class="mdui-menu mdui-menu-cascade">
+                                     @foreach ($sponsor->SponsorAds as $ad)
+                                         @include('include._sponsorAds', ['ad' => $ad])
+                                     @endforeach
+                                 </ul>
+                             @endif
                          </li>
                      </ul>
                  @endforeach
