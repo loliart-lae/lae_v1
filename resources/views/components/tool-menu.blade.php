@@ -8,7 +8,8 @@
          <li class="mdui-menu-item">
              <a href="{{ route('billing.index') }}" class="mdui-ripple">
                  <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">account_balance_wallet</i>
-                 {{ Auth::user()->balance }}</a>
+                 <span class="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span>
+             </a>
          </li>
          <li class="mdui-menu-item">
              <a href="{{ route('user.messages') }}" class="mdui-ripple umami--click--show-messages">
