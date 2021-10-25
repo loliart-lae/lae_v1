@@ -1,5 +1,5 @@
 <li class="mdui-menu-item">
-    <a href="javascript:;" class="mdui-ripple">
+    <a href="{{ $ad->link }}" class="mdui-ripple">
         <i class="mdui-menu-item-icon"></i>{{ $ad->name }}
     </a>
 
