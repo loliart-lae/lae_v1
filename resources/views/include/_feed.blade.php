@@ -72,7 +72,8 @@
                                 <i class="mdui-icon material-icons-outlined umami--click--like"
                                     style="color: unset">star_border</i>
                             @elseif ($status->like->is_liked)
-                                <i style="color:#36a6e8" class="mdui-icon material-icons-outlined umami--click--unlike">star</i>
+                                <i style="color:#36a6e8"
+                                    class="mdui-icon material-icons-outlined umami--click--unlike">star</i>
                             @else
                                 <i class="mdui-icon material-icons-outlined" style="color: unset">star_border</i>
                             @endif
