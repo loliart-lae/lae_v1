@@ -83,6 +83,11 @@
                 <div class="mdui-list-item-content">社区论坛</div>
             </a>
 
+            <a class="mdui-list-item mdui-ripple umami--click--forum" href="{{ route('user.blocked') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">block</span>
+                <div class="mdui-list-item-content">封神榜</div>
+            </a>
+
             <a onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                 class="mdui-list-item mdui-ripple umami--click--logout" target="_blank" href="https://f.lightart.top">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">

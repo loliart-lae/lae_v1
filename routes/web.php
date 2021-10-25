@@ -63,6 +63,7 @@ Route::prefix('/')->group(function () {
     // Route::resource('/forums/{fid}/posts', Controllers\ForumPostController::class);
 
     Route::get('/messages/unread', [Controllers\MessageController::class, 'get'])->name('messages.unread');
+    Route::get('/blocked_users', [Controllers\UserController::class, 'showBlock'])->name('user.blocked');
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {

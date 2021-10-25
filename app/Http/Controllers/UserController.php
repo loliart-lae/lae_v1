@@ -145,4 +145,9 @@ class UserController extends Controller
 
         return response()->json(['status' => 1, 'api_token' => $str]);
     }
+
+    public function showBlock() {
+        $users = User::where('blocked', 1)->simplePaginate(100);
+        return view('block', compact('users'));
+    }
 }
