@@ -134,6 +134,13 @@ return [
      */
     'host_by' => env('HOST_BY', 'anonymous'),
 
+    /**
+     * Pterodactyl Panel`
+     */
+    'pterodactyl_panel' => env('PTERODACTYL_PANEL', 'http://localhost'),
+    'pterodactyl_panel_api_token' => env('ag76yJ29LkM1VEyied0KlGaqDu6Kzid883Yic4CR9jFkocG8', '12345678'),
+
+
 
     /*
     |--------------------------------------------------------------------------
