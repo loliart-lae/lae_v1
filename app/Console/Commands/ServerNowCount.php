@@ -39,7 +39,6 @@ class ServerNowCount extends Command
      */
     public function handle()
     {
-        ini_set('memory_limit', '1024M');
         DB::connection()->disableQueryLog();
 
         $this->info('正在统计数据，可能会比较慢。');
