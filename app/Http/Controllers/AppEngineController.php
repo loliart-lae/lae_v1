@@ -76,7 +76,7 @@ class AppEngineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Project $project, ProjectMember $member, Server $server, LxdTemplate $lxdTemplate, LxdContainer $lxdContainer, LxdImage $lxdImage)
+    public function store(Request $request, Project $project, Server $server, LxdTemplate $lxdTemplate, LxdContainer $lxdContainer, LxdImage $lxdImage)
     {
         $this->validate($request, [
             'project_id' => 'required',
