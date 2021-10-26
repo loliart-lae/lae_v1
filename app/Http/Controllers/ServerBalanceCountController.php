@@ -17,11 +17,11 @@ class ServerBalanceCountController extends Controller
         if ($server_id == 0) {
             $counts_sql = ServerBalanceCount::whereBetween('created_at', [$start, $today])->with('user');
             $counts = $counts_sql->count();
-            $data = $counts_sql->get();
+            $data = $counts_sql->cursor();
         } else {
             $counts_sql = ServerBalanceCount::where('server_id', $server_id)->whereBetween('created_at', [$start, $today])->with('user');;
             $counts = $counts_sql->count();
-            $data = $counts_sql->get();
+            $data = $counts_sql->cursor();
         }
 
         $bypass_list = config('admin.bypass_users');
@@ -48,11 +48,11 @@ class ServerBalanceCountController extends Controller
         if ($server_id == 0) {
             $counts_sql = ServerBalanceCount::whereBetween('created_at', [$start, $end])->with('user');
             $counts = $counts_sql->count();
-            $data = $counts_sql->get();
+            $data = $counts_sql->cursor();
         } else {
             $counts_sql = ServerBalanceCount::where('server_id', $server_id)->whereBetween('created_at', [$start, $end])->with('user');
             $counts = $counts_sql->count();
-            $data = $counts_sql->get();
+            $data = $counts_sql->cursor();
         }
 
         $bypass_list = config('admin.bypass_users');
