@@ -22,7 +22,13 @@
                 @foreach ($activities as $activity)
                     <tr>
                         <td nowrap>{{ $i++ }}</td>
-                        <td nowrap>{{ $activity->user->name }}</td>
+                        <td nowrap>
+                            @if (is_null($activity->user))
+                                系统提醒
+                            @else
+                                {{ $activity->user->name }}
+                            @endif
+                        </td>
                         <td nowrap>{{ $activity->msg }}</td>
                         <td nowrap>{{ $activity->created_at }}</td>
                     </tr>
