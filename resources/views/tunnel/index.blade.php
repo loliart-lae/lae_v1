@@ -71,7 +71,7 @@
                             @endswitch
 
                         </td>
-                        <td nowrap>{{ $tunnel->server->address }}</td>
+                        <td nowrap>{{ $tunnel->server->domain }}</td>
                         <td nowrap>
                             @if ($tunnel->protocol != 'xtcp')
                                 {{ $tunnel->server->network_limit }} Mbps
