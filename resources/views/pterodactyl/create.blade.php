@@ -76,7 +76,7 @@
                             <td nowrap>{{ $template->cpu_limit }}</td>
                             <td nowrap>{{ $template->memory }} M</td>
                             <td nowrap>{{ $template->swap }} M</td>
-                            <td nowrap>{{ $template->disk_space }} G</td>
+                            <td nowrap>{{ $template->disk_space }} M</td>
                             <td nowrap>{{ $template->io }}</td>
                             <td nowrap>{{ $template->databases }}</td>
                             <td nowrap>{{ $template->backups }}</td>
