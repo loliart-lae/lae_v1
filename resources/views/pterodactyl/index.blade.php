@@ -41,10 +41,8 @@
                         <td nowrap>{{ $gameServer->template->price }}</td>
 
                         <td nowrap>
-                            <a target="_blank"
-                                href="{{ config('app.pterodactyl_panel') }}/auth/fastLogin/{{ $gameServer->user->token }}">登录</a>|
-                            <a href="#"
-                                onclick="if (confirm('删除后，数据将会彻底删除。')) { $('#f-{{ $gameServer->id }}').submit() }">删除</a>
+                            <a target="_blank" href="{{ config('app.pterodactyl_panel') }}/auth/fastLogin/{{ $gameServer->user->token }}">登录</a> | 
+                            <a href="#" onclick="if (confirm('删除后，数据将会彻底删除。')) { $('#f-{{ $gameServer->id }}').submit() }">删除</a>
                             <form id="f-{{ $gameServer->id }}" method="post"
                                 action="{{ route('gameServer.destroy', $gameServer->id) }}">@csrf
                                 @method('DELETE')</form>
