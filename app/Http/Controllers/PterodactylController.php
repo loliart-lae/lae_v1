@@ -111,7 +111,7 @@ class PterodactylController extends Controller
             $pterodactylServer->save();
 
             // 通知
-            ProjectActivityController::save($this->project_id, '新建了 ' . $request->name . ' 游戏服务器');
+            ProjectActivityController::save($this->project_id, '新建了游戏服务器 ' . $request->name);
 
             return redirect()->route('gameServer.index')->with('status', '新建游戏服务器 成功。');
         }
@@ -204,6 +204,13 @@ class PterodactylController extends Controller
                 'image_id' => $request->image_id,
             ]);
 
+            if ($pterodactylServer_data->name == $request->name) {
+                $change_name_tip =  ', 新名称为: ' . $request->name;
+            }
+
+            ProjectActivityController::save($pterodactylServer_data->project_id, '编辑了游戏服务器 ' . $pterodactylServer_data->name . $change_name_tip ?? '。');
+
+
             return redirect()->back()->with('status', '游戏服务器 修改成功。');
         }
     }
@@ -231,6 +238,8 @@ class PterodactylController extends Controller
             if ($pterodactylServer->where('project_id', $pterodactylServer_data->project_id)->count() == 0) {
                 $this->delete_user($pterodactylServer_data->user->user_id);
             }
+
+            ProjectActivityController::save($pterodactylServer_data->project_id, '删除了游戏服务器 ' . $pterodactylServer_data->name);
 
             return redirect()->back()->with('status', '游戏服务 已删除。');
         }
@@ -417,5 +426,18 @@ class PterodactylController extends Controller
 
         Http::withToken(config('app.pterodactyl_panel_api_token'))->patch(config('app.pterodactyl_panel') . '/api/application/servers/' . $server_id . '/build', $build_data);
         Http::withToken(config('app.pterodactyl_panel_api_token'))->patch(config('app.pterodactyl_panel') . '/api/application/servers/' . $server_id . '/startup', $startup_data);
+    }
+
+    public function callback($token)
+    {
+        $pterodactylUser = new PterodactylUser();
+        $pterodactylUser_data = $pterodactylUser->where('token', $token)->firstOrFail();
+
+        ProjectActivityController::save(null, '游戏服务器: ' . $pterodactylUser_data->name . ' 后台地址登录成功。');
+
+
+        return response()->json([
+            'user_id' => $pterodactylUser_data->user_id,
+        ]);
     }
 }
