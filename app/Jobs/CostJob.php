@@ -12,6 +12,7 @@ use App\Models\StaticPage;
 use App\Models\LxdContainer;
 use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
+use App\Models\PterodactylServer;
 use App\Models\ServerBalanceCount;
 use Illuminate\Support\Facades\DB;
 use App\Models\EasyPanelVirtualHost;
@@ -21,6 +22,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use App\Http\Controllers\PterodactylController;
 
 class CostJob implements ShouldQueue
 {
@@ -56,6 +58,7 @@ class CostJob implements ShouldQueue
         // $server = new Server();
         $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
         $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->get();
+        $pterodactylServers = PterodactylServer::with(['template'])->get();
 
         foreach ($lxdContainers as $lxd) {
             // 金额
@@ -232,6 +235,27 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->server_id = $easyPanelVirtualHost->server_id;
                 $serverBalanceCount->value = $need_pay;
                 $serverBalanceCount->user_id = $easyPanelVirtualHost->project->user_id;
+                $serverBalanceCount->save();
+            }
+        }
+
+        // 获取 Pterodactyl 并计费
+        foreach ($pterodactylServers as $pterodactylServer) {
+            // 金额
+            $project_id = $pterodactylServer->project_id;
+
+            $need_pay = $pterodactylServer->template->price;
+
+            if (!Project::cost($project_id, $need_pay)) {
+                // 扣费失败，删除服务器
+                $pterodactylController = new PterodactylController();
+                $pterodactylController->deleteServerById($pterodactylServer->server_id);
+                Message::send('游戏服务器 ' . $pterodactylServer->name . '因为积分不足而自动删除。', $project_id);
+            } else {
+                $serverBalanceCount = new ServerBalanceCount();
+                $serverBalanceCount->server_id = config('app.pterodactyl_server_id');
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->user_id = $pterodactylServer->project->user_id;
                 $serverBalanceCount->save();
             }
         }

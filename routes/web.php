@@ -120,6 +120,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/easyPanel', Controllers\EasyPanelController::class);
     Route::resource('/field', Controllers\UserFieldController::class);
 
+    Route::resource('/gameServer', Controllers\PterodactylController::class);
+
+
 
 
     // Route::resource('/images', ImageController::class);
