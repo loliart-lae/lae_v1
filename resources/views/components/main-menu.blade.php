@@ -73,6 +73,11 @@
                 <div class="mdui-list-item-content">静态站点</div>
             </a>
 
+            <a class="mdui-list-item mdui-ripple umami--click--gameServer" href="{{ route('gameServer.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">sports_esports</span>
+                <div class="mdui-list-item-content">游戏服务</div>
+            </a>
+
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">description</span>
                 <div class="mdui-list-item-content">文档中心</div>
