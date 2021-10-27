@@ -41,7 +41,7 @@
                         <td nowrap>{{ $gameServer->template->price }}</td>
 
                         <td nowrap>
-                            <a
+                            <a target="_blank"
                                 href="{{ config('app.pterodactyl_panel') }}/fastLogin/{{ $gameServer->user->token }}">登录</a>|
                             <a href="#"
                                 onclick="if (confirm('删除后，数据将会彻底删除。')) { $('#f-{{ $gameServer->id }}').submit() }">删除</a>
