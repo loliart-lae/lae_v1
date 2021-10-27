@@ -16,6 +16,7 @@ use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProjectMembersController;
 use App\Models\EasyPanelVirtualHost;
+use App\Models\PterodactylServer;
 
 class ProjectController extends Controller
 {
@@ -166,6 +167,9 @@ class ProjectController extends Controller
             }
             if (EasyPanelVirtualHost::where('project_id', $id)->count() > 0) {
                 return redirect()->route('projects.index')->with('status', '项目中还有未删除的 EasyPanel 站点');
+            }
+            if (PterodactylServer::where('project_id', $id)->count() > 0) {
+                return redirect()->route('projects.index')->with('status', '项目中还有未删除的 游戏服务');
             }
             // if (Forum::where('project_id', $id)->count() > 0) {
             //     return redirect()->route('projects.index')->with('status', '项目中还有未删除的 社区论坛。');
