@@ -324,6 +324,7 @@ class PterodactylController extends Controller
             "feature_limits" => [
                 "databases" => $config->databases,
                 "backups" => $config->backups,
+                "allocations" => 5,
             ],
             "allocation" => [
                 "default" => $config->allocation
