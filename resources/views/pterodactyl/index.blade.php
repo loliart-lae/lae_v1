@@ -14,6 +14,8 @@
                 <tr>
                     <th>ID</th>
                     <th>名称</th>
+                    <th>镜像</th>
+                    <th>模板</th>
                     <th>积分/分钟</th>
                     <th>操作</th>
                 </tr>
@@ -34,9 +36,13 @@
                         <td nowrap>{{ $gameServer->id }}</td>
                         <td nowrap><a href="{{ route('gameServer.edit', $gameServer->id) }}">{{ $gameServer->name }}</a>
                         </td>
+                        <td nowrap>{{ $gameServer->image->name }}</td>
+                        <td nowrap>{{ $gameServer->template->name }}</td>
                         <td nowrap>{{ $gameServer->template->price }}</td>
 
                         <td nowrap>
+                            <a
+                                href="{{ config('app.pterodactyl_panel') }}/fastLogin/{{ $gameServer->user->token }}">登录</a>|
                             <a href="#"
                                 onclick="if (confirm('删除后，数据将会彻底删除。')) { $('#f-{{ $gameServer->id }}').submit() }">删除</a>
                             <form id="f-{{ $gameServer->id }}" method="post"
