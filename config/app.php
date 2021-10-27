@@ -138,8 +138,8 @@ return [
      * Pterodactyl Panel`
      */
     'pterodactyl_panel' => env('PTERODACTYL_PANEL', 'http://localhost'),
-    'pterodactyl_panel_api_token' => env('ag76yJ29LkM1VEyied0KlGaqDu6Kzid883Yic4CR9jFkocG8', '12345678'),
-
+    'pterodactyl_panel_api_token' => env('PTERODACTYL_API_TOKEN', '12345678'),
+    'pterodactyl_server_id' => env('PTERODACTYL_SERVER_ID'),
 
 
     /*
