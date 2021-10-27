@@ -14,6 +14,8 @@ use App\Models\PterodactylTemplate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Ramsey\Uuid\Nonstandard\UuidV6;
 
 class PterodactylController extends Controller
 {
@@ -434,7 +436,22 @@ class PterodactylController extends Controller
         $pterodactylUser = new PterodactylUser();
         $pterodactylUser_data = $pterodactylUser->where('token', $token)->firstOrFail();
 
-        ProjectActivityController::save($pterodactylUser_data->project_id, '游戏服务器后台登录成功。', true);
+        $cache_name = 'oae_pterodactyl_user_' . $pterodactylUser->id;
+        if (Cache::has($cache_name)) {
+            if (Cache::get($cache_name, 1) == 5) {
+                // 重置Token
+                $pterodactylUser->where('token', $token)->update([
+                    'token' => UuidV6::uuid6()->toString(),
+                ]);
+                $msg = '十分钟内登录次数过多，Token已被重置。';
+            } else {
+                Cache::increment($cache_name);
+            }
+        } else {
+            Cache::put($cache_name, 1, 600);
+        }
+
+        ProjectActivityController::save($pterodactylUser_data->project_id, '游戏服务器后台登录成功。' . $msg ?? null, true);
 
         return response()->json([
             'user_id' => $pterodactylUser_data->user_id,
