@@ -163,13 +163,13 @@ class TunnelController extends Controller
         ProjectActivityController::save($tunnel->project->id, '展示了穿透隧道' . $tunnel->name . ' 的配置文件。');
 
 
-        $address = $tunnel->server->address;
+        $address = explode('|', $tunnel->server->address);
 
         $ini = <<<EOF
 # 这是你的配置文件，请将它填入frpc.ini
 [common]
-server_addr = $address
-server_port = 1024
+server_addr = {$address[0]}
+server_port = {$address[1]}
 user = $tunnel->client_token
 token = lightart_top
 
