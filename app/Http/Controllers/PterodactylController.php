@@ -315,7 +315,7 @@ class PterodactylController extends Controller
             "egg" => $config->egg,
             "docker_image" => $config->image,
             "startup" => $config->startup,
-            "environment" => json_encode($config->environment),
+            "environment" => $config->environment,
             "limits" => [
                 "memory" => $config->memory,
                 "swap" => $config->swap,
