@@ -332,7 +332,12 @@ class PterodactylController extends Controller
                 "default" => $config->allocation
             ]
         ];
-        $request = Http::withToken(config('app.pterodactyl_panel_api_token'))->post(config('app.pterodactyl_panel') . '/api/application/servers', $data);
+        try {
+            $request = Http::withToken(config('app.pterodactyl_panel_api_token'))->post(config('app.pterodactyl_panel') . '/api/application/servers', $data);
+        } catch (Exception $e) {
+            Log::error($e);
+            throw new Exception($e);
+        }
         return $request;
     }
 
