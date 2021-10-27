@@ -60,7 +60,7 @@ class PterodactylController extends Controller
     {
         $this->validate($request, [
             'project_id' => 'required',
-            'name' => 'required',
+            'name' => 'required|alpha_dash',
             'image_id' => 'required',
             'template_id' => 'required'
         ]);
@@ -86,7 +86,7 @@ class PterodactylController extends Controller
 
             // 执行创建
             $config = (object)[
-                'name' => Str::random(10),
+                'name' => $request->name,
                 'egg' => $image_data->egg,
                 'image' => $image_data->docker_image,
                 'startup' => $image_data->startup,
@@ -164,7 +164,7 @@ class PterodactylController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|alpha_dash',
             'image_id' => 'required',
             'template_id' => 'required'
         ]);
