@@ -216,8 +216,8 @@ sk = {$tunnel->sk}
 
 #------ 对端复制开始 --------
 [common]
-server_addr = $address
-server_port = 1024
+server_addr = $address[0]
+server_port = $address[1]
 user = lightart_top
 token = lightart_top
 
