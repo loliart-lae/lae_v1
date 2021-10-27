@@ -86,7 +86,7 @@ class PterodactylController extends Controller
 
             // 执行创建
             $config = (object)[
-                'name' => $request->name,
+                'name' => Auth::id() . '-' . $this->project_id . '-' . $request->name,
                 'egg' => $image_data->egg,
                 'image' => $image_data->docker_image,
                 'startup' => $image_data->startup,
