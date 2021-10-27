@@ -26,7 +26,7 @@ class PterodactylController extends Controller
      */
     public function index()
     {
-        $gameServers = PterodactylServer::with(['template', 'server', 'image'])->whereHas('member', function ($query) {
+        $gameServers = PterodactylServer::with(['template', 'server', 'image', 'user'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
 
