@@ -221,7 +221,9 @@ class PterodactylController extends Controller
         $pterodactylServer_data = $pterodactylServer_where->with('user')->firstOrFail();
         if (ProjectMembersController::userInProject($pterodactylServer_data->project_id)) {
             // 删除 服务器
-            $this->delete_server($pterodactylServer_data->server_id);
+            if (!$this->delete_server($pterodactylServer_data->server_id)) {
+                return redirect()->back()->with('status', '删除失败。');
+            }
 
             $pterodactylServer_where->delete();
 
@@ -336,20 +338,20 @@ class PterodactylController extends Controller
         $pterodactylServer_where = $pterodactylServer->where('server_id', $server_id);
         $pterodactylServer_data = $pterodactylServer_where->with('user')->firstOrFail();
         // 删除 服务器
-        $this->delete_server($pterodactylServer_data->server_id);
+        if ($this->delete_server($pterodactylServer_data->server_id)) {
+            $pterodactylServer_where->delete();
 
-        $pterodactylServer_where->delete();
-
-        // 如果这个项目中没有其他服务器，则删除这个项目的用户
-        if ($pterodactylServer->where('project_id', $pterodactylServer_data->project_id)->count() == 0) {
-            $this->delete_user($pterodactylServer_data->user->user_id);
+            // 如果这个项目中没有其他服务器，则删除这个项目的用户
+            if ($pterodactylServer->where('project_id', $pterodactylServer_data->project_id)->count() == 0) {
+                $this->delete_user($pterodactylServer_data->user->user_id);
+            }
         }
     }
 
     private function delete_server($id)
     {
         try {
-            Http::withToken(config('app.pterodactyl_panel_api_token'))->delete(config('app.pterodactyl_panel') . '/api/application/servers/' . $id . '/force');
+            Http::withToken(config('app.pterodactyl_panel_api_token'))->delete(config('app.pterodactyl_panel') . '/api/application/servers/' . $id);
             return true;
         } catch (Exception $e) {
             unset($e);
