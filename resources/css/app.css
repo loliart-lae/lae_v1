@@ -19,7 +19,8 @@ body {
     padding-left: 0 !important;
 }
 
-.mdui-container .mdui-btn {
+.mdui-container .mdui-btn,
+.mdui-dialog-actions .mdui-btn {
     border-radius: 4px !important;
     -webkit-border-radius: 4px !important;
     -moz-border-radius: 4px !important;
@@ -125,5 +126,5 @@ body {
 }
 
 .material-icons {
-    font-family: 'Material Icons Outlined';
+    font-family: "Material Icons Outlined";
 }
