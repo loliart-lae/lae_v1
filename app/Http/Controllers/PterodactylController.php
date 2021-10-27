@@ -452,12 +452,13 @@ class PterodactylController extends Controller
                 $msg = '十分钟内登录次数过多，Token已被重置。';
             } else {
                 Cache::increment($cache_name);
+                $msg = null;
             }
         } else {
             Cache::put($cache_name, 1, 600);
         }
 
-        ProjectActivityController::save($pterodactylUser_data->project_id, '游戏服务器后台登录成功。' . $msg ?? null, true);
+        ProjectActivityController::save($pterodactylUser_data->project_id, '游戏服务器后台登录成功。' . $msg, true);
 
         return response()->json([
             'user_id' => $pterodactylUser_data->user_id,
