@@ -73,7 +73,7 @@
                         <tr>
                             <td nowrap>{{ $i++ }}</td>
                             <td nowrap>{{ $template->name }}</td>
-                            <td nowrap>{{ $template->cpu_limit }}</td>
+                            <td nowrap>{{ $template->cpu_limit }} %</td>
                             <td nowrap>{{ $template->memory }} M</td>
                             <td nowrap>{{ $template->swap }} M</td>
                             <td nowrap>{{ $template->disk_space }} M</td>
