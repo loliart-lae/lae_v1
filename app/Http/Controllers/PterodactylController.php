@@ -336,6 +336,7 @@ class PterodactylController extends Controller
             $request = Http::withToken(config('app.pterodactyl_panel_api_token'))->post(config('app.pterodactyl_panel') . '/api/application/servers', $data);
         } catch (Exception $e) {
             Log::error($e);
+            Log::error($request->body());
             throw new Exception($e);
         }
         return $request;
