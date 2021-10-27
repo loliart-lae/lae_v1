@@ -64,6 +64,8 @@ Route::prefix('/')->group(function () {
 
     Route::get('/messages/unread', [Controllers\MessageController::class, 'get'])->name('messages.unread');
     Route::get('/blocked_users', [Controllers\UserController::class, 'showBlock'])->name('user.blocked');
+
+    Route::get('/pterodactyl/auth/callback/{token}', [Controllers\PterodactylController::class, 'callback'])->name('pterodactyl.callback');
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {

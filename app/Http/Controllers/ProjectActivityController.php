@@ -15,9 +15,15 @@ class ProjectActivityController extends Controller
         return view('projects.activities', compact('activities'));
     }
 
-    public static function save($project_id, $msg) {
+    public static function save($project_id, $msg, $null_user = false)
+    {
         $activity = new ProjectActivity();
-        $activity->user_id = Auth::id();
+        if ($null_user) {
+            $user_id = null;
+        } else {
+            $user_id = Auth::id();
+        }
+        $activity->user_id = $user_id;
         $activity->project_id = $project_id;
         $activity->msg = $msg;
         $activity->save();

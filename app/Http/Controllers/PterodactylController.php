@@ -433,8 +433,7 @@ class PterodactylController extends Controller
         $pterodactylUser = new PterodactylUser();
         $pterodactylUser_data = $pterodactylUser->where('token', $token)->firstOrFail();
 
-        ProjectActivityController::save(null, '游戏服务器: ' . $pterodactylUser_data->name . ' 后台地址登录成功。');
-
+        ProjectActivityController::save($pterodactylUser_data->project_id, '游戏服务器后台登录成功。', true);
 
         return response()->json([
             'user_id' => $pterodactylUser_data->user_id,
