@@ -1,29 +1,26 @@
  <ul class="mdui-menu @if (!Agent::isMobile()) mdui-menu-cascade @endif" id="app-menu" style="border-radius: 10px">
-     @auth
-         <li class="mdui-menu-item">
-             <a href="{{ route('user.index') }}" class="mdui-ripple">
-                 <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">person</i>
-                 {{ Auth::user()->name }}</a>
-         </li>
-         <li class="mdui-menu-item">
-             <a href="{{ route('billing.index') }}" class="mdui-ripple">
-                 <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">account_balance_wallet</i>
-                 <span class="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span>
-             </a>
-         </li>
-         <li class="mdui-menu-item">
-             <a href="{{ route('user.messages') }}" class="mdui-ripple umami--click--show-messages">
-                 <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">timeline</i>
-                 历史消息</a>
-         </li>
-         <li class="mdui-menu-item">
-             <a href="{{ route('user.balanceLog') }}" class="mdui-ripple umami--click--show-balanceLog">
-                 <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">history</i>
-                 积分历史
-             </a>
-         </li>
-     @endauth
-
+     <li class="mdui-menu-item">
+         <a href="{{ route('user.index') }}" class="mdui-ripple">
+             <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">person</i>
+             {{ Auth::user()->name }}</a>
+     </li>
+     <li class="mdui-menu-item">
+         <a href="{{ route('billing.index') }}" class="mdui-ripple">
+             <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">account_balance_wallet</i>
+             <span class="userBalance" style="display: contents;">{{ Auth::user()->balance }}</span>
+         </a>
+     </li>
+     <li class="mdui-menu-item">
+         <a href="{{ route('user.messages') }}" class="mdui-ripple umami--click--show-messages">
+             <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">timeline</i>
+             历史消息</a>
+     </li>
+     <li class="mdui-menu-item">
+         <a href="{{ route('user.balanceLog') }}" class="mdui-ripple umami--click--show-balanceLog">
+             <i class="mdui-menu-item-icon mdui-icon material-icons-outlined">history</i>
+             积分历史
+         </a>
+     </li>
      @if (!Agent::isMobile())
 
          @if (count($sponsors) > 0)
