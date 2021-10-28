@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\UserBalanceLog;
+use App\Models\UserSiteArticle;
 use App\Models\UserStatus;
 use App\Models\UserStatusLike;
 use App\Models\UserStatusReply;
@@ -211,5 +212,14 @@ class UserStatusController extends Controller
             return redirect()->route('main')->with('status', '回复已经删除');
         }
         return redirect()->back()->with('status', '删除失败。');
+    }
+
+    public function article()
+    {
+        $user = User::find(Auth::id());
+        $followings = $user->followings->toArray();
+        $ids = [];
+        $articles = UserSiteArticle::simplePaginate(100);
+        return view('articles', compact('articles', 'ids'));
     }
 }

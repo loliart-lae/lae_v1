@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasMany(UserStatus::class);
     }
 
+    public function articles()
+    {
+        return $this->hasMany(UserSiteArticle::class);
+    }
+
     public function feed()
     {
         $user_ids = $this->followings->toArray();

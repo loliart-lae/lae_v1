@@ -75,6 +75,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::put('/user/toggleFollow', [Controllers\UserController::class, 'toggleFollow'])->name('user.toggleFollow');
 
     Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
+    Route::get('/articles', [Controllers\UserStatusController::class, 'article'])->name('articles');
     Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->middleware('throttle:60,1')->name('status.like');
     Route::resource('/status', Controllers\UserStatusController::class);
     Route::put('/status/{id}/reply', [Controllers\UserStatusController::class, 'reply'])->name('status.reply');
