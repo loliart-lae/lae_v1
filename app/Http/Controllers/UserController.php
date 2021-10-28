@@ -111,6 +111,7 @@ class UserController extends Controller
                 return redirect()->back()->with('status', '无法连接到你的网站。');
             } else {
                 $str = '检测到 “' . $result . '“';
+                Message::send('检测到 WordPress 站点: ' . $str . '，稍后将索引您的文章。', Auth::id());
             }
         } else {
             UserSiteArticle::where('user_id', Auth::id())->delete();
