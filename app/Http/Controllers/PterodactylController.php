@@ -43,7 +43,7 @@ class PterodactylController extends Controller
     public function create(Server $server, PterodactylImage $pterodactylImage, PterodactylTemplate $pterodactylTemplate)
     {
         // 模板
-        $templates = $pterodactylTemplate::get();
+        $templates = $pterodactylTemplate::orderBy('price')->get();
         // 镜像
         $images = $pterodactylImage::get();
 
