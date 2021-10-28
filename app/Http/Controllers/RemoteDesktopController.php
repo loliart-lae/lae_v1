@@ -47,11 +47,10 @@ class RemoteDesktopController extends Controller
     public function store(Request $request, Server $server, RemoteDesktop $remote_desktop)
     {
         $this->validate($request, [
-            'username' => 'required|alpha_dash|min:3|max:15',
+            'username' => 'required|alpha_dash|min:3|max:13',
             'project_id' => 'required',
             'server_id' => 'required',
-            'username' => 'required|alpha_dash|min:3|max:15',
-            'password' => 'required|alpha_dash|min:1|max:20'
+            'password' => 'required|alpha_dash|min:1|max:10'
         ]);
 
         if (strtolower($request->username) == 'administrator') {
