@@ -34,8 +34,17 @@
                             placeholder="http(s)://" />
                     </div>
 
+                    <div class="mdui-m-t-2 mdui-m-b-2">
+                        <label class="mdui-checkbox">
+                            <input type="checkbox" value="1" name="wp_index" @if ($user->wp_index) checked @endif />
+                            <i class="mdui-checkbox-icon"></i>
+                            索引站点(仅WordPress)
+                        </label>
+                    </div>
+
+
                     <button type="submit"
-                        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-profile">修改</button>
+                        class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-m-r-1 umami--click--update-profile">修改</button>
                     <span onclick="updateToken()"
                         class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-token">更新访问密钥</span>
                 </form>

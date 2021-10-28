@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
 use App\Models\User;
-use App\Models\UserBalanceLog;
 use Ramsey\Uuid\Uuid;
+use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Models\UserBalanceLog;
+use App\Models\UserSiteArticle;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -88,19 +89,40 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'bio' => 'required',
-            'website' => 'url'
+            'website' => 'url|nullable',
+            'wp_index' => 'boolean',
         ]);
         $user_data = User::where('id', $id);
         if (!$user_data->exists()) {
             return redirect()->back()->with('status', '用户不存在。');
         }
 
+        $wp_index = $request->wp_index ?? false;
+
+        if (is_null($request->website)) {
+            $wp_index = false;
+        }
+
+        $str = null;
+        if ($wp_index) {
+            // 检查
+            $result = WordPressFetchController::check($request->website);
+            if (!$result) {
+                return redirect()->back()->with('status', '无法连接到你的网站。');
+            } else {
+                $str = '检测到 “' . $result . '“';
+            }
+        } else {
+            UserSiteArticle::where('user_id', Auth::id())->delete();
+        }
+
         $user_data->update([
             'bio' => $request->bio,
-            'website' => $request->website
+            'website' => $request->website,
+            'wp_index' => $wp_index,
         ]);
 
-        return redirect()->back()->with('status', '用户资料已更新。');
+        return redirect()->back()->with('status', '用户资料已更新。' . $str);
     }
 
     /**
@@ -146,7 +168,8 @@ class UserController extends Controller
         return response()->json(['status' => 1, 'api_token' => $str]);
     }
 
-    public function showBlock() {
+    public function showBlock()
+    {
         $users = User::where('blocked', 1)->simplePaginate(100);
         return view('block', compact('users'));
     }
