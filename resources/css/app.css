@@ -90,6 +90,12 @@ body {
     padding-right: 5px;
 }
 
+#main-drawer {
+    transition-delay: 0 !important;
+    transition-duration: .3s !important;
+    transition-timing-function: ease !important;
+}
+
 .mdui-drawer .mdui-list-item {
     border-radius: 0 50px 50px 0;
     -webkit-border-radius: 0 50px 50px 0;
