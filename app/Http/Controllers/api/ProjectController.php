@@ -19,7 +19,7 @@ class ProjectController extends Controller
     {
         $projects = ProjectMember::where('user_id', Auth::id())->with('project')->get();
         return response()->json([
-            'status' => 0,
+            'status' => 1,
             'data' => $projects
         ]);
     }
