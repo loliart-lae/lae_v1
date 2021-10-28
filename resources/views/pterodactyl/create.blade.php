@@ -118,7 +118,8 @@
     </form>
 
     <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
-            注意：每分钟价格 = 地区服务器基础价格<br />
+            注意：节点由服务器随机选择，无法更改。<br />
+            一些配置参数可以在创建服务器后修改，比如修改服务器软件版本。<br />
         </small></div>
 
 @endsection
