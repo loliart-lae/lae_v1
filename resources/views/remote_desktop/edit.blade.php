@@ -10,7 +10,7 @@
         @csrf
         @method('PUT')
 
-        <div class="mdui-textfield">
+        <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">正在修改“{{ $rdp->username }}”的密码</label>
             <input class="mdui-textfield-input" type="password" name="password" />
         </div>
