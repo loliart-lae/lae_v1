@@ -137,8 +137,4 @@
             注意：节点由服务器随机选择，无法更改。<br />
             一些配置参数可以在创建服务器后修改，比如修改服务器软件版本。<br />
         </small></div>
-
-    <script>
-        mdui.mutation()
-    </script>
 @endsection
