@@ -10,6 +10,10 @@ body {
     color: #fff !important;
 }
 
+.mdui-tab-scrollable {
+    padding-left: 0 !important;
+}
+
 .mdui-container .mdui-btn,
 .mdui-dialog-actions .mdui-btn {
     border-radius: 4px !important;
@@ -83,7 +87,7 @@ body {
 
 #main-drawer {
     transition-delay: 0 !important;
-    transition-duration: 0.3s !important;
+    transition-duration: .3s !important;
     transition-timing-function: ease !important;
 }
 
