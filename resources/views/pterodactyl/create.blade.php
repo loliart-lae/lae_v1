@@ -138,4 +138,7 @@
             一些配置参数可以在创建服务器后修改，比如修改服务器软件版本。<br />
         </small></div>
 
+    <script>
+        mdui.mutation()
+    </script>
 @endsection
