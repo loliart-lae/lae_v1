@@ -88,7 +88,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'bio' => 'required',
+            'bio' => 'nullable|max:30',
             'website' => 'url|nullable',
             'wp_index' => 'boolean',
         ]);
