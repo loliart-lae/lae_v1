@@ -33,15 +33,14 @@ class FetchWordPressSiteJob implements ShouldQueue
      */
     public function handle()
     {
-        $lock = Cache::lock('lae_user_wp_fetch_lock');
-
-        if ($lock->get()) {
+        $cache = Cache::get('lae_user_wp_fetch', true);
+        if ($cache) {
             $data = User::where('wp_index', 1)->cursor();
             foreach ($data as $user) {
                 WordPressFetchController::fetch($user->id, $user->website);
             }
 
-            $lock->release();
+            Cache::put('lae_user_wp_fetch', 0);
             return true;
         } else {
             return false;
