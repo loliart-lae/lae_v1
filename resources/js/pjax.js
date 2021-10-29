@@ -47,6 +47,9 @@ $(document).on("pjax:complete", function (event) {
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
     $('.load-hidden').fadeIn(100);
+
+    mdui.mutation()
+
 })
 
 if (window.history && window.history.pushState) {
