@@ -12,7 +12,8 @@
     @php($admins = config('admin.admin_users'))
 
     <div class="mdui-typo">
-        <h4><a href="{{ route('main') }}">我的时间河</a>&nbsp;|&nbsp;<a href="{{ route('global') }}">全站时间河</a>&nbsp;|&nbsp;博文</h4>
+        <h4><a href="{{ route('main') }}">我的时间河</a>&nbsp;|&nbsp;<a href="{{ route('global') }}">全站时间河</a>&nbsp;|&nbsp;博文
+        </h4>
     </div>
 
     <div id="masonry" class="mdui-row">
@@ -30,11 +31,7 @@
                             @endif
                             <small> /
                                 {{ \Carbon\Carbon::parse($article->datetime)->diffForHumans() }}</small>
-                            <div
-                                style="display: inline;
-                                                                                                                                                                        position: absolute;
-                                                                                                                                                                        right: 16px;
-                                                                                                                                                                        margin-top: 3px;cursor: pointer">
+                            <div style="display: inline;position: absolute;right: 16px;margin-top: 3px;cursor: pointer">
                                 @if (in_array($article->user->email, $admins))
                                     <span mdui-tooltip="{content: '官方人员'}"
                                         class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
