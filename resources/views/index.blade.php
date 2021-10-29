@@ -113,8 +113,6 @@
             <div class="mdui-text-center mdui-typo-caption-opacity mdui-text-center">Powered by Open App Engine</div>
             <a id="goto-main" style="display: none" href="{{ route('main') }}"></a>
             <script>
-                $('#load-spinner').css('display', 'block')
-                $('#load-spinner').css('opacity', '1')
                 mdui.mutation()
                 $(document).ready(function() {
                     setTimeout(function() {
