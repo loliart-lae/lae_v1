@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\ServerBalanceCountController;
 
 class ServerLastMonthCount extends Command
@@ -45,6 +46,14 @@ class ServerLastMonthCount extends Command
         $this->info('正在统计数据，可能会比较慢。');
         $balance = new ServerBalanceCountController();
         $data = $balance->lastMonth($this->option('sid'));
-        $this->info('上个月，一共有 ' . $data['counts'] . ' 比交易，共产生了 ' . $data['balance'] . ' 比积分流入，大约 ' . number_format($data['balance'] / config('billing.exchange_rate'), 2) . ' 元。');
+
+        $result = '上个月，一共有 ' . $data['counts'] . ' 比交易，共产生了 ' . $data['balance'] . ' 比积分流入，大约 ' . number_format($data['balance'] / config('billing.exchange_rate'), 2) . ' 元。';
+        $this->info($result);
+
+        Http::post(config('app.cq_http') . '/send_private_msg', [
+            "user_id" => config('app.cq_master'),
+            "message" => $result,
+            "auto_escape" => "true",
+        ]);
     }
 }
