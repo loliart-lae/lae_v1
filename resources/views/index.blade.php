@@ -111,7 +111,6 @@
 
         @else
             <div class="mdui-text-center mdui-typo-caption-opacity mdui-text-center">Powered by Open App Engine</div>
-            @include('include._loading')
             <a id="goto-main" style="display: none" href="{{ route('main') }}"></a>
             <script>
                 $('#load-spinner').css('display', 'block')
