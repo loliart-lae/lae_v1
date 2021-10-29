@@ -8,14 +8,14 @@
     <p>你好，{{ Auth::user()->name }}。</p>
 
     @php
-        $lxdContainers = App\Models\LxdContainer::count();
-        $remote_desktops = App\Models\RemoteDesktop::count();
-        $tunnels = App\Models\Tunnel::count();
-        $fastVisits = App\Models\FastVisit::count();
-        $documents  = App\Models\Document::count();
-        $staticPages = App\Models\StaticPage::count();
-        $easyPanels = App\Models\EasyPanelVirtualHost::count();
-
+    $lxdContainers = App\Models\LxdContainer::count();
+    $remote_desktops = App\Models\RemoteDesktop::count();
+    $tunnels = App\Models\Tunnel::count();
+    $fastVisits = App\Models\FastVisit::count();
+    $documents = App\Models\Document::count();
+    $staticPages = App\Models\StaticPage::count();
+    $easyPanels = App\Models\EasyPanelVirtualHost::count();
+    $gameServers = App\Models\PterodactylServer::count();
     @endphp
 
     <div class="mdui-row mdui-m-t-2">
@@ -74,7 +74,9 @@
 
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
                 <div class="mdui-typo-body-1-opacity">服务数量总计</div>
-                <div class="mdui-typo-display-1 mdui-m-t-1">{{ $lxdContainers + $remote_desktops + $tunnels + $fastVisits + $documents + $staticPages + $easyPanels + $gameServers}}</div>
+                <div class="mdui-typo-display-1 mdui-m-t-1">
+                    {{ $lxdContainers + $remote_desktops + $tunnels + $fastVisits + $documents + $staticPages + $easyPanels + $gameServers }}
+                </div>
             </div>
         </div>
     </div>
