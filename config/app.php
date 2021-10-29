@@ -135,6 +135,12 @@ return [
     'host_by' => env('HOST_BY', 'anonymous'),
 
     /**
+     * CQ HTTP API
+     */
+    'cq_http' => env('CQ_HTTP_API', 'http://127.0.0.1:5700'),
+    'cq_master' => env('CQ_MASTER', 00000),
+
+    /**
      * Pterodactyl Panel`
      */
     'pterodactyl_panel' => env('PTERODACTYL_PANEL', 'http://localhost'),
