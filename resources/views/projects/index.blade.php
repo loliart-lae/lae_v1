@@ -18,7 +18,7 @@
     </a>
     <div id="masonry" class="mdui-row">
         @foreach ($projects as $project)
-            <div class="mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 poll">
+            <div class="mdui-col-sm-6 mdui-col-xs-12 mdui-m-t-1 poll">
                 <div>
                     <h3 id="proj-{{ $project->project->id }}" class="scroll_listen mdui-text-color-theme">
                         {{ $project->project->name }}</h3>
