@@ -87,7 +87,7 @@ body {
 
 #main-drawer {
     transition-delay: 0 !important;
-    transition-duration: .3s !important;
+    transition-duration: 0.3s !important;
     transition-timing-function: ease !important;
 }
 
