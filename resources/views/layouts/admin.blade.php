@@ -28,7 +28,7 @@
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
     <div class="mdui-appbar mdui-appbar-fixed" id="appbar">
-        <div class="mdui-tab mdui-color-theme" mdui-tab>
+        <div class="mdui-tab mdui-tab-scrollable mdui-color-theme" mdui-tab>
             <a href="{{ route('admin.index') }}" class="mdui-ripple mdui-ripple-white">总览</a>
             <a href="{{ route('users.index') }}" class="mdui-ripple mdui-ripple-white">用户管理</a>
             <a href="{{ route('balance.index') }}" class="mdui-ripple mdui-ripple-white">应用容器</a>
