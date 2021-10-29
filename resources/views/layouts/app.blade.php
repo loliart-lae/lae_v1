@@ -39,6 +39,10 @@
             <a href="/" class="mdui-typo-title" style="font-weight: 400;">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @auth
+                <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white turn-animate" id="turn"
+                    mdui-tooltip="{content: '指示器', delay: 1000}">
+                    <i class="mdui-icon material-icons-outlined">refresh</i>
+                </span>
                 <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-menu="{target: '#app-menu'}">
                     <i class="mdui-icon material-icons-outlined">more_vert</i>
                 </span>
@@ -55,8 +59,6 @@
     </div>
 
     <x-offline-tip />
-
-    @include('include._loading')
 
     <div class="mdui-container pjax-container" id="main">
         <div id="topic" class="mdui-m-b-1">

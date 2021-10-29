@@ -22,34 +22,22 @@ window.addEventListener('offline', showOfflineTip)
 $(document).pjax('a', '.pjax-container')
 
 $(document).on('pjax:clicked', function () {
-    $('#load-spinner').css('top', '12vh')
     $('#main').css('opacity', 0)
-    $('.load-hidden').fadeOut(100);
+    $('#turn').css('animation-play-state', 'running')
 })
 $(document).on("pjax:timeout", function (event) {
-    $('#main').css('overflow', 'hidden')
-    $('#load-spinner-text').html('仍在加载...')
-    $('#load-spinner-text').animate({
-        opacity: 1
-    })
-    $('#load-spinner').css('top', '14vh')
-
     event.preventDefault()
 })
 
 $(document).on("pjax:complete", function (event) {
     mainMenu.update()
 
-    $('#load-spinner-text').css('opacity', 0)
-    $('#load-spinner').css('top', '-10vh')
-
     $('#main').css('height', 'auto')
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
-    $('.load-hidden').fadeIn(100);
+    $('#turn').css('animation-play-state', 'paused')
 
     mdui.mutation()
-
 })
 
 if (window.history && window.history.pushState) {
