@@ -6,17 +6,8 @@ body {
     -o-transition: all 0.3s ease-in-out;
 }
 
-.mdui-theme-primary-blue .mdui-color-theme,
-.mdui-tab .mdui-tab-active {
+.mdui-theme-primary-blue .mdui-color-theme {
     color: #fff !important;
-}
-
-.mdui-tab a {
-    color: #fff !important;
-}
-
-.mdui-tab-scrollable {
-    padding-left: 0 !important;
 }
 
 .mdui-container .mdui-btn,
@@ -92,7 +83,7 @@ body {
 
 #main-drawer {
     transition-delay: 0 !important;
-    transition-duration: .3s !important;
+    transition-duration: 0.3s !important;
     transition-timing-function: ease !important;
 }
 
