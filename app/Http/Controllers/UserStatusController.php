@@ -219,7 +219,7 @@ class UserStatusController extends Controller
         $user = User::find(Auth::id());
         $followings = $user->followings->toArray();
         $ids = [];
-        $articles = UserSiteArticle::newest('datetime')->simplePaginate(100);
+        $articles = UserSiteArticle::latest('datetime')->simplePaginate(100);
         return view('articles', compact('articles', 'ids'));
     }
 }
