@@ -8,7 +8,7 @@
     <form method="post" action="{{ route('easyPanel.store') }}">
         @csrf
 
-        <div class="mdui-tab" mdui-tab>
+        <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
             <a href="#choose-project" class="mdui-ripple">选择项目</a>
             <a href="#choose-server" class="mdui-ripple">选择服务器</a>
             <a href="#choose-template" class="mdui-ripple">选择配置模板</a>

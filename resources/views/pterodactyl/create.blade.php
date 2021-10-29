@@ -8,7 +8,7 @@
     <form method="post" action="{{ route('gameServer.store') }}">
         @csrf
 
-        <div class="mdui-tab" mdui-tab>
+        <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
             <a href="#choose-project" class="mdui-ripple">选择项目</a>
             <a href="#choose-image" class="mdui-ripple">选择镜像</a>
             <a href="#choose-template" class="mdui-ripple">选择配置模板</a>
