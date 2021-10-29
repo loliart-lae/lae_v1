@@ -3,12 +3,6 @@
 @section('title', '博文')
 
 @section('content')
-    <style>
-        .goto_url {
-            cursor: pointer;
-        }
-
-    </style>
     @php($admins = config('admin.admin_users'))
 
     <div class="mdui-typo">
@@ -18,7 +12,7 @@
 
     <div id="masonry" class="mdui-row">
         @foreach ($articles as $article)
-            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 goto_url" href="{{ $article->link }}">
+            <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
                 <div class="mdui-card mdui-hoverable user_{{ $article->user->id }}_status" style="margin-top: 5px">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
@@ -63,6 +57,11 @@
                         <div class="mdui-typo-title">{{ $article->title }}</div>
                         <br />
                         {{ strip_tags($article->description) }}
+                    </div>
+
+                    <div class="mdui-card-actions">
+                        <a  href="{{ $article->link }}" class="mdui-btn mdui-ripple">访问</a>
+                        {{-- <button class="mdui-btn mdui-ripple">预览</button> --}}
                     </div>
                 </div>
             </div>
@@ -122,10 +121,6 @@
                 }
             })
         }
-
-        $('.goto_url').click(function() {
-            window.open($(this).attr('href'))
-        })
     </script>
 
 @endsection
