@@ -22,6 +22,7 @@ window.addEventListener('offline', showOfflineTip)
 $(document).pjax('a', '.pjax-container')
 
 $(document).on('pjax:clicked', function () {
+    $('#main').css('filter', 'blur(1px)')
     $('#turn').css('animation-play-state', 'running')
 })
 $(document).on("pjax:timeout", function (event) {
@@ -35,6 +36,8 @@ $(document).on("pjax:complete", function (event) {
     $('#main').css('height', 'auto')
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
+    $('#main').css('filter', 'blur(0)')
+
     $('#turn').css('animation-play-state', 'paused')
     $('#thisLink').attr('href', window.location.href)
 
