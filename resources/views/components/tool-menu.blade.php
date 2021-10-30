@@ -32,8 +32,8 @@
                      <span class="mdui-menu-item-more"></span>
                  </a>
 
-                 @foreach ($sponsors as $sponsor)
-                     <ul class="mdui-menu mdui-menu-cascade">
+                 <ul class="mdui-menu mdui-menu-cascade">
+                     @foreach ($sponsors as $sponsor)
                          <li class="mdui-menu-item">
                              <a href="{{ $sponsor->link }}" class="mdui-ripple">
                                  <i class="mdui-menu-item-icon"></i>{{ $sponsor->name }}
@@ -46,8 +46,9 @@
                                  </ul>
                              @endif
                          </li>
-                     </ul>
-                 @endforeach
+                     @endforeach
+                 </ul>
+
              </li>
 
          @endif
