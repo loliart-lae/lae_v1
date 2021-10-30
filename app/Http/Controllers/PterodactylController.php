@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Ramsey\Uuid\Uuid;
 use App\Models\Server;
+use App\Models\Message;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PterodactylUser;
@@ -12,10 +13,10 @@ use App\Models\PterodactylImage;
 use App\Models\PterodactylServer;
 use App\Models\PterodactylTemplate;
 use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Nonstandard\UuidV6;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use Ramsey\Uuid\Nonstandard\UuidV6;
 
 class PterodactylController extends Controller
 {
@@ -387,12 +388,19 @@ class PterodactylController extends Controller
             $this->user_id = $pterodactylUser_data->user_id;
             return $pterodactylUser_data->id;
         }
+
+        $pwd = Str::random(10);
+
         $response = Http::withToken(config('app.pterodactyl_panel_api_token'))->post(config('app.pterodactyl_panel') . '/api/application/users', [
             "email" => Str::random(10) . '@oae.com',
             "username" => Str::random(10),
             "first_name" => Str::random(5),
             "last_name" => Str::random(5),
+            "password" => $pwd
         ]);
+
+        Message::send('刚刚新建的 游戏服务器 账号的默认密码: ' . $pwd);
+
         $data = json_decode($response->body());
         $pterodactylUser->user_id = $data->attributes->id;
         $pterodactylUser->token = Uuid::uuid6()->toString();
