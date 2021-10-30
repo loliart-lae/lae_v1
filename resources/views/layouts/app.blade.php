@@ -41,14 +41,13 @@
             @auth
                 <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white turn-animate" id="turn"
                     mdui-tooltip="{content: '指示器', delay: 1000}">
-                    <i class="mdui-icon material-icons-outlined">refresh</i>
+                    <i class="mdui-icon material-icons-outlined" onclick="$('#thisLink').click()">refresh</i>
                 </span>
                 <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-menu="{target: '#app-menu'}">
                     <i class="mdui-icon material-icons-outlined">more_vert</i>
                 </span>
                 <x-tool-menu />
             @endauth
-
         </div>
     </header>
 
@@ -79,6 +78,8 @@
             </p>
         </div>
     </div>
+
+    <a href="" id="thisLink" style="display: none"></a>
 
     <script src="/vendor/editor.md/lib/marked.min.js"></script>
     <script src="/vendor/editor.md/lib/prettify.min.js"></script>

@@ -36,6 +36,7 @@ $(document).on("pjax:complete", function (event) {
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
     $('#turn').css('animation-play-state', 'paused')
+    $('#thisLink').attr('href', window.location.href)
 
     mdui.mutation()
 })
