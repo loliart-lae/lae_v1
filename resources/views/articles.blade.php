@@ -73,13 +73,15 @@
 
     <script>
         var $container = $('#masonry')
-        masonry_resize()
 
         function masonry_resize() {
             $container.masonry({
                 itemSelector: '.poll',
             })
         }
+
+        masonry_resize()
+
 
         $(window).ready(function() {
             setTimeout(function() {
