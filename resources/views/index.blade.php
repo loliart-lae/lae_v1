@@ -110,7 +110,7 @@
             <p>如果你有想法想对我说，欢迎发送邮件至 <a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
 
         @else
-            <div class="mdui-text-center mdui-typo-caption-opacity mdui-text-center">Powered by Open App Engine</div>
+            <div class="mdui-text-center mdui-typo-display-1-opacity">Open App Engine</div>
             <a id="goto-main" style="display: none" href="{{ route('main') }}"></a>
             <script>
                 mdui.mutation()

@@ -22,10 +22,10 @@ window.addEventListener('offline', showOfflineTip)
 $(document).pjax('a', '.pjax-container')
 
 $(document).on('pjax:clicked', function () {
-    $('#main').css('opacity', 0)
     $('#turn').css('animation-play-state', 'running')
 })
 $(document).on("pjax:timeout", function (event) {
+    $('#main').css('opacity', 0)
     event.preventDefault()
 })
 
