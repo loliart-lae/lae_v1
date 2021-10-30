@@ -4,8 +4,11 @@
 
 @section('content')
     <div class="mdui-row">
-        <div class="mdui-typo-display-2">非常感谢以下人员对 {{ config('app.name') }} 的贡献</div>
-        <div class="mdui-typo-headline-opacity mdui-p-t-1">{{ config('app.name') }} 是大家一同筑起的。</div>
+        <div class="mdui-typo-display-1">非常感谢以下人员对 Light App Engine的贡献</div>
+        <div class="mdui-typo-headline-opacity mdui-p-t-1">贡献者们成就了这个平台
+            <br />
+            而我们使用开源回报社区
+        </div>
     </div>
 
     <div class="mdui-row mdui-p-t-3">
