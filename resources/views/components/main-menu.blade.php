@@ -83,6 +83,11 @@
                 <div class="mdui-list-item-content">文档中心</div>
             </a>
 
+            <a class="mdui-list-item mdui-ripple umami--click--contributes" href="{{ route('contributes') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">token</span>
+                <div class="mdui-list-item-content">贡献者</div>
+            </a>
+
             <a class="mdui-list-item mdui-ripple umami--click--forum" target="_blank" href="https://f.lightart.top">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">question_answer</span>
                 <div class="mdui-list-item-content">社区论坛</div>
