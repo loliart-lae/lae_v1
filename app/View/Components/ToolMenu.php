@@ -17,6 +17,7 @@ class ToolMenu extends Component
     {
         $this->sponsors = Sponsor::whereNull('sponsor_id')
         ->with('SponsorAds')
+        ->inRandomOrder()
         ->get();
 
     }
