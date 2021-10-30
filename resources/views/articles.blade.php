@@ -13,7 +13,8 @@
     <div id="masonry" class="mdui-row">
         @foreach ($articles as $article)
             <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
-                <div class="mdui-card mdui-hoverable user_{{ $article->user->id }}_status" style="margin-top: 5px">
+                <div class="mdui-card mdui-hoverable user_{{ $article->user->id }}_status" style="margin-top: 5px"
+                    ondblclick="getSite('{{ $article->link }}')">
                     <div class="mdui-card-header">
                         <img class="mdui-card-header-avatar"
                             src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($article->user->email)) }}" />
@@ -60,8 +61,7 @@
                     </div>
 
                     <div class="mdui-card-actions">
-                        <a  href="{{ $article->link }}" class="mdui-btn mdui-ripple">访问</a>
-                        {{-- <button class="mdui-btn mdui-ripple">预览</button> --}}
+                        <a href="{{ $article->link }}" class="mdui-btn mdui-ripple">访问</a>
                     </div>
                 </div>
             </div>
@@ -69,6 +69,8 @@
     </div>
 
     {{ $articles->links() }}
+
+    <div id="shot" class="mdui-container-fluid"></div>
 
     <script>
         var $container = $('#masonry')
@@ -85,6 +87,33 @@
                 masonry_resize()
             }, 500)
         })
+
+        function getSite(url) {
+            mdui.snackbar({
+                message: '正在获取屏幕截图...',
+                position: 'right-bottom'
+            })
+            $('#shot').html(`<div class="mdui-typo-display-1">正在获取...</div>`)
+            $.ajax({
+                type: 'GET',
+                url: `https://rpi4b.nwl.im:2083/controller/screenshot.php?url` + url,
+                dataType: 'json',
+                success: function(data) {
+                    $('#shot').html(
+                        `<div class="mdui-typo-display-1">屏幕截图</div><img class="mdui-img-fluid" src="data:image/png;base64,${data.data.image}" />`
+                    )
+                    $('html,body').animate({
+                        scrollTop: $("#shot").offset().top - 100
+                    }, 500)
+                },
+                error: function(data) {
+                    mdui.snackbar({
+                        message: '无法获取屏幕截图。',
+                        position: 'right-bottom'
+                    })
+                }
+            })
+        }
 
         function toggleFollow(id) {
             $.ajax({
