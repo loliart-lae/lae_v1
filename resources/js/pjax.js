@@ -4,6 +4,7 @@ var mainMenu = {
         if ($("#main-list a[href='" + url + "']").length > 0) {
             $('#main-list .mdui-list-item').removeClass('mdui-list-item-active')
             $("#main-list a[href='" + url + "']").addClass('mdui-list-item-active')
+            $("#backMain").attr('href', url)
         }
     }
 }
