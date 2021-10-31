@@ -62,7 +62,7 @@ class UserBalanceController extends Controller
         $data = array(
             "mid" => config('billing.mid'),
             "payId" => $order_id,
-            "param" => 'Light App Engine Billing',
+            "param" => Auth::id(),
             "type" => $pay_type,     //微信支付传入1 支付宝支付传入2 支付宝当面付传入4
             "price" => $request->balance,
             "notifyUrl" => config('billing.notify'),
