@@ -276,9 +276,7 @@ class AppEngineController extends Controller
             return redirect()->back()->with('status', '无法删除，因为容器还没有准备好。');
         }
 
-        if ($forwards->where('lxd_id', $id)->count() > 0) {
-            return redirect()->back()->with('status', '无法删除，因为容器绑定了端口转发。');
-        }
+        $forwards->where('lxd_id', $id)->delete();
 
         $project_id = $lxdContainer_data->project_id;
         $server_where_id = $lxdContainer_data->server;
