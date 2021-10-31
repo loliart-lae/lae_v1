@@ -11,7 +11,7 @@
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>成员</th>
                     <th>信息</th>
                     <th>时间</th>
