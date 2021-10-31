@@ -19,12 +19,14 @@
             @if (count($servers) > 0)
                 @php($i = 1)
                 @foreach ($servers as $server)
+                    @php($i++)
                     <tr>
-                        <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $server->id }}</td>
                         <td nowrap>{{ $server->name }}</td>
                         <td nowrap>{{ $server->price }}</td>
                         <td nowrap>{{ $server->network_limit }} Mbps</td>
-                        <td nowrap>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }} 元 / 月</td>
+                        <td nowrap>{{ number_format(($server->price * 44640) / config('billing.exchange_rate'), 2) }}
+                            元 / 月</td>
 
                         <td>
                             <label class="mdui-radio">
