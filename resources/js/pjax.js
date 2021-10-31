@@ -37,7 +37,7 @@ $(document).on("pjax:complete", function (event) {
     $('#main').css('height', 'auto')
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
-    $('#main').css('filter', 'blur(0)')
+    $('#main').css('filter', 'unset')
 
     $('#turn').css('animation-play-state', 'paused')
     $('#thisLink').attr('href', window.location.href)
