@@ -18,6 +18,14 @@ class StaticPageJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $tries = 3;
+
+    public function retryUtil()
+    {
+        // 1 天后
+        return now()->addDay();
+    }
+
     private $config;
     /**
      * Create a new job instance.
@@ -145,8 +153,6 @@ class StaticPageJob implements ShouldQueue
                     ]);
 
                     Message::send('静态站点 ' . $this->config['name'] . ' 备份完成。', $this->config['user']);
-
-
                 } catch (Exception $e) {
                     Message::send('此时无法备份静态托管 ' . $this->config['name'] . '。', $this->config['user']);
                 }

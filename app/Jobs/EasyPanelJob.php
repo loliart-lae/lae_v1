@@ -18,10 +18,19 @@ class EasyPanelJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $tries = 3;
+
     private $config, $sKey;
 
     private $c = 'whm';
     private $r;
+
+
+    public function retryUtil()
+    {
+        // 1 天后
+        return now()->addDay();
+    }
 
     /**
      * Create a new job instance.

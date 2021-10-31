@@ -14,6 +14,14 @@ class SendEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $tries = 3;
+
+    public function retryUtil()
+    {
+        // 1 天后
+        return now()->addDay();
+    }
+
     private $to, $content;
     /**
      * Create a new job instance.
