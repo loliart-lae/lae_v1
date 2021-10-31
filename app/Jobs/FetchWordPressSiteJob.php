@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Http\Controllers\WordPressFetchController;
+use Exception;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Cache;
@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use App\Http\Controllers\WordPressFetchController;
 
 class FetchWordPressSiteJob implements ShouldQueue
 {
@@ -37,7 +38,12 @@ class FetchWordPressSiteJob implements ShouldQueue
         if ($cache) {
             $data = User::where('wp_index', 1)->cursor();
             foreach ($data as $user) {
-                WordPressFetchController::fetch($user->id, $user->website);
+                try {
+                    WordPressFetchController::fetch($user->id, $user->website);
+                } catch (Exception $e) {
+                    unset($e);
+                    continue;
+                }
             }
 
             Cache::put('lae_user_wp_fetch', 0);
