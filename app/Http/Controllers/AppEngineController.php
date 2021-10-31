@@ -272,13 +272,14 @@ class AppEngineController extends Controller
         $lxdContainer = new LxdContainer();
         $forwards = new Forward();
         $lxdContainer_data = $lxdContainer->where('id', $id)->with('server', 'template')->firstOrFail();
-        if ($lxdContainer_data->status != 'running' && $lxdContainer_data->status != 'failed') {
+        if ($lxdContainer_data->status != 'running' && $lxdContainer_data->status != 'failed' && $lxdContainer_data->status != 'off') {
             return redirect()->back()->with('status', '无法删除，因为容器还没有准备好。');
         }
 
         if ($forwards->where('lxd_id', $id)->count() > 0) {
             return redirect()->back()->with('status', '无法删除，因为容器绑定了端口转发。');
         }
+
         $project_id = $lxdContainer_data->project_id;
         $server_where_id = $lxdContainer_data->server;
         if (ProjectMembersController::userInProject($project_id)) {
