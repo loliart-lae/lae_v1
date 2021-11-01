@@ -34,6 +34,14 @@ body {
     -o-border-radius: 5px;
 }
 
+.mdui-tab a {
+    border-radius: 3px 3px 0 0 !important;
+    -webkit-border-radius: 3px 3px 0 0 !important;
+    -moz-border-radius: 3px 3px 0 0 !important;
+    -ms-border-radius: 3px 3px 0 0 !important;
+    -o-border-radius: 3px 3px 0 0 !important;
+}
+
 .pjax-container {
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
@@ -133,8 +141,9 @@ body {
 .turn-animate {
     animation: turn 2s linear infinite;
     -webkit-animation: turn 2s linear infinite;
-    animation-play-state: paused
+    animation-play-state: paused;
 }
+
 @keyframes turn {
     0% {
         -webkit-transform: rotate(0deg);
