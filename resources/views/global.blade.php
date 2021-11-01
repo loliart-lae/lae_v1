@@ -12,7 +12,7 @@
             @csrf
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder umami--input--status" name="content"
-                    maxlength="140" rows="4" required autofocus placeholder="有没有想和大家分享的内容？"></textarea>
+                    maxlength="140" rows="4" required placeholder="有没有想和大家分享的内容？"></textarea>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple umami--click--publish-status">发布</button>
         </form>
