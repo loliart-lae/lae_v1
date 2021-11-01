@@ -191,7 +191,7 @@
         @if (count($errors) > 0)
             @foreach ($errors->all() as $error)
                 mdui.snackbar({
-                message: 'Error: ' + '{{ $error }}',
+                message: '{{ $error }}',
                 position: 'bottom'
                 })
             @endforeach
