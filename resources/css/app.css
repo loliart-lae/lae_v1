@@ -27,11 +27,11 @@ body {
 .mdui-dialog,
 .mdui-panel-item,
 .mdui-table-fluid {
-    border-radius: 5px !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border-radius: 8px !important;
+    -webkit-border-radius: 8px !important;
+    -moz-border-radius: 8px !important;
+    -ms-border-radius: 8px !important;
+    -o-border-radius: 8px !important;
 }
 
 .mdui-tab a {
