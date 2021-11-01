@@ -57,9 +57,9 @@ class Project extends Model
 
             if ($current_balance <= 50) {
                 if (!Cache::has('project_balance_' . $project_id . '_alerted')) {
-                    dispatch(new SendEmailJob($project_sql->user->email, $project_sql->name . " 项目的积分不足，还剩下" . $current_balance))->onQueue('mail');
+                    // dispatch(new SendEmailJob($project_sql->user->email, $project_sql->name . " 项目的积分不足，还剩下" . $current_balance))->onQueue('mail');
                     Message::send($project_sql->name . " 项目的积分不足，还剩下" . $current_balance, $project_sql->user->id);
-                    Cache::put('project_balance_' . $project_id . '_alerted', 1, 43200);
+                    // Cache::put('project_balance_' . $project_id . '_alerted', 1, 43200);
                 }
             }
         } catch (LockTimeoutException $e) {
