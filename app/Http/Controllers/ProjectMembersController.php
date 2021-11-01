@@ -16,7 +16,7 @@ class ProjectMembersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Project $project, ProjectMember $member)
+    public function index()
     {
         return redirect()->back()->with('status', 'success');
     }
