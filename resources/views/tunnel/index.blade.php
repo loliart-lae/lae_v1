@@ -51,7 +51,7 @@
                     @endif
                     <tr>
                         <td nowrap>{{ $i++ }}</td>
-                        <td nowrap>{{ $tunnel->name }}</td>
+                        <td nowrap><a href="{{ route('tunnels.edit', $tunnel->id) }}">{{ $tunnel->name }}</a></td>
                         <td nowrap>{{ strtoupper($tunnel->protocol) }}</td>
                         <td nowrap>{{ $tunnel->local_address }}</td>
                         <td nowrap>

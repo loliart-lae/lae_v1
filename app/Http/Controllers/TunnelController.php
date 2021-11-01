@@ -246,7 +246,11 @@ EOF;
      */
     public function edit($id)
     {
-        //
+        $tunnel = Tunnel::where('id', $id)->firstOrFail();
+        if (!ProjectMembersController::userInProject($tunnel->project_id)) {
+            return redirect()->to('/')->with('status', '你没有合适的权限。');
+        }
+        return view('tunnel.edit', compact('tunnel'));
     }
 
     /**
@@ -258,7 +262,31 @@ EOF;
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'local_address' => 'required',
+        ]);
+
+        $tunnel = Tunnel::where('id', $id)->firstOrFail();
+        if (!ProjectMembersController::userInProject($tunnel->project_id)) {
+            return redirect()->to('/')->with('status', '你没有合适的权限。');
+        }
+
+        // 检查本地地址是否合法
+        if (strpos($request->local_address, ':') == false) {
+            return redirect()->back()->with('status', '内网地址校验失败。');
+        }
+
+        Tunnel::where('id', $id)->update(
+            [
+                'name' => $request->name,
+                'local_address' => $request->local_address,
+            ]
+        );
+
+        ProjectActivityController::save($tunnel->project->id, '修改了穿透隧道' . $tunnel->name . '，新的名字为:' . $request->name . '，新的本机地址为:' . $request->local_address);
+
+        return redirect()->route('tunnels.index')->with('status', '隧道已修改。');
     }
 
     /**
