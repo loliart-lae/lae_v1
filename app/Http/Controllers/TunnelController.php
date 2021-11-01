@@ -10,8 +10,6 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\ProjectMember;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Log;
-use Ramsey\Uuid\Nonstandard\UuidV6;
 use Illuminate\Support\Facades\Auth;
 
 class TunnelController extends Controller
@@ -265,6 +263,7 @@ EOF;
         $this->validate($request, [
             'name' => 'required',
             'local_address' => 'required',
+            'reset_token' => 'boolean'
         ]);
 
         $tunnel = Tunnel::where('id', $id)->firstOrFail();
@@ -277,14 +276,23 @@ EOF;
             return redirect()->back()->with('status', '内网地址校验失败。');
         }
 
+        if ($request->reset_token) {
+            $client_token = Uuid::uuid6()->toString();
+            $msg = '，并且重置了隧道认证信息。';
+        } else {
+            $client_token = $tunnel->client_token;
+            $msg = '。';
+        }
+
         Tunnel::where('id', $id)->update(
             [
                 'name' => $request->name,
                 'local_address' => $request->local_address,
+                'client_token' => $client_token
             ]
         );
 
-        ProjectActivityController::save($tunnel->project->id, '修改了穿透隧道' . $tunnel->name . '，新的名字为:' . $request->name . '，新的本机地址为:' . $request->local_address);
+        ProjectActivityController::save($tunnel->project->id, '修改了穿透隧道' . $tunnel->name . '，新的名字为 ' . $request->name . '，新的本机地址为 ' . $request->local_address . $msg);
 
         return redirect()->route('tunnels.index')->with('status', '隧道已修改。');
     }
@@ -337,6 +345,7 @@ EOF;
                 $tid = $client[1];
                 $token = $client[2];
             } catch (Exception $e) {
+                unset($e);
                 return response()->json(array(
                     "reject" => true,
                     "reject_reason" => "我怀疑你在搞事。",
@@ -368,6 +377,8 @@ EOF;
                         ));
                     }
                 }
+
+                ProjectActivityController::save($tunnel_info->project_id, '穿透隧道 ' . $tunnel_info->name . ' 登录成功。', true);
 
                 return response()->json(array(
                     "reject" => false,
