@@ -237,8 +237,14 @@ class UserStatusController extends Controller
     public function article_search(Request $request)
     {
         $articles = UserSiteArticle::search($request->keyword)->simplePaginate(10);
-        if ($request->ajax) {
-            return response()->json($articles);
+        if (Auth::check()) {
+            $user = User::find(Auth::id());
+            $followings = $user->followings->toArray();
+            $ids = [];
+            foreach ($followings as $following) {
+                $ids[] = $following['id'];
+            }
+            return view('articles', compact('articles', 'ids'));
         } else {
             return view('articles', compact('articles'));
         }
