@@ -18,9 +18,6 @@ Route::get('oauth/login', [Controllers\AuthController::class, 'login'])->name('l
 Route::get('oauth/callback', [Controllers\AuthController::class, 'OAuthCallback']);
 Route::post('oauth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
-Route::get('/doing', function () {
-    return view('doing');
-})->name('doing');
 
 Route::prefix('/')->group(function () {
     Route::get('/', function () {
