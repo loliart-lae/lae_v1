@@ -47,7 +47,7 @@ Route::prefix('/')->group(function () {
         return view('webSSH');
     })->name('webSSH');
 
-    Route::get('/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
+    Route::get('/article/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
     Route::get('/article/search', [Controllers\UserStatusController::class, 'article_search'])->name('articles.search');
 
     Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth']);
