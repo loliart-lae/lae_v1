@@ -12,10 +12,10 @@
         </div>
     @endauth
 
-    <div class="mdui-textfield">
+    <div id="search-input-div" class="mdui-textfield @if (!Request::get('keyword')) mdui-textfield-floating-label @endif">
         <label class="mdui-textfield-label">搜索关键词</label>
         <input class="mdui-textfield-input" type="search" name="keyword" id="keyword"
-            value="{{ Request::get('keyword') }} " />
+            value="{{ Request::get('keyword') }}" />
     </div>
 
     <div id="masonry" class="mdui-row">
@@ -124,6 +124,12 @@
                 $('#search_href').click()
             }, 1500)
 
+        })
+
+        $('#keyword').on('keydown', function() {
+            if ($('#keyword').val() != null) {
+                $('#search-input-div').addClass('mdui-textfield-floating-label')
+            }
         })
     </script>
     @auth
