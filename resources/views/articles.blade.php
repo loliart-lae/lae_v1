@@ -3,6 +3,9 @@
 @section('title', '博文')
 
 @section('content')
+
+    <div class="mdui-typo-display-1">博客文章</div>
+
     @php($admins = config('admin.admin_users'))
 
     @auth
@@ -21,7 +24,8 @@
     <div id="masonry" class="mdui-row">
         @if (count($articles) > 0)
             @foreach ($articles as $article)
-                <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 @if (Request::has('keyword')) animate__animated animate__backInUp @endif" ondblclick="window.open('{{ $article->link }}')">
+                <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 @if (Request::has('keyword')) animate__animated animate__backInUp @endif"
+                    ondblclick="window.open('{{ $article->link }}')">
                     <div class="mdui-card mdui-hoverable user_{{ $article->user->id }}_status" style="margin-top: 5px">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar"
