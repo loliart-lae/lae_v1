@@ -223,20 +223,20 @@ class UserStatusController extends Controller
             $ids[] = $following['id'];
         }
 
-        $articles = UserSiteArticle::latest('datetime')->simplePaginate(100);
+        $articles = UserSiteArticle::latest('datetime')->simplePaginate(40);
         return view('articles', compact('articles', 'ids'));
     }
 
     // 公共 阅览文章列表
     public function public_articles()
     {
-        $articles = UserSiteArticle::latest('datetime')->simplePaginate(100);
+        $articles = UserSiteArticle::latest('datetime')->simplePaginate(40);
         return view('articles', compact('articles'));
     }
 
     public function article_search(Request $request)
     {
-        $articles = UserSiteArticle::search($request->keyword)->simplePaginate(10);
+        $articles = UserSiteArticle::search($request->keyword)->simplePaginate(40);
         if (Auth::check()) {
             $user = User::find(Auth::id());
             $followings = $user->followings->toArray();
