@@ -21,7 +21,7 @@
     <div id="masonry" class="mdui-row">
         @if (count($articles) > 0)
             @foreach ($articles as $article)
-                <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 @if (Request::has('keyword')) animate__animated animate__backInUp @endif">
+                <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1 @if (Request::has('keyword')) animate__animated animate__backInUp @endif" ondblclick="window.open('{{ $article->link }}')">
                     <div class="mdui-card mdui-hoverable user_{{ $article->user->id }}_status" style="margin-top: 5px">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar"
