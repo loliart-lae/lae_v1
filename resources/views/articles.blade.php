@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="mdui-card-actions">
-                            <a href="{{ $article->link }}" class="mdui-btn mdui-ripple">访问</a>
+                            <a href="{{ $article->link }}" target="_blank" class="mdui-btn mdui-ripple">访问</a>
                         </div>
                     </div>
                 </div>
