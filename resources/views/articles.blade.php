@@ -117,7 +117,7 @@
                 setTimeout(function() {
                     $($('#masonry .poll')[i]).addClass(
                         'animate__animated animate__backOutDown')
-                }, i * 50 * Math.random() * 3)
+                }, Math.random() * 1000)
             }
 
             setTimeout(function() {
