@@ -39,10 +39,13 @@
             <a href="/" class="mdui-typo-title" style="font-weight: 400;">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @auth
-                <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" id="backMain"
-                    mdui-tooltip="{content: '回到主层级', delay: 1000}" href="#">
-                    <i class="mdui-icon material-icons-outlined">grid_view</i>
-                </a>
+
+                @if (!Agent::isMobile())
+                    <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" id="backMain"
+                        mdui-tooltip="{content: '回到主层级', delay: 1000}" href="#">
+                        <i class="mdui-icon material-icons-outlined">grid_view</i>
+                    </a>
+                @endif
 
                 <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white turn-animate" id="turn"
                     mdui-tooltip="{content: '指示器', delay: 1000}" onclick="$('#thisLink').click()">
