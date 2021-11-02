@@ -18,7 +18,6 @@ Route::get('oauth/login', [Controllers\AuthController::class, 'login'])->name('l
 Route::get('oauth/callback', [Controllers\AuthController::class, 'OAuthCallback']);
 Route::post('oauth/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
-
 Route::prefix('/')->group(function () {
     Route::get('/', function () {
         return view('index');
@@ -47,6 +46,9 @@ Route::prefix('/')->group(function () {
     Route::get('webSSH', function () {
         return view('webSSH');
     })->name('webSSH');
+
+    Route::get('/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
+    Route::get('/article/search', [Controllers\UserStatusController::class, 'article_search'])->name('articles.search');
 
     Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth']);
 

@@ -1,7 +1,7 @@
 <div>
     <div class="mdui-list" id="main-list">
         @guest
-            <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('index') }}">
+            <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('index') }}/">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">home</span>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
@@ -12,6 +12,10 @@
             <a class="mdui-list-item mdui-ripple umami--click--why-begin" href="{{ route('why_begin') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">volunteer_activism</span>
                 <div class="mdui-list-item-content">我们的初心</div>
+            </a>
+            <a class="mdui-list-item mdui-ripple umami--click--public-article" href="{{ route('articles.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">article</span>
+                <div class="mdui-list-item-content">文章</div>
             </a>
         @else
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('main') }}">
