@@ -47,11 +47,14 @@
                     </a>
                 @endif
 
-                <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white turn-animate" id="turn"
-                    mdui-tooltip="{content: '指示器', delay: 1000}" onclick="$('#thisLink').click()">
-                    <i class="mdui-icon material-icons-outlined">refresh</i>
-                </span>
+            @endauth
 
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white turn-animate" id="turn"
+                mdui-tooltip="{content: '指示器', delay: 1000}" onclick="$('#thisLink').click()">
+                <i class="mdui-icon material-icons-outlined">refresh</i>
+            </span>
+
+            @auth
                 <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-menu="{target: '#app-menu'}">
                     <i class="mdui-icon material-icons-outlined">more_vert</i>
                 </span>
