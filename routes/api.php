@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api;
 use App\Http\Controllers\api\v1;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,5 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::resource('/v1/_staticPage', v1\StaticPageController::class);
     Route::resource('/v1/_field', v1\UserFieldController::class);
 });
+
+Route::put('/serverMonitor/put', [Controllers\ServerMonitorController::class, 'save_data'])->name('serverMonitor.save_data');

@@ -35,10 +35,10 @@
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
-            {{-- <a class="mdui-list-item mdui-ripple umami--click--project" href="{{ route('monitor.index') }}">
+            <a class="mdui-list-item mdui-ripple umami--click--server-monitor" href="{{ route('serverMonitor.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">bar_chart</span>
-                <div class="mdui-list-item-content">形势集</div>
-            </a> --}}
+                <div class="mdui-list-item-content">资源图表</div>
+            </a>
 
             <div class="mdui-collapse-item">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">

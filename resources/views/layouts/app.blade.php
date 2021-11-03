@@ -237,6 +237,13 @@
         }
     </script>
 
+    <script>
+        if (!ifvisible.now()) {
+            // 重新载入Pjax
+            $.pjax.reload('.pjax-container')
+        }
+    </script>
+
     @include('extend.footer')
 </body>
 

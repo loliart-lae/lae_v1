@@ -65,6 +65,9 @@ Route::prefix('/')->group(function () {
     Route::get('/blocked_users', [Controllers\UserController::class, 'showBlock'])->name('user.blocked');
 
     Route::get('/pterodactyl/auth/callback/{token}', [Controllers\PterodactylController::class, 'callback'])->name('pterodactyl.callback');
+
+    Route::get('/serverMonitor/public/{id}', [Controllers\ServerMonitorController::class, 'public'])->name('serverMonitor.public')->middleware('throttle:60,1');
+
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -124,8 +127,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::resource('/gameServer', Controllers\PterodactylController::class);
 
-
-
+    Route::resource('/serverMonitor', Controllers\ServerMonitorController::class);
 
     // Route::resource('/images', ImageController::class);
 
