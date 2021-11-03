@@ -1,5 +1,5 @@
 <div>
-    <div class="mdui-list" id="main-list">
+    <div class="mdui-list" id="main-list" mdui-collapse="{accordion: true}">
         @guest
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('index') }}/">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">home</span>
@@ -35,52 +35,66 @@
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">
-                    widgets
-                </span>
-                <div class="mdui-list-item-content">应用容器</div>
-            </a>
-
-            {{-- <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">
-                    workspaces
-                </span>
-                <div class="mdui-list-item-content">工作空间</div>
+            {{-- <a class="mdui-list-item mdui-ripple umami--click--project" href="{{ route('monitor.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">bar_chart</span>
+                <div class="mdui-list-item-content">形势集</div>
             </a> --}}
 
-            <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
-                href="{{ route('remote_desktop.index') }}">
-                <span class="mdui-list-item-icon mdui-icons material-icons-outlined material-icons-outlined-outlined">
-                    desktop_windows
-                </span>
-                <div class="mdui-list-item-content">共享的 Windows</div>
-            </a>
+            <div class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <span class="mdui-list-item-icon mdui-icon material-icons-outlined">developer_board</span>
+                    <div class="mdui-list-item-content">云端计算</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
+                        <div class="mdui-list-item-content">应用容器</div>
+                    </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
+                        href="{{ route('remote_desktop.index') }}">
+                        <div class="mdui-list-item-content">共享的 Windows</div>
+                    </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--gameServer"
+                        href="{{ route('gameServer.index') }}">
+                        <div class="mdui-list-item-content">游戏服务</div>
+                    </a>
+                </div>
+            </div>
 
-            <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('tunnels.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
-                <div class="mdui-list-item-content">穿透隧道</div>
-            </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('fastVisit.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">call_missed_outgoing</span>
-                <div class="mdui-list-item-content">快捷访问</div>
-            </a>
+            <div class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
+                    <div class="mdui-list-item-content">访问调度</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('tunnels.index') }}">
+                        <div class="mdui-list-item-content">穿透隧道</div>
+                    </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--fastVisit" href="{{ route('fastVisit.index') }}">
+                        <div class="mdui-list-item-content">快捷访问</div>
+                    </a>
+                </div>
+            </div>
 
-            <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">connect_without_contact</span>
-                <div class="mdui-list-item-content">EasyPanel 站点</div>
-            </a>
+            <div class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <span class="mdui-list-item-icon mdui-icon material-icons-outlined">public</span>
+                    <div class="mdui-list-item-content">Web 服务</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
+                        <div class="mdui-list-item-content">EasyPanel 站点</div>
+                    </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--staticPage" href="{{ route('staticPage.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">public</span>
-                <div class="mdui-list-item-content">静态站点</div>
-            </a>
-
-            <a class="mdui-list-item mdui-ripple umami--click--gameServer" href="{{ route('gameServer.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">sports_esports</span>
-                <div class="mdui-list-item-content">游戏服务</div>
-            </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--staticPage"
+                        href="{{ route('staticPage.index') }}">
+                        <div class="mdui-list-item-content">静态站点</div>
+                    </a>
+                </div>
+            </div>
 
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">description</span>
