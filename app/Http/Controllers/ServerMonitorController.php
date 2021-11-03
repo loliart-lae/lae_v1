@@ -71,7 +71,6 @@ class ServerMonitorController extends Controller
         $monitorData->hostname = $request->hostname;
         $monitorData->cpu_usage = $request->cpu_usage;
         $monitorData->mem_usage = $request->mem_usage;
-        $monitorData->disk_usage = $request->disk_usage;
         $monitorData->upload_speed = $request->upload_speed;
         $monitorData->download_speed = $request->download_speed;
         $monitorData->monitor_id = $monitor_data->id;
