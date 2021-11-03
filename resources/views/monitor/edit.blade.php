@@ -38,7 +38,7 @@
         <div class="mdui-row-md-4 mdui-m-b-2">
             <div class="mdui-col">
                 <label class="mdui-checkbox" mdui-tooltip="{content: '重置后，你需要使用新的token来提交数据。', position: 'right'}">
-                    <input type="checkbox" name="reset_token" value="1" />
+                    <input type="checkbox" name="reset_token" id="reset_token" value="1" />
                     <i class="mdui-checkbox-icon"></i>
                     重置认证
                 </label>
@@ -53,7 +53,7 @@
 
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">Token</label>
-            <input class="mdui-textfield-input" value="{{ $monitor->token }}" readonly />
+            <input class="mdui-textfield-input" id="token-input" value="{{ $monitor->token }}" readonly />
         </div>
 
         <br />
@@ -64,6 +64,15 @@
                     $('#public_url').show()
                 } else {
                     $('#public_url').hide()
+                }
+            })
+
+            var origin_token = '{{ $monitor->token }}'
+            $('#reset_token').on('change', function() {
+                if ($(this).prop('checked')) {
+                    $('#token-input').val(null)
+                } else {
+                    $('#token-input').val(origin_token)
                 }
             })
         </script>
