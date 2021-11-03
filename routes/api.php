@@ -37,4 +37,4 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::resource('/v1/_field', v1\UserFieldController::class);
 });
 
-Route::put('/serverMonitor/put', [Controllers\ServerMonitorController::class, 'save_data'])->name('serverMonitor.save_data');
+Route::post('/serverMonitor/put', [Controllers\ServerMonitorController::class, 'save_data'])->name('serverMonitor.save_data');
