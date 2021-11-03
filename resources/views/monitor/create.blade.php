@@ -45,6 +45,7 @@
                     <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
                 </div>
             </div>
+            <br />
 
             <button class="mdui-btn mdui-ripple mdui-color-theme">新建</button>
         </div>
