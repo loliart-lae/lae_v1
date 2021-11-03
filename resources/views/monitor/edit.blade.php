@@ -51,6 +51,13 @@
                     target="_blank">{{ route('serverMonitor.public', $monitor->id) }}</a></span>
         </div>
 
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">Token</label>
+            <input class="mdui-textfield-input" value="{{ $monitor->token }}" readonly />
+        </div>
+
+        <br />
+
         <script>
             $('#is_public').on('change', function() {
                 if ($(this).prop('checked')) {
