@@ -87,7 +87,7 @@
         @endif
     </div>
 
-    {{ $articles->links() }}
+    {{ $articles->withQueryString()->links() }}
 
     <a id="search_href" href="#" style="display: none"></a>
 
