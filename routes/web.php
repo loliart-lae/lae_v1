@@ -50,7 +50,7 @@ Route::prefix('/')->group(function () {
     Route::get('/article/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
     Route::get('/article/search', [Controllers\UserStatusController::class, 'article_search'])->name('articles.search');
 
-    Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth']);
+    Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth'])->middleware('throttle: 1000, 1');
 
 
     Route::get('/documents/my', [Controllers\DocumentController::class, 'my'])->name('documents.my');
@@ -67,7 +67,6 @@ Route::prefix('/')->group(function () {
     Route::get('/pterodactyl/auth/callback/{token}', [Controllers\PterodactylController::class, 'callback'])->name('pterodactyl.callback');
 
     Route::get('/serverMonitor/public/{id}', [Controllers\ServerMonitorController::class, 'public'])->name('serverMonitor.public')->middleware('throttle:60,1');
-
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
