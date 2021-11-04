@@ -236,7 +236,12 @@ class UserStatusController extends Controller
 
     public function article_search(Request $request)
     {
-        $articles = UserSiteArticle::search($request->keyword)->simplePaginate(40);
+        if (is_null($request->keyword)) {
+            $articles = UserSiteArticle::latest('datetime')->simplePaginate(40);
+        } else {
+            $articles = UserSiteArticle::search($request->keyword)->orderBy('datetime', 'desc')->simplePaginate(40);
+        }
+
         if (Auth::check()) {
             $user = User::find(Auth::id());
             $followings = $user->followings->toArray();
