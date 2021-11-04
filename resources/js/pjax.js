@@ -23,7 +23,7 @@ window.addEventListener('offline', showOfflineTip)
 $(document).pjax('a', '.pjax-container')
 
 $(document).on('pjax:clicked', function () {
-    $('#main').css('filter', 'blur(1px)')
+    // $('#main').css('filter', 'blur(1px)')
     $('#turn').css('animation-play-state', 'running')
 })
 $(document).on("pjax:timeout", function (event) {
@@ -37,7 +37,7 @@ $(document).on("pjax:complete", function (event) {
     $('#main').css('height', 'auto')
     $('#main').css('overflow', 'unset')
     $('#main').css('opacity', 1)
-    $('#main').css('filter', 'unset')
+    // $('#main').css('filter', 'unset')
 
     $('#turn').css('animation-play-state', 'paused')
     $('#thisLink').attr('href', window.location.href)
@@ -52,3 +52,26 @@ if (window.history && window.history.pushState) {
 }
 
 mainMenu.update()
+
+
+let main_offset_top = $('#main').offset().top
+let bottom_fab_status = 0
+$(window).scroll(function () {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (scrollTop >= main_offset_top) {
+        bottom_fab_status = 1
+    } else {
+        bottom_fab_status = 0
+    }
+
+    if (bottom_fab_status) {
+        $('#bottom-fab').removeClass('mdui-fab-hide')
+    } else {
+        $('#bottom-fab').addClass('mdui-fab-hide')
+
+    }
+
+    console.log(bottom_fab_status)
+
+})
