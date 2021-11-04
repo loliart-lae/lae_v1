@@ -378,7 +378,7 @@ EOF;
                     }
                 }
 
-                ProjectActivityController::save($tunnel_info->project_id, '穿透隧道 ' . $tunnel_info->name . ' 登录成功。', true);
+                // ProjectActivityController::save($tunnel_info->project_id, '穿透隧道 ' . $tunnel_info->name . ' 登录成功。', true);
 
                 return response()->json(array(
                     "reject" => false,
