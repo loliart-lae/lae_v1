@@ -15,6 +15,7 @@
         <table class="mdui-table mdui-table-hoverable">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>ID</th>
                     <th>名称</th>
                     <th>短语(点击复制)</th>
@@ -40,6 +41,7 @@
                     @endif
                     <tr>
                         <td nowrap>{{ $i++ }}</td>
+                        <td nowrap>{{ $fastVisit->id }}</td>
                         <td nowrap>{{ $fastVisit->name }}</td>
                         <td nowrap><a class="can_copy umami--click--fastVisit-copy"
                                 data-clipboard-text="https://{{ $fastVisit->domain->domain }}/v/{{ $fastVisit->slug }}">{{ $fastVisit->slug }}</a>
