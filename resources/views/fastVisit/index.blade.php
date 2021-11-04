@@ -42,7 +42,7 @@
                     <tr>
                         <td nowrap>{{ $i++ }}</td>
                         <td nowrap>{{ $fastVisit->id }}</td>
-                        <td nowrap>{{ $fastVisit->name }}</td>
+                        <td nowrap><a href="{{ route('fastVisit.edit', $fastVisit->id) }}">{{ $fastVisit->name }}</a></td>
                         <td nowrap><a class="can_copy umami--click--fastVisit-copy"
                                 data-clipboard-text="https://{{ $fastVisit->domain->domain }}/v/{{ $fastVisit->slug }}">{{ $fastVisit->slug }}</a>
                         </td>
@@ -105,7 +105,7 @@
         function toggleAd(id, project_id) {
             $.ajax({
                 type: 'PUT',
-                url: '{{ url()->current() }}' + '/' + id,
+                url: '{{ url()->current() }}' + '/' + id + '/toggleAd',
                 data: {
                     'project_id': project_id
                 },

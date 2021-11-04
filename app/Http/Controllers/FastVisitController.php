@@ -136,7 +136,12 @@ class FastVisitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fastVisit = FastVisit::where('id', $id)->firstOrFail();
+        if (ProjectMembersController::userInProject($fastVisit->project_id)) {
+            return view('fastVisit.edit', compact('fastVisit'));
+        } else {
+            return redirect()->back()->with('status', '无权限访问。');
+        }
     }
 
     /**
@@ -148,6 +153,28 @@ class FastVisitController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'uri' => 'required',
+            'name' => 'required',
+            'enable_ad' => 'nullable|boolean',
+        ]);
+
+        $enable_ad = $request->enable_ad ?? 0;
+
+        $fastVisit = FastVisit::where('id', $id)->firstOrFail();
+        if (ProjectMembersController::userInProject($fastVisit->project_id)) {
+            FastVisit::where('id', $fastVisit->id)->update([
+                'name' => $request->name,
+                'uri' => $request->uri,
+                'show_ad' => $enable_ad
+            ]);
+
+            ProjectActivityController::save($fastVisit->project_id, '编辑了 快捷访问 ' . $fastVisit->name . '，新的名称为: ' . $request->name . '，新的地址为: ' . $request->uri);
+
+            return redirect()->back()->with('status', '快捷访问 已修改。');
+        } else {
+            return redirect()->back()->with('status', '无权限访问。');
+        }
     }
 
     /**

@@ -115,7 +115,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/projects/{project_id}/members', Controllers\ProjectMembersController::class);
     Route::get('/projects/{project_id}/activities', [Controllers\ProjectActivityController::class, 'index'])->name('projects.activities');
 
-    Route::put('/fastVisit/{id}', [Controllers\FastVisitController::class, 'toggleAd'])->name('fast_visit.update');
+    Route::put('/fastVisit/{id}/toggleAd', [Controllers\FastVisitController::class, 'toggleAd'])->name('fastVisit.toggleAd');
     Route::resource('/fastVisit', Controllers\FastVisitController::class);
 
     Route::post('/staticPage/{id}/backup', [Controllers\StaticPageController::class, 'backup'])->name('staticPage.backup');
