@@ -48,7 +48,7 @@ class UserStatusController extends Controller
     public function reply(Request $request, UserStatusReply $userStatusReply)
     {
         $this->validate($request, [
-            'content' => 'required|max:140',
+            'content' => 'required|max:340',
         ]);
 
         $id = $request->route('id');

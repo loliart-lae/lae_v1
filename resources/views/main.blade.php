@@ -12,7 +12,7 @@
         <form method="POST" action="{{ route('status.store') }}">
             @csrf
             <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="140" rows="4" required
+                <textarea class="mdui-textfield-input hitokoto_placeholder" name="content" maxlength="340" rows="4" required
                     placeholder="我存在你的存在。"></textarea>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>

@@ -12,7 +12,7 @@
             @csrf
             <div class="mdui-textfield">
                 <textarea class="mdui-textfield-input hitokoto_placeholder umami--input--status" name="content"
-                    maxlength="140" rows="4" required placeholder="I am because you are."></textarea>
+                    maxlength="340" rows="4" required placeholder="I am because you are."></textarea>
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple umami--click--publish-status">发布</button>
         </form>
