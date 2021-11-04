@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', '新建 应用容器')
+@section('title', __('lxd.new'))
 
 @section('content')
-    <div class="mdui-typo-display-2">新建 应用容器</div>
+    <div class="mdui-typo-display-2">__('lxd.new')</div>
 
     <form method="post" action="{{ route('lxd.store') }}">
         @csrf

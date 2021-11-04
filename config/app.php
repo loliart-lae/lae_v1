@@ -83,6 +83,10 @@ return [
 
     'locale' => 'zh_CN',
 
+
+    'locales' => ['zh_CN', 'en'],
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
