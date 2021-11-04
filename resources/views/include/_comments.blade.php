@@ -37,10 +37,11 @@
                     @endif
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
-                    <div style="display: inline;
-                                        position: absolute;
-                                        right: 16px;
-                                        margin-top: 3px;cursor: pointer">
+                    <div
+                        style="display: inline;
+                                                                                                position: absolute;
+                                                                                                right: 16px;
+                                                                                                margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
                             <span mdui-tooltip="{content: '官方人员'}"
                                 class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
@@ -52,13 +53,12 @@
                 <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? null }}</div>
             </div>
             <div class="mdui-card-content mdui-p-t-1">
-                <div id="log_{{ $status->id }}_spinner" class="mdui-spinner"></div>
-                <div id="log_{{ $status->id }}"></div>
+                <div id="log_{{ $status->id }}">正在载入...</div>
                 <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! e($status->content) !!}</textarea>
                 <script>
                     setTimeout(function() {
-                        $('#log_{{ $status->id }}_spinner').remove();
                         var log_view
+                        $('#log_{{ $status->id }}').html(null)
                         log_view = editormd.markdownToHTML("log_{{ $status->id }}", {
                             markdown: $('#log_{{ $status->id }}_content').html(),
                             tocm: true,
