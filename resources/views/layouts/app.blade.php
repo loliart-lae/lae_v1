@@ -92,6 +92,26 @@
 
     <a href="" id="thisLink" style="display: none"></a>
 
+    <div class="mdui-fab-wrapper mdui-fab-hide accelerato" id="bottom-fab">
+        <button class="mdui-fab mdui-ripple mdui-color-theme">
+            <i class="mdui-icon material-icons">add</i>
+            <i class="mdui-icon mdui-fab-opened material-icons">menu</i>
+        </button>
+        <div class="mdui-fab-dial">
+            <a href="{{ route('projects.index') }}" class="mdui-fab mdui-fab-mini mdui-ripple"><i
+                    class="mdui-icon material-icons">groups</i>
+            </a>
+
+            <a href="{{ route('main') }}" class="mdui-fab mdui-fab-mini mdui-ripple"><i
+                    class="mdui-icon material-icons">home</i>
+            </a>
+
+            <a href="#" class="mdui-fab mdui-fab-mini mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i>
+            </a>
+        </div>
+    </div>
+    </div>
+
     <script src="/vendor/editor.md/lib/marked.min.js"></script>
     <script src="/vendor/editor.md/lib/prettify.min.js"></script>
     <script src="/vendor/editor.md/lib/underscore.min.js"></script>
@@ -101,6 +121,8 @@
     <script>
         mdui.mutation()
         let main_link = '{{ config('app.name') }}'
+        let bottom_fab = new mdui.Fab('#bottom-fab');
+
 
         function close_offline_tip() {
             $('#offline_tip').fadeOut()
