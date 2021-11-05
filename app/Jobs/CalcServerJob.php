@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\EasyPanelVirtualHost;
 use App\Models\Server;
 use App\Models\LxdContainer;
+use App\Models\VirtualMachine;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -35,6 +36,7 @@ class CalcServerJob implements ShouldQueue
     {
         $lxdServers = Server::where('type', 'container')->get();
         $easyPanels = Server::where('type', 'easypanel')->get();
+        $vm_servers = Server::where('type', 'pve')->get();
 
         // 重新计算服务器剩余空间
         foreach ($lxdServers as $server) {
@@ -68,5 +70,21 @@ class CalcServerJob implements ShouldQueue
             ]);
         }
 
+        foreach ($vm_servers as $server) {
+            $used_disk = 0;
+            $memory = 0;
+            $vms = VirtualMachine::with(['template', 'server'])->where('server_id', $server->id)->get();
+            foreach ($vms as $vm) {
+                $used_disk += $vm->template->disk;
+                $memory += $vm->template->memory;
+            }
+            $free_disk = $server->disk - $used_disk;
+            $free_mem = $server->mem - $memory;
+
+            Server::where('id', $server->id)->update([
+                'free_disk' => $free_disk,
+                'free_mem' => $free_mem
+            ]);
+        }
     }
 }
