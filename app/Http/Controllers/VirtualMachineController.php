@@ -12,6 +12,7 @@ use Proxmox\Request as Pve;
 use Illuminate\Http\Request;
 use App\Models\VirtualMachine;
 use App\Models\VirtualMachineUser;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Models\VirtualMachineTemplate;
@@ -311,7 +312,7 @@ class VirtualMachineController extends Controller
     public function deleteVm($id)
     {
         $virtualMachine = new VirtualMachine();
-        $virtualMachine_where = $virtualMachine->where('id', $id)->with('dash_user');
+        $virtualMachine_where = $virtualMachine->where('id', $id);
         $virtualMachine_data = $virtualMachine_where->firstOrFail();
 
         try {
@@ -320,11 +321,7 @@ class VirtualMachineController extends Controller
 
             $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
 
-            $user_id = $virtualMachine_data->dash_user->username . '@pve';
-            $access = new Access();
-            $access->deleteUser($user_id);
-            $virtualMachine_where->delete();
-            VirtualMachineUser::where('id', $virtualMachine_data->dash_user->id)->delete();
+            $this->deleteUser($virtualMachine_data->server_id, $virtualMachine_data->user_id);
 
             // 归还配额
             $server_data = Server::where('id', $virtualMachine_data->server_id)->where('type', 'pve')->firstOrFail();
@@ -336,12 +333,21 @@ class VirtualMachineController extends Controller
 
             return true;
         } catch (\Exception $e) {
-            unset($e);
+            Log::error($e);
             return false;
         }
     }
 
-
+    public function deleteUser($server_id, $user_id)
+    {
+        $virtualMachineUser = VirtualMachineUser::where('id', $user_id);
+        $virtualMachineUser_data = $virtualMachineUser->firstOrFail();
+        $this->login($server_id);
+        $access = new Access();
+        $user_id = $virtualMachineUser_data->username . '@pve';
+        $access->deleteUser($user_id);
+        $virtualMachineUser->delete();
+    }
 
     public function get_image($server_id, $json = true)
     {
