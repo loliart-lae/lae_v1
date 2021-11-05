@@ -5,7 +5,7 @@
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">home</span>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
-            <a class="mdui-list-item mdui-rippl umami--click--gust-login" href="{{ route('login') }}">
+            <a class="mdui-list-item mdui-rippl umami--click--guest-login" href="{{ route('login') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">login</span>
                 <div class="mdui-list-item-content">登录</div>
             </a>
@@ -58,9 +58,12 @@
                         href="{{ route('gameServer.index') }}">
                         <div class="mdui-list-item-content">游戏服务</div>
                     </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
+                        <div class="mdui-list-item-content">云虚拟机</div>
+                    </a>
+
                 </div>
             </div>
-
 
             <div class="mdui-collapse-item">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
