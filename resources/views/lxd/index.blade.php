@@ -152,16 +152,13 @@
 
             mdui.mutation()
 
-            function power(id, project_id) {
+            function power(id) {
                 $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-green')
                 $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-red')
                 $('#power-' + id + ' .power-btn').addClass('mdui-text-color-yellow')
                 $.ajax({
                     type: 'PUT',
                     url: '{{ url()->current() }}' + '/' + id + '/power',
-                    data: {
-                        'project_id': project_id
-                    },
                     dataType: 'json',
                     success: function(data) {
                         if (data.status) {
