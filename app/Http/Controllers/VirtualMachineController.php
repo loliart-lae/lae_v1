@@ -166,6 +166,14 @@ class VirtualMachineController extends Controller
                 'users' => $virtualMachineUser->username . '@pve'
             ]);
 
+            // 减去配额
+            $server_data = Server::where('id', $request->server_id)->where('type', 'pve')->firstOrFail();
+            $template_data = VirtualMachineTemplate::where('id', $request->template_id)->firstOrFail();
+            Server::where('id', $request->server_id)->update([
+                'free_mem' => $server_data->free_mem - $template_data->memory,
+                'free_disk' => $server_data->free_disk - $template_data->disk,
+            ]);
+
             ProjectActivityController::save($request->project_id, '创建了虚拟机: ' . $request->name . '。');
             return redirect()->route('virtualMachine.index')->with('status', '成功创建了虚拟机。');
         }
@@ -300,6 +308,14 @@ class VirtualMachineController extends Controller
             $access->deleteUser($virtualMachine_data->dash_user->username . '@pve');
             $virtualMachine_where->delete();
             VirtualMachineUser::where('id', $virtualMachine_data->dash_user->id)->delete();
+
+            // 归还配额
+            $server_data = Server::where('id', $virtualMachine_data->server_id)->where('type', 'pve')->firstOrFail();
+            $template_data = VirtualMachineTemplate::where('id', $virtualMachine_data->template_id)->firstOrFail();
+            Server::where('id', $virtualMachine_data->server_id)->update([
+                'free_mem' => $server_data->free_mem + $template_data->memory,
+                'free_disk' => $server_data->free_disk + $template_data->disk,
+            ]);
 
             ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
 
