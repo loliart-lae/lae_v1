@@ -313,10 +313,10 @@ class AppEngineController extends Controller
         $this->validate($request, [
             'project_id' => 'required'
         ]);
-        $project_id = $request->project_id;
+        $lxdContainer_where = $lxdContainer->with(['server', 'project'])->where('id', $id);
+        $data = $lxdContainer->where('id', $id)->firstOrFail();
+        $project_id = $data->project_id;
         if (ProjectMembersController::userInProject($project_id)) {
-            $lxdContainer_where = $lxdContainer->with(['server', 'project'])->where('id', $id);
-            $data = $lxdContainer->where('id', $id)->firstOrFail();
             $power = $data->status;
             if ($power == 'resizing') {
                 ProjectActivityController::save($project_id, '尝试操作容器 ' . $data->name . ' 的电源状态，但是失败了，因为调整容器模板时不能操作电源。');
