@@ -299,13 +299,30 @@ class VirtualMachineController extends Controller
             return redirect()->back()->with('status', '你必须关闭虚拟机电源才能删除。');
         }
 
+        if ($this->deleteVm($id)) {
+            ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
+
+            return redirect()->back()->with('status', '删除成功。');
+        } else {
+            return redirect()->back()->with('status', '暂时无法删除虚拟机。');
+        }
+    }
+
+    public function deleteVm($id)
+    {
+        $virtualMachine = new VirtualMachine();
+        $virtualMachine_where = $virtualMachine->where('id', $id)->with('dash_user');
+        $virtualMachine_data = $virtualMachine_where->firstOrFail();
+
         try {
             $this->login($virtualMachine_data->server_id);
             $nodes = new Nodes();
 
             $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
 
-            $access->deleteUser($virtualMachine_data->dash_user->username . '@pve');
+            $user_id = $virtualMachine_data->dash_user->username . '@pve';
+            $access = new Access();
+            dd($access->deleteUser($user_id));
             $virtualMachine_where->delete();
             VirtualMachineUser::where('id', $virtualMachine_data->dash_user->id)->delete();
 
@@ -317,12 +334,10 @@ class VirtualMachineController extends Controller
                 'free_disk' => $server_data->free_disk + $template_data->disk,
             ]);
 
-            ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
-
-            return redirect()->back()->with('status', '删除成功。');
+            return true;
         } catch (\Exception $e) {
             unset($e);
-            return redirect()->back()->with('status', '暂时无法删除虚拟机。');
+            return false;
         }
     }
 
