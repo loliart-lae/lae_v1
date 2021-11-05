@@ -221,7 +221,7 @@
             </div>
 
             <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
-                    注意：每分钟价格 = 地区服务器基础价格 + 云虚拟机模板价格 + 端口转发。<br />
+                    注意：每分钟价格 = 地区服务器基础价格 + 云虚拟机模板价格。<br />
                     带宽均为共享带宽，如带宽有调整，将会即时生效。<br />
                     禁止将云虚拟机用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户。
                 </small></div>
