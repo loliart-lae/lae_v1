@@ -1,0 +1,448 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Proxmox\Nodes;
+use Proxmox\Access;
+use Proxmox\Cluster;
+use Proxmox\Storage;
+use App\Models\Server;
+use Illuminate\Support\Str;
+use Proxmox\Request as Pve;
+use Illuminate\Http\Request;
+use App\Models\VirtualMachine;
+use App\Models\VirtualMachineUser;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use App\Models\VirtualMachineTemplate;
+
+class VirtualMachineController extends Controller
+{
+
+    // 这段控制器代码部分借鉴于 ProKVM
+    // 如：依据配置获取节点，获取虚拟机存储位置以及镜像等
+    // 非常感谢！
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Access $access, Nodes $nodes)
+    {
+        $virtualMachines = VirtualMachine::with(['template', 'server'])->whereHas('member', function ($query) {
+            $query->where('user_id', Auth::id());
+        })->orderBy('project_id')->get();
+
+        return view('virtualMachine.index', compact('virtualMachines'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Server $server, VirtualMachineTemplate $virtualMachineTemplate)
+    {
+        // 选择服务器
+        $servers = $server->where('free_mem', '>=', '10240')->where('free_disk', '>=', '10240')->where('type', 'pve')->get();
+
+        // 列出模板
+        $templates = $virtualMachineTemplate->orderBy('price')->get();
+
+        return view('virtualMachine.create', compact('servers', 'templates'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Cluster $cluster, Nodes $nodes, VirtualMachine $virtualMachine, VirtualMachineUser $virtualMachineUser, Access $access)
+    {
+        $this->validate($request, [
+            'server_id' => 'required',
+            'image_id' => 'required',
+            'name' => 'required|max:10',
+            'template_id' => 'required',
+            'start_after_created' => 'nullable|boolean',
+            'bios' => 'boolean|required',
+        ]);
+
+        if (!ProjectMembersController::userInProject($request->project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        $template = $this->validServer($request->server_id, $request->template_id);
+        if (!$template) {
+            return redirect()->back()->with('status', '服务器上没有更多的资源了。');
+        }
+
+        $vlan = Server::where('id', $request->server_id)->firstOrFail()->external;
+        $this->login($request->server_id);
+
+        $image = $this->checkImage($request->server_id, $request->image_id);
+        if (!$image) {
+            return redirect()->back()->with('status', '找不到镜像。');
+        }
+
+        if ($request->bios) {
+            $bios = 'ovmf';
+        } else {
+            $bios = 'seabios';
+        }
+
+        // 获取 VMID
+        $response = $cluster->nextVmid();
+        $next_vmid = $response->data;
+
+        // 选择节点
+        $response = $cluster->Resources('node');
+        $node_name = $response->data[0]->node;
+
+        $storage_name = $this->getVmStorage($request->server_id);
+
+        if ($request->start_after_created) {
+            $status = 1;
+        } else {
+            $status = 0;
+        }
+
+        $virtualMachine->name = $request->name;
+        $virtualMachine->template_id = $request->template_id;
+        $virtualMachine->project_id = $request->project_id;
+        $virtualMachine->server_id = $request->server_id;
+        $virtualMachine->status = $status;
+        $virtualMachine->node = $node_name;
+        $virtualMachine->vm_id = $next_vmid;
+        $virtualMachine->bios = $request->bios;
+        $virtualMachine->save();
+
+        $virtualMachineUser->username = 'ae-' . $virtualMachine->id;
+        $virtualMachineUser->password = Str::random();
+        $virtualMachineUser->save();
+
+        $virtualMachine->where('id', $virtualMachine->id)->update([
+            'user_id' => $virtualMachineUser->id,
+        ]);
+
+        $access->createUser([
+            'userid' => $virtualMachineUser->username . '@pve',
+            'password' => $virtualMachineUser->password,
+        ]);
+
+        $create = $nodes->createQemu($node_name, [
+            'vmid' => $next_vmid,
+            'name' => 'ae-' . $virtualMachine->id,
+            'description' => '这个虚拟机是由 Open App Engine 创建的。创建者是: ' . Auth::user()->name . ', 邮箱: ' . Auth::user()->email . ', 项目ID: ' . $request->project_id . ', 创建时间: ' . $virtualMachine->created_at . '。',
+            'scsihw' => 'lsi',
+            'ostype' => 'other',
+            'cores' => $template->cpu,
+            'sockets' => 1,
+            'numa' => 0,
+            'memory' => $template->memory,
+            'scsi0' => $storage_name . ':' . $template->disk,
+            'ide2' => $image . ',media=cdrom',
+            'net0' => 'virtio,bridge=' . $vlan . ',firewall=1',
+            'kvm' => 0,
+            'start' => $status,
+            'bios' => $bios
+        ]);
+
+        if (is_null($create->data)) {
+            $virtualMachine->where('id', $virtualMachine->id)->delete();
+
+            $access->deleteUser($virtualMachineUser->username . '@pve');
+            $virtualMachineUser->where('id', $virtualMachineUser->id)->delete();
+
+            ProjectActivityController::save($request->project_id, '尝试创建虚拟机:' . $request->name . '但是失败了，因为服务器出现了问题。');
+            return redirect()->route('virtualMachine.index')->with('status', '无法创建虚拟机。');
+        } else {
+            // 创建 ACL
+            $access->updateAcl([
+                'path' => '/vms/' . $next_vmid,
+                'roles' => 'PVEVMUser',
+                'users' => $virtualMachineUser->username . '@pve'
+            ]);
+
+            ProjectActivityController::save($request->project_id, '创建了虚拟机: ' . $request->name . '。');
+            return redirect()->route('virtualMachine.index')->with('status', '成功创建了虚拟机。');
+        }
+
+
+
+        // dd($nodes->deleteQemu($node_name, 8211));
+        // dd($nodes->qemuUnlink($node_name, $vmid, ['idlist' => 'sata1', 'force' => true]));
+        // $access->createUser([]);
+        // dd($nodes->qemuCurrent($node_name, $vmid));
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $access = new Access();
+        $virtualMachine = new VirtualMachine();
+        $virtualMachineUser = new VirtualMachineUser();
+
+        $virtualMachine_where = $virtualMachine->where('id', $id)->with(['dash_user', 'server']);
+        $virtualMachine_data = $virtualMachine_where->firstOrFail();
+
+        if (!ProjectMembersController::userInProject($virtualMachine_data->project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        $this->login($virtualMachine_data->server_id);
+
+        // 登录到子账号
+        $user = [
+            'username' => $virtualMachine_data->dash_user->username,
+            'password' => $virtualMachine_data->dash_user->password,
+            'realm' => 'pve'
+        ];
+        // dd($user);
+
+        $ticket = $access->createTicket($user);
+        dd($ticket);
+        $ticket = $ticket->data->ticket;
+
+        $data = [
+            'host' => $virtualMachine_data->server->address,
+            'vm_id' => $virtualMachine_data->vm_id,
+            'node' => $virtualMachine_data->node,
+            'ticket' => $ticket,
+            'name' => $virtualMachine_data->name
+        ];
+
+        return view('virtualMachine.vnc', compact('data'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // $this->validate($request, [
+        //     'server_id' => 'required',
+        //     'image_id' => 'required',
+        //     'name' => 'required|max:10',
+        //     'template_id' => 'required',
+        //     'start_after_created' => 'nullable|boolean',
+        // ]);
+
+        // $virtualMachine = new VirtualMachine();
+        // $virtualMachine_where = $virtualMachine->where('id', $request->id);
+        // $virtualMachine_data = $virtualMachine_where->firstOrFail();
+
+        // $project_id = $virtualMachine_data->project_id;
+
+
+        // if (!ProjectMembersController::userInProject($request->project_id)) {
+        //     return redirect()->back()->with('status', '你不在项目中。');
+        // }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $virtualMachine = new VirtualMachine();
+        $access = new Access();
+        $virtualMachine_where = $virtualMachine->where('id', $id)->with('dash_user');
+        $virtualMachine_data = $virtualMachine_where->firstOrFail();
+
+        $project_id = $virtualMachine_data->project_id;
+
+        if (!ProjectMembersController::userInProject($project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        if ($virtualMachine_data->status) {
+            return redirect()->back()->with('status', '你必须关闭虚拟机电源才能删除。');
+        }
+
+        try {
+            $this->login($virtualMachine_data->server_id);
+            $nodes = new Nodes();
+
+            $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
+
+            $access->deleteUser($virtualMachine_data->dash_user->username . '@pve');
+            $virtualMachine_where->delete();
+            VirtualMachineUser::where('id', $virtualMachine_data->dash_user->id)->delete();
+
+            ProjectActivityController::save($project_id, '删除了虚拟机' . $virtualMachine_data->name . '。');
+
+            return redirect()->back()->with('status', '删除成功。');
+        } catch (\Exception $e) {
+            unset($e);
+            return redirect()->back()->with('status', '暂时无法删除虚拟机。');
+        }
+    }
+
+
+
+    public function get_image($server_id, $json = true)
+    {
+        $cache_key = 'pve_server_image_cache_' . $server_id;
+        if (Cache::has($cache_key)) {
+            $iso = Cache::get($cache_key);
+        } else {
+            $cluster = new Cluster();
+            $storage = new Storage();
+            $nodes = new Nodes();
+
+            $this->login($server_id);
+
+            // 获取节点
+            $response = $cluster->Resources('node');
+            $node_pve = $response->data[0]->node;
+            // 获取 ISO 存放位置
+            $response = $storage->Storage('dir');
+            $storage_local = $response->data[0]->storage;
+            // 列出 ISO 列表
+            $response = $nodes->listStorageContent($node_pve, $storage_local);
+            $iso = $response->data;
+            Cache::put($cache_key, $iso, 600);
+        }
+
+        if ($json) {
+            return response()->json($iso);
+        } else {
+            return $iso;
+        }
+    }
+
+    private function checkImage($server_id, $image_id)
+    {
+        $images = $this->get_image($server_id, false);
+        if (array_key_exists($image_id, $images)) {
+            return $images[$image_id]->volid;
+        } else {
+            abort(404);
+        }
+    }
+
+
+    private function getVmStorage($server_id)
+    {
+        $cache_key = 'pve_server_vm_storage_name_' . $server_id;
+
+        if (Cache::has($cache_key)) {
+            $storage_name = Cache::get($cache_key);
+        } else {
+            $storage = new Storage();
+
+            // 获取虚拟机存放区域
+            $response = $storage->Storage('lvmthin');
+            $storage_name = $response->data[0]->storage;
+            Cache::put($cache_key, $storage_name);
+        }
+
+        return $storage_name;
+    }
+
+    private function validServer($server_id, $template_id)
+    {
+        // 验证服务器规格是否足以开设这个模板的虚拟机
+        $server = Server::where('id', $server_id)->where('type', 'pve')->firstOrFail();
+        $template = VirtualMachineTemplate::where('id', $template_id)->firstOrFail();
+        // 服务器内存 减去 模板内存 是否大于 10G
+        if (($server->free_mem - $template->memory) > 10240 && ($server->free_disk - $template->disk) > 10240) {
+            return $template;
+        } else {
+            return false;
+        }
+    }
+
+    private function login($server_id)
+    {
+        $result = Server::where('id', $server_id)->where('type', 'pve')->firstOrFail();
+        $credentials = explode('|', $result->token);
+        $configure = [
+            'hostname' => $result->address,
+            'username' => $credentials[0],
+            'token_name' => $credentials[1],
+            'token_value' => $credentials[2]
+        ];
+        Pve::Login($configure);
+
+        // $configure = [
+        //     'hostname' => '119.188.246.115',
+        //     'username' => 'test',
+        //     'password' => 'testtest',
+        // ];
+        // Pve::Login($configure);
+    }
+
+    public function togglePower($id)
+    {
+        $virtualMachine = new VirtualMachine();
+        $virtualMachine_where = $virtualMachine->where('id', $id);
+        $virtualMachine_data = $virtualMachine_where->firstOrFail();
+
+        $project_id = $virtualMachine_data->project_id;
+
+        if (!ProjectMembersController::userInProject($project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+        $this->login($virtualMachine_data->server_id);
+        $nodes = new Nodes();
+
+        $power = $virtualMachine_data->status;
+        if ($power == 0) {
+            $power = 1;
+            $status = '开';
+            // 打开虚拟机电源
+            $nodes->qemuStart(
+                $virtualMachine_data->node,
+                $virtualMachine_data->vm_id
+            );
+        } elseif ($power == 1) {
+            $power = 0;
+            $status = '关';
+            // 关闭虚拟机电源
+            $nodes->qemuStop(
+                $virtualMachine_data->node,
+                $virtualMachine_data->vm_id
+            );
+        }
+        $virtualMachine_where->update([
+            'status' => $power
+        ]);
+
+        ProjectActivityController::save($project_id, '操作虚拟机' . $virtualMachine_data->name . ' 的电源状态为 ' . $status . ' 。');
+
+        return response()->json(
+            [
+                'status' => 1,
+                'power' => $power
+            ]
+        );
+    }
+}
