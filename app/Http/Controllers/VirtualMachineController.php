@@ -45,7 +45,7 @@ class VirtualMachineController extends Controller
     public function create(Server $server, VirtualMachineTemplate $virtualMachineTemplate)
     {
         // 选择服务器
-        $servers = $server->where('free_mem', '>=', '10240')->where('free_disk', '>=', '10240')->where('type', 'pve')->get();
+        $servers = $server->where('free_mem', '>=', '4096')->where('free_disk', '>=', '20')->where('type', 'pve')->get();
 
         // 列出模板
         $templates = $virtualMachineTemplate->orderBy('price')->get();
@@ -394,7 +394,7 @@ class VirtualMachineController extends Controller
         $server = Server::where('id', $server_id)->where('type', 'pve')->firstOrFail();
         $template = VirtualMachineTemplate::where('id', $template_id)->firstOrFail();
         // 服务器内存 减去 模板内存 是否大于 10G
-        if (($server->free_mem - $template->memory) > 10240 && ($server->free_disk - $template->disk) > 10240) {
+        if (($server->free_mem - $template->memory) > 4096 && ($server->free_disk - $template->disk) > 20) {
             return $template;
         } else {
             return false;
