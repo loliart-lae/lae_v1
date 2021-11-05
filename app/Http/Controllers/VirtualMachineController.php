@@ -169,14 +169,6 @@ class VirtualMachineController extends Controller
             ProjectActivityController::save($request->project_id, '创建了虚拟机: ' . $request->name . '。');
             return redirect()->route('virtualMachine.index')->with('status', '成功创建了虚拟机。');
         }
-
-
-
-        // dd($nodes->deleteQemu($node_name, 8211));
-        // dd($nodes->qemuUnlink($node_name, $vmid, ['idlist' => 'sata1', 'force' => true]));
-        // $access->createUser([]);
-        // dd($nodes->qemuCurrent($node_name, $vmid));
-
     }
 
     /**
