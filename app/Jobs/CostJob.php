@@ -16,7 +16,6 @@ use App\Models\PterodactylServer;
 use App\Models\ServerBalanceCount;
 use Illuminate\Support\Facades\DB;
 use App\Models\EasyPanelVirtualHost;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
