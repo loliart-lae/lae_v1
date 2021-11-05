@@ -322,7 +322,7 @@ class VirtualMachineController extends Controller
 
             $user_id = $virtualMachine_data->dash_user->username . '@pve';
             $access = new Access();
-            dd($access->deleteUser($user_id));
+            $access->deleteUser($user_id);
             $virtualMachine_where->delete();
             VirtualMachineUser::where('id', $virtualMachine_data->dash_user->id)->delete();
 
