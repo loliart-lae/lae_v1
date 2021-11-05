@@ -306,13 +306,10 @@ class AppEngineController extends Controller
         return redirect()->back()->with('status', '容器已安排删除。');
     }
 
-    public function togglePower(Request $request, $id)
+    public function togglePower($id)
     {
         $lxdContainer = new LxdContainer();
 
-        $this->validate($request, [
-            'project_id' => 'required'
-        ]);
         $lxdContainer_where = $lxdContainer->with(['server', 'project'])->where('id', $id);
         $data = $lxdContainer->where('id', $id)->firstOrFail();
         $project_id = $data->project_id;
