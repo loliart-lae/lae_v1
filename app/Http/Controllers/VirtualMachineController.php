@@ -28,7 +28,7 @@ class VirtualMachineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Access $access, Nodes $nodes)
+    public function index()
     {
         $virtualMachines = VirtualMachine::with(['template', 'server'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
@@ -185,9 +185,8 @@ class VirtualMachineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Access $access)
     {
-        $access = new Access();
         $virtualMachine = new VirtualMachine();
         $virtualMachineUser = new VirtualMachineUser();
 
@@ -206,10 +205,8 @@ class VirtualMachineController extends Controller
             'password' => $virtualMachine_data->dash_user->password,
             'realm' => 'pve'
         ];
-        // dd($user);
 
         $ticket = $access->createTicket($user);
-        dd($ticket);
         $ticket = $ticket->data->ticket;
 
         $data = [
@@ -219,6 +216,9 @@ class VirtualMachineController extends Controller
             'ticket' => $ticket,
             'name' => $virtualMachine_data->name
         ];
+
+        ProjectActivityController::save($virtualMachine_data->project_id, '进入了虚拟机: ' . $virtualMachine_data->name . '的控制台。');
+
 
         return view('virtualMachine.vnc', compact('data'));
     }
@@ -231,7 +231,16 @@ class VirtualMachineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $virtualMachine = new VirtualMachine();
+
+        $virtualMachine_where = $virtualMachine->where('id', $id)->with(['dash_user', 'server']);
+        $virtualMachine = $virtualMachine_where->firstOrFail();
+
+        if (!ProjectMembersController::userInProject($virtualMachine->project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        return view('virtualMachine.edit', compact('virtualMachine'));
     }
 
     /**
@@ -243,24 +252,28 @@ class VirtualMachineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'server_id' => 'required',
-        //     'image_id' => 'required',
-        //     'name' => 'required|max:10',
-        //     'template_id' => 'required',
-        //     'start_after_created' => 'nullable|boolean',
-        // ]);
+        $this->validate($request, [
+            'name' => 'required|max:10',
+        ]);
 
-        // $virtualMachine = new VirtualMachine();
-        // $virtualMachine_where = $virtualMachine->where('id', $request->id);
-        // $virtualMachine_data = $virtualMachine_where->firstOrFail();
+        $virtualMachine = new VirtualMachine();
+        $virtualMachine_where = $virtualMachine->where('id', $id);
+        $virtualMachine_data = $virtualMachine_where->firstOrFail();
 
-        // $project_id = $virtualMachine_data->project_id;
+        $project_id = $virtualMachine_data->project_id;
+
+        if (!ProjectMembersController::userInProject($project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        $virtualMachine_where->update([
+            'name' => $request->name
+        ]);
+
+        ProjectActivityController::save($project_id, '修改了虚拟机: ' . $virtualMachine_data->name . '，新的名称为: ' . $request->name);
 
 
-        // if (!ProjectMembersController::userInProject($request->project_id)) {
-        //     return redirect()->back()->with('status', '你不在项目中。');
-        // }
+        return redirect()->back()->with('status', '已修改虚拟机。');
     }
 
     /**
@@ -296,7 +309,7 @@ class VirtualMachineController extends Controller
             $virtualMachine_where->delete();
             VirtualMachineUser::where('id', $virtualMachine_data->dash_user->id)->delete();
 
-            ProjectActivityController::save($project_id, '删除了虚拟机' . $virtualMachine_data->name . '。');
+            ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
 
             return redirect()->back()->with('status', '删除成功。');
         } catch (\Exception $e) {
@@ -387,17 +400,9 @@ class VirtualMachineController extends Controller
         $configure = [
             'hostname' => $result->address,
             'username' => $credentials[0],
-            'token_name' => $credentials[1],
-            'token_value' => $credentials[2]
+            'password' => $credentials[1],
         ];
         Pve::Login($configure);
-
-        // $configure = [
-        //     'hostname' => '119.188.246.115',
-        //     'username' => 'test',
-        //     'password' => 'testtest',
-        // ];
-        // Pve::Login($configure);
     }
 
     public function togglePower($id)
@@ -436,7 +441,7 @@ class VirtualMachineController extends Controller
             'status' => $power
         ]);
 
-        ProjectActivityController::save($project_id, '操作虚拟机' . $virtualMachine_data->name . ' 的电源状态为 ' . $status . ' 。');
+        ProjectActivityController::save($project_id, '操作虚拟机 ' . $virtualMachine_data->name . ' 的电源状态为 ' . $status . ' 。');
 
         return response()->json(
             [
