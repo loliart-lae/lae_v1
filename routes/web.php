@@ -123,6 +123,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::resource('/easyPanel', Controllers\EasyPanelController::class);
     Route::resource('/field', Controllers\UserFieldController::class);
+    Route::resource('/virtualMachine', Controllers\VirtualMachineController::class);
+    Route::get('/virtualMachine/get_image/{sid}', [Controllers\VirtualMachineController::class, 'get_image'])->name('virtualMachine.get_image');
+    Route::put('/virtualMachine/{id}/power', [Controllers\VirtualMachineController::class, 'togglePower'])->name('virtualMachine.power');
+
 
     Route::resource('/gameServer', Controllers\PterodactylController::class);
 
