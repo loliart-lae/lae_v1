@@ -286,7 +286,6 @@ class VirtualMachineController extends Controller
     public function destroy($id)
     {
         $virtualMachine = new VirtualMachine();
-        $access = new Access();
         $virtualMachine_where = $virtualMachine->where('id', $id)->with('dash_user');
         $virtualMachine_data = $virtualMachine_where->firstOrFail();
 
