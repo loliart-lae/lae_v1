@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '新建 云虚拟机')
+@section('title', 'VNC')
 
 @section('content')
 
