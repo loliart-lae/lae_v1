@@ -48,8 +48,8 @@
 
             @endauth
 
-            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white turn-animate" id="turn"
-                mdui-tooltip="{content: '指示器', delay: 1000}" onclick="$('#thisLink').click()">
+            <span class="mdui-btn mdui-btn-icon turn-animate" id="turn" mdui-tooltip="{content: '指示器', delay: 1000}"
+                onclick="$('#thisLink').click()">
                 <i class="mdui-icon material-icons-outlined">refresh</i>
             </span>
 
