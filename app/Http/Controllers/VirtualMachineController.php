@@ -308,9 +308,9 @@ class VirtualMachineController extends Controller
             }
         }
 
-        if (!$this->setIpFilter($id, $request->ip_address)) {
-            return redirect()->back()->with('status', '这个IP地址已被局域网中的其他虚拟机使用了。w');
-        }
+        // if (!$this->setIpFilter($id, $request->ip_address)) {
+        //     return redirect()->back()->with('status', '这个IP地址已被局域网中的其他虚拟机使用了。w');
+        // }
 
         ProjectActivityController::save($project_id, '修改了虚拟机: ' . $virtualMachine_data->name . '，新的名称为: ' . $request->name);
 
