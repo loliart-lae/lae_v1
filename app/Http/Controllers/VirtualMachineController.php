@@ -71,6 +71,10 @@ class VirtualMachineController extends Controller
             'bios' => 'boolean|required',
         ]);
 
+        if (count($request->image_id) > 2) {
+            return redirect()->back()->with('status', '最多只能插入两个 CD-ROM。');
+        }
+
         if (!ProjectMembersController::userInProject($request->project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
         }
@@ -83,8 +87,17 @@ class VirtualMachineController extends Controller
         $vlan = Server::where('id', $request->server_id)->firstOrFail()->external;
         $this->login($request->server_id);
 
-        $image = $this->checkImage($request->server_id, $request->image_id);
-        if (!$image) {
+        if (isset($request->image_id[0])) {
+            $image1 = $this->checkImage($request->server_id, $request->image_id[0]);
+        }
+        if (isset($request->image_id[1])) {
+            $image2 = $this->checkImage($request->server_id, $request->image_id[1]);
+        } else {
+            $image2 = 'none';
+        }
+
+
+        if (!$image1 && !$image2) {
             return redirect()->back()->with('status', '找不到镜像。');
         }
 
@@ -144,7 +157,8 @@ class VirtualMachineController extends Controller
             'numa' => 0,
             'memory' => $template->memory,
             'sata0' => $storage_name . ':' . $template->disk . ',cache=writethrough,ssd=1',
-            'ide2' => $image . ',media=cdrom',
+            'ide1' => $image1 . ',media=cdrom',
+            'ide2' => $image2 . ',media=cdrom',
             'net0' => 'e1000,bridge=' . $vlan . ',firewall=1',
             'kvm' => 0,
             'start' => $status,
@@ -258,6 +272,10 @@ class VirtualMachineController extends Controller
             'remove_cd_rom' => 'boolean',
             'ip_address' => 'nullable|ip'
         ]);
+
+        if (count($request->image_id) > 2) {
+            return redirect()->back()->with('status', '最多只能挂载两个镜像。');
+        }
 
         $virtualMachine = new VirtualMachine();
         $virtualMachine_where = $virtualMachine->where('id', $id);
@@ -498,17 +516,22 @@ class VirtualMachineController extends Controller
         $this->login($virtualMachine_data->server_id);
         $nodes = new Nodes();
 
-        if (is_null($image_id)) {
-            $image = 'none';
+
+        if (isset($image_id[0])) {
+            $image1 = $this->checkImage($virtualMachine_data->server_id, $image_id[0]);
         } else {
-            $image = $this->checkImage($virtualMachine_data->server_id, $image_id);
-            if (!$image) {
-                return redirect()->back()->with('status', '找不到镜像。');
-            }
+            $image1 = 'none';
+        }
+
+        if (isset($image_id[1])) {
+            $image2 = $this->checkImage($virtualMachine_data->server_id, $image_id[1]);
+        } else {
+            $image2 = 'none';
         }
 
         $nodes->setQemuConfig($virtualMachine_data->node, $virtualMachine_data->vm_id, [
-            'ide2' => $image . ',media=cdrom',
+            'ide1' => $image1 . ',media=cdrom',
+            'ide2' => $image2 . ',media=cdrom',
         ]);
     }
 

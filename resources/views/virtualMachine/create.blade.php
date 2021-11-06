@@ -159,9 +159,9 @@
                             <tr>
                                 <td nowrap>${i}</td>
                                 <td nowrap>${data[i].volid}</td>
-                                <td> <label class="mdui-radio">
-                                        <input type="radio" value="${i}" name="image_id" required />
-                                        <i class="mdui-radio-icon"></i>
+                                <td> <label class="mdui-checkbox">
+                                        <input type="checkbox" value="${i}" name="image_id[]" />
+                                        <i class="mdui-checkbox-icon"></i>
                                     </label></td>
                             </tr>
                             `)
