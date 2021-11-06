@@ -1,9 +1,26 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', 'VNC')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VNC</title>
 
-@section('content')
+    <style>
+        html,
+        body,
+        iframe {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
 
+    </style>
+</head>
+
+<body>
     <script>
         mdui.alert('如果无法成功登录VNC，请尝试刷新页面(不是用指示器刷新)。')
         // 设置 cookie
@@ -29,10 +46,10 @@
         });
     </script>
 
-    <div class="mdui-typo-display-1">{{ $data['name'] }}</div>
-
-    <iframe class="mdui-shadow-24" style="width: 100%; height: 69vh; border-radius:  5px;margin-top:3px" allowfullscreen
+    <iframe allowfullscreen
         src="https://{{ $data['host'] }}:8006/?console=kvm&novnc=1&vmid={{ $data['vm_id'] }}&node={{ $data['node'] }}"
-        frameborder="0" scrolling="no" width="1024px" height="1024px"></iframe>
+        frameborder="0" scrolling="no"></iframe>
 
-@endsection
+</body>
+
+</html>

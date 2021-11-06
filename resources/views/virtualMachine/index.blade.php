@@ -60,8 +60,8 @@
                             </p>
                         </div>
                         <div class="mdui-panel-item-actions">
-                            <a href="{{ route('virtualMachine.show', $virtualMachine->id) }}"
-                                class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</a>
+                            <button onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')"
+                                class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-edit">编辑</a>
                             @if ($virtualMachine->status == 1 || $virtualMachine->status == 0)
