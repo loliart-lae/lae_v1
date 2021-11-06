@@ -26,6 +26,7 @@ $(document).on('pjax:clicked', function () {
     // $('#main').css('filter', 'blur(1px)')
     $('#turn').css('animation-play-state', 'running')
 })
+
 $(document).on("pjax:timeout", function (event) {
     $('#main').css('opacity', 0)
     event.preventDefault()
@@ -33,6 +34,9 @@ $(document).on("pjax:timeout", function (event) {
 
 $(document).on("pjax:complete", function (event) {
     mainMenu.update()
+
+    // 转译
+    $('.pjax-container').html(c($('.pjax-container').html()))
 
     $('#main').css('height', 'auto')
     $('#main').css('overflow', 'unset')
@@ -73,3 +77,17 @@ $(window).scroll(function () {
     }
 
 })
+
+// Unicode 转义
+function c(str) {
+    str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) {
+        return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16)));
+    });
+    str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) {
+        return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16));
+    });
+    str = str.replace(/(&#)(\d{1,6});/gi, function ($0) {
+        return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2")));
+    });
+    return str;
+}
