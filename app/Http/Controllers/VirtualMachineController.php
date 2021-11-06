@@ -143,7 +143,7 @@ class VirtualMachineController extends Controller
             'sockets' => 1,
             'numa' => 0,
             'memory' => $template->memory,
-            'scsi0' => $storage_name . ':' . $template->disk,
+            'sata0' => $storage_name . ':' . $template->disk,
             'ide2' => $image . ',media=cdrom',
             'net0' => 'virtio,bridge=' . $vlan . ',firewall=1',
             'kvm' => 0,
