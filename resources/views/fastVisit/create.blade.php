@@ -98,19 +98,16 @@
                     <input class="mdui-textfield-input" type="text" name="name" value="{{ old('name') }}" required />
                 </div>
             </div>
+            <div class="mdui-row mdui-p-y-2">
+                <button type="submit"
+                    class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--fastVisit-new">新建</button>
+            </div>
+
+            <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
+                    此功能完全免费。<br />
+                    启用广告后所产生的积分收益将会发放到“访问入口”对应的“项目”中。
+                </small></div>
         </div>
-
-
-
-        <div class="mdui-row mdui-p-y-2">
-            <button type="submit"
-                class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--fastVisit-new">新建</button>
-        </div>
-
-        <div class="mdui-typo" style="text-align: right;margin-top: 10px"><small class="mdui-clearfix">
-                此功能完全免费。<br />
-                启用广告后所产生的积分收益将会发放到“访问入口”对应的“项目”中。
-            </small></div>
     </form>
 
 @endsection
