@@ -39,9 +39,9 @@
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div
                         style="display: inline;
-                                                                                                position: absolute;
-                                                                                                right: 16px;
-                                                                                                margin-top: 3px;cursor: pointer">
+                                                                                                                                                                                                                                                                                                                    position: absolute;
+                                                                                                                                                                                                                                                                                                                    right: 16px;
+                                                                                                                                                                                                                                                                                                                    margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
                             <span mdui-tooltip="{content: '官方人员'}"
                                 class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
@@ -173,19 +173,18 @@
         <div>
             {{ $status_replies->links() }}
         </div>
-
-        <form id="replyForm" class="mdui-m-t-5" method="POST" action="{{ route('status.reply', $status->id) }}">
-            @csrf
-            @method('PUT')
-            <div class="mdui-textfield">
-                <textarea class="mdui-textfield-input umami--input--status-reply" rows="4" name="content"
-                    placeholder="保持友善～" maxlength="140" required></textarea>
-            </div>
-            <button type="submit"
-                class="mdui-btn mdui-ripple mdui-color-theme umami--click--status-reply-confirm">回复</button>
-        </form>
-
     </div>
+
+    <form id="replyForm" class="mdui-m-t-5" method="POST" action="{{ route('status.reply', $status->id) }}">
+        @csrf
+        @method('PUT')
+        <div class="mdui-textfield" style="width: 100%">
+            <textarea class="mdui-textfield-input umami--input--status-reply" rows="10" name="content" id="commit-textarea"
+                maxlength="240" required></textarea>
+        </div>
+        <button type="submit"
+            class="mdui-float-right mdui-m-t-2 mdui-btn mdui-ripple mdui-color-theme umami--click--status-reply-confirm">回复</button>
+    </form>
 
 
 
@@ -219,6 +218,16 @@
                 }
             })
         }
+
+        var text = `你说你爱雨，
+但当细雨飘洒时你却撑开了伞；
+你说你爱太阳，
+但当它当空时你却看见了阳光下的暗影；
+你说你爱风，
+但当它轻拂时你却紧紧地关上了自己的窗子。
+这正是我之心忧，
+因为你说你也爱我，`
+        $('#commit-textarea').attr('placeholder', text)
     </script>
 
 @endsection
