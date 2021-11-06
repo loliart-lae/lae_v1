@@ -143,14 +143,13 @@ class VirtualMachineController extends Controller
             'sockets' => 1,
             'numa' => 0,
             'memory' => $template->memory,
-            'sata0' => $storage_name . ':' . $template->disk,
+            'sata0' => $storage_name . ':' . $template->disk . ',cache=writethrough,ssd=1',
             'ide2' => $image . ',media=cdrom',
             'net0' => 'virtio,bridge=' . $vlan . ',firewall=1',
             'kvm' => 0,
             'start' => $status,
             'bios' => $bios
         ]);
-
         if (is_null($create->data)) {
             $virtualMachine->where('id', $virtualMachine->id)->delete();
 
