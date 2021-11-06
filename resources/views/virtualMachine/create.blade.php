@@ -96,7 +96,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php($i = 0)
                         @foreach ($templates as $template)
+                            @php($i++)
                             <tr>
                                 <td nowrap>{{ $template->name }}</td>
                                 <td nowrap>{{ $template->cpu }}</td>
@@ -112,7 +114,7 @@
                                 <td>
                                     <label class="mdui-radio">
                                         <input type="radio" value="{{ $template->id }}" name="template_id"
-                                            @if ($i == 2) checked @endif required />
+                                            @if ($i == 1) checked @endif required />
                                         <i class="mdui-radio-icon"></i>
                                     </label>
                                 </td>
