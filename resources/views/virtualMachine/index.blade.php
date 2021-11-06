@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', '虚拟机')
+@section('title', '云虚拟机')
 
 @section('content')
-    <div class="mdui-typo-display-2">虚拟机</div>
+    <div class="mdui-typo-display-2">云虚拟机</div>
 
     <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
         <a href="{{ route('virtualMachine.create') }}"
             class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-tunnel">
-            新建 虚拟机
+            新建 云虚拟机
         </a>
     </div>
 
