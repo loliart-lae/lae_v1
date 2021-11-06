@@ -150,9 +150,13 @@ class UserStatusController extends Controller
         return redirect()->back()->with('status', '动态已流入长河。');
     }
 
-    // public function public($content)
-    // {
-    // }
+    static public function publish($content, $user_id)
+    {
+        $userStatus = new UserStatus();
+        $userStatus->content = $content;
+        $userStatus->user_id = $user_id;
+        $userStatus->save();
+    }
 
     /**
      * Display the specified resource.
