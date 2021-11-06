@@ -53,6 +53,11 @@ class WordPressFetchController extends Controller
                 $userSiteArticle->user_id = $user_id;
                 $userSiteArticle->save();
 
+                // 检测用户是否是第一次索引
+                if ($userSiteArticle->where('user_id', $user_id)->exists()) {
+                    $publish = false;
+                }
+
                 if ($publish) {
                     // 然后发布时间流
                     $content = <<<EOF
