@@ -52,6 +52,14 @@ class WordPressFetchController extends Controller
                 $userSiteArticle->datetime = $date;
                 $userSiteArticle->user_id = $user_id;
                 $userSiteArticle->save();
+
+                // 然后发布时间流
+                $content = <<<EOF
+## $title
+$excerpt
+[浏览]({$link} "{$title}")
+EOF;
+                UserStatusController::publish($content, $user_id);
             }
         }
     }
