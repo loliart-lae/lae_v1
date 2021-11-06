@@ -16,6 +16,7 @@
     $staticPages = App\Models\StaticPage::count();
     $easyPanels = App\Models\EasyPanelVirtualHost::count();
     $gameServers = App\Models\PterodactylServer::count();
+    $vms = App\Models\VirtualMachine::count();
     @endphp
 
     <div class="mdui-row mdui-m-t-2">
@@ -70,6 +71,11 @@
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
                 <div class="mdui-typo-body-1-opacity">游戏服务 数量</div>
                 <div class="mdui-typo-display-1 mdui-m-t-1">{{ $gameServers }}</div>
+            </div>
+
+            <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
+                <div class="mdui-typo-body-1-opacity">云虚拟机 数量</div>
+                <div class="mdui-typo-display-1 mdui-m-t-1">{{ $vms }}</div>
             </div>
 
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
