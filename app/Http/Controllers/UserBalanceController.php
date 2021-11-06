@@ -63,18 +63,18 @@ class UserBalanceController extends Controller
             "mid" => config('billing.mid'),
             "payId" => $order_id,
             "param" => Auth::id(),
-            "type" => $pay_type,     //微信支付传入1 支付宝支付传入2 支付宝当面付传入4
+            "type" => $pay_type,     // 微信支付传入1 支付宝支付传入2 支付宝当面付传入4
             "price" => $request->balance,
             "notifyUrl" => config('billing.notify'),
             "returnUrl" => config('billing.return'),
             "isHtml" => 1,
         );
 
-        //加密参数获取签名,签名顺序以及计算方式为 md5(mid+payId+param+type+price+商户密钥)
+        // 加密参数获取签名,签名顺序以及计算方式为 md5(mid+payId+param+type+price+商户密钥)
         $sign = md5(config('billing.mid') . $data['payId'] . $data['param'] . $data['type'] . $data['price'] . config('billing.key'));
         $data["sign"] = $sign;
 
-        //API下单请求参数拼接
+        // API下单请求参数拼接
         $pay_url = 'isHtml=' . $data['isHtml'] . "&mid=" . config('billing.mid') . "&payId=" . $data['payId'] . '&type=' . $data['type'] . '&sign=' . $sign . '&param=' . $data['param'] . "&price=" . $data['price'] . '&notifyUrl=' . $data['notifyUrl'] . '&returnUrl=' . $data['returnUrl'];
 
         return redirect()->to(config('billing.api_url') . '?' . $pay_url);
