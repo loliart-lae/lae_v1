@@ -32,7 +32,7 @@ class WordPressFetchController extends Controller
         }
     }
 
-    public static function fetch($user_id, $url)
+    public static function fetch($user_id, $url, $publish = false)
     {
         $url .= '/wp-json/wp/v2/posts?per_page=100&page=1';
         $result = Http::get($url)->json();
@@ -53,13 +53,15 @@ class WordPressFetchController extends Controller
                 $userSiteArticle->user_id = $user_id;
                 $userSiteArticle->save();
 
-                // 然后发布时间流
-                $content = <<<EOF
+                if ($publish) {
+                    // 然后发布时间流
+                    $content = <<<EOF
 ## $title
 $excerpt
 [浏览]({$link} "{$title}")
 EOF;
-                UserStatusController::publish($content, $user_id);
+                    UserStatusController::publish($content, $user_id);
+                }
             }
         }
     }
