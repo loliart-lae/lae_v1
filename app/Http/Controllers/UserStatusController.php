@@ -140,7 +140,7 @@ class UserStatusController extends Controller
     {
         //
         $this->validate($request, [
-            'content' => 'required|max:140',
+            'content' => 'required|max:340',
         ]);
 
         Auth::user()->statuses()->create([
@@ -149,6 +149,10 @@ class UserStatusController extends Controller
 
         return redirect()->back()->with('status', '动态已流入长河。');
     }
+
+    // public function public($content)
+    // {
+    // }
 
     /**
      * Display the specified resource.
