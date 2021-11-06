@@ -255,6 +255,8 @@ class VirtualMachineController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:10',
+            'image_id' => 'nullable',
+            'remove_cd_rom' => 'boolean',
         ]);
 
         $virtualMachine = new VirtualMachine();
@@ -267,9 +269,15 @@ class VirtualMachineController extends Controller
             return redirect()->back()->with('status', '你不在项目中。');
         }
 
+        if ($request->remove_cd_rom) {
+            $request->image_id = null;
+        }
+
         $virtualMachine_where->update([
             'name' => $request->name
         ]);
+
+        $this->changeVmImage($id, $request->image_id);
 
         ProjectActivityController::save($project_id, '修改了虚拟机: ' . $virtualMachine_data->name . '，新的名称为: ' . $request->name);
 
@@ -477,5 +485,26 @@ class VirtualMachineController extends Controller
                 'power' => $power
             ]
         );
+    }
+
+    private function changeVmImage($id, $image_id)
+    {
+        $virtualMachine = new VirtualMachine();
+        $virtualMachine_data = $virtualMachine->where('id', $id)->firstOrFail();
+        $this->login($virtualMachine_data->server_id);
+        $nodes = new Nodes();
+
+        if (is_null($image_id)) {
+            $image = 'none';
+        } else {
+            $image = $this->checkImage($virtualMachine_data->server_id, $image_id);
+            if (!$image) {
+                return redirect()->back()->with('status', '找不到镜像。');
+            }
+        }
+
+        $nodes->setQemuConfig($virtualMachine_data->node, $virtualMachine_data->vm_id, [
+            'ide2' => $image . ',media=cdrom',
+        ]);
     }
 }
