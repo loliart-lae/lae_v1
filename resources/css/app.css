@@ -189,3 +189,7 @@ body {
         -webkit-transform: rotate(360deg);
     }
 }
+
+.mdui-list-item-active .mdui-list-item-content {
+    font-weight: 500 !important;
+}
