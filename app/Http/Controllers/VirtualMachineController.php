@@ -145,7 +145,7 @@ class VirtualMachineController extends Controller
             'memory' => $template->memory,
             'sata0' => $storage_name . ':' . $template->disk . ',cache=writethrough,ssd=1',
             'ide2' => $image . ',media=cdrom',
-            'net0' => 'virtio,bridge=' . $vlan . ',firewall=1',
+            'net0' => 'e1000,bridge=' . $vlan . ',firewall=1',
             'kvm' => 0,
             'start' => $status,
             'bios' => $bios
