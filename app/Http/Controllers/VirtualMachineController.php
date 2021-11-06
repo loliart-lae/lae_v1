@@ -150,7 +150,7 @@ class VirtualMachineController extends Controller
             'vmid' => $next_vmid,
             'name' => 'ae-' . $virtualMachine->id,
             'description' => '这个虚拟机是由 Open App Engine 创建的。创建者是: ' . Auth::user()->name . ', 邮箱: ' . Auth::user()->email . ', 项目ID: ' . $request->project_id . ', 创建时间: ' . $virtualMachine->created_at . '。',
-            'scsihw' => 'lsi',
+            'scsihw' => 'virtio-scsi-pci',
             'ostype' => 'other',
             'cores' => $template->cpu,
             'sockets' => 1,
