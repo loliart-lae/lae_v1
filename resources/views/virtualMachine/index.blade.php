@@ -29,14 +29,9 @@
                             {{ $virtualMachine->ip_address }}
                         </div>
                         <div class="mdui-panel-item-summary">
-                            <div id="power-{{ $virtualMachine->id }}">
-                                @if ($virtualMachine->status == 1)
-                                    <i class="mdui-icon material-icons-outlined power-btn mdui-text-color-green"
-                                        onclick="power({{ $virtualMachine->id }})">power_settings_new</i>
-                                @else
-                                    <i class="mdui-icon material-icons-outlined power-btn mdui-text-color-red"
-                                        onclick="power({{ $virtualMachine->id }})">power_settings_new</i>
-                                @endif
+                            <div>
+                                <i
+                                    class="mdui-icon material-icons-outlined power-btn-{{ $virtualMachine->id }}  @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">power_settings_new</i>
 
                             </div>
                         </div>
@@ -60,6 +55,8 @@
                             </p>
                         </div>
                         <div class="mdui-panel-item-actions">
+                            <span onclick="power({{ $virtualMachine->id }})"
+                                class="power-btn-{{ $virtualMachine->id }} mdui-btn mdui-ripple @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">电源</span>
                             <button onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
@@ -85,9 +82,10 @@
         mdui.mutation()
 
         function power(id) {
-            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-green')
-            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-red')
-            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-yellow')
+            let btn = '.power-btn-' + id
+            $(btn).removeClass('mdui-text-color-green')
+            $(btn).removeClass('mdui-text-color-red')
+            $(btn).addClass('mdui-text-color-yellow')
             $.ajax({
                 type: 'PUT',
                 url: '{{ url()->current() }}' + '/' + id + '/power',
@@ -95,13 +93,13 @@
                 success: function(data) {
                     if (data.status) {
                         if (data.power == 1) {
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-yellow')
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-red')
-                            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-green')
+                            $(btn).removeClass('mdui-text-color-yellow')
+                            $(btn).removeClass('mdui-text-color-red')
+                            $(btn).addClass('mdui-text-color-green')
                         } else {
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-yellow')
-                            $('#power-' + id + ' .power-btn').removeClass('mdui-text-color-green')
-                            $('#power-' + id + ' .power-btn').addClass('mdui-text-color-red')
+                            $(btn).removeClass('mdui-text-color-yellow')
+                            $(btn).removeClass('mdui-text-color-green')
+                            $(btn).addClass('mdui-text-color-red')
                         }
                     } else {
                         mdui.snackbar({
