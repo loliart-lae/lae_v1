@@ -41,7 +41,7 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'content' => 'required|max:140',
+            'content' => 'required|max:340',
         ]);
 
         Auth::user()->statuses()->create([
