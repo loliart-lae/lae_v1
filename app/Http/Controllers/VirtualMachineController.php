@@ -160,7 +160,7 @@ class VirtualMachineController extends Controller
             'ide1' => $image1 . ',media=cdrom',
             'ide2' => $image2 . ',media=cdrom',
             'net0' => 'virtio,bridge=' . $vlan . ',firewall=1',
-            'kvm' => 0,
+            'kvm' => 1,
             'start' => $status,
             'bios' => $bios
         ]);
