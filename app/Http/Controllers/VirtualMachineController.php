@@ -256,7 +256,7 @@ class VirtualMachineController extends Controller
             'name' => 'required|max:10',
             'image_id' => 'nullable',
             'remove_cd_rom' => 'boolean',
-            'ip_address' => 'nullable'
+            'ip_address' => 'nullable|ip'
         ]);
 
         $virtualMachine = new VirtualMachine();
