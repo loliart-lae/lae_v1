@@ -281,7 +281,7 @@ class VirtualMachineController extends Controller
         $this->changeVmImage($id, $request->image_id);
 
         if (!$this->setIpFilter($id, $request->ip_address)) {
-            return redirect()->back()->with('status', '这个IP地址已被局域网中的其他虚拟机使用了。');
+            return redirect()->back()->with('status', '这个IP地址已被局域网中的其他虚拟机使用了。w');
         }
 
         ProjectActivityController::save($project_id, '修改了虚拟机: ' . $virtualMachine_data->name . '，新的名称为: ' . $request->name);
@@ -517,19 +517,27 @@ class VirtualMachineController extends Controller
     {
         $virtualMachine = new VirtualMachine();
         $virtualMachine_data = $virtualMachine->where('id', $id)->firstOrFail();
-
-        if ($virtualMachine->where('server_id', $virtualMachine_data->server_id)->where('ip_address', $ip_address)->exists()) {
-            return false;
+        // 检测这个IP地址是否为当前实例IP地址
+        if ($ip_address != $virtualMachine_data->ip_address) {
+            // 检测 IP 地址是否被局域网中的其他主机使用
+            if ($virtualMachine->where('server_id', $virtualMachine_data->server_id)->where('ip_address', $ip_address)->exists()) {
+                return false;
+            }
+        } else {
+            // 不做任何修改
+            return true;
         }
+
         $this->login($virtualMachine_data->server_id);
         $nodes = new Nodes();
 
         $ip_set = 'ae-' . $virtualMachine_data->id;
 
-        if (is_null($ip_address)) {
-            // 清除设置
-            $nodes->deleteQemuFirewallIpsetNameCidr($virtualMachine_data->node, $virtualMachine_data->vm_id, $ip_set, $virtualMachine_data->ip_address);
-        } else {
+
+        // 当 修改IP地址时，应该先清除已有的地址
+        $nodes->deleteQemuFirewallIpsetNameCidr($virtualMachine_data->node, $virtualMachine_data->vm_id, $ip_set, $virtualMachine_data->ip_address);
+
+        if (!is_null($ip_address)) {
             // Ipset name
             $nodes->createQemuFirewallIpset($virtualMachine_data->node, $virtualMachine_data->vm_id, ['name' => $ip_set]);
 
