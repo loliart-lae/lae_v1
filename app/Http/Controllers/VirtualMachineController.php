@@ -159,7 +159,7 @@ class VirtualMachineController extends Controller
             'virtio0' => $storage_name . ':' . $template->disk . ',cache=writethrough',
             'ide1' => $image1 . ',media=cdrom',
             'ide2' => $image2 . ',media=cdrom',
-            'net0' => 'virtio,bridge=' . $vlan . ',firewall=1',
+            'net0' => 'e1000,bridge=' . $vlan . ',firewall=1',
             'kvm' => 1,
             'start' => $status,
             'bios' => $bios
@@ -246,15 +246,19 @@ class VirtualMachineController extends Controller
     public function edit($id)
     {
         $virtualMachine = new VirtualMachine();
+        $virtualMachineTemplate = new VirtualMachineTemplate();
 
         $virtualMachine_where = $virtualMachine->where('id', $id)->with(['dash_user', 'server']);
         $virtualMachine = $virtualMachine_where->firstOrFail();
+
+        // 列出模板
+        $templates = $virtualMachineTemplate->orderBy('price')->get();
 
         if (!ProjectMembersController::userInProject($virtualMachine->project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
         }
 
-        return view('virtualMachine.edit', compact('virtualMachine'));
+        return view('virtualMachine.edit', compact('virtualMachine', 'templates'));
     }
 
     /**
@@ -273,8 +277,10 @@ class VirtualMachineController extends Controller
             'ip_address' => 'nullable|ip'
         ]);
 
-        if (count($request->image_id) > 2) {
-            return redirect()->back()->with('status', '最多只能挂载两个镜像。');
+        if (!is_null($request->image_id)) {
+            if (count($request->image_id) > 2) {
+                return redirect()->back()->with('status', '最多只能挂载两个镜像。');
+            }
         }
 
         $virtualMachine = new VirtualMachine();
@@ -296,6 +302,11 @@ class VirtualMachineController extends Controller
         ]);
 
         $this->changeVmImage($id, $request->image_id);
+        if ($virtualMachine_data->template_id != $request->template_id) {
+            if (!$this->changeVmTemplate($id, $request->template_id)) {
+                return redirect()->back()->with('status', '无法更改模板，可能是目标模板配置小于当前模板。');
+            }
+        }
 
         if (!$this->setIpFilter($id, $request->ip_address)) {
             return redirect()->back()->with('status', '这个IP地址已被局域网中的其他虚拟机使用了。w');
@@ -568,6 +579,38 @@ class VirtualMachineController extends Controller
         }
 
         VirtualMachine::where('id', $virtualMachine_data->id)->update(['ip_address' => $ip_address]);
+
+        return true;
+    }
+
+    private function changeVmTemplate($id, $template_id)
+    {
+        $virtualMachine = new VirtualMachine();
+        $virtualMachineTemplate = new VirtualMachineTemplate();
+        $virtualMachine_data = $virtualMachine->where('id', $id)->with('template')->firstOrFail();
+        $virtualMachineTemplate_data = $virtualMachineTemplate->where('id', $template_id)->firstOrFail();
+
+        // 模板不能够降级
+        if ($virtualMachine_data->template->disk > $virtualMachineTemplate_data->disk || $virtualMachine_data->template->cpu > $virtualMachineTemplate_data->cpu || $virtualMachine_data->template->memory > $virtualMachineTemplate_data->memory) {
+            return false;
+        }
+
+        $this->login($virtualMachine_data->server_id);
+        $nodes = new Nodes();
+
+        $nodes->setQemuConfig($virtualMachine_data->node, $virtualMachine_data->vm_id, [
+            'cores' => $virtualMachineTemplate_data->cpu,
+            'memory' => $virtualMachineTemplate_data->memory,
+        ]);
+
+        $nodes->qemuResize($virtualMachine_data->node, $virtualMachine_data->vm_id, [
+            'disk' => 'virtio0',
+            'size' => '+' . $virtualMachineTemplate_data->disk - $virtualMachine_data->template->disk,
+        ]);
+
+        $virtualMachine_data = $virtualMachine->where('id', $id)->with('template')->update([
+            'template_id' => $template_id
+        ]);
 
         return true;
     }
