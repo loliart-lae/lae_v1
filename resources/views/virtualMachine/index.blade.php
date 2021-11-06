@@ -26,8 +26,7 @@
                     <div class="mdui-panel-item-header mdui-typo umami--click--show-lxd-panel">
                         <div class="mdui-panel-item-title">{{ $i++ }}. {{ $virtualMachine->name }}</div>
                         <div class="mdui-panel-item-summary">
-                            <a
-                                href="{{ route('projects.show', $virtualMachine->project->id) }}">{{ $virtualMachine->project->name }}</a>
+                            {{ $virtualMachine->ip_address }}
                         </div>
                         <div class="mdui-panel-item-summary">
                             <div id="power-{{ $virtualMachine->id }}">
