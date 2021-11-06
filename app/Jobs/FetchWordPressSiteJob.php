@@ -39,7 +39,7 @@ class FetchWordPressSiteJob implements ShouldQueue
             $data = User::where('wp_index', 1)->cursor();
             foreach ($data as $user) {
                 try {
-                    WordPressFetchController::fetch($user->id, $user->website);
+                    WordPressFetchController::fetch($user->id, $user->website, true);
                 } catch (Exception $e) {
                     unset($e);
                     continue;
