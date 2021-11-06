@@ -32,7 +32,7 @@
         <div id="choose-template">
             <div class="mdui-row mdui-p-t-4 mdui-p-b-2 mdui-p-l-1">
                 <span class="mdui-typo-headline">选择 配置模板</span>
-                <p class="mdui-typo-subheading">配置模板影响着计费，计费每 1 分钟进行一次。</p>
+                <p class="mdui-typo-subheading">@if ($virtualMachine->status) 在未关闭虚拟机的情况下修改模板将不会及时生效，需要将虚拟机关闭并重新打开才能应用。 @else 配置模板影响着计费，计费每 1 分钟进行一次。 @endif </p>
             </div>
             <div class="mdui-table-fluid">
                 <table class="mdui-table mdui-table-hoverable">
