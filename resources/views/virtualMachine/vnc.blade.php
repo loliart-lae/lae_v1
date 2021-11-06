@@ -21,8 +21,9 @@
 </head>
 
 <body>
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script>
-        mdui.alert('如果无法成功登录VNC，请尝试刷新页面(不是用指示器刷新)。')
         // 设置 cookie
         $.ajax({
             type: "POST",
