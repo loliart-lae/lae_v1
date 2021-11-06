@@ -13,6 +13,12 @@
             <input class="mdui-textfield-input" type="text" name="name" value="{{ $virtualMachine->name }}" />
         </div>
 
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">虚拟机 IP 地址</label>
+            <input class="mdui-textfield-input" type="text" name="ip_address" value="{{ $virtualMachine->ip_address }}" />
+            <div class="mdui-textfield-helper">如果不设置，虚拟机将无法连接到网络。</div>
+        </div>
+
         <div class="mdui-row-md-4 mdui-m-b-2 mdui-m-t-2">
             <div class="mdui-col">
                 <label class="mdui-checkbox"

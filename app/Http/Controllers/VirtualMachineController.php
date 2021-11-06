@@ -257,6 +257,7 @@ class VirtualMachineController extends Controller
             'name' => 'required|max:10',
             'image_id' => 'nullable',
             'remove_cd_rom' => 'boolean',
+            'ip_address' => 'nullable'
         ]);
 
         $virtualMachine = new VirtualMachine();
@@ -278,6 +279,10 @@ class VirtualMachineController extends Controller
         ]);
 
         $this->changeVmImage($id, $request->image_id);
+
+        if (!$this->setIpFilter($id, $request->ip_address)) {
+            return redirect()->back()->with('status', '这个IP地址已被局域网中的其他虚拟机使用了。');
+        }
 
         ProjectActivityController::save($project_id, '修改了虚拟机: ' . $virtualMachine_data->name . '，新的名称为: ' . $request->name);
 
@@ -506,5 +511,34 @@ class VirtualMachineController extends Controller
         $nodes->setQemuConfig($virtualMachine_data->node, $virtualMachine_data->vm_id, [
             'ide2' => $image . ',media=cdrom',
         ]);
+    }
+
+    private function setIpFilter($id, $ip_address)
+    {
+        $virtualMachine = new VirtualMachine();
+        $virtualMachine_data = $virtualMachine->where('id', $id)->firstOrFail();
+
+        if ($virtualMachine->where('server_id', $virtualMachine_data->server_id)->where('ip_address', $ip_address)->exists()) {
+            return false;
+        }
+        $this->login($virtualMachine_data->server_id);
+        $nodes = new Nodes();
+
+        $ip_set = 'ae-' . $virtualMachine_data->id;
+
+        if (is_null($ip_address)) {
+            // 清除设置
+            $nodes->deleteQemuFirewallIpsetNameCidr($virtualMachine_data->node, $virtualMachine_data->vm_id, $ip_set, $virtualMachine_data->ip_address);
+        } else {
+            // Ipset name
+            $nodes->createQemuFirewallIpset($virtualMachine_data->node, $virtualMachine_data->vm_id, ['name' => $ip_set]);
+
+            // 创建规则
+            $nodes->addQemuFirewallIpsetName($virtualMachine_data->node, $virtualMachine_data->vm_id, $ip_set, ['cidr' => $ip_address]);
+        }
+
+        VirtualMachine::where('id', $virtualMachine_data->id)->update(['ip_address' => $ip_address]);
+
+        return true;
     }
 }
