@@ -47,21 +47,20 @@
                     <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                 </div>
                 <div class="mdui-collapse-item-body mdui-list">
+                    <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
+                        <div class="mdui-list-item-content">云虚拟机</div>
+                    </a>
                     <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
                         <div class="mdui-list-item-content">应用容器</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
-                        href="{{ route('remote_desktop.index') }}">
-                        <div class="mdui-list-item-content">共享的 Windows</div>
                     </a>
                     <a class="mdui-list-item mdui-ripple umami--click--gameServer"
                         href="{{ route('gameServer.index') }}">
                         <div class="mdui-list-item-content">游戏服务</div>
                     </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
-                        <div class="mdui-list-item-content">云虚拟机</div>
+                    <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
+                        href="{{ route('remote_desktop.index') }}">
+                        <div class="mdui-list-item-content">共享的 Windows</div>
                     </a>
-
                 </div>
             </div>
 
@@ -88,13 +87,12 @@
                     <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                 </div>
                 <div class="mdui-collapse-item-body mdui-list">
-                    <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
-                        <div class="mdui-list-item-content">EasyPanel 站点</div>
-                    </a>
-
                     <a class="mdui-list-item mdui-ripple umami--click--staticPage"
                         href="{{ route('staticPage.index') }}">
                         <div class="mdui-list-item-content">静态站点</div>
+                    </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
+                        <div class="mdui-list-item-content">EasyPanel 站点</div>
                     </a>
                 </div>
             </div>
@@ -104,14 +102,14 @@
                 <div class="mdui-list-item-content">文档中心</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--contributes" href="{{ route('contributes') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">token</span>
-                <div class="mdui-list-item-content">贡献者</div>
-            </a>
-
             <a class="mdui-list-item mdui-ripple umami--click--forum" target="_blank" href="https://f.lightart.top">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">question_answer</span>
                 <div class="mdui-list-item-content">社区论坛</div>
+            </a>
+
+            <a class="mdui-list-item mdui-ripple umami--click--contributes" href="{{ route('contributes') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">token</span>
+                <div class="mdui-list-item-content">贡献者</div>
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--forum" href="{{ route('user.blocked') }}">
