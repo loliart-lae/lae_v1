@@ -72,6 +72,4 @@ $(window).scroll(function () {
 
     }
 
-    console.log(bottom_fab_status)
-
 })
