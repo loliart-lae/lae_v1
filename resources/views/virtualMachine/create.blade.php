@@ -168,7 +168,7 @@
                         }
                     },
                     error: function(data) {
-                        $('#image-ask').text('无法询问镜像。')
+                        $('#image-ask').html('无法询问镜像。')
                     }
                 })
             })
