@@ -19,7 +19,7 @@
         @foreach ($virtualMachines as $virtualMachine)
             @if ($virtualMachine->project->id !== $last_project_id)
                 @php($last_project_id = $virtualMachine->project->id)
-                <h1>{{ $virtualMachine->project->name }}</h1>
+                <h1 class="mdui-typo-display-1">{{ $virtualMachine->project->name }}</h1>
             @endif
             <div class="mdui-panel mdui-m-t-1 mdui-panel-popout" mdui-panel>
                 <div class="mdui-panel-item @if ($i == 1) mdui-panel-item-open @endif">
