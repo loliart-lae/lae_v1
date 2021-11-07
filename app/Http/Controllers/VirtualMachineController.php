@@ -381,6 +381,7 @@ class VirtualMachineController extends Controller
                         'free_mem' => $server_data->free_mem + $template_data->memory,
                         'free_disk' => $server_data->free_disk + $template_data->disk,
                     ]);
+                    return true;
                     break;
                 }
 
