@@ -17,7 +17,7 @@
     </div>
 
     <div>
-        <div class="mdui-row ">
+        <div class="mdui-row">
             @php($i = 1)
             @php($last_project_id = 0)
             @foreach ($virtualMachines as $virtualMachine)
