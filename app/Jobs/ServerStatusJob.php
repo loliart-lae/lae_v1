@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -47,7 +48,7 @@ class ServerStatusJob implements ShouldQueue
                     'token' => $windows_server->token
                 ]);
                 $failed = $result->failed();
-            } catch (LogicException $e) {
+            } catch (ConnectException $e) {
                 $result['cpu'] = 'unknown';
                 $result['ram'] = 'unknown';
                 // continue;
