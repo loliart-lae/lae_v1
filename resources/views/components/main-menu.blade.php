@@ -97,6 +97,11 @@
                 </div>
             </div>
 
+            {{-- <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">social_distance</span>
+                <div class="mdui-list-item-content">Power Bridge</div>
+            </div> --}}
+
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">description</span>
                 <div class="mdui-list-item-content">文档中心</div>
