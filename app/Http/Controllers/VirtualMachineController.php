@@ -341,12 +341,12 @@ class VirtualMachineController extends Controller
         // }
 
         if ($this->deleteVm($id, true)) {
-            ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
-
             return redirect()->back()->with('status', '删除成功。');
         } else {
-            return redirect()->back()->with('status', '请再试一次。');
+            return redirect()->back()->with('status', '已删除，但是在检测删除状态时出现了问题。');
         }
+
+        ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
     }
 
     public function deleteVm($id)
