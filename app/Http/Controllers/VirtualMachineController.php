@@ -614,4 +614,46 @@ class VirtualMachineController extends Controller
 
         return true;
     }
+
+    public function checkStatus($status)
+    {
+        if ($status == 'running') {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getAllVm($server_id)
+    {
+        $this->login($server_id);
+        $cluster = new Cluster();
+        $response = $cluster->Resources('node');
+        $node_name = $response->data[0]->node;
+        $nodes = new Nodes();
+        $vms = $nodes->Qemu($node_name);
+        foreach ($vms->data as $vm) {
+            $vm_where = VirtualMachine::where('node', 'idc')->where('vm_id', $vm->vmid);
+            if ($vm_where->exists()) {
+                $vm_data = VirtualMachine::where('node', 'idc')->where('vm_id', $vm->vmid)->first();
+
+                $vm->status = $this->checkStatus($vm->status);
+
+                if ($vm_data->status != $vm->status) {
+                    $vm_where->update(['status' => $vm->status]);
+                }
+
+                $cache_key = 'ae-vm-status-' . $vm_data->id;
+                $cache_data = [
+                    'id' => $vm_data->id,
+                    'uptime' => $vm->uptime,
+                    'cpu' => $vm->cpu,
+                    'mem' => $vm->mem,
+                    'max_mem' => $vm->maxmem,
+                ];
+
+                Cache::put($cache_key, $cache_data, 600);
+            }
+        }
+    }
 }
