@@ -336,9 +336,9 @@ class VirtualMachineController extends Controller
             return redirect()->back()->with('status', '你不在项目中。');
         }
 
-        if ($virtualMachine_data->status) {
-            return redirect()->back()->with('status', '你必须关闭虚拟机电源才能删除。');
-        }
+        // if ($virtualMachine_data->status) {
+        //     return redirect()->back()->with('status', '你必须关闭虚拟机电源才能删除。');
+        // }
 
         if ($this->deleteVm($id)) {
             ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
@@ -359,6 +359,11 @@ class VirtualMachineController extends Controller
             $this->login($virtualMachine_data->server_id);
             $nodes = new Nodes();
 
+            $nodes->qemuStop(
+                $virtualMachine_data->node,
+                $virtualMachine_data->vm_id
+            );
+            sleep(0.5); // 加点延迟
             $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
 
             $this->deleteUser($virtualMachine_data->server_id, $virtualMachine_data->user_id);
