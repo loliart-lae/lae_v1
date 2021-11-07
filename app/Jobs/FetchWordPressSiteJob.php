@@ -46,7 +46,7 @@ class FetchWordPressSiteJob implements ShouldQueue
                 }
             }
 
-            Cache::put('lae_user_wp_fetch', 0);
+            Cache::put('lae_user_wp_fetch', 0, 60);
             return true;
         } else {
             return false;
