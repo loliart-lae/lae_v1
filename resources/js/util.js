@@ -25,6 +25,7 @@ window.util = {
             if (hourTime > 0) {
                 result = "" + parseInt(hourTime) + "小时" + result;
             }
+
             return result;
         }
     }

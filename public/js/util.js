@@ -1,1 +1,1 @@
-window.util={time:{formatSeconds:function(i){}}};
+window.util={time:{formatSeconds:function(n){var r=parseInt(n),t=0,a=0;r>60&&(t=parseInt(r/60),r=parseInt(r%60),t>60&&(a=parseInt(t/60),t=parseInt(t%60)));var e=parseInt(r)+"秒";return t>0&&(e=parseInt(t)+"分"+e),a>0&&(e=parseInt(a)+"小时"+e),e}}};
