@@ -340,7 +340,7 @@ class VirtualMachineController extends Controller
         //     return redirect()->back()->with('status', '你必须关闭虚拟机电源才能删除。');
         // }
 
-        if ($this->deleteVm($id)) {
+        if ($this->deleteVm($id, true)) {
             ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
 
             return redirect()->back()->with('status', '删除成功。');
@@ -359,32 +359,33 @@ class VirtualMachineController extends Controller
             $this->login($virtualMachine_data->server_id);
             $nodes = new Nodes();
 
-            if ($virtualMachine_data->status) {
-                $nodes->qemuStop(
-                    $virtualMachine_data->node,
-                    $virtualMachine_data->vm_id
-                );
-                $virtualMachine_where->update([
-                    'status' => 0
-                ]);
+            for ($i = 0; $i < 50; $i++) {
+                $data = $nodes->qemuCurrent('idc', $virtualMachine_data->vm_id)->data;
+                if ($data->status == 'running') {
+                    $nodes->qemuStop(
+                        $virtualMachine_data->node,
+                        $virtualMachine_data->vm_id
+                    );
+                } else {
+                    $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
 
+                    $this->deleteUser($virtualMachine_data->server_id, $virtualMachine_data->user_id);
+                }
 
-                return false;
+                if (is_null($nodes->qemuCurrent('idc', $virtualMachine_data->vm_id))) {
+                    // 返回null，代表成功已删除。
+                    // 归还配额
+                    $server_data = Server::where('id', $virtualMachine_data->server_id)->where('type', 'pve')->firstOrFail();
+                    $template_data = VirtualMachineTemplate::where('id', $virtualMachine_data->template_id)->firstOrFail();
+                    Server::where('id', $virtualMachine_data->server_id)->update([
+                        'free_mem' => $server_data->free_mem + $template_data->memory,
+                        'free_disk' => $server_data->free_disk + $template_data->disk,
+                    ]);
+                    break;
+                }
             }
 
-            $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
-
-            $this->deleteUser($virtualMachine_data->server_id, $virtualMachine_data->user_id);
-
-            // 归还配额
-            $server_data = Server::where('id', $virtualMachine_data->server_id)->where('type', 'pve')->firstOrFail();
-            $template_data = VirtualMachineTemplate::where('id', $virtualMachine_data->template_id)->firstOrFail();
-            Server::where('id', $virtualMachine_data->server_id)->update([
-                'free_mem' => $server_data->free_mem + $template_data->memory,
-                'free_disk' => $server_data->free_disk + $template_data->disk,
-            ]);
-
-            return true;
+            return false;
         } catch (\Exception $e) {
             Log::error($e);
             return false;
