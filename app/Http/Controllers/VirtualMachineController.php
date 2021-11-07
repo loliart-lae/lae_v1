@@ -359,8 +359,8 @@ class VirtualMachineController extends Controller
             $this->login($virtualMachine_data->server_id);
             $nodes = new Nodes();
 
-            for ($i = 0; $i < 50; $i++) {
-                $data = $nodes->qemuCurrent('idc', $virtualMachine_data->vm_id)->data;
+            for ($i = 0; $i < 100; $i++) {
+                $data = $nodes->qemuCurrent($virtualMachine_data->node, $virtualMachine_data->vm_id)->data;
                 if ($data->status == 'running') {
                     $nodes->qemuStop(
                         $virtualMachine_data->node,
@@ -372,7 +372,7 @@ class VirtualMachineController extends Controller
                     $this->deleteUser($virtualMachine_data->server_id, $virtualMachine_data->user_id);
                 }
 
-                if (is_null($nodes->qemuCurrent('idc', $virtualMachine_data->vm_id))) {
+                if (is_null($nodes->qemuCurrent($virtualMachine_data->node, $virtualMachine_data->vm_id))) {
                     // 返回null，代表成功已删除。
                     // 归还配额
                     $server_data = Server::where('id', $virtualMachine_data->server_id)->where('type', 'pve')->firstOrFail();
@@ -383,6 +383,8 @@ class VirtualMachineController extends Controller
                     ]);
                     break;
                 }
+
+                sleep(0.5);
             }
 
             return false;
@@ -647,9 +649,9 @@ class VirtualMachineController extends Controller
         $nodes = new Nodes();
         $vms = $nodes->Qemu($node_name);
         foreach ($vms->data as $vm) {
-            $vm_where = VirtualMachine::where('node', 'idc')->where('vm_id', $vm->vmid);
+            $vm_where = VirtualMachine::where('node', $node_name)->where('vm_id', $vm->vmid);
             if ($vm_where->exists()) {
-                $vm_data = VirtualMachine::where('node', 'idc')->where('vm_id', $vm->vmid)->first();
+                $vm_data = VirtualMachine::where('node', $node_name)->where('vm_id', $vm->vmid)->first();
 
                 $vm->status = $this->checkStatus($vm->status);
 
