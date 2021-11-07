@@ -39,9 +39,9 @@
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div
                         style="display: inline;
-                                                                                                                                                                                                                                                                                                                            position: absolute;
-                                                                                                                                                                                                                                                                                                                            right: 16px;
-                                                                                                                                                                                                                                                                                                                            margin-top: 3px;cursor: pointer">
+                                                                                                                                                                                                                                                                                                                                    position: absolute;
+                                                                                                                                                                                                                                                                                                                                    right: 16px;
+                                                                                                                                                                                                                                                                                                                                    margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
                             <span mdui-tooltip="{content: '官方人员'}"
                                 class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
@@ -149,9 +149,9 @@
                             style="display:none;">{!! e($status_reply->content) !!}</textarea>
                         <script>
                             $(document).ready(function() {
-                                var log_view
-                                $('#log_{{ $status->id }}').html(null)
-                                log_view = editormd.markdownToHTML("reply_{{ $status_reply->id }}", {
+                                var reply_view
+                                $('#reply_{{ $status_reply->id }}').html(null)
+                                reply_view = editormd.markdownToHTML("reply_{{ $status_reply->id }}", {
                                     markdown: $('#reply_{{ $status_reply->id }}_content').html(),
                                     tocm: true,
                                     emoji: true,
