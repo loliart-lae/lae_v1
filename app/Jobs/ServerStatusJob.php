@@ -41,7 +41,7 @@ class ServerStatusJob implements ShouldQueue
         // 获取 Windows 服务器 资源占用
         foreach ($windows_servers as $windows_server) {
             try {
-                $result = Http::get("http://{$windows_server->address}/status", [
+                $result = Http::timeout(5)->get("http://{$windows_server->address}/status", [
                     'token' => $windows_server->token
                 ]);
             } catch (\Illuminate\Http\Client\ConnectionException $e) {
