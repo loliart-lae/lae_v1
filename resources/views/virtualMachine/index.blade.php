@@ -26,25 +26,29 @@
                     @php($last_project_id = $virtualMachine->project->id)
                     <h1 class="mdui-typo-display-1 mdui-col-xs-12">{{ $virtualMachine->project->name }}</h1>
                 @endif
-                <div class="mdui-col-xs-6">
+                <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12">
                     <div class="mdui-card mdui-m-t-1">
                         <div class="mdui-card-primary">
                             <div class="mdui-typo">
                                 <div class="mdui-row">
                                     <div class="mdui-col-xs-6 mdui-col-sm-4">
-                                        <div class="mdui-panel-item-title">{{ $i++ }}.
+                                        <div>{{ $i++ }}.
                                             {{ $virtualMachine->name }}
                                         </div>
                                     </div>
-                                    <div class="mdui-col-xs-6 mdui-col-sm-4">
-                                        <span class="vm_uptime_{{ $virtualMachine->id }}"></span>
-                                        <span class="vm_{{ $virtualMachine->id }}_cpu_usage">0</span>% &
-                                        <span class="vm_{{ $virtualMachine->id }}_memory_usage">0</span>%
+
+                                    <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12 mdui-hidden-sm-down">
+                                        <div class="mdui-col-xs-6 mdui-col-sm-4">
+                                            <span class="vm_uptime_{{ $virtualMachine->id }}"></span>
+                                            <span class="vm_{{ $virtualMachine->id }}_cpu_usage">0</span>% &
+                                            <span class="vm_{{ $virtualMachine->id }}_memory_usage">0</span>%
+                                        </div>
+                                        <div class="mdui-col-xs-6 mdui-col-sm-4">
+                                            <i
+                                                class="mdui-icon material-icons-outlined power-btn-{{ $virtualMachine->id }}  @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">power_settings_new</i>
+                                        </div>
                                     </div>
-                                    <div class="mdui-col-xs-6 mdui-col-sm-4">
-                                        <i
-                                            class="mdui-icon material-icons-outlined power-btn-{{ $virtualMachine->id }}  @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">power_settings_new</i>
-                                    </div>
+
                                 </div>
                                 <div class="mdui-row">
                                     <div class="mdui-col-xs-6">内部 ID：{{ $virtualMachine->id }}</div>
