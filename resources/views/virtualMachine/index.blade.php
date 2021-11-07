@@ -40,8 +40,6 @@
                                     <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12 mdui-hidden-sm-down">
                                         <div class="mdui-col-xs-12">
                                             <span class="vm_uptime_{{ $virtualMachine->id }}"></span>
-                                            <span class="vm_{{ $virtualMachine->id }}_cpu_usage">0</span>% &
-                                            <span class="vm_{{ $virtualMachine->id }}_memory_usage">0</span>%
                                         </div>
                                         <div style="position: absolute; right: 0;top: -2px">
                                             <i
