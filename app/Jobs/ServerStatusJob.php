@@ -12,6 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use App\Http\Controllers\VirtualMachineController;
 
 class ServerStatusJob implements ShouldQueue
 {
@@ -35,6 +36,7 @@ class ServerStatusJob implements ShouldQueue
     public function handle()
     {
         $windows_servers = Server::where('type', 'windows')->get();
+        $pve = Server::where('type', 'pve')->get();
 
 
         // 获取 Windows 服务器 资源占用
@@ -53,6 +55,13 @@ class ServerStatusJob implements ShouldQueue
                 'cpu' => $result['cpu'],
                 'mem' => $result['ram']
             ]), 600);
+        }
+
+        // 更新 PVE 以及各个虚拟机资源占用
+        $virtualMachineController = new VirtualMachineController();
+        foreach ($pve as $ve) {
+            // 登录到VE
+            $virtualMachineController->getAllVm($ve->id);
         }
     }
 }
