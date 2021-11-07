@@ -43,7 +43,7 @@
                                         </div>
                                         <div style="position: absolute; right: 0;top: -2px">
                                             <i
-                                                class="mdui-icon material-icons-outlined power-btn-{{ $virtualMachine->id }}  @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">power_settings_new</i>
+                                                class="mdui-icon material-icons-outlined power-btn-{{ $virtualMachine->id }}  @if ($virtualMachine->status) mdui-text-color-green @else mdui-text-color-red @endif">power_settings_new</i>
                                         </div>
                                     </div>
 
