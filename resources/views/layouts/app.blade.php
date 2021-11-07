@@ -29,6 +29,7 @@
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
     <x-body-script />
+    <script src="{{ mix('js/util.js') }}"></script>
 
     <header class="mdui-appbar mdui-appbar-fixed">
         <div class="mdui-toolbar mdui-color-theme">
