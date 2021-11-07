@@ -3,6 +3,10 @@
 @section('title', '云虚拟机')
 
 @section('content')
+
+    <script>
+        var this_vm, this_vm_cpu_percent, this_vm_memory, this_vm_memory_percent
+    </script>
     <div class="mdui-typo-display-2">云虚拟机</div>
 
     <div class="mdui-row mdui-p-b-2 mdui-p-l-1">
@@ -71,11 +75,11 @@
                             </div>
 
                             <script>
-                                let this_vm = {!! json_encode(Cache::get('ae-vm-status-' . $virtualMachine->id)) !!}
+                                this_vm = {!! json_encode(Cache::get('ae-vm-status-' . $virtualMachine->id)) !!}
                                 if (this_vm != null) {
-                                    let this_vm_cpu_percent = Number(this_vm.cpu * 100).toFixed(1);
-                                    let this_vm_memory = this_vm.mem / this_vm.max_mem
-                                    let this_vm_memory_percent = Number(this_vm_memory * 100).toFixed(1);
+                                    this_vm_cpu_percent = Number(this_vm.cpu * 100).toFixed(1);
+                                    this_vm_memory = this_vm.mem / this_vm.max_mem
+                                    this_vm_memory_percent = Number(this_vm_memory * 100).toFixed(1);
                                     $('.vm_uptime_' + this_vm.id).text(window.util.time.formatSeconds(this_vm.uptime))
 
                                     $('#vm_memory_progress_' + this_vm.id).width(this_vm_memory_percent + '%')
