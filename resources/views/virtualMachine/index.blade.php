@@ -17,14 +17,14 @@
     </div>
 
     <div>
-
-        <div class="mdui-row mdui-m-t-3">
+        <div class="mdui-row ">
             @php($i = 1)
             @php($last_project_id = 0)
             @foreach ($virtualMachines as $virtualMachine)
                 @if ($virtualMachine->project->id !== $last_project_id)
                     @php($last_project_id = $virtualMachine->project->id)
-                    <h1 class="mdui-typo-display-1 mdui-col-xs-12">{{ $virtualMachine->project->name }}</h1>
+                    <h1 class="mdui-typo-display-1 mdui-col-xs-12 mdui-p-t-2" style="margin:0;position: relative;top:10px">
+                        {{ $virtualMachine->project->name }}</h1>
                 @endif
                 <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12">
                     <div class="mdui-card mdui-m-t-2 mdui-hoverable">
