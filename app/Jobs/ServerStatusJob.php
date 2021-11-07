@@ -34,8 +34,6 @@ class ServerStatusJob implements ShouldQueue
      */
     public function handle()
     {
-
-        error_reporting(0);
         $windows_servers = Server::where('type', 'windows')->get();
         $pve = Server::where('type', 'pve')->get();
 
