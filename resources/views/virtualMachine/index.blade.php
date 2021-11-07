@@ -27,7 +27,7 @@
                     <h1 class="mdui-typo-display-1 mdui-col-xs-12">{{ $virtualMachine->project->name }}</h1>
                 @endif
                 <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12">
-                    <div class="mdui-card mdui-m-t-1">
+                    <div class="mdui-card mdui-m-t-1 mdui-hoverable">
                         <div class="mdui-card-primary">
                             <div class="mdui-typo">
                                 <div class="mdui-row">
