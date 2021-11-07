@@ -26,33 +26,64 @@
                     <div class="mdui-panel-item-header mdui-typo umami--click--show-lxd-panel">
                         <div class="mdui-panel-item-title">{{ $i++ }}. {{ $virtualMachine->name }}</div>
                         <div class="mdui-panel-item-summary">
-                            {{ $virtualMachine->ip_address }}
+                            <span class="vm_uptime_{{ $virtualMachine->id }}"></span>
+                            <span class="vm_{{ $virtualMachine->id }}_cpu_usage">0</span>% &
+                            <span class="vm_{{ $virtualMachine->id }}_memory_usage">0</span>%
                         </div>
                         <div class="mdui-panel-item-summary">
                             <div>
                                 <i
                                     class="mdui-icon material-icons-outlined power-btn-{{ $virtualMachine->id }}  @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">power_settings_new</i>
-
                             </div>
                         </div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons-outlined">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
                         <div class="mdui-typo">
-                            <p>内部 ID：{{ $virtualMachine->id }}</p>
-                            <p>名称：{{ $virtualMachine->name }}</p>
-                            <p>核心：{{ $virtualMachine->template->cpu }} Core</p>
-                            <p>内存：{{ $virtualMachine->template->memory }} M</p>
-                            <p>存储：{{ $virtualMachine->template->disk }} G</p>
-                            <p>网络限制：{{ $virtualMachine->server->network_limit }} Mbps</p>
-                            <p>所在服务器：{{ $virtualMachine->server->name }}</p>
-                            <p>所在项目：<a
-                                    href="{{ route('projects.show', $virtualMachine->project->id) }}">{{ $virtualMachine->project->name }}</a>
-                            </p>
-                            <p>
-                                积分/分钟：
-                                {{ $virtualMachine->server->price + $virtualMachine->template->price }}/m
-                            </p>
+                            <div class="mdui-row">
+                                <div class="mdui-col-xs-6">内部 ID：{{ $virtualMachine->id }}</div>
+                                <div class="mdui-col-xs-6">名称：{{ $virtualMachine->name }}</div>
+                                <div class="mdui-col-xs-6">共享带宽：{{ $virtualMachine->server->network_limit }} Mbps</div>
+                                <div class="mdui-col-xs-6">所在服务器：{{ $virtualMachine->server->name }}</div>
+                                <div class="mdui-col-xs-6">所在项目：<a
+                                        href="{{ route('projects.show', $virtualMachine->project->id) }}">{{ $virtualMachine->project->name }}</a>
+                                </div>
+                                <div class="mdui-col-xs-6"> 积分/分钟：
+                                    {{ $virtualMachine->server->price + $virtualMachine->template->price }}/m</div>
+                            </div>
+                            <div class="mdui-row mdui-m-t-3">
+                                <div class="mdui-col-xs-6"> CPU占用 <span
+                                        class="vm_{{ $virtualMachine->id }}_cpu_usage">0</span>%
+                                    <div class="mdui-progress">
+                                        <div class="mdui-progress-determinate"
+                                            id="vm_cpu_progress_{{ $virtualMachine->id }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mdui-col-xs-6"> 内存占用 <span
+                                        class="vm_{{ $virtualMachine->id }}_memory_usage">0</span>%
+                                    <div class="mdui-progress">
+                                        <div class="mdui-progress-determinate"
+                                            id="vm_memory_progress_{{ $virtualMachine->id }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                let this_vm = {!! json_encode(Cache::get('ae-vm-status-' . $virtualMachine->id)) !!}
+                                if (this_vm != null) {
+                                    let this_vm_cpu_percent = Number(this_vm.cpu * 100).toFixed(1);
+                                    let this_vm_memory = this_vm.mem / this_vm.max_mem
+                                    let this_vm_memory_percent = Number(this_vm_memory * 100).toFixed(1);
+                                    $('.vm_uptime_' + this_vm.id).text(window.util.time.formatSeconds(this_vm.uptime))
+
+                                    $('#vm_memory_progress_' + this_vm.id).width(this_vm_memory_percent + '%')
+                                    $('#vm_cpu_progress__' + this_vm.id).width(this_vm_cpu_percent + '%')
+                                    $('.vm_' + this_vm.id + '_cpu_usage').text(this_vm_cpu_percent)
+                                    $('.vm_' + this_vm.id + '_memory_usage').text(this_vm_memory_percent)
+                                }
+                            </script>
                         </div>
                         <div class="mdui-panel-item-actions">
                             <span onclick="power({{ $virtualMachine->id }})"
