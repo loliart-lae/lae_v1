@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Exception;
+use LogicException;
 use App\Models\Server;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Http;
@@ -46,7 +47,7 @@ class ServerStatusJob implements ShouldQueue
                     'token' => $windows_server->token
                 ]);
                 $failed = $result->failed();
-            } catch (Exception $e) {
+            } catch (LogicException $e) {
                 $result['cpu'] = 'unknown';
                 $result['ram'] = 'unknown';
                 // continue;
