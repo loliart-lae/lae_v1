@@ -39,7 +39,9 @@
 
                                     <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12 mdui-hidden-sm-down">
                                         <div class="mdui-col-xs-12">
-                                            <span class="vm_uptime_{{ $virtualMachine->id }}"></span>
+                                            @if ($virtualMachine->status)
+                                                <span class="vm_uptime_{{ $virtualMachine->id }}"></span>
+                                            @endif
                                         </div>
                                         <div style="position: absolute; right: 0;top: -2px">
                                             <i
