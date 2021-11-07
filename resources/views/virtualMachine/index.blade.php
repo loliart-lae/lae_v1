@@ -27,7 +27,7 @@
                     <h1 class="mdui-typo-display-1">{{ $virtualMachine->project->name }}</h1>
                 @endif
                 <div class="mdui-col-xs-6">
-                    <div class="mdui-panel mdui-m-t-1 mdui-panel-popout" mdui-panel>
+                    <div style="width: 95%" class="mdui-panel mdui-m-t-1 mdui-panel-popout" mdui-panel>
                         <div class="mdui-panel-item mdui-panel-item-open">
                             <div class="mdui-panel-item-header mdui-typo umami--click--show-lxd-panel">
                                 <div class="mdui-panel-item-title">{{ $i++ }}. {{ $virtualMachine->name }}</div>
