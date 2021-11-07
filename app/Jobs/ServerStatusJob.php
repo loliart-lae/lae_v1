@@ -2,15 +2,12 @@
 
 namespace App\Jobs;
 
-use Exception;
-use LogicException;
 use App\Models\Server;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -37,6 +34,8 @@ class ServerStatusJob implements ShouldQueue
      */
     public function handle()
     {
+
+        error_reporting(0);
         $windows_servers = Server::where('type', 'windows')->get();
         $pve = Server::where('type', 'pve')->get();
 
@@ -44,11 +43,11 @@ class ServerStatusJob implements ShouldQueue
         // 获取 Windows 服务器 资源占用
         foreach ($windows_servers as $windows_server) {
             try {
-                $result = Http::timeout(5)->get("http://{$windows_server->address}/status", [
+                $result = Http::get("http://{$windows_server->address}/status", [
                     'token' => $windows_server->token
                 ]);
-                $failed = $result->failed();
-            } catch (ConnectException $e) {
+            } catch (\Illuminate\Http\Client\ConnectionException $e) {
+                $result = [];
                 $result['cpu'] = 'unknown';
                 $result['ram'] = 'unknown';
                 // continue;
