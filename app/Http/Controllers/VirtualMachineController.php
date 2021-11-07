@@ -345,7 +345,7 @@ class VirtualMachineController extends Controller
 
             return redirect()->back()->with('status', '删除成功。');
         } else {
-            return redirect()->back()->with('status', '暂时无法删除虚拟机。');
+            return redirect()->back()->with('status', '请再试一次。');
         }
     }
 
@@ -359,11 +359,19 @@ class VirtualMachineController extends Controller
             $this->login($virtualMachine_data->server_id);
             $nodes = new Nodes();
 
-            $nodes->qemuStop(
-                $virtualMachine_data->node,
-                $virtualMachine_data->vm_id
-            );
-            sleep(0.5); // 加点延迟
+            if ($virtualMachine_data->status) {
+                $nodes->qemuStop(
+                    $virtualMachine_data->node,
+                    $virtualMachine_data->vm_id
+                );
+                $virtualMachine_where->update([
+                    'status' => 0
+                ]);
+
+
+                return false;
+            }
+
             $nodes->deleteQemu($virtualMachine_data->node, $virtualMachine_data->vm_id);
 
             $this->deleteUser($virtualMachine_data->server_id, $virtualMachine_data->user_id);
