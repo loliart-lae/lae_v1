@@ -340,11 +340,8 @@ class VirtualMachineController extends Controller
         //     return redirect()->back()->with('status', '你必须关闭虚拟机电源才能删除。');
         // }
 
-        if ($this->deleteVm($id)) {
-            return redirect()->back()->with('status', '删除成功。');
-        } else {
-            return redirect()->back()->with('status', '已删除，但是在检测删除状态时出现了问题。');
-        }
+        // 不管了，总之就是删掉了
+        $this->deleteVm($id);
 
         ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
     }
