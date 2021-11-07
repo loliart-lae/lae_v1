@@ -15,6 +15,7 @@
                         <th>用户 ID</th>
                         <th>头像</th>
                         <th>用户名</th>
+                        <th>邮箱</th>
                         <th>封禁原因</th>
                         <th>封禁时间</th>
                         <th style="overflow: visible; text-align: right;">
@@ -37,6 +38,10 @@
 
                             <td nowrap>
                                 {{ $user->name }}
+                            </td>
+
+                            <td nowrap>
+                                {{ $user->email }}
                             </td>
 
                             <td>
