@@ -403,7 +403,7 @@ class VirtualMachineController extends Controller
         $virtualMachineUser->delete();
     }
 
-    public function get_image($server_id, $json = true)
+    public function getImage($server_id, $json = true)
     {
         $cache_key = 'pve_server_image_cache_' . $server_id;
         if (Cache::has($cache_key)) {
