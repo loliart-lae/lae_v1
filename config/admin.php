@@ -5,6 +5,7 @@ return [
         'Bing_Yanchi@outlook.com',
         'ivampiresp@163.com',
         'MC_heheda@outlook.com',
+        'jwai4789@gmail.com'
     ],
     'bypass_users' => [
         'im@ivampiresp.com',
