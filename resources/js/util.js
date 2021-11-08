@@ -28,5 +28,12 @@ window.util = {
 
             return result;
         }
+    },
+    dialog: {
+        confirm: function (url) {
+            mdui.confirm('你正在进入一个安全的页面，请确保你现在没有录制或者进行公开的流式媒体，否则您可能会泄漏重要信息（如用户名，密码等）', function () {
+                window.open(url);
+            })
+        }
     }
 }
