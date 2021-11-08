@@ -443,7 +443,7 @@ class VirtualMachineController extends Controller
 
     private function checkImage($server_id, $image_id)
     {
-        $images = $this->get_image($server_id, false);
+        $images = $this->getImage($server_id, false);
         if (array_key_exists($image_id, $images)) {
             return $images[$image_id]->volid;
         } else {
