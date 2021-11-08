@@ -35,8 +35,7 @@
                     @endif
                     <tr>
                         <td nowrap>{{ $i++ }}</td>
-                        <td nowrap>{{ $ep->name }}</td>
-
+                        <td nowrap><a href="{{ route('easyPanel.edit', $ep->id) }}">{{ $ep->name }}</a></td>
                         <td nowrap>{{ $ep->template->web_quota }} M</td>
                         <td nowrap>{{ $ep->template->db_quota }} M</td>
                         <td nowrap>{{ $ep->server->name }}</td>
@@ -46,7 +45,8 @@
                         <td nowrap>
                             @if ($ep->status == 'active')
                                 <form style="display: none" id="fastLogin-{{ $i }}"
-                                    action="http://{{ $ep->server->domain }}/vhost/index.php?c=session&a=login" method="post" target="_blank">
+                                    action="http://{{ $ep->server->domain }}/vhost/index.php?c=session&a=login"
+                                    method="post" target="_blank">
                                     <input type="hidden" name="username" value="{{ $ep->username }}" />
                                     <input type="hidden" name="passwd" value="{{ $ep->password }}" />
                                 </form>
@@ -67,9 +67,6 @@
                     <form id="f-{{ $i }}" method="post" action="{{ route('easyPanel.destroy', $ep->id) }}">
                         @csrf
                         @method('DELETE')</form>
-                    <form id="f-pwd-{{ $i }}" method="post"
-                        action="{{ route('easyPanel.update', $ep->id) }}">@csrf
-                        @method('PUT')</form>
                 @endforeach
                 @if ($i > 10)
                     <tr>
