@@ -628,7 +628,7 @@ class VirtualMachineController extends Controller
 
         $nodes->qemuResize($virtualMachine_data->node, $virtualMachine_data->vm_id, [
             'disk' => 'virtio0',
-            'size' => '+' . $virtualMachineTemplate_data->disk - $virtualMachine_data->template->disk,
+            'size' => '+' . $virtualMachineTemplate_data->disk - $virtualMachine_data->template->disk . 'G',
         ]);
 
         $virtualMachine_data = $virtualMachine->where('id', $id)->with('template')->update([
