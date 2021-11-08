@@ -132,8 +132,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::resource('/serverMonitor', Controllers\ServerMonitorController::class);
 
-    // Route::resource('/cyberPanel', Controllers\CyberPanelController::class);
-    // Route::get('/cyberPanel/listPackage/{sid}', [Controllers\CyberPanelController::class, 'listPackage'])->name('cyberPanel.listPackage');
+    Route::resource('/cyberPanel', Controllers\CyberPanelController::class);
+    Route::get('/cyberPanel/listPackage/{sid}', [Controllers\CyberPanelController::class, 'listPackage'])->name('cyberPanel.listPackage');
 
 
     // Route::resource('/images', ImageController::class);
