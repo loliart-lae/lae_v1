@@ -92,7 +92,7 @@
                                         $('.vm_uptime_' + this_vm.id).text(window.util.time.formatSeconds(this_vm.uptime))
 
                                         $('#vm_memory_progress_' + this_vm.id).width(this_vm_memory_percent + '%')
-                                        $('#vm_cpu_progress__' + this_vm.id).width(this_vm_cpu_percent + '%')
+                                        $('#vm_cpu_progress_' + this_vm.id).width(this_vm_cpu_percent + '%')
                                         $('.vm_' + this_vm.id + '_cpu_usage').text(this_vm_cpu_percent)
                                         $('.vm_' + this_vm.id + '_memory_usage').text(this_vm_memory_percent)
                                     }
