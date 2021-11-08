@@ -37,7 +37,7 @@
                             <th>带宽</th>
                             <th>服务器</th>
                             <th>月预估</th>
-                            <th>价格</th>
+                            <th>积分/分钟</th>
                             <th>选择</th>
                         </tr>
                     </thead>
