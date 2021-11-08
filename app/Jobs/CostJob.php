@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\CyberPanelController;
 use App\Models\Server;
 use App\Models\Tunnel;
 use App\Models\Forward;
@@ -12,6 +13,7 @@ use App\Models\StaticPage;
 use App\Models\LxdContainer;
 use App\Models\RemoteDesktop;
 use Illuminate\Bus\Queueable;
+use App\Models\CyberPanelSite;
 use App\Models\VirtualMachine;
 use App\Models\PterodactylServer;
 use App\Models\ServerBalanceCount;
@@ -286,5 +288,29 @@ class CostJob implements ShouldQueue
             }
         }
         unset($vms);
+
+
+        $cps = CyberPanelSite::with(['package', 'project'])->get();
+        // 获取 CyberPanel 并计费
+        foreach ($cps as $cp) {
+            // 金额
+            $project_id = $cp->project_id;
+
+            $need_pay = $cp->package->price + $cp->package->server->price;
+
+            if (!Project::cost($project_id, $need_pay)) {
+                // 扣费失败，删除服务器
+                $cyberPanelController = new CyberPanelController();
+                if ($cyberPanelController->deleteWebsite($cp->id)) {
+                    Message::send('CyberPanel 虚拟主机' . $cp->name . ' 因为积分不足而自动删除。', $project_id);
+                }
+            } else {
+                $serverBalanceCount = new ServerBalanceCount();
+                $serverBalanceCount->server_id = $cp->server_id;
+                $serverBalanceCount->value = $need_pay;
+                $serverBalanceCount->user_id = $cp->project->user_id;
+                $serverBalanceCount->save();
+            }
+        }
     }
 }
