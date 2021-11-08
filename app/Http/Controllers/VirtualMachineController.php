@@ -423,7 +423,14 @@ class VirtualMachineController extends Controller
             $storage_local = $response->data[0]->storage;
             // 列出 ISO 列表
             $response = $nodes->listStorageContent($node_pve, $storage_local);
-            $iso = $response->data;
+            $iso = [];
+
+            foreach ($response->data as $data) {
+                if ($data->format == 'iso') {
+                    array_push($iso, $data);
+                }
+            }
+
             Cache::put($cache_key, $iso, 600);
         }
 
