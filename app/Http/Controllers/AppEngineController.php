@@ -206,7 +206,7 @@ class AppEngineController extends Controller
 
 
         // 获取已启用的项目模板
-        return view('lxd.edit', compact('selected_template', 'templates', 'id'));
+        return view('lxd.edit', compact('lxd', 'templates'));
     }
 
     /**
@@ -220,6 +220,7 @@ class AppEngineController extends Controller
     {
         $this->validate($request, [
             'template_id' => 'required|integer|min:1',
+            'name' => 'required'
         ]);
 
         $lxdContainer = new LxdContainer();
@@ -239,10 +240,9 @@ class AppEngineController extends Controller
         $lxdContainer_data = $lxdContainer_where->firstOrFail();
 
         // 将容器标记为 resizing
-        $lxdContainer_where->update(['status' => 'resizing', 'template_id' => $request->template_id]);
+        $lxdContainer_where->update(['status' => 'resizing', 'template_id' => $request->template_id, 'name' => $request->name]);
 
-        ProjectActivityController::save($lxd->project_id, '修改了应用容器 ' . $lxd->name . '的 模板');
-
+        ProjectActivityController::save($lxd->project_id, '修改了应用容器 ' . $lxd->name . '，新的名称为: ' . $request->name);
 
         $config = [
             'method' => 'resize',
@@ -258,7 +258,7 @@ class AppEngineController extends Controller
 
         dispatch(new LxdJob($config));
 
-        return redirect()->route('lxd.index')->with('status', '正在调整容器模板。');
+        return redirect()->route('lxd.index')->with('status', '正在设置容器。');
     }
 
     /**
