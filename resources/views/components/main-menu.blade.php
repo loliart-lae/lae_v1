@@ -91,6 +91,10 @@
                         href="{{ route('staticPage.index') }}">
                         <div class="mdui-list-item-content">静态站点</div>
                     </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--cyberpanel"
+                        href="{{ route('cyberPanel.index') }}">
+                        <div class="mdui-list-item-content">CyberPanel 站点</div>
+                    </a>
                     <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
                         <div class="mdui-list-item-content">EasyPanel 站点</div>
                     </a>
