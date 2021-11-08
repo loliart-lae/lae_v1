@@ -49,19 +49,8 @@ class CostJob implements ShouldQueue
         ini_set('memory_limit', '1024M');
         DB::connection()->disableQueryLog();
 
-        // 挨个获取容器并计算扣费
-
         $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->get();
-        // $project = new Project();
         $forward = new Forward();
-        $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
-        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->get();
-        // $server = new Server();
-        $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
-        $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->get();
-        $pterodactylServers = PterodactylServer::with(['template'])->get();
-        $vms = VirtualMachine::with(['template', 'server', 'project'])->get();
-
         foreach ($lxdContainers as $lxd) {
             // 金额
             $project_id = $lxd->project->id;
@@ -122,7 +111,10 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($lxdContainers);
+        unset($forward);
 
+        $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
         // 获取远程桌面并计费
         foreach ($remote_desktops as $remote_desktop) {
             // 金额
@@ -152,7 +144,9 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($remote_desktops);
 
+        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->get();
         // 获取Frp Tunnel 并计费
         foreach ($tunnels as $tunnel) {
             // 金额
@@ -176,7 +170,9 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($tunnels);
 
+        $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
         // 获取 StaticPage 并计费
         foreach ($staticPages as $staticPage) {
             // 金额
@@ -210,7 +206,9 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($staticPages);
 
+        $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->get();
         // 获取 EasyPanel 并计费
         foreach ($easyPanelVirtualHosts as $easyPanelVirtualHost) {
             // 金额
@@ -240,7 +238,9 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($easyPanelVirtualHosts);
 
+        $pterodactylServers = PterodactylServer::with(['template'])->get();
         // 获取 Pterodactyl 并计费
         foreach ($pterodactylServers as $pterodactylServer) {
             // 金额
@@ -261,7 +261,9 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($pterodactylServers);
 
+        $vms = VirtualMachine::with(['template', 'server', 'project'])->get();
         // 获取 Virtual Machine 并计费
         foreach ($vms as $vm) {
             // 金额
@@ -283,5 +285,6 @@ class CostJob implements ShouldQueue
                 $serverBalanceCount->save();
             }
         }
+        unset($vms);
     }
 }
