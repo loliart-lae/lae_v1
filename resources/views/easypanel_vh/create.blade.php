@@ -95,7 +95,7 @@
 
             <div class="mdui-row mdui-p-y-2">
                 <button type="submit"
-                    class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--lxd-new">新建</button>
+                    class="mdui-float-right mdui-btn mdui-color-theme-accent mdui-ripple umami--click--easypanel-new">新建</button>
             </div>
         </div>
 
