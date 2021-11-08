@@ -142,6 +142,9 @@
                             $(btn).removeClass('mdui-text-color-red')
                             $(btn).addClass('mdui-text-color-green')
                             $('#vnc_btn_' + id).removeAttr('disabled')
+                            $('#vnc_btn_' + id).click(function() {
+                                window.open('/' + id)
+                            })
                         } else {
                             $(btn).removeClass('mdui-text-color-yellow')
                             $(btn).removeClass('mdui-text-color-green')
