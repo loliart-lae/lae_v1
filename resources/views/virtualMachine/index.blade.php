@@ -147,6 +147,7 @@
                             $(btn).removeClass('mdui-text-color-green')
                             $(btn).addClass('mdui-text-color-red')
                             $('#vnc_btn_' + id).attr('disabled', 'disabled')
+                            $('#vnc_btn_' + id).removeAttr('onclick')
                         }
                     } else {
                         mdui.snackbar({
