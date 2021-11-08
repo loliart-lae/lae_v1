@@ -344,6 +344,8 @@ class VirtualMachineController extends Controller
         $this->deleteVm($id);
 
         ProjectActivityController::save($project_id, '删除了虚拟机 ' . $virtualMachine_data->name . '。');
+
+        return redirect()->back()->with('status', '虚拟机 ' .  $virtualMachine_data->name . ' 已删除');
     }
 
     public function deleteVm($id)
