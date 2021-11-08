@@ -3,6 +3,8 @@
 @section('title', 'WebSSH')
 
 @section('content')
+    <div class="mdui-typo-display-1 mdui-m-t-2">快速 SSH</div>
+
     <div class="mdui-textfield">
         <label class="mdui-textfield-label">IP 或者 主机名</label>
         <input class="mdui-textfield-input" id="sshHost" name="hostname" type="text" />
