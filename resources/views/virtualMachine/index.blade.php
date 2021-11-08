@@ -106,16 +106,12 @@
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-edit">编辑</a>
-                            @if ($virtualMachine->status == 1 || $virtualMachine->status == 0)
-                                <button
-                                    onclick="if (confirm('确认删除吗？删除将会清除全部数据，并且无法找回！')) {$('#f-{{ $i }}').submit()} else {return false}"
-                                    class="mdui-btn mdui-ripple umami--click--virtualMachine-delete">销毁</button>
-                                <form id="f-{{ $i }}" method="post"
-                                    action="{{ route('virtualMachine.destroy', $virtualMachine->id) }}">@csrf
-                                    @method('DELETE')</form>
-                            @else
-                                <button class="mdui-btn mdui-ripple">{{ $virtualMachine->status }}</button>
-                            @endif
+                            <button
+                                onclick="if (confirm('确认删除吗？删除将会清除全部数据，并且无法找回！')) {$('#f-{{ $i }}').submit()} else {return false}"
+                                class="mdui-btn mdui-ripple umami--click--virtualMachine-delete">销毁</button>
+                            <form id="f-{{ $i }}" method="post"
+                                action="{{ route('virtualMachine.destroy', $virtualMachine->id) }}">@csrf
+                                @method('DELETE')</form>
                         </div>
                     </div>
                 </div>
@@ -127,13 +123,14 @@
         mdui.mutation()
 
         function power(id) {
+            let url = '{{ url()->current() }}'
             let btn = '.power-btn-' + id
             $(btn).removeClass('mdui-text-color-green')
             $(btn).removeClass('mdui-text-color-red')
             $(btn).addClass('mdui-text-color-yellow')
             $.ajax({
                 type: 'PUT',
-                url: '{{ url()->current() }}' + '/' + id + '/power',
+                url: url + '/' + id + '/power',
                 dataType: 'json',
                 success: function(data) {
                     if (data.status) {
@@ -143,7 +140,7 @@
                             $(btn).addClass('mdui-text-color-green')
                             $('#vnc_btn_' + id).removeAttr('disabled')
                             $('#vnc_btn_' + id).click(function() {
-                                window.open('/' + id)
+                                window.open(url + '/' + id)
                             })
                         } else {
                             $(btn).removeClass('mdui-text-color-yellow')
