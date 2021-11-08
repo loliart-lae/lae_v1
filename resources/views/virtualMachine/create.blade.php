@@ -153,7 +153,7 @@
                             <td colspan="3" class="mdui-text-center" id="image-ask">正在询问镜像...</td>
                         </tr>`)
                 $.ajax({
-                    url: 'get_image/' + $('input[name="server_id"]:checked').val(),
+                    url: 'getImage/' + $('input[name="server_id"]:checked').val(),
                     success: function(data) {
                         $('#image-ask').remove()
                         for (let i in data) {
