@@ -36,7 +36,7 @@ class CyberPanelController extends Controller
      */
     public function create(CyberPanelPackage $cyberPanelPackage)
     {
-        $packages = $cyberPanelPackage->with('server')->get();
+        $packages = $cyberPanelPackage->with('server')->orderBy('price')->get();
         return view('cyberPanel.create', compact('packages'));
     }
 
