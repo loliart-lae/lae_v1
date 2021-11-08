@@ -101,6 +101,28 @@
                 </div>
             </div>
 
+            @php($admins = config('admin.admin_users'))
+            @if (in_array(Auth::user()->email, $admins))
+                <div class="mdui-collapse-item">
+                    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                        <span class="mdui-list-item-icon mdui-icon material-icons-outlined">admin_panel_settings</span>
+                        <div class="mdui-list-item-content">管理员工具</div>
+                        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-collapse-item-body mdui-list">
+                        <span class="mdui-list-item mdui-ripple" onclick="window.open('/admin')">
+                            <div class="mdui-list-item-content">总览</div>
+                        </span>
+                        <span class="mdui-list-item mdui-ripple" onclick="window.open('/horizon')">
+                            <div class="mdui-list-item-content">队列</div>
+                        </span>
+                        <span class="mdui-list-item mdui-ripple" onclick="window.open('/telescope')">
+                            <div class="mdui-list-item-content">调试</div>
+                        </span>
+                    </div>
+                </div>
+            @endif
+
             {{-- <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">social_distance</span>
                 <div class="mdui-list-item-content">Power Bridge</div>
