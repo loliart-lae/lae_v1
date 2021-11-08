@@ -193,3 +193,7 @@ body {
 .mdui-list-item-active .mdui-list-item-content {
     font-weight: 500 !important;
 }
+
+a {
+    cursor: pointer;
+}
