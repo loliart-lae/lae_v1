@@ -52,14 +52,15 @@
                             @if ($staticPage->used_disk < 10)
                                 0
                             @else
-                                {{ $staticPage->used_disk * $staticPage->server->price * 0.01 }}
+                                {{ $staticPage->used_disk * $staticPage->server->price }}
                             @endif
                         </td>
 
                         <td nowrap>
                             @if ($staticPage->status == 'active')
                                 <a href="#"
-                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a> | <a href="#"
+                                    onclick="if (confirm('删除后，这个站点的数据将会全部丢失，并且网站将无法访问。')) { $('#f-{{ $i }}').submit() }">删除</a>
+                                | <a href="#"
                                     onclick="if (confirm('备份时间依据站点大小而定。')) { $('#f-bak-{{ $i }}').submit() }">备份</a>
                             @elseif ($staticPage->status == 'pending')
                                 <div class="mdui-progress">
