@@ -15,7 +15,7 @@
         integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 
-    <link rel="icon" href="LAE.png">
+    <link rel="icon" href="/LAE.png">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
