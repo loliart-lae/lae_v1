@@ -5,17 +5,20 @@
 @section('content')
     <div class="mdui-typo-display-2"><span id="doc-type"></span>文档</div>
 
-    <button class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--document-create-dialog" mdui-dialog="{target: '#new_document'}">新建文档</button>
+    <button class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--document-create-dialog"
+        mdui-dialog="{target: '#new_document'}">新建文档</button>
     &nbsp;&nbsp;
     @if (Request::route()->getName() != 'documents.my')
         @php($my = false)
-        <a href="{{ route('documents.my') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--document-my">查看 我的文档</a>
+        <a href="{{ route('documents.my') }}"
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--document-my">查看 我的文档</a>
         <script>
             $('#doc-type').html('社区')
         </script>
     @else
         @php($my = true)
-        <a href="{{ route('documents.index') }}" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--document-ommunity">查看 社区文档</a>
+        <a href="{{ route('documents.index') }}"
+            class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--document-ommunity">查看 社区文档</a>
         <script>
             $('#doc-type').html('我的')
         </script>
@@ -63,7 +66,7 @@
 
     <br /><br />
     <div class="container">
-        <div class="mdui-row">
+        <div class="mdui-row" id="masonry">
             @foreach ($documents as $document)
                 <div class="mdui-col-sm-4">
                     <div class="mdui-card mdui-m-t-1 mdui-hoverable">
@@ -121,6 +124,12 @@
     </div>
 
     <script>
+        var $container = $('#masonry')
+
+        $container.masonry({
+            itemSelector: '.poll',
+        })
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('input[name="_token"]').val()
