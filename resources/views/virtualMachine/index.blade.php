@@ -102,7 +102,7 @@
                         <div class="mdui-card-actions">
                             <span onclick="power({{ $virtualMachine->id }})"
                                 class="power-btn-{{ $virtualMachine->id }} mdui-btn mdui-ripple @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">电源</span>
-                            <button onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')"
+                            <button id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-edit">编辑</a>
@@ -137,14 +137,17 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.status) {
-                        if (data.power == 1) {
+                        if (data.power) {
                             $(btn).removeClass('mdui-text-color-yellow')
                             $(btn).removeClass('mdui-text-color-red')
                             $(btn).addClass('mdui-text-color-green')
+                            $('#vnc_btn_' + id).removeAttr('disabled')
                         } else {
                             $(btn).removeClass('mdui-text-color-yellow')
                             $(btn).removeClass('mdui-text-color-green')
                             $(btn).addClass('mdui-text-color-red')
+                            $('#vnc_btn_' + id).attr('disabled', 'disabled')
+
                         }
                     } else {
                         mdui.snackbar({
