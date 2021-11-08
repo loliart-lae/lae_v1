@@ -112,7 +112,7 @@
                             <td colspan="3" class="mdui-text-center" id="image-ask">正在询问镜像...</td>
                         </tr>`)
                 $.ajax({
-                    url: '{{ route('virtualMachine.get_image', $virtualMachine->server_id) }}',
+                    url: '{{ route('virtualMachine.getImage', $virtualMachine->server_id) }}',
                     success: function(data) {
                         $('#image-ask').remove()
                         for (let i in data) {
