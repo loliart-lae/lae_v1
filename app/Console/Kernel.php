@@ -54,6 +54,12 @@ class Kernel extends ConsoleKernel
 
         // 生成 metrics
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+
+        // 清理 telescope 24小时之前的数据
+        $schedule->command('telescope:prune')->daily();
+
+        // 每天 18:00 发送本月开头到现在的流动资金
+        $schedule->command('sc:now')->dailyAt('18:00');
     }
 
     /**
