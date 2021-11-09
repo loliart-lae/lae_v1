@@ -23,6 +23,7 @@
         "laravel/tinker": "^2.5",
         "overtrue/laravel-follow": "^3.0",
         "overtrue/laravel-socialite": "~3.0",
+        "protoqol/prequel": "^1.22",
         "renatomarinho/laravel-page-speed": "^2.0",
         "saleh7/proxmox-ve_php_api": "^1.0",
         "spatie/laravel-pjax": "^2.1",
