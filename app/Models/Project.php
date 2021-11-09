@@ -63,7 +63,7 @@ class Project extends Model
                 }
             }
         } catch (LockTimeoutException $e) {
-            return false;
+            return true;
         } finally {
             optional($lock)->release();
         }
