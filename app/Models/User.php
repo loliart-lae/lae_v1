@@ -68,7 +68,7 @@ class User extends Authenticatable
         }
         $ids[] = Auth::id();
 
-        $result = UserStatus::whereIn('user_id', $ids)->with(['user' => function ($query) {
+        $result = UserStatus::whereIn('user_id', $ids)->with(['replies', 'user' => function ($query) {
             $query->select(['id', 'name', 'email', 'bio', 'website']);
         }, 'like' => function ($query) {
             $query->where('user_id', Auth::id());
