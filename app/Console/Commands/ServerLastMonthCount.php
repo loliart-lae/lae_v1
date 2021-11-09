@@ -47,7 +47,7 @@ class ServerLastMonthCount extends Command
         $balance = new ServerBalanceCountController();
         $data = $balance->lastMonth($this->option('sid'));
 
-        $result = '上个月，一共有 ' . $data['counts'] . ' 比交易，共产生了 ' . $data['balance'] . ' 比积分流入，大约 ' . number_format($data['balance'] / config('billing.exchange_rate'), 2) . ' 元。';
+        $result = '上个月，一共有 ' . $data['counts'] . ' 条自动扣费记录，共产生了 ' . $data['balance'] . ' 积分流动，大约 ' . number_format($data['balance'] / config('billing.exchange_rate'), 2) . ' 元。';
         $this->info($result);
 
         Http::post(config('app.cq_http') . '/send_private_msg', [

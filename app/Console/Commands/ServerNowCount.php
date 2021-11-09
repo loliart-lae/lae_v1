@@ -46,7 +46,7 @@ class ServerNowCount extends Command
         $this->info('正在统计数据，可能会比较慢。');
         $balance = new ServerBalanceCountController();
         $data = $balance->thisMonth($this->option('sid'));
-        $result = '从本月开头直至现在，一共有 ' . $data['counts'] . ' 比交易，共产生了 ' . $data['balance'] . ' 的积分流入，大约 ' . number_format($data['balance'] / config('billing.exchange_rate'), 2) . ' 元。';
+        $result = '从本月开头直至现在，一共有 ' . $data['counts'] . ' 条自动扣费记录，共产生了 ' . $data['balance'] . ' 的积分流入，大约 ' . number_format($data['balance'] / config('billing.exchange_rate'), 2) . ' 元。';
         $this->info($result);
 
         Http::post(config('app.cq_http') . '/send_private_msg', [
