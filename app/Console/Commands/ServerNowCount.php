@@ -54,5 +54,7 @@ class ServerNowCount extends Command
             "message" => $result,
             "auto_escape" => "true",
         ]);
+
+        return Command::SUCCESS;
     }
 }
