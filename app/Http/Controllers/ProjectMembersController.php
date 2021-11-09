@@ -108,7 +108,8 @@ class ProjectMembersController extends Controller
 
             Message::send("你被请出项目 {$project_sql->name}。", $request->route('member'));
 
-            return redirect()->back()->with('status', '删除成功。');
+            // return redirect()->back()->with('status', '删除成功。');
+            return response()->json(['status' => '1', 'data' => $request->route('member')]);
         } else abort(404);
     }
 
