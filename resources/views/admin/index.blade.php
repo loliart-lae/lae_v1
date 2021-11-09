@@ -17,6 +17,7 @@
     $easyPanels = App\Models\EasyPanelVirtualHost::count();
     $gameServers = App\Models\PterodactylServer::count();
     $vms = App\Models\VirtualMachine::count();
+    $cps = App\Models\CyberPanelSite::count();
     @endphp
 
     <div class="mdui-row mdui-m-t-2">
@@ -76,6 +77,11 @@
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
                 <div class="mdui-typo-body-1-opacity">云虚拟机 数量</div>
                 <div class="mdui-typo-display-1 mdui-m-t-1">{{ $vms }}</div>
+            </div>
+
+            <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
+                <div class="mdui-typo-body-1-opacity">CyberPanel 数量</div>
+                <div class="mdui-typo-display-1 mdui-m-t-1">{{ $cps }}</div>
             </div>
 
             <div class="mdui-col-xs-6 mdui-col-sm-2 mdui-m-t-2">
