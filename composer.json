@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "beyondcode/laravel-self-diagnosis": "dev-master",
         "bringyourownideas/laravel-sitemap": "^2.1",
         "doctrine/dbal": "^3.1",
         "fideloper/proxy": "^4.4",
