@@ -64,8 +64,8 @@
                         <td nowrap>{{ $member->user->email }}</td>
 
                         @if (Auth::id() == $project_info->user_id)
-                            @if (Auth::id() != $member->user->id)
-                                <td class="mdui-text-color-blue"
+                            @if (Auth::id() != $member->user_id)
+                                <td class="mdui-text-color-blue" id="kick_user_{{ $member->user_id }}"
                                     onclick="kick_user('{{ $member->user->name }}', '{{ $project_info->name }}', {{ $member->user_id }})">
                                     请出</td>
 
@@ -164,6 +164,8 @@
                         mdui.snackbar({
                             message: '已请出 ' + username + '。'
                         });
+                        $('#kick_user_' + id).text('已请出')
+                        $('#kick_user_' + id).addClass('mdui-text-color-red')
                     },
                     error: function(data) {
                         mdui.snackbar({
