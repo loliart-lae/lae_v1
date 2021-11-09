@@ -178,7 +178,7 @@ class EasyPanelController extends Controller
             return redirect()->back()->with('status', '项目不存在。');
         }
 
-        return view('easyPanel_vh.edit', compact('ep'));
+        return view('easypanel_vh.edit', compact('ep'));
     }
 
     /**
