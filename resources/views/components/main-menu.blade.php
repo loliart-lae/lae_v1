@@ -47,11 +47,11 @@
                     <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                 </div>
                 <div class="mdui-collapse-item-body mdui-list">
-                    <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
-                        <div class="mdui-list-item-content">云虚拟机</div>
-                    </a>
                     <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
                         <div class="mdui-list-item-content">应用容器</div>
+                    </a>
+                    <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
+                        <div class="mdui-list-item-content">云虚拟机</div>
                     </a>
                     <a class="mdui-list-item mdui-ripple umami--click--gameServer"
                         href="{{ route('gameServer.index') }}">
