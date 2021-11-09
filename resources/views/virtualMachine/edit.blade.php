@@ -114,6 +114,7 @@
                 $.ajax({
                     url: '{{ route('virtualMachine.getImage', $virtualMachine->server_id) }}',
                     success: function(data) {
+                        $('#images').html(null)
                         $('#image-ask').remove()
                         for (let i in data) {
                             $('#images').append(`
