@@ -33,7 +33,7 @@ class UserStatusController extends Controller
     {
         $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['like' => function ($query) {
             $query->where('user_id', Auth::id());
-        }, 'user'])->simplePaginate(30);
+        }, 'user'])->with('replies')->simplePaginate(30);
 
         $user = $user->find(Auth::id());
         $followings = $user->followings->toArray();
