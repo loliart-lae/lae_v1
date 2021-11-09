@@ -56,10 +56,11 @@ class Project extends Model
             self::where('id', $project_id)->update(['balance' => $current_balance]);
 
             if ($current_balance <= 50) {
-                if (!Cache::has('project_balance_' . $project_id . '_alerted')) {
+                $cache_key = 'project_balance_' . $project_id . '_alerted';
+                if (!Cache::get($cache_key)) {
                     // dispatch(new SendEmailJob($project_sql->user->email, $project_sql->name . " 项目的积分不足，还剩下" . $current_balance))->onQueue('mail');
                     Message::send($project_sql->name . " 项目的积分不足，还剩下" . $current_balance, $project_sql->user->id);
-                    Cache::put('project_balance_' . $project_id . '_alerted', 1, 43200);
+                    Cache::put($cache_key, 1, 43200);
                 }
             }
         } catch (LockTimeoutException $e) {
