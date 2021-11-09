@@ -21,6 +21,8 @@
             @php($i = 1)
             @php($last_project_id = 0)
             @foreach ($virtualMachines as $virtualMachine)
+                @php($i++)
+
                 @if ($virtualMachine->project->id !== $last_project_id)
                     @php($last_project_id = $virtualMachine->project->id)
                     <h1 class="mdui-typo-display-1 mdui-col-xs-12 mdui-p-t-2" style="margin:0;position: relative;top:10px">
@@ -32,7 +34,7 @@
                             <div class="mdui-typo">
                                 <div class="mdui-row">
                                     <div class="mdui-col-xs-6 mdui-col-sm-4">
-                                        <div>{{ $i++ }}.
+                                        <div>{{ $virtualMachine->id }}.
                                             {{ $virtualMachine->name }}
                                         </div>
                                     </div>
