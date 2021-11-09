@@ -116,6 +116,6 @@ class ProjectMembersController extends Controller
     public static function userInProject($id)
     {
         $member = new ProjectMember();
-        return $member->where('user_id', Auth::id())->where('project_id', $id)->exists();
+        return $member->where('user_id', Auth::id())->where('project_id', $id)->where('joined', 1)->exists();
     }
 }
