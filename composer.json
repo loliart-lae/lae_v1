@@ -30,6 +30,7 @@
         "wangningkai/laravel-editor-md": "^1.1"
     },
     "require-dev": {
+        "beyondcode/laravel-query-detector": "^1.5",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
