@@ -65,26 +65,10 @@
 
                         @if (Auth::id() == $project_info->user_id)
                             @if (Auth::id() != $member->user->id)
-                                <td class="mdui-text-color-blue" mdui-dialog="{target: '#kick_dialog_{{ $i }}'}"
-                                    onclick="$('.selected_user_name').text('{{ $member->user->name }}')">请出</td>
+                                <td class="mdui-text-color-blue"
+                                    onclick="kick_user('{{ $member->user->name }}', '{{ $project_info->name }}', {{ $member->user_id }})">
+                                    请出</td>
 
-                                <div class="mdui-dialog" id="kick_dialog_{{ $i }}">
-                                    <div class="mdui-dialog-title">请出 {{ $member->user->name }}</div>
-                                    <div class="mdui-dialog-content">
-                                        请出后，{{ $member->user->name }} 不会收到退款，他也会失去对 {{ $project_info->name }} 的所有控制权。
-                                        <form id="f_kick_{{ $i }}" method="POST"
-                                            action="{{ route('members.destroy', [$project_info->id, $member->user->id]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </div>
-
-                                    <div class="mdui-dialog-actions">
-                                        <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
-                                        <button onclick="$('#f_kick_{{ $i }}').submit()"
-                                            class="mdui-btn mdui-ripple">请出</button>
-                                    </div>
-                                </div>
                             @else
                                 <td nowrap>您自己</td>
                             @endif
@@ -123,7 +107,8 @@
 
         <form method="POST" action="{{ route('projects.charge', $project_info->id) }}">
             <div class="mdui-dialog-content">
-                <p>注意：你无法将你的全部积分汇款至项目。你拥有 {{ Auth::user()->balance }} 积分，但最多只能汇入 {{ Auth::user()->balance - 1 }} 积分。</p>
+                <p>注意：你无法将你的全部积分汇款至项目。你拥有 {{ Auth::user()->balance }} 积分，但最多只能汇入 {{ Auth::user()->balance - 1 }} 积分。
+                </p>
 
                 @csrf
                 <div class="mdui-textfield mdui-textfield-floating-label">
@@ -168,6 +153,25 @@
                 position: 'right-bottom'
             });
 
+        }
+
+        function kick_user(username, project_name, id) {
+            mdui.confirm(`确认请出${username}吗？请出后，${username}不会收到退款，也会失去对${project_name}的所有控制权。`, function() {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '{{ URL::current() }}/members/' + id,
+                    success: function(data) {
+                        mdui.snackbar({
+                            message: '已请出 ' + username + '。'
+                        });
+                    },
+                    error: function(data) {
+                        mdui.snackbar({
+                            message: '暂时无法请出 ' + username + '。'
+                        });
+                    }
+                })
+            })
         }
         @if ($project_info->balance < 100)
             balance_low()
