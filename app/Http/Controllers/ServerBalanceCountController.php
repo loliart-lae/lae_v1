@@ -71,4 +71,17 @@ class ServerBalanceCountController extends Controller
             'balance' => $balance
         ];
     }
+
+    public function clear($server_id)
+    {
+        $start = Carbon::now()->subMonth()->startOfMonth()->toDateString();
+        $end = Carbon::now()->subMonth()->endOfMonth()->toDateTimeString();
+        if ($server_id == 0) {
+            ServerBalanceCount::whereBetween('created_at', [$start, $end])->delete();
+        } else {
+            ServerBalanceCount::where('server_id', $server_id)->whereBetween('created_at', [$start, $end])->delete();
+        }
+
+        return '已清除 ' . $start . ' 到 ' . $end . ' 之间的数据。';
+    }
 }
