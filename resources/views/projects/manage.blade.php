@@ -89,7 +89,7 @@
                                 <td nowrap>您自己</td>
                             @endif
                         @else
-                            <td nowrap>无权操作</td>
+                            <td nowrap></td>
                         @endif
                         <td nowrap>{{ $member->created_at }}</td>
 
@@ -123,7 +123,8 @@
 
         <form method="POST" action="{{ route('projects.charge', $project_info->id) }}">
             <div class="mdui-dialog-content">
-                <p>注意：你无法将你的全部积分汇款至项目。你拥有 {{ Auth::user()->balance }} 积分，但最多只能汇入 {{ Auth::user()->balance - 1 }} 积分。</p>
+                <p>注意：你无法将你的全部积分汇款至项目。你拥有 {{ Auth::user()->balance }} 积分，但最多只能汇入 {{ Auth::user()->balance - 1 }} 积分。
+                </p>
 
                 @csrf
                 <div class="mdui-textfield mdui-textfield-floating-label">
