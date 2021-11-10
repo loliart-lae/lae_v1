@@ -31,7 +31,7 @@ class VirtualMachineController extends Controller
      */
     public function index()
     {
-        $virtualMachines = VirtualMachine::with(['template', 'server'])->whereHas('member', function ($query) {
+        $virtualMachines = VirtualMachine::with(['template', 'server', 'project'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
 
@@ -131,6 +131,7 @@ class VirtualMachineController extends Controller
         $virtualMachine->node = $node_name;
         $virtualMachine->vm_id = $next_vmid;
         $virtualMachine->bios = $request->bios;
+        $virtualMachine->storage_name = $storage_name;
         $virtualMachine->save();
 
         $virtualMachineUser->username = 'ae-' . $virtualMachine->id;
@@ -156,10 +157,10 @@ class VirtualMachineController extends Controller
             'sockets' => 1,
             'numa' => 0,
             'memory' => $template->memory,
-            'sata0' => $storage_name . ':' . $template->disk . ',cache=writethrough,ssd=1',
+            'sata0' => $storage_name . ':' . $template->disk . ',cache=writethrough,ssd=1,mbps_rd=' . $template->disk_read . ',mbps_wr=' . $template->disk_write,
             'ide1' => $image1 . ',media=cdrom',
             'ide2' => $image2 . ',media=cdrom',
-            'net0' => 'e1000,bridge=' . $vlan . ',firewall=1',
+            'net0' => 'e1000,bridge=' . $vlan . ',firewall=1,rate=' . $template->network_limit,
             'kvm' => 1,
             'start' => $status,
             'bios' => $bios
@@ -186,6 +187,21 @@ class VirtualMachineController extends Controller
             Server::where('id', $request->server_id)->update([
                 'free_mem' => $server_data->free_mem - $template_data->memory,
                 'free_disk' => $server_data->free_disk - $template_data->disk,
+            ]);
+
+            // 获取并更新虚拟机信息
+            // $virtualMachine->disk = 'vm-' . $next_vmid . '-disk-0';
+            // $virtualMachine->net = 'vm-' . $next_vmid . '-disk-0';
+            $vm_data = $nodes->qemuConfig('idc', 107)->data;
+
+            $disk_name = explode(':', $vm_data->sata0);
+            $disk_name = explode(',', $disk_name[1]);
+            $disk_name = $disk_name[0];
+            $net = explode(',', $vm_data->net0);
+            $net = $net[0] . ',' . $net[1] . ',' . $net[2];
+            $virtualMachine->where('id', $virtualMachine->id)->update([
+                'disk' => $disk_name,
+                'net' => $net
             ]);
 
             ProjectActivityController::save($request->project_id, '创建了虚拟机: ' . $request->name . '。');
@@ -291,6 +307,10 @@ class VirtualMachineController extends Controller
 
         if (!ProjectMembersController::userInProject($project_id)) {
             return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        if (is_null($virtualMachine_data->storage_name) || is_null($virtualMachine_data->disk) || is_null($virtualMachine_data->net)) {
+            return redirect()->back()->with('status', '无法更改虚拟机，请尝试重建虚拟机。');
         }
 
         if ($request->remove_cd_rom) {
@@ -610,7 +630,7 @@ class VirtualMachineController extends Controller
     {
         $virtualMachine = new VirtualMachine();
         $virtualMachineTemplate = new VirtualMachineTemplate();
-        $virtualMachine_data = $virtualMachine->where('id', $id)->with('template')->firstOrFail();
+        $virtualMachine_data = $virtualMachine->where('id', $id)->with(['template', 'server'])->firstOrFail();
         $virtualMachineTemplate_data = $virtualMachineTemplate->where('id', $template_id)->firstOrFail();
 
         // 模板不能够降级
@@ -624,7 +644,11 @@ class VirtualMachineController extends Controller
         $nodes->setQemuConfig($virtualMachine_data->node, $virtualMachine_data->vm_id, [
             'cores' => $virtualMachineTemplate_data->cpu,
             'memory' => $virtualMachineTemplate_data->memory,
+            'sata0' => $virtualMachine_data->storage_name . ':' . $virtualMachine_data->disk . ',cache=writethrough,ssd=1,mbps_rd=' . $virtualMachineTemplate_data->disk_read . ',mbps_wr=' . $virtualMachineTemplate_data->disk_write,
+            'net0' => $virtualMachine_data->net . ',rate=' . $virtualMachineTemplate_data->network_limit,
         ]);
+
+        // local-lvm:vm-107-disk-0,cache=writethrough,mbps_rd=10,mbps_wr=10,size=80G,ssd=on
 
         $nodes->qemuResize($virtualMachine_data->node, $virtualMachine_data->vm_id, [
             'disk' => 'sata0',
