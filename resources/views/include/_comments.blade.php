@@ -38,10 +38,7 @@
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div
-                        style="display: inline;
-                                                                                                                                                                                                                                                                                                                                                            position: absolute;
-                                                                                                                                                                                                                                                                                                                                                            right: 16px;
-                                                                                                                                                                                                                                                                                                                                                            margin-top: 3px;cursor: pointer">
+                        style="display: inline;                                                                                                                                                                                                                                                                                                                                margin-top: 3px;cursor: pointer">
                         @if (in_array($status->user->email, $admins))
                             <span mdui-tooltip="{content: '官方人员'}"
                                 class="mdui-icon material-icons-outlined material-icons-outlined verified_user">
