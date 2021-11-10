@@ -27,7 +27,7 @@ class CreateTransferBridgesTable extends Migration
             $table->boolean('allow_auto_register')->index()->default(true);
 
             $table->unsignedBigInteger('project_id')->index();
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->cascadeOnDelete();
 
             $table->timestamps();
         });

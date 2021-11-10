@@ -16,7 +16,7 @@ class AddTransferBridgeGroupIdToTransferBridgeGuestsTable extends Migration
         Schema::table('transfer_bridge_guests', function (Blueprint $table) {
             // Transfer Bridge 组权限配置
             $table->unsignedBigInteger('transfer_bridge_group_id')->index()->nullable();
-            $table->foreign('transfer_bridge_group_id')->references('id')->on('transfer_bridge_groups');
+            $table->foreign('transfer_bridge_group_id')->references('id')->on('transfer_bridge_groups')->cascadeOnDelete();
         });
     }
 

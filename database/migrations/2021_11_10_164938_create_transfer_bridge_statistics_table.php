@@ -20,15 +20,15 @@ class CreateTransferBridgeStatisticsTable extends Migration
 
             // Power Bridge 集群权限
             $table->unsignedBigInteger('transfer_bridge_id')->index()->nullable();
-            $table->foreign('transfer_bridge_id')->references('id')->on('transfer_bridges');
+            $table->foreign('transfer_bridge_id')->references('id')->on('transfer_bridges')->cascadeOnDelete();
 
             // Power Bridge 组权限配置
             $table->unsignedBigInteger('transfer_bridge_group_id')->index()->nullable();
-            $table->foreign('transfer_bridge_group_id')->references('id')->on('transfer_bridge_groups');
+            $table->foreign('transfer_bridge_group_id')->references('id')->on('transfer_bridge_groups')->cascadeOnDelete();
 
             // Power Bridge 客户机权限配置
             $table->unsignedBigInteger('transfer_bridge_guest_id')->index()->nullable();
-            $table->foreign('transfer_bridge_guest_id')->references('id')->on('transfer_bridge_guests');
+            $table->foreign('transfer_bridge_guest_id')->references('id')->on('transfer_bridge_guests')->cascadeOnDelete();
 
             $table->timestamps();
         });

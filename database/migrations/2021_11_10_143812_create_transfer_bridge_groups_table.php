@@ -22,7 +22,7 @@ class CreateTransferBridgeGroupsTable extends Migration
             $table->boolean('enabled')->index()->default(true);
 
             $table->unsignedBigInteger('transfer_bridge_id')->index();
-            $table->foreign('transfer_bridge_id')->references('id')->on('transfer_bridges');
+            $table->foreign('transfer_bridge_id')->references('id')->on('transfer_bridges')->cascadeOnDelete();
 
             $table->timestamps();
         });
