@@ -198,7 +198,7 @@ a {
     cursor: pointer;
 }
 
-.mdui-list .mdui-list-item {
+#main .mdui-list .mdui-list-item {
     border-radius: 8px !important;
     -webkit-border-radius: 8px !important;
     -moz-border-radius: 8px !important;
@@ -208,7 +208,7 @@ a {
     padding-bottom: 5px;
 }
 
-.mdui-list .mdui-list-item .mdui-switch {
+#main .mdui-list .mdui-list-item .mdui-switch {
     position: absolute;
     right: 30px;
 }
