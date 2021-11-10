@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupBridgesTable extends Migration
+class CreateTransferBridgesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateGroupBridgesTable extends Migration
      */
     public function up()
     {
-        // Power Bridge 集群
-        Schema::create('group_bridges', function (Blueprint $table) {
+        // 数据桥 集群
+        Schema::create('transfer_bridges', function (Blueprint $table) {
             $table->id();
 
             $table->string('name')->index();
@@ -40,6 +40,6 @@ class CreateGroupBridgesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_bridges');
+        Schema::dropIfExists('transfer_bridges');
     }
 }

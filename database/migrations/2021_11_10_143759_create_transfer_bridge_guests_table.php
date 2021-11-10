@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupBridgeGuestsTable extends Migration
+class CreateTransferBridgeGuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateGroupBridgeGuestsTable extends Migration
      */
     public function up()
     {
-        // Power Bridge 客户机
-        Schema::create('group_bridge_guests', function (Blueprint $table) {
+        // 数据桥 集群
+        Schema::create('transfer_bridge_guests', function (Blueprint $table) {
             $table->id();
 
             // 显示名称
@@ -37,6 +37,6 @@ class CreateGroupBridgeGuestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_bridge_guests');
+        Schema::dropIfExists('transfer_bridge_guests');
     }
 }
