@@ -26,18 +26,31 @@ class UserStatusController extends Controller
         return view('main', compact('feed_items', 'display'));
     }
 
+    public function timeRiver(Request $request)
+    {
+        $feed_items = Auth::user()->feed()->simplePaginate(30);
+        $display = 0;
+        return view('main', compact('feed_items', 'display'));
+    }
+
     public function global(Request $request, User $user)
     {
-        $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['like' => function ($query) {
-            $query->where('user_id', Auth::id());
-        }, 'user'])->with('replies')->simplePaginate(30);
+        if (Auth::check()) {
+            $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['like' => function ($query) {
+                $query->where('user_id', Auth::id());
+            }, 'user', 'replies'])->simplePaginate(30);
 
-        $user = $user->find(Auth::id());
-        $followings = $user->followings->toArray();
-        $ids = [];
-        foreach ($followings as $following) {
-            $ids[] = $following['id'];
+            $user = $user->find(Auth::id());
+            $followings = $user->followings->toArray();
+            $ids = [];
+            foreach ($followings as $following) {
+                $ids[] = $following['id'];
+            }
+        } else {
+            $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['replies', 'user'])->simplePaginate(30);
+            $ids = [];
         }
+
 
         return view('global', compact('feed_items', 'ids'));
     }
