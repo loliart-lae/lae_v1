@@ -47,10 +47,9 @@ class UserStatusController extends Controller
                 $ids[] = $following['id'];
             }
         } else {
-            $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['replies', 'user'])->simplePaginate(30);
+            $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['replies', 'user', 'like'])->simplePaginate(30);
             $ids = [];
         }
-
 
         return view('global', compact('feed_items', 'ids'));
     }

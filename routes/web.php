@@ -47,6 +47,9 @@ Route::prefix('/')->group(function () {
         return view('webSSH');
     })->name('webSSH');
 
+    Route::get('/timeRiver', [Controllers\UserStatusController::class, 'global'])->name('timeRiver');
+    Route::get('/timeRiver/{id}', [Controllers\UserStatusController::class, 'show'])->name('timeRiver.show');
+
     Route::get('/article/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
     Route::get('/article/search', [Controllers\UserStatusController::class, 'article_search'])->name('articles.search');
 
@@ -135,6 +138,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/cyberPanel', Controllers\CyberPanelController::class);
     Route::get('/cyberPanel/listPackage/{sid}', [Controllers\CyberPanelController::class, 'listPackage'])->name('cyberPanel.listPackage');
 
+    // Route::resource('/powerBridge', Controllers\PowerBridgeController::class);
 
     // Route::resource('/images', ImageController::class);
 

@@ -5,17 +5,21 @@
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">home</span>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
+            <a class="mdui-list-item mdui-ripple umami--click--public-timeRiver" href="{{ route('timeRiver') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">stream</span>
+                <div class="mdui-list-item-content">时间河流</div>
+            </a>
+            <a class="mdui-list-item mdui-ripple umami--click--public-article" href="{{ route('articles.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">article</span>
+                <div class="mdui-list-item-content">博客文章</div>
+            </a>
             <a class="mdui-list-item mdui-rippl umami--click--guest-login" href="{{ route('login') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">login</span>
-                <div class="mdui-list-item-content">登录</div>
+                <div class="mdui-list-item-content">登录或注册</div>
             </a>
             <a class="mdui-list-item mdui-ripple umami--click--why-begin" href="{{ route('why_begin') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">volunteer_activism</span>
                 <div class="mdui-list-item-content">我们的初心</div>
-            </a>
-            <a class="mdui-list-item mdui-ripple umami--click--public-article" href="{{ route('articles.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">article</span>
-                <div class="mdui-list-item-content">文章</div>
             </a>
         @else
             <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('main') }}">
@@ -123,10 +127,11 @@
                 </div>
             @endif
 
-            {{-- <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            {{-- <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--powerBridge"
+                href="{{ route('powerBridge.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">social_distance</span>
                 <div class="mdui-list-item-content">Power Bridge</div>
-            </div> --}}
+            </a> --}}
 
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">description</span>
