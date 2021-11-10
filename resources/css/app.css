@@ -197,3 +197,18 @@ body {
 a {
     cursor: pointer;
 }
+
+.mdui-list .mdui-list-item {
+    border-radius: 8px !important;
+    -webkit-border-radius: 8px !important;
+    -moz-border-radius: 8px !important;
+    -ms-border-radius: 8px !important;
+    -o-border-radius: 8px !important;
+    padding-top: 4px;
+    padding-bottom: 5px;
+}
+
+.mdui-list .mdui-list-item .mdui-switch {
+    position: absolute;
+    right: 30px;
+}
