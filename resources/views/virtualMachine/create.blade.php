@@ -90,6 +90,9 @@
                             <th>CPU</th>
                             <th>内存</th>
                             <th>硬盘</th>
+                            <th>硬盘读速度</th>
+                            <th>硬盘写速度</th>
+                            <th>网络限制</th>
                             <th>积分/分钟</th>
                             <th>月预估</th>
                             <th>选择</th>
@@ -104,6 +107,9 @@
                                 <td nowrap>{{ $template->cpu }}</td>
                                 <td nowrap>{{ $template->memory }} M</td>
                                 <td nowrap>{{ $template->disk }} G</td>
+                                <td nowrap>{{ $template->disk_read }} MB/s</td>
+                                <td nowrap>{{ $template->disk_write }} MB/s</td>
+                                <td nowrap>{{ $template->network_limit }} MB/s</td>
                                 <td nowrap>{{ $template->price }}</td>
                                 <td nowrap>
                                     {{ number_format(($template->price * 44640) / config('billing.exchange_rate'), 2) }}
@@ -226,6 +232,7 @@
                     注意：每分钟价格 = 地区服务器基础价格 + 云虚拟机模板价格。<br />
                     带宽均为共享带宽，如带宽有调整，将会即时生效。<br />
                     禁止将云虚拟机用于挖矿、攻击（DDOS，CC）、QEMU等。如有发现，将直接删除用户。
+                    IO限制（磁盘限速，网络限速）可能不会到达理论值（如果服务器资源占用很高）
                 </small></div>
         </div>
 
