@@ -310,7 +310,7 @@ class VirtualMachineController extends Controller
         }
 
         if (is_null($virtualMachine_data->storage_name) || is_null($virtualMachine_data->disk) || is_null($virtualMachine_data->net)) {
-            return redirect()->back()->with('status', '无法更改虚拟机，请尝试重建虚拟机。');
+            return redirect()->back()->with('status', '无法修改虚拟机。因为你的虚拟机版本与我们的数据库存储的版本不匹配，请尝试重建虚拟机。');
         }
 
         if ($request->remove_cd_rom) {
