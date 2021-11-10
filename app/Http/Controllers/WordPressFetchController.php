@@ -46,8 +46,8 @@ class WordPressFetchController extends Controller
 
             $userSiteArticle = new UserSiteArticle();
             if (!$userSiteArticle->where('link', $link)->exists()) {
-                $userSiteArticle->title = $title;
-                $userSiteArticle->description = $excerpt;
+                $userSiteArticle->title = e($title);
+                $userSiteArticle->description = e($excerpt);
                 $userSiteArticle->link = $link;
                 $userSiteArticle->datetime = $date;
                 $userSiteArticle->user_id = $user_id;
