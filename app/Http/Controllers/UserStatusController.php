@@ -21,10 +21,7 @@ class UserStatusController extends Controller
      */
     public function index(Request $request)
     {
-        $feed_items = [];
-        if (Auth::check()) {
-            $feed_items = Auth::user()->feed()->simplePaginate(30);
-        }
+        $feed_items = Auth::user()->feed()->simplePaginate(30);
         $display = 0;
         return view('main', compact('feed_items', 'display'));
     }
