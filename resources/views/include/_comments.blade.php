@@ -195,43 +195,46 @@
         $('.smoove').smoove({
             offset: '3%'
         })
+    </script>
+    @auth
 
-        @auth
+        <script>
             function toggleLike(id) {
-            $.ajax({
-            type: 'PUT',
-            url: `{{ route('status.like') }}?id=${id}`,
-            data: {
-            'toggle': 'toggle'
-            },
-            dataType: 'json',
-            success: function(data) {
-            if (data.status == 1) {
-            $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star</i>`)
-            $('#status_' + id + ' i').css('color', '#36a6e8')
-            } else {
-            $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star_border</i>`)
-            }
-            },
-            error: function(data) {
-            mdui.snackbar({
-            message: '暂时无法点赞。',
-            position: 'bottom'
-            })
-            }
-            })
+                $.ajax({
+                    type: 'PUT',
+                    url: `{{ route('status.like') }}?id=${id}`,
+                    data: {
+                        'toggle': 'toggle'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.status == 1) {
+                            $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star</i>`)
+                            $('#status_' + id + ' i').css('color', '#36a6e8')
+                        } else {
+                            $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star_border</i>`)
+                        }
+                    },
+                    error: function(data) {
+                        mdui.snackbar({
+                            message: '暂时无法点赞。',
+                            position: 'bottom'
+                        })
+                    }
+                })
             }
 
             var text = `你说你爱雨，
-            但当细雨飘洒时你却撑开了伞；
-            你说你爱太阳，
-            但当它当空时你却看见了阳光下的暗影；
-            你说你爱风，
-            但当它轻拂时你却紧紧地关上了自己的窗子。
-            这正是我之心忧，
-            因为你说你也爱我。`
+但当细雨飘洒时你却撑开了伞；
+你说你爱太阳，
+但当它当空时你却看见了阳光下的暗影；
+你说你爱风，
+但当它轻拂时你却紧紧地关上了自己的窗子。
+这正是我之心忧，
+因为你说你也爱我。`
             $('#commit-textarea').attr('placeholder', text)
-        @endauth
-    </script>
+        </script>
+    @endauth
+
 
 @endsection
