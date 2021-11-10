@@ -192,7 +192,7 @@ class VirtualMachineController extends Controller
             // 获取并更新虚拟机信息
             // $virtualMachine->disk = 'vm-' . $next_vmid . '-disk-0';
             // $virtualMachine->net = 'vm-' . $next_vmid . '-disk-0';
-            $vm_data = $nodes->qemuConfig('idc', 107)->data;
+            $vm_data = $nodes->qemuConfig($virtualMachine->node, $virtualMachine->vm_id)->data;
 
             $disk_name = explode(':', $vm_data->sata0);
             $disk_name = explode(',', $disk_name[1]);
