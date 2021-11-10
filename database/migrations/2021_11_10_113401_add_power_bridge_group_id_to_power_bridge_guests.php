@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPowerBridgeGroupIdToPowerBridgeGuests extends Migration
+class AddGroupBridgeGroupIdToGroupBridgeGuests extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class AddPowerBridgeGroupIdToPowerBridgeGuests extends Migration
      */
     public function up()
     {
-        Schema::table('power_bridge_guests', function (Blueprint $table) {
+        Schema::table('group_bridge_guests', function (Blueprint $table) {
             // Power Bridge 组权限配置
-            $table->unsignedBigInteger('power_bridge_group_id')->index()->nullable();
-            $table->foreign('power_bridge_group_id')->references('id')->on('power_bridge_groups');
+            $table->unsignedBigInteger('group_bridge_group_id')->index()->nullable();
+            $table->foreign('group_bridge_group_id')->references('id')->on('group_bridge_groups');
         });
     }
 
@@ -27,7 +27,7 @@ class AddPowerBridgeGroupIdToPowerBridgeGuests extends Migration
      */
     public function down()
     {
-        Schema::table('power_bridge_guests', function (Blueprint $table) {
+        Schema::table('group_bridge_guests', function (Blueprint $table) {
             //
         });
     }
