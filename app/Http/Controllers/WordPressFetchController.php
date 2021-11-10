@@ -55,7 +55,7 @@ class WordPressFetchController extends Controller
 
                 // 检测用户是否是第一次索引
                 if (!$userSiteArticle->where('user_id', $user_id)->exists()) {
-                    $publish = false;
+                    $publish = true;
                 }
 
                 if ($publish) {
