@@ -1,3 +1,7 @@
+@guest
+    <div class="mdui-typo-display-1">时间长河</div>
+@endguest
+
 @if ($feed_items->count() > 0)
     <div id="masonry" class="mdui-row">
         @php($admins = config('admin.admin_users'))
@@ -83,9 +87,9 @@
                         @endauth
                         <a href="
                         @auth
-                                    {{ route('status.show', $status->id) }}
+                                                        {{ route('status.show', $status->id) }}
                         @else
-                                {{ route('timeRiver.show', $status->id) }}
+                                                    {{ route('timeRiver.show', $status->id) }}
                         @endauth" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
                             回复</a>
                         @auth
