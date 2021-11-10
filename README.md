@@ -1,6 +1,6 @@
 # Light App Engine
 
-贡献者名单：[`resources/views/contributes.blade.php`](https://lightart.top/contributes)
+贡献者名单：[`resources/views/contributes.blade.php`](https://laestack.com/contributes)
 
 ### 安装
 
