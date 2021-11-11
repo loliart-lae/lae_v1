@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TransferBridge;
 use Ramsey\Uuid\Rfc4122\UuidV4;
+use App\Models\TransferBridgeGroup;
 use Illuminate\Support\Facades\Auth;
 
 class TransferBridgeController extends Controller
@@ -95,7 +96,46 @@ class TransferBridgeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:10',
+            'allow_auto_register' => 'boolean',
+            'reset_uuid' => 'boolean',
+        ]);
+
+        $bridge = TransferBridge::where('id', $id)->with('groups')->firstOrFail();
+        if (!ProjectMembersController::userInProject($bridge->project_id)) {
+            return redirect()->back()->with('status', '你不在项目中。');
+        }
+
+        TransferBridge::where('id', $id)->update([
+            'name' => $request->name,
+            'allow_auto_register' => $request->allow_auto_register ?? 0,
+        ]);
+
+        if ($request->allow_auto_register) {
+            $this->validate($request, [
+                'default_group_id' => 'required|integer',
+            ]);
+            // 查找组是否存在
+            if (TransferBridgeGroup::where('id', $request->default_group_id)->where('transfer_bridge_id', $id)->exists()) {
+                TransferBridge::where('id', $id)->update([
+                    'default_group_id' => $request->default_group_id,
+                ]);
+            } else {
+                return redirect()->back()->with('status', '组不存在。');
+            }
+        }
+
+        if ($request->reset_uuid) {
+            $uuid = UuidV4::uuid4()->toString();
+            TransferBridge::where('id', $id)->update([
+                'uuid' => $uuid,
+            ]);
+            // 广播数据
+
+        }
+
+        return redirect()->back()->with('status', '已修改。');
     }
 
     /**
