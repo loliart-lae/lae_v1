@@ -38,18 +38,17 @@ window.util = {
     },
     text: {
         putLyric: function (func) {
-            let data
             $.ajax({
                 url: '/api/v1/_lyric',
                 method: 'GET',
                 success: function (data) {
-                    data = data
+                    func(data)
                 },
                 error: function () {
                     data = { status: 0, content: null, from: null, created_at: null }
+                    func(data)
                 }
             })
-            func(data)
         }
     }
 }
