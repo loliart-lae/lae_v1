@@ -85,128 +85,124 @@
                                 @endif
                             </button>
                         @endauth
-                        <a href="
-                        @auth
-                                                        {{ route('status.show', $status->id) }}
-                        @else
-                                                    {{ route('timeRiver.show', $status->id) }}
-                        @endauth" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
-                            回复</a>
-                        @auth
-                            @can('destroy', $status)
-                                <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}"
-                                    method="POST" onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="mdui-btn mdui-ripple umami--click--status-delete">删除</button>
-                                </form>
-                            @endcan
-                        @endauth
-                    </div>
+                    <a href="@auth {{ route('status.show', $status->id) }} @else {{ route('timeRiver.show', $status->id) }}
+                @endauth" class="mdui-btn mdui-ripple">@php($replies = count($status->replies)) @if ($replies > 0) {{ $replies }}条 @else 没有 @endif
+                        回复</a>
+                    @auth
+                        @can('destroy', $status)
+                            <form style="display: initial;" action="{{ route('status.destroy', $status->id) }}"
+                                method="POST" onsubmit="return confirm('确定要删除吗？删除后动态将会永远被埋没到长河中。');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="mdui-btn mdui-ripple umami--click--status-delete">删除</button>
+                            </form>
+                        @endcan
+                    @endauth
                 </div>
             </div>
-        @endforeach
-    </div>
-    <script>
-        var $container = $('#masonry')
+        </div>
+    @endforeach
+</div>
+<script>
+    var $container = $('#masonry')
 
-        function masonry_resize() {
-            $container.masonry({
-                itemSelector: '.poll',
-            })
-        }
-
-        $(window).ready(function() {
-            setTimeout(function() {
-                masonry_resize()
-            }, 500)
+    function masonry_resize() {
+        $container.masonry({
+            itemSelector: '.poll',
         })
+    }
 
-        // $('.smoove').smoove({
-        //     offset: '3%'
-        // })
-    </script>
-    <div class="mdui-m-t-2 mdui-m-b-4">
-        {{ $feed_items->links() }}
-    </div>
-    <script>
-        function toggleLike(id) {
-            $.ajax({
-                type: 'PUT',
-                url: `{{ route('status.like') }}?id=${id}`,
-                data: {
-                    'toggle': 'toggle'
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if (data.status == 1) {
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star</i>`)
-                        $('#status_' + id + ' i').css('color', '#36a6e8')
-                    } else {
-                        $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star_border</i>`)
-                    }
-                },
-                error: function(data) {
-                    mdui.snackbar({
-                        message: '暂时无法点赞。',
-                        position: 'bottom'
-                    })
+    $(window).ready(function() {
+        setTimeout(function() {
+            masonry_resize()
+        }, 500)
+    })
+
+    // $('.smoove').smoove({
+    //     offset: '3%'
+    // })
+</script>
+<div class="mdui-m-t-2 mdui-m-b-4">
+    {{ $feed_items->links() }}
+</div>
+<script>
+    function toggleLike(id) {
+        $.ajax({
+            type: 'PUT',
+            url: `{{ route('status.like') }}?id=${id}`,
+            data: {
+                'toggle': 'toggle'
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.status == 1) {
+                    $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star</i>`)
+                    $('#status_' + id + ' i').css('color', '#36a6e8')
+                } else {
+                    $('#status_' + id).html(`<i class="mdui-icon material-icons-outlined">star_border</i>`)
                 }
-            })
-        }
+            },
+            error: function(data) {
+                mdui.snackbar({
+                    message: '暂时无法点赞。',
+                    position: 'bottom'
+                })
+            }
+        })
+    }
 
-        function sleep(time) {
-            return new Promise(function(resolve) {
-                setTimeout(resolve, time);
-            });
-        }
+    function sleep(time) {
+        return new Promise(function(resolve) {
+            setTimeout(resolve, time);
+        });
+    }
 
-        function toggleFollow(id) {
+    function toggleFollow(id) {
 
-            $.ajax({
-                type: 'PUT',
-                url: `{{ route('user.toggleFollow') }}?id=${id}`,
-                data: {
-                    'toggle': 'toggle'
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if (data[0] == true) {
-                        $('.follow_' + id).html(
-                            `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})"
+        $.ajax({
+            type: 'PUT',
+            url: `{{ route('user.toggleFollow') }}?id=${id}`,
+            data: {
+                'toggle': 'toggle'
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data[0] == true) {
+                    $('.follow_' + id).html(
+                        `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})"
                                             class="follow_${id} mdui-text-color-theme mdui-icon material-icons-outlined animate__heartBeat">favorite</i>`
-                        )
-                    } else {
-                        var user_statuses = $('.user_' + id + '_status');
-                        user_statuses.addClass('animate__animated animate__backOutDown')
-                        setTimeout(function() {
-                            user_statuses.remove()
-                            $('#masonry').masonry()
-                        }, 1000)
+                    )
+                } else {
+                    var user_statuses = $('.user_' + id + '_status');
+                    user_statuses.addClass('animate__animated animate__backOutDown')
+                    setTimeout(function() {
+                        user_statuses.remove()
+                        $('#masonry').masonry()
+                    }, 1000)
 
 
-                        $('.follow_' + id).html(
-                            `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons-outlined animate__animated animate__flip">favorite</i>`
-                        )
-                    }
+                    $('.follow_' + id).html(
+                        `<i onclick="$(this).addClass('animate__animated animate__pulse animate__infinite');toggleFollow(${id})" class="follow_${id} mdui-text-color-black-secondary mdui-icon material-icons-outlined animate__animated animate__flip">favorite</i>`
+                    )
+                }
 
-                    if (data['msg'] != undefined) {
-                        mdui.snackbar({
-                            message: data['msg'],
-                            position: 'bottom'
-                        })
-                    }
-                },
-                error: function(data) {
+                if (data['msg'] != undefined) {
                     mdui.snackbar({
-                        message: '暂时无法切换关注状态。',
+                        message: data['msg'],
                         position: 'bottom'
                     })
                 }
-            })
-        }
-    </script>
+            },
+            error: function(data) {
+                mdui.snackbar({
+                    message: '暂时无法切换关注状态。',
+                    position: 'bottom'
+                })
+            }
+        })
+    }
+</script>
 
 @else
-    <p>还没有人出现在你的时间长河中。</p>
+<p>还没有人出现在你的时间长河中。</p>
 @endif
