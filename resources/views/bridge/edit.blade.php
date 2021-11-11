@@ -3,12 +3,12 @@
 @section('title', '编辑 Transfer Bridge 集群')
 
 @section('content')
-    <div class="mdui-typo-display-1">Transfer Bridge 集群</div>
+    <div class="mdui-typo-display-1">编辑 Transfer Bridge 集群</div>
     <p>Transfer Bridge 是由LAE研发的文本信息交换集群网络。</p>
     <form method="post" action="{{ route('bridge.update', $bridge->id) }}">
         @csrf
-
-        <div class="mdui-textfield mdui-textfield-floating-label">
+        @method('PUT')
+        <div class="mdui-textfield">
             <label class="mdui-textfield-label">集群名称</label>
             <input class="mdui-textfield-input" type="text" name="name" value="{{ $bridge->name }}" />
             <div class="mdui-textfield-helper">修改集群名称。</div>
@@ -22,7 +22,7 @@
                 <i class="mdui-list-item-icon mdui-icon material-icons">lightbulb</i>
                 <div class="mdui-list-item-content">启用这个集群</div>
                 <label class="mdui-switch">
-                    <input type="checkbox" name="enabled" @if ($bridge->enabled) checked @endif />
+                    <input type="checkbox" name="enabled" value="1" @if ($bridge->enabled) checked @endif />
                     <i class="mdui-switch-icon"></i>
                 </label>
             </li>
@@ -31,24 +31,35 @@
                 <i class="mdui-list-item-icon mdui-icon material-icons">app_registration</i>
                 <div class="mdui-list-item-content">允许自动注册新客户端到组</div>
                 <label class="mdui-switch">
-                    <input type="checkbox" name="allow_auto_register" id="allow_auto_register" @if ($bridge->allow_auto_register) checked @endif />
+                    <input type="checkbox" name="allow_auto_register" value="1" id="allow_auto_register"
+                        @if ($bridge->allow_auto_register) checked @endif />
                     <i class="mdui-switch-icon"></i>
                 </label>
             </li>
+
+            <label class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons">fingerprint</i>
+                <div class="mdui-list-item-content">重设组识别码并离线所有设备</div>
+                <div class="mdui-switch">
+                    <input type="checkbox" name="reset_uuid" value="1" />
+                    <i class="mdui-switch-icon"></i>
+                </div>
+            </label>
         </ul>
 
         <div id="group-select">
             <div class="mdui-typo-headline mdui-m-t-2">请选择组以自动注册</div>
 
             @if (count($bridge->groups))
-                <select class="mdui-select mdui-m-t-2" mdui-select>
+                <select class="mdui-select mdui-m-t-2" name="default_group_id" mdui-select>
                     @foreach ($bridge->groups as $group)
-                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                        <option value="{{ $group->id }}" @if ($group->id == $bridge->default_group_id) selected @endif>{{ $group->name }}</option>
                     @endforeach
                 </select>
             @else
                 没有组可供选择。
             @endif
+
         </div>
 
         <script>
@@ -61,17 +72,6 @@
                 mdui.mutation()
             })
         </script>
-
-        <div class="mdui-row-md-4 mdui-m-b-2 mdui-m-t-2">
-            <div class="mdui-col">
-                <label class="mdui-checkbox"
-                    mdui-tooltip="{content: '重新设置集群的 通用唯一识别码，如果你的集群通用唯一识别码已经泄漏，可以通过这个选项来重置。但是已加入集群的设备将会全部离线。', position: 'right'}">
-                    <input type="checkbox" name="reset_uuid" value="1" />
-                    <i class="mdui-checkbox-icon"></i>
-                    重设 通用唯一识别码
-                </label>
-            </div>
-        </div>
 
         <button type="submit"
             class="mdui-m-t-1 mdui-btn mdui-color-theme-accent mdui-ripple umami--click--save-bridge">保存</button>
