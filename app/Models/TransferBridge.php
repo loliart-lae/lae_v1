@@ -36,7 +36,7 @@ class TransferBridge extends Model
 
     public function guests()
     {
-        return $this->hasManyThrough(TransferBridgeGuest::class, TransferBridgeGroup::class, 'id', 'transfer_bridge_id', 'id');
+        return $this->hasManyThrough(TransferBridgeGuest::class, TransferBridgeGroup::class, 'transfer_bridge_id', 'transfer_bridge_group_id', 'id', 'id');
     }
 
     public function statistic()
