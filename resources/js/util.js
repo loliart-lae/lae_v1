@@ -35,5 +35,20 @@ window.util = {
                 window.open(url);
             })
         }
+    },
+    text: {
+        putLyric: function (func) {
+            $.ajax({
+                url: '/api/v1/_lyric',
+                method: 'GET',
+                success: function (data) {
+                    func(data)
+                },
+                error: function () {
+                    let data = { status: 0, content: null, from: null, created_at: null }
+                    func(data)
+                }
+            })
+        }
     }
 }
