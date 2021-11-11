@@ -9,9 +9,9 @@ class TransferBridgeGroup extends Model
 {
     use HasFactory;
 
-    public function TransferBridge()
+    public function bridge()
     {
-        return $this->belongsTo(TransferBridge::class, 'id', 'transfer_bridge_id');
+        return $this->belongsTo(TransferBridge::class, 'transfer_bridge_id', 'id');
     }
 
     public function guests()
