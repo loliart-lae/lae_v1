@@ -225,7 +225,7 @@
             }
 
             window.util.text.putLyric(function(data) {
-                $('#commit-textarea').attr('placeholder', data.content + "\n" + "—— " + data.from)
+                $('#commit-textarea').attr('placeholder', data.content + "\n" + "--啊啊啊 " + data.from)
             })
         </script>
     @endauth
