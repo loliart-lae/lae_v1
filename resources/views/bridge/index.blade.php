@@ -34,7 +34,8 @@
                             </div>
                         </div>
                         <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple umami--click--bridge-manage">管理</button>
+                            <a href="{{ route('bridge.groups.index', $bridge->id) }}"
+                                class="mdui-btn mdui-ripple umami--click--bridge-manage">管理</a>
                             <button class="mdui-btn mdui-ripple umami--click--bridge-broadcast">广播</button>
                             <a href="{{ route('bridge.edit', $bridge->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--bridge-edit">编辑</a>
