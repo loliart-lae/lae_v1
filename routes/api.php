@@ -17,7 +17,11 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/v1/_field/{id}', [v1\UserFieldController::class, 'show']);
+Route::prefix('/v1')->group(function () {
+    Route::get('/_lyric', [v1\LyricController::class, 'index']);
+    Route::get('/_field/{id}', [v1\UserFieldController::class, 'show']);
+});
+
 
 Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::get('/user', function (Request $request) {
