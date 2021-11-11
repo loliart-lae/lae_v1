@@ -192,17 +192,27 @@ class VirtualMachineController extends Controller
             // 获取并更新虚拟机信息
             // $virtualMachine->disk = 'vm-' . $next_vmid . '-disk-0';
             // $virtualMachine->net = 'vm-' . $next_vmid . '-disk-0';
-            $vm_data = $nodes->qemuConfig($virtualMachine->node, $virtualMachine->vm_id)->data;
+            for ($i = 0; $i < 50; $i++) {
+                try {
+                    $vm_data = $nodes->qemuConfig($virtualMachine->node, $virtualMachine->vm_id)->data;
 
-            $disk_name = explode(':', $vm_data->sata0);
-            $disk_name = explode(',', $disk_name[1]);
-            $disk_name = $disk_name[0];
-            $net = explode(',', $vm_data->net0);
-            $net = $net[0] . ',' . $net[1] . ',' . $net[2];
-            $virtualMachine->where('id', $virtualMachine->id)->update([
-                'disk' => $disk_name,
-                'net' => $net
-            ]);
+                    $disk_name = explode(':', $vm_data->sata0);
+                    $disk_name = explode(',', $disk_name[1]);
+                    $disk_name = $disk_name[0];
+                    $net = explode(',', $vm_data->net0);
+                    $net = $net[0] . ',' . $net[1] . ',' . $net[2];
+                    $virtualMachine->where('id', $virtualMachine->id)->update([
+                        'disk' => $disk_name,
+                        'net' => $net
+                    ]);
+                    $status = 1;
+                } catch (\Exception $e) {
+                    $status = 0;
+                }
+                if ($status) {
+                    break;
+                }
+            }
 
             ProjectActivityController::save($request->project_id, '创建了虚拟机: ' . $request->name . '。');
             return redirect()->route('virtualMachine.index')->with('status', '成功创建了虚拟机。');
