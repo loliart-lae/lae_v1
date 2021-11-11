@@ -19,7 +19,7 @@ class TransferBridgeGuest extends Model
         return $this->belongsTo(TransferBridgeGroup::class, 'transfer_bridge_group_id');
     }
 
-    public function TransferBridge()
+    public function bridge()
     {
         return $this->hasOneThrough(TransferBridge::class, TransferBridgeGroup::class, 'transfer_bridge_id', 'id');
     }
