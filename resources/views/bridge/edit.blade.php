@@ -5,7 +5,7 @@
 @section('content')
     <div class="mdui-typo-display-1">Transfer Bridge 集群</div>
     <p>Transfer Bridge 是由LAE研发的文本信息交换集群网络。</p>
-    <form method="post" action="{{ route('bridge.update') }}">
+    <form method="post" action="{{ route('bridge.update', $bridge->id) }}">
         @csrf
 
         <div class="mdui-textfield mdui-textfield-floating-label">
