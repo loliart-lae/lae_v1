@@ -127,11 +127,11 @@
                 </div>
             @endif
 
-            {{-- <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--powerBridge"
-                href="{{ route('powerBridge.index') }}">
+            <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
+                href="{{ route('bridge.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">social_distance</span>
-                <div class="mdui-list-item-content">Power Bridge</div>
-            </a> --}}
+                <div class="mdui-list-item-content">Transfer Bridge</div>
+            </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">description</span>

@@ -27,14 +27,9 @@
     </div>
 
     <script>
-        fetch('https://v1.hitokoto.cn?c=k')
-            .then(response => response.json())
-            .then(data => {
-                // 还是 JQ 来的方便
-                $('.hitokoto_text').html(data.hitokoto)
-                // $('.hitokoto_placeholder').attr('placeholder', data.hitokoto)
-            })
-            .catch(console.error)
+        window.util.text.putLyric(function(data) {
+            $('.hitokoto_text').text(data.content)
+        })
     </script>
 
 @endsection
