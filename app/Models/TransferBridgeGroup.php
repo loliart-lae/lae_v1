@@ -24,7 +24,6 @@ class TransferBridgeGroup extends Model
         return $this->hasOne(TransferBridgePermission::class, 'transfer_bridge_group_id', 'id');
     }
 
-
     public function statistic()
     {
         return $this->hasMany(TransferBridgeStatistic::class, 'transfer_bridge_group_id', 'id');
