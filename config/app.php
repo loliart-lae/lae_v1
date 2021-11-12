@@ -158,6 +158,8 @@ return [
     'streaming_port' => env('STREAMING_PORT', 1935),
     'streaming_address' => env('STREAMING_ADDRESS', config('app.domain')),
     'streaming_prefix' => env('STREAMING_PREFIX', 'streaming'),
+    'streaming_control_auth' => env('STREAMING_CONTROL_AUTH', 'root'),
+    'streaming_control_password' => env('STREAMING_CONTROL_PASSWORD', 123456),
 
 
     /*
