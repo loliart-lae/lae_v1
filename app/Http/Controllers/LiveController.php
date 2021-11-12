@@ -141,7 +141,7 @@ class LiveController extends Controller
     public function auth(Request $request)
     {
         Log::debug($request);
-        Log::debug($request->route());
+        Log::debug($request->route('key'));
         if ($request->name != 'aeTimeRiver') {
             return response('no such app', 403);
         }
