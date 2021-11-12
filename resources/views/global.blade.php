@@ -4,6 +4,27 @@
 
 @section('content')
     @auth
+        @if (\App\Models\LiveTimePeriod::where('status', 1)->exists())
+            <video id="streaming" controls style="width: 100%"></video>
+            <script>
+                var Hls = window.Hls
+                var url =
+                    '{{ config('app.streaming_proto') }}://{{ config('app.domain') }}:{{ config('app.streaming_port') }}/{{ config('app.streaming_application') }}/aeTimeRiver'
+                if (Hls.isSupported()) {
+                    var hls = new Hls()
+                    hls.loadSource(url)
+                    hls.attachMedia(video)
+                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        video.play()
+                    })
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = url
+                    video.addEventListener('canplay', function() {
+                        video.play()
+                    })
+                }
+            </script>
+        @endif
         <div class="mdui-typo">
             <span class="mdui-typo-headline">嗨, {{ Auth::user()->name }}。</span>
             <br />
