@@ -4,8 +4,12 @@
 
 @section('content')
     @auth
-        @if (\App\Models\LiveTimePeriod::where('status', 1)->exists())
-            <video id="streaming" style="width:100%" class="animate__animated animate__backInDown" controls></video>
+        @php($live = \App\Models\LiveTimePeriod::where('status', 1)->first())
+        @if (!is_null($live))
+            <div class="mdui-typo-headline">{{ $live->name }}</div>
+
+            <video id="streaming" style="width:100%;border-radius:10px" class="mdui-m-t-1 animate__animated animate__backInDown"
+                controls></video>
             <script>
                 var video_streaming = document.getElementById('streaming')
                 var Hls = window.Hls
