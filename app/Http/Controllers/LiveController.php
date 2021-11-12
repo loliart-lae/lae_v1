@@ -186,7 +186,7 @@ class LiveController extends Controller
         return response()->json(['status' => 200]);
     }
 
-    public function disconnect()
+    public static function disconnect()
     {
         // 获取当前场次
         $liveTimePeriod = new LiveTimePeriod();
