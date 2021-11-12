@@ -63,7 +63,7 @@ class LiveController extends Controller
         $liveTimePeriod_where = $liveTimePeriod->where('end_at', '>', Carbon::parse($request->end_at)->toTimeString());
         // dd($liveTimePeriod_where->get());
         if ($liveTimePeriod_where->exists()) {
-            return redirect()->back()->with('status', '这个时间段已被安排了。');
+            return redirect()->back()->with('status', '这个时间段无法安排或者已被安排了。');
         }
 
         $liveTimePeriod->name = $request->name;
