@@ -134,6 +134,10 @@ class LiveController extends Controller
         $liveTimePeriod = new LiveTimePeriod();
         $liveTimePeriod = $liveTimePeriod->where('id', $id)->firstOrFail();
         if ($liveTimePeriod->user_id == Auth::id()) {
+            $minutes = Carbon::now()->diffInMinutes(Carbon::parse($liveTimePeriod->end_at), false);
+            if ($minutes <= 1) {
+                return redirect()->route('live.index')->with('status', '你只能删除未来的安排。');
+            }
             $liveTimePeriod->where('id', $id)->delete();
             return redirect()->route('live.index')->with('status', '删除成功。');
         }
