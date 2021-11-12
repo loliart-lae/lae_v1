@@ -140,20 +140,43 @@ class LiveController extends Controller
 
     public function auth(Request $request)
     {
-        if ($request->route('key') != config('app.streaming_application')) {
-            abort(403, 'application not found');
+        if ($request->name != 'aeTimeRiver') {
+            abort(403, 'name error');
+        }
+
+        if ($request->route('key') != config('app.streaming_validate_password')) {
+            abort(403, 'key error');
         }
 
         $liveTimePeriod = new LiveTimePeriod();
-        $liveTimePeriod = $liveTimePeriod->where('token', $request->token)->firstOrFail();
+        $liveTimePeriod_where = $liveTimePeriod->where('token', $request->token)->whereBetween('created_at', [Carbon::today()->toDateTimeString(), Carbon::tomorrow()->toDateTimeString()]);
+        $liveTimePeriod_data = $liveTimePeriod_where->firstOrFail();
 
-        if ($request->app != config('app.streaming_application')) {
-            abort(403, 'application not found');
+        // 验证是否在当前时间段
+        $now = Carbon::now();
+        $end_at = Carbon::parse($liveTimePeriod_data->end_at);
+        if ($now->gt($end_at)) {
+            abort(403, '你的演出时间已过。');
         }
 
         if ($request->app != config('app.streaming_application')) {
             abort(403, 'application not found');
         }
-        // Log::debug($request);
+
+        if ($request->app != config('app.streaming_application')) {
+            abort(403, 'application not found');
+        }
+
+        if ($request->call == 'publish') {
+            $liveTimePeriod_where->update([
+                'status' => 1,
+                'ip' => $request->addr
+            ]);
+        } elseif ($request->call == 'publish_done') {
+            $liveTimePeriod_where->update([
+                'status' => 0,
+                'ip' => $request->addr
+            ]);
+        }
     }
 }
