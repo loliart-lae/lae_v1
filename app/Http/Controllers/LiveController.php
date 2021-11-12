@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Ramsey\Uuid\Rfc4122\UuidV4;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class LiveController extends Controller
 {
@@ -72,7 +73,7 @@ class LiveController extends Controller
         $liveTimePeriod->user_id = Auth::id();
         $liveTimePeriod->save();
 
-        return redirect()->back()->with('status', '时间段安排成功。');
+        return redirect()->route('live.index')->with('status', '时间段安排成功。');
 
         // dd(Carbon::parse($request->start_at)->isToday());
     }
@@ -183,5 +184,10 @@ class LiveController extends Controller
         }
 
         return response()->json(['status' => 200]);
+    }
+
+    public function disconnect()
+    {
+        // $response = Http::withBasicAuth('taylor@laravel.com', 'secret')->post();
     }
 }
