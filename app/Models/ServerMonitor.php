@@ -14,12 +14,13 @@ class ServerMonitor extends Model
         return $this->belongsTo(Project::class, 'project_id', 'id');
     }
 
-    public function member() {
+    public function member()
+    {
         return $this->hasMany(ProjectMember::class, 'project_id', 'project_id');
     }
 
-    public function data() {
+    public function data()
+    {
         return $this->hasMany(ServerMonitorData::class, 'monitor_id', 'id');
     }
-
 }
