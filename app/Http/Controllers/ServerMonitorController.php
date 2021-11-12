@@ -17,10 +17,13 @@ class ServerMonitorController extends Controller
      */
     public function index()
     {
-        $monitors = ServerMonitor::with('data')->whereHas('member', function ($query) {
-            $query->where('user_id', Auth::id());
-        })->orderBy('project_id')->limit(10)->get();
-        // dd($monitors);
+        // $monitors = ServerMonitor::with(['data', 'project'])->whereHas('member', function ($query) {
+        //     $query->where('user_id', Auth::id());
+        // })->orderBy('project_id')->limit(10)->get();
+        $monitors = ServerMonitor::with(['data', 'project'])->get()->map(function ($item) {
+            $item->setRelation('data', $item->data->take(20));
+            return $item;
+        });
         return view('monitor.index', compact('monitors'));
     }
 
