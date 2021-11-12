@@ -7,20 +7,21 @@
         @if (\App\Models\LiveTimePeriod::where('status', 1)->exists())
             <video id="streaming" controls style="width: 100%"></video>
             <script>
+                var video_streaming = document.getElementById('streaming')
                 var Hls = window.Hls
                 var url =
                     '//{{ config('app.domain') }}/streaming/aeTimeRiver.m3u8'
                 if (Hls.isSupported()) {
                     var hls = new Hls()
                     hls.loadSource(url)
-                    hls.attachMedia(video)
+                    hls.attachMedia(video_streaming)
                     hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                        video.play()
+                        video_streaming.play()
                     })
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    video.src = url
-                    video.addEventListener('canplay', function() {
-                        video.play()
+                } else if (video_streaming.canPlayType('application/vnd.apple.mpegurl')) {
+                    video_streaming.src = url
+                    video_streaming.addEventListener('canplay', function() {
+                        video_streaming.play()
                     })
                 }
             </script>
