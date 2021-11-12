@@ -163,9 +163,9 @@ class LiveController extends Controller
             abort(403, 'application not found');
         }
 
-        if ($request->app != config('app.streaming_application')) {
-            abort(403, 'application not found');
-        }
+        // if ($request->app != config('app.streaming_application')) {
+        //     abort(403, 'application not found');
+        // }
 
         if ($request->call == 'publish') {
             $liveTimePeriod_where->update([
