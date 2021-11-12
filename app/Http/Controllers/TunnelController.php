@@ -21,7 +21,7 @@ class TunnelController extends Controller
      */
     public function index()
     {
-        $tunnels = Tunnel::with(['server'])->whereHas('member', function ($query) {
+        $tunnels = Tunnel::with(['server', 'project'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
 
