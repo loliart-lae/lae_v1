@@ -202,12 +202,7 @@ class LiveController extends Controller
         if ($minutes <= 1) {
             // 断开
             $url = 'https://' . config('app.streaming_address') . '/' . config('app.streaming_control_path') . '/drop/publisher?app=hls&name=aeTimeRiver';
-            for ($i = 0; $i <= 20; $i++) {
-                $result = Http::get($url)->body();
-                if ($result) {
-                    break;
-                }
-            }
+            $result = Http::timeout(5)->retry(3, 1)->get($url)->body();
         }
     }
 }
