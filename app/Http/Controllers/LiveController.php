@@ -141,11 +141,11 @@ class LiveController extends Controller
     public function auth(Request $request)
     {
         if ($request->name != 'aeTimeRiver') {
-            return response('no such app', 403);
+            return response()->json(['status' => 403]);
         }
 
         if ($request->route('key') != config('app.streaming_validate_password')) {
-            return response('key error', 403);
+            return response()->json(['status' => 403]);
         }
 
         $liveTimePeriod = new LiveTimePeriod();
@@ -153,17 +153,17 @@ class LiveController extends Controller
         $liveTimePeriod_data = $liveTimePeriod_where->first();
 
         if (is_null($liveTimePeriod_data)) {
-            return response('not found', 403);
+            return response()->json(['status' => 403]);
         }
         // 验证是否在当前时间段
         $now = Carbon::now();
         $end_at = Carbon::parse($liveTimePeriod_data->end_at);
         if ($now->gt($end_at)) {
-            return response('not your turn', 403);
+            return response()->json(['status' => 403]);
         }
 
         if ($request->app != config('app.streaming_application')) {
-            return response('app not found', 403);
+            return response()->json(['status' => 403]);
         }
 
         // if ($request->app != config('app.streaming_application')) {
@@ -182,6 +182,6 @@ class LiveController extends Controller
             ]);
         }
 
-        return response('200', 200);
+        return response()->json(['status' => 200]);
     }
 }
