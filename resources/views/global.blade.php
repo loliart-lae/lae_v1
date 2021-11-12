@@ -9,7 +9,7 @@
             <script>
                 var Hls = window.Hls
                 var url =
-                    '//{{ config('app.domain') }}:{{ config('app.streaming_port') }}/streaming/aeTimeRiver.m3u8'
+                    '//{{ config('app.domain') }}/streaming/aeTimeRiver.m3u8'
                 if (Hls.isSupported()) {
                     var hls = new Hls()
                     hls.loadSource(url)
