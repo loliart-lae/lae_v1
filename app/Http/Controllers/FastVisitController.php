@@ -20,7 +20,7 @@ class FastVisitController extends Controller
      */
     public function index()
     {
-        $fastVisits = FastVisit::with('server')->whereHas('member', function ($query) {
+        $fastVisits = FastVisit::with(['server', 'project', 'domain'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->simplePaginate(50);
 
