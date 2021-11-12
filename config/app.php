@@ -145,11 +145,18 @@ return [
     'cq_master' => env('CQ_MASTER', 00000),
 
     /**
-     * Pterodactyl Panel`
+     * Pterodactyl Panel
      */
     'pterodactyl_panel' => env('PTERODACTYL_PANEL', 'http://localhost'),
     'pterodactyl_panel_api_token' => env('PTERODACTYL_API_TOKEN', '12345678'),
     'pterodactyl_server_id' => env('PTERODACTYL_SERVER_ID'),
+
+    /**
+     * Streaming settings
+     */
+    'streaming_proto' => env('STREAMING_PROTO', 'rtmp'),
+    'streaming_port' => env('STREAMING_PORT', 1935),
+    'streaming_address' => env('STREAMING_ADDRESS', config('app.domain')),
 
 
     /*
