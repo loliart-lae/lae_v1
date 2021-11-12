@@ -150,8 +150,11 @@ class LiveController extends Controller
 
         $liveTimePeriod = new LiveTimePeriod();
         $liveTimePeriod_where = $liveTimePeriod->where('token', $request->token)->whereBetween('created_at', [Carbon::today()->toDateTimeString(), Carbon::tomorrow()->toDateTimeString()]);
-        $liveTimePeriod_data = $liveTimePeriod_where->firstOrFail();
+        $liveTimePeriod_data = $liveTimePeriod_where->first();
 
+        if (is_null($liveTimePeriod_data)) {
+            abort(403, 'not found');
+        }
         // 验证是否在当前时间段
         $now = Carbon::now();
         $end_at = Carbon::parse($liveTimePeriod_data->end_at);
