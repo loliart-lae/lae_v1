@@ -22,7 +22,7 @@ class EasyPanelController extends Controller
      */
     public function index()
     {
-        $eps = EasyPanelVirtualHost::with(['template', 'server'])->whereHas('member', function ($query) {
+        $eps = EasyPanelVirtualHost::with(['template', 'server', 'project'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
         // $lxdContainers = LxdContainer::with(['template', 'server', 'forward'])->has('project', function ($query) {

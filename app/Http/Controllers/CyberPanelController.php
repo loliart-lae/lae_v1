@@ -22,7 +22,7 @@ class CyberPanelController extends Controller
      */
     public function index()
     {
-        $cyberPanelSites = CyberPanelSite::with(['package'])->whereHas('member', function ($query) {
+        $cyberPanelSites = CyberPanelSite::with(['package', 'project'])->whereHas('member', function ($query) {
             $query->where('user_id', Auth::id());
         })->orderBy('project_id')->get();
 
