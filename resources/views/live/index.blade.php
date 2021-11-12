@@ -25,7 +25,7 @@
                 <tbody>
                     @php($i = 0)
                     @foreach ($lives as $live)
-                        <tr>
+                        <tr @if ($live->status) class="mdui-color-green-a700" @endif>
                             <td>{{ ++$i }}</td>
                             <td>{{ $live->name }}</td>
                             <td>{{ $live->start_at }}</td>
