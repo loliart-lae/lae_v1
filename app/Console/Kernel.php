@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\LiveController;
 use App\Jobs\CostJob;
 use App\Jobs\CalcServerJob;
 use App\Jobs\StaticPageJob;
@@ -37,6 +38,8 @@ class Kernel extends ConsoleKernel
             dispatch(new CostJob())->onQueue('cost');
             // 获取服务器资源
             dispatch(new ServerStatusJob())->onQueue('remote_desktop');
+            // 检测流
+            LiveController::disconnect();
         })->everyMinute();
 
         $schedule->call(function () {
