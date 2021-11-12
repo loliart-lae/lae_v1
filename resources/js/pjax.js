@@ -36,7 +36,7 @@ $(document).on("pjax:complete", function (event) {
     mainMenu.update()
 
     // 转译
-    $('.pjax-container').html(c($('.pjax-container').html()))
+    // $('.pjax-container').html(c($('.pjax-container').html()))
 
     $('#main').css('height', 'auto')
     $('#main').css('overflow', 'unset')
