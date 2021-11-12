@@ -42,3 +42,4 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
 });
 
 Route::any('/serverMonitor/put', [Controllers\ServerMonitorController::class, 'save_data'])->name('serverMonitor.save_data');
+Route::any('/stream/auth', [Controllers\LiveController::class, 'auth'])->name('stream.auth');
