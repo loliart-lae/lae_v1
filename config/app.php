@@ -157,6 +157,7 @@ return [
     'streaming_proto' => env('STREAMING_PROTO', 'rtmp'),
     'streaming_port' => env('STREAMING_PORT', 1935),
     'streaming_address' => env('STREAMING_ADDRESS', config('app.domain')),
+    'streaming_prefix' => env('STREAMING_PREFIX', 'streaming'),
 
 
     /*
