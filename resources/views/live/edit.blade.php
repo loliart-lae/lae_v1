@@ -16,15 +16,18 @@
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">串流地址</label>
             <input class="mdui-textfield-input" type="text" readonly
-                value="{{ config('app.streaming_proto') }}://{{ config('app.streaming_prefix') }}.{{ config('app.domain') }}:{{ config('app.streaming_port') }}" />
+                value="{{ config('app.streaming_proto') }}://{{ config('app.domain') }}:{{ config('app.streaming_port') }}/{{ config('app.streaming_application') }}" />
         </div>
 
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">串流密钥</label>
-            <input class="mdui-textfield-input" type="text" readonly value="{{ $live->token }}" />
+            <input class="mdui-textfield-input" type="text" readonly value="aeTimeRiver?token={{ $live->token }}" />
+            <div class="mdui-textfield-helper">请不要泄漏给他人。</div>
         </div>
 
-        <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-live">确认安排</button>
+
+        <button type="submit"
+            class="mdui-m-t-2 mdui-btn mdui-color-theme-accent mdui-ripple umami--click--update-live">确认安排</button>
     </form>
 
     <form method="post" class="mdui-m-t-3" action="{{ route('live.destroy', $live->id) }}">
