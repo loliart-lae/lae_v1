@@ -44,7 +44,7 @@
                 <div class="mdui-list-item-content">资源图表</div>
             </a>
 
-            <div class="mdui-collapse-item">
+            <div class="mdui-collapse-item parent-menu">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                     <span class="mdui-list-item-icon mdui-icon material-icons-outlined">developer_board</span>
                     <div class="mdui-list-item-content">云端计算</div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="mdui-collapse-item">
+            <div class="mdui-collapse-item parent-menu">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                     <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
                     <div class="mdui-list-item-content">访问调度</div>
@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="mdui-collapse-item">
+            <div class="mdui-collapse-item parent-menu">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                     <span class="mdui-list-item-icon mdui-icon material-icons-outlined">public</span>
                     <div class="mdui-list-item-content">Web 服务</div>
@@ -105,9 +105,21 @@
                 </div>
             </div>
 
+            {{-- <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
+                href="{{ route('bridge.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">social_distance</span>
+                <div class="mdui-list-item-content">Transfer Bridge</div>
+            </a> --}}
+
+            <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
+                href="{{ route('live.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">ondemand_video</span>
+                <div class="mdui-list-item-content">流媒体节目</div>
+            </a>
+
             @php($admins = config('admin.admin_users'))
             @if (in_array(Auth::user()->email, $admins))
-                <div class="mdui-collapse-item">
+                <div class="mdui-collapse-item parent-menu">
                     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                         <span class="mdui-list-item-icon mdui-icon material-icons-outlined">admin_panel_settings</span>
                         <div class="mdui-list-item-content">管理员工具</div>
@@ -126,12 +138,6 @@
                     </div>
                 </div>
             @endif
-
-            {{-- <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
-                href="{{ route('bridge.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">social_distance</span>
-                <div class="mdui-list-item-content">Transfer Bridge</div>
-            </a> --}}
 
             <a class="mdui-list-item mdui-ripple umami--click--document" href="{{ route('documents.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">description</span>

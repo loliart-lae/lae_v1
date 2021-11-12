@@ -138,7 +138,11 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/cyberPanel', Controllers\CyberPanelController::class);
     Route::get('/cyberPanel/listPackage/{sid}', [Controllers\CyberPanelController::class, 'listPackage'])->name('cyberPanel.listPackage');
 
-    // Route::resource('/powerBridge', Controllers\PowerBridgeController::class);
+    Route::resource('/live', Controllers\LiveController::class);
+
+    // Route::resource('/bridge', Controllers\TransferBridgeController::class);
+    // Route::resource('/bridge/{id}/groups', Controllers\TransferBridgeGroupController::class, ['as' => 'bridge']);
+    // Route::resource('/bridge/{id}/guest', Controllers\TransferBridgeGuestController::class, ['as' => 'bridge']);
 
     // Route::resource('/images', ImageController::class);
 
