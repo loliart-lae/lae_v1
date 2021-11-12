@@ -5,7 +5,7 @@
 @section('content')
     @auth
         @if (\App\Models\LiveTimePeriod::where('status', 1)->exists())
-            <video id="streaming" controls style="width: 100%"></video>
+            <video id="streaming" style="width:100%" class="animate__animated animate__backInDown" controls></video>
             <script>
                 var video_streaming = document.getElementById('streaming')
                 var Hls = window.Hls
