@@ -57,11 +57,12 @@ class LiveController extends Controller
         $minutes = Carbon::parse($request->start_at)->diffInMinutes(Carbon::parse($request->end_at), false);
         if (!$minutes || $minutes > 90) {
             return redirect()->back()->with('status', '单个节目时长不能大于 90 分钟。');
+        } elseif ($minutes <= 10) {
+            return redirect()->back()->with('status', '节目时长不能小于 10 分钟。');
         }
 
         // 检测当前区间是否被占用
         $liveTimePeriod_where = $liveTimePeriod->where('end_at', '>', Carbon::parse($request->end_at)->toTimeString());
-        // dd($liveTimePeriod_where->get());
         if ($liveTimePeriod_where->exists()) {
             return redirect()->back()->with('status', '这个时间段无法安排或者已被安排了。');
         }
