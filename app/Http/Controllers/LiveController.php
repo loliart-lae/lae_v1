@@ -116,6 +116,11 @@ class LiveController extends Controller
         $liveTimePeriod = new LiveTimePeriod();
         $live = $liveTimePeriod->where('id', $id)->firstOrFail();
         if ($live->user_id == Auth::id()) {
+            $minutes = Carbon::now()->diffInMinutes(Carbon::parse($live->end_at), false);
+            if ($minutes <= 1) {
+                return redirect()->route('live.index')->with('status', '你无法修改以前的安排。');
+            }
+
             $liveTimePeriod->where('id', $id)->update([
                 'name' => $request->name,
             ]);
