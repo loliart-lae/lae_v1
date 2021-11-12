@@ -188,6 +188,26 @@ class LiveController extends Controller
 
     public function disconnect()
     {
-        // $response = Http::withBasicAuth('taylor@laravel.com', 'secret')->post();
+        // 获取当前场次
+        $liveTimePeriod = new LiveTimePeriod();
+        // 获取今天正在播放的流媒体
+        $liveTimePeriod_where = $liveTimePeriod->where('status', 1)->whereBetween('created_at', [Carbon::today()->toDateTimeString(), Carbon::tomorrow()->toDateTimeString()]);
+        $liveTimePeriod_data = $liveTimePeriod_where->first();
+
+        // 如果还剩下最后1分钟
+        // if ($liveTimePeriod_data->)
+        // 验证是否在当前时间段
+        $minutes = Carbon::now()->diffInMinutes(Carbon::parse($liveTimePeriod_data->end_at), false);
+
+        if ($minutes <= 1) {
+            // 断开
+            $url = 'https://' . config('app.streaming_address') . '/' . config('app.streaming_control_path') . '/drop/publisher?app=hls&name=aeTimeRiver';
+            for ($i = 0; $i <= 20; $i++) {
+                $result = Http::get($url)->body();
+                if ($result) {
+                    break;
+                }
+            }
+        }
     }
 }
