@@ -43,7 +43,7 @@ class LiveController extends Controller
     public function store(Request $request, LiveTimePeriod $liveTimePeriod)
     {
         $this->validate($request, [
-            'name' => 'required|unique:App\Models\LiveTimePeriod,name',
+            'name' => 'required',
             'start_at' => 'required',
             'end_at' => 'required',
         ]);
@@ -52,6 +52,7 @@ class LiveController extends Controller
         if (!Carbon::parse($request->start_at)->isToday() && !Carbon::parse($request->end_at)->isToday()) {
             return redirect()->back()->with('status', '不在时间内。');
         }
+
 
         // 检测时间差
         $minutes = Carbon::parse($request->start_at)->diffInMinutes(Carbon::parse($request->end_at), false);
@@ -62,9 +63,9 @@ class LiveController extends Controller
         }
 
         // 检测当前区间是否被占用
-        $liveTimePeriod_where = $liveTimePeriod->where('end_at', '>', Carbon::parse($request->end_at)->toTimeString());
+        $liveTimePeriod_where = $liveTimePeriod->where('name', $request->name)->whereBetween('created_at', [Carbon::today()->toDateTimeString(), Carbon::tomorrow()->toDateTimeString()])->where('end_at', '>', Carbon::parse($request->end_at)->toTimeString());
         if ($liveTimePeriod_where->exists()) {
-            return redirect()->back()->with('status', '这个时间段无法安排或者已被安排了。');
+            return redirect()->back()->with('status', '名称或者时间段已被占用，或者无法安排。');
         }
 
         $liveTimePeriod->name = $request->name;
