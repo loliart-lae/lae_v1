@@ -18,7 +18,6 @@
     </div>
 </div>
 
-<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
 <script>
     var url = "{{ config('app.streaming_play_url') }}";
     var player = dashjs.MediaPlayer().create();
