@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $live->name)
+@section('title', $live->name ?? '暂无流媒体')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 <div id="streaming_div">
     <div class="mdui-typo-headline">{{ $live->name }}</div>
 
-    <video id="streaming" style="width:100%;border-radius:5px" controls></video>
+    <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls></video>
 </div>
 
 <script>
@@ -30,6 +30,10 @@
             })
         }
 </script>
+@else
+
+<div class="mdui-typo-headline mdui-typo">暂时没有流媒体安排，你可以去<a href="{{ route('live.create') }}">安排</a>一个。</div>
+
 @endif
 
 
