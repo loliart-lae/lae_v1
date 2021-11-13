@@ -12,7 +12,7 @@
 
 <div class="mdui-m-t-3">
     <div class="mdui-table-fluid">
-        <table class="mdui-table mdui-typo">
+        <table class="mdui-table mdui-table-hoverable mdui-typo">
             <thead>
                 <tr>
                     <th>#</th>
