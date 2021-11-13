@@ -1,8 +1,9 @@
-setInterval(function () {
-    var updateCount = 0
-    var date = new Date()
-    var startTime = Date.parse(date)
+var nowShow = null;
 
+setInterval(function () {
+    let updateCount = 0
+    let date = new Date()
+    let startTime = Date.parse(date)
     if (localStorage.getItem('startTime') == null) {
         localStorage.setItem('startTime', startTime)
     }
@@ -51,6 +52,16 @@ setInterval(function () {
                             message: data.data[i].content,
                             position: 'right-bottom'
                         })
+                    }
+                }
+
+                if (data.streaming != null) {
+                    if (data.streaming.id != nowShow) {
+                        mdui.snackbar({
+                            message: '节目 ' + data.streaming.name + ' 已开始。',
+                            position: 'right-bottom'
+                        })
+                        nowShow = data.streaming.id
                     }
                 }
             },
