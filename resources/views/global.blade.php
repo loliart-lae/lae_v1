@@ -6,10 +6,12 @@
     @auth
         @php($live = \App\Models\LiveTimePeriod::where('status', 1)->first())
         @if (!is_null($live))
-            <div class="mdui-typo-headline">{{ $live->name }}</div>
+            <div id="streaming_div" class="mdui-m-t-1 animate__animated animate__zoomIn">
+                <div class="mdui-typo-headline">{{ $live->name }}</div>
 
-            <video id="streaming" style="width:100%;border-radius:10px" class="mdui-m-t-1 animate__animated animate__backInDown"
-                controls></video>
+                <video id="streaming" style="width:100%;border-radius:10px" controls></video>
+            </div>
+
             <script>
                 var video_streaming = document.getElementById('streaming')
                 var Hls = window.Hls
