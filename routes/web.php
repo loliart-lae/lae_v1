@@ -139,6 +139,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/cyberPanel/listPackage/{sid}', [Controllers\CyberPanelController::class, 'listPackage'])->name('cyberPanel.listPackage');
 
     Route::resource('/live', Controllers\LiveController::class);
+    Route::get('/streaming', [Controllers\LiveController::class, 'streaming'])->name('streaming');
 
     // Route::resource('/bridge', Controllers\TransferBridgeController::class);
     // Route::resource('/bridge/{id}/groups', Controllers\TransferBridgeGroupController::class, ['as' => 'bridge']);
