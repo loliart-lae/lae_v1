@@ -4,19 +4,34 @@
 
 @section('content')
     @auth
-        <div id="streaming_div" style="overflow:hidden;transition:all cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s">
-            <div class="mdui-typo-headline" id="live_name"></div>
-            <video id="streaming" style="width:100%;border-radius:5px" controls></video>
-        </div>
+        @php($live = \App\Models\LiveTimePeriod::where('status', 1)->first())
+        @if (!is_null($live))
+            <div id="streaming_div">
+                <div class="mdui-typo-headline">{{ $live->name }}</div>
 
-        <script>
-            var video_streaming = document.getElementById('streaming')
-            var Hls = window.Hls
-            var url =
-                '//{{ config('app.domain') }}/streaming/aeTimeRiver.m3u8'
+                <video id="streaming" style="width:100%;border-radius:10px" controls></video>
+            </div>
 
-        </script>
-
+            <script>
+                var video_streaming = document.getElementById('streaming')
+                var Hls = window.Hls
+                var url =
+                    '//{{ config('app.domain') }}/streaming/aeTimeRiver.m3u8'
+                if (Hls.isSupported()) {
+                    var hls = new Hls()
+                    hls.loadSource(url)
+                    hls.attachMedia(video_streaming)
+                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        video_streaming.play()
+                    })
+                } else if (video_streaming.canPlayType('application/vnd.apple.mpegurl')) {
+                    video_streaming.src = url
+                    video_streaming.addEventListener('canplay', function() {
+                        video_streaming.play()
+                    })
+                }
+            </script>
+        @endif
         <div class="mdui-typo">
             <span class="mdui-typo-headline">嗨, {{ Auth::user()->name }}。</span>
             <br />
@@ -32,8 +47,9 @@
             </form>
 
             <div class="mdui-m-l-1 mdui-m-r-1">
-                <h4><a href="{{ route('main') }}" class="umami--click--user-toggle-timeriver">我的时间河</a>&nbsp;|&nbsp;<span
-                        class="global-time-river">全站时间河</span>&nbsp;|&nbsp;<a href="{{ route('articles') }}">博文</a></h4>
+                <h4><a href="{{ route('main') }}"
+                        class="umami--click--user-toggle-timeriver">我的时间河</a>&nbsp;|&nbsp;<span class="global-time-river">全站时间河</span>&nbsp;|&nbsp;<a
+                        href="{{ route('articles') }}">博文</a></h4>
                 @include('include._feed')
             </div>
 
