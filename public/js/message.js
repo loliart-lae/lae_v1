@@ -1,7 +1,4 @@
 var nowShow = null;
-var streaming_div_height = ($('#streaming_div').height() + 30) + 'px';
-$('#streaming_div').height('0px')
-$('#streaming_div').show('0px')
 
 setInterval(function () {
     let updateCount = 0
@@ -11,7 +8,7 @@ setInterval(function () {
         localStorage.setItem('startTime', startTime)
     }
     current = localStorage.getItem('startTime')
-    if (startTime - current >= 10000) {
+    if (startTime - current >= 2000) {
         // 立即更新localStorage，然后获取通知
         localStorage.setItem('startTime', startTime)
 
@@ -58,39 +55,28 @@ setInterval(function () {
                     }
                 }
 
+                $('.global-time-river').addClass('mdui-text-color-green')
                 if (data.streaming != null) {
-                    $('.global-time-river').addClass('mdui-text-color-green')
                     if (data.streaming.id != nowShow) {
-                        $('#streaming_div').css('height', streaming_div_height)
-                        $('#live_name').text(data.streaming.name)
-
+                        if (window.location.pathname == '/dashboard/global') {
+                            $('#streaming_div').show()
+                        }
                         mdui.snackbar({
                             message: '节目 ' + data.streaming.name + ' 已开始。',
                             position: 'right-bottom'
                         })
+                        $('#streaming_tool_btn').show()
+
                         nowShow = data.streaming.id
 
-                        if (Hls.isSupported()) {
-                            var hls = new Hls()
-                            hls.loadSource(url)
-                            hls.attachMedia(video_streaming)
-                            hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                                video_streaming.play()
-                            })
-                        } else if (video_streaming.canPlayType('application/vnd.apple.mpegurl')) {
-                            video_streaming.src = url
-                            video_streaming.addEventListener('canplay', function () {
-                                video_streaming.play()
-                            })
-                        }
                     }
-
                 } else {
                     nowShow = null
+                    if (window.location.pathname == '/dashboard/global') {
+                        $('#streaming_div').hide()
+                    }
                     $('.global-time-river').removeClass('mdui-text-color-green')
-                    $('#streaming_div').css('height', '0px')
-
-
+                    $('#streaming_tool_btn').hide()
                 }
             },
             error: function (data) {
