@@ -1,4 +1,7 @@
 var nowShow = null;
+var streaming_div_height = ($('#streaming_div').height() + 30) + 'px';
+$('#streaming_div').height('0px')
+$('#streaming_div').show('0px')
 
 setInterval(function () {
     let updateCount = 0
@@ -58,7 +61,7 @@ setInterval(function () {
                 if (data.streaming != null) {
                     $('.global-time-river').addClass('mdui-text-color-green')
                     if (data.streaming.id != nowShow) {
-                        $('#streaming_div').css('height', 'auto')
+                        $('#streaming_div').css('height', streaming_div_height)
                         $('#live_name').text(data.streaming.name)
 
                         mdui.snackbar({
