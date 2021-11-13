@@ -4,9 +4,8 @@
 
 @section('content')
     @auth
-        <div id="streaming_div" style="height:0px;overflow:hidden;transition:all .3s ease-in-out">
+        <div id="streaming_div" style="overflow:hidden;transition:all cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s">
             <div class="mdui-typo-headline" id="live_name"></div>
-
             <video id="streaming" style="width:100%;border-radius:5px" controls></video>
         </div>
 
