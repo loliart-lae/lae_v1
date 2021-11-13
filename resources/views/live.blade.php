@@ -9,7 +9,6 @@
     <div class="mdui-col-xs-12 mdui-col-sm-8" id="streaming_div">
         <div class="mdui-typo-headline">{{ $live->name }}</div>
         <video id="streaming" style="border-radius:5px;margin-top:10px" controls muted autoplay playsinline>
-            <source src="{{ config('app.streaming_play_url') }}" />
         </video>
     </div>
     <div class="mdui-col-xs-12 mdui-col-sm-4">
@@ -18,6 +17,13 @@
         </ul>
     </div>
 </div>
+
+<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script>
+    var url = "{{ config('app.streaming_play_url') }}";
+    var player = dashjs.MediaPlayer().create();
+    player.initialize(document.querySelector("#streaming"), url, true);
+</script>
 
 @else
 
