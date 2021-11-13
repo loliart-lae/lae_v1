@@ -6,10 +6,10 @@
     @auth
         @php($live = \App\Models\LiveTimePeriod::where('status', 1)->first())
         @if (!is_null($live))
-            <div id="streaming_div">
-                <div class="mdui-typo-headline">{{ $live->name }}</div>
+            <div id="streaming_div" class="mdui-typo">
+                <div class="mdui-typo-headline"><a href="{{ route('streaming') }}">{{ $live->name }}</a></div>
 
-                <video id="streaming" style="width:100%;border-radius:10px" controls></video>
+                <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls></video>
             </div>
 
             <script>
