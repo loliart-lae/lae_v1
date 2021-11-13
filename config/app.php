@@ -162,6 +162,7 @@ return [
     'streaming_control_auth' => env('STREAMING_CONTROL_AUTH', 'root'),
     'streaming_control_password' => env('STREAMING_CONTROL_PASSWORD', 123456),
     'streaming_validate_password' => env('STREAMING_VALIDATE_PASSWORD', 1234567890),
+    'streaming_play_url' => env('STREAMING_PLAY_URL'),
 
 
     /*
