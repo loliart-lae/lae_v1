@@ -26,12 +26,9 @@
                 @foreach ($lives as $live)
                 <tr @if ($live->status) style="background-color: #90f1a754!important;color:white" @endif>
                     <td>{{ ++$i }}</td>
-                    <td><a href="
-                                 @if ((new \Illuminate\Support\Carbon)->diffInMinutes((new \Illuminate\Support\Carbon)->parse($live->start_at), false) < 0)
-                                    #
-                                @elseif ($live->user_id == Auth::id())
-                                   {{ route('live.edit', $live->id) }}
-                                @endif">{{ $live->name }}</td>
+                    <td><a
+                            href="@if ((new \Illuminate\Support\Carbon)->diffInMinutes((new \Illuminate\Support\Carbon)->parse($live->start_at), false) < 0)#@elseif ($live->user_id == Auth::id()) {{ route('live.edit', $live->id) }} @endif">{{
+                            $live->name }}</td>
                     <td>{{ $live->start_at }}</td>
                     <td>{{ $live->end_at }}</td>
                 </tr>
