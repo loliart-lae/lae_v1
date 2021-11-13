@@ -146,7 +146,7 @@
         }
     </script>
     @auth
-        <script src="/js/message.js"></script>
+        <script src="/js/message.js?pass={{ time() }}"></script>
     @endauth
     <script src="{{ mix('js/pjax.js') }}"></script>
     <script>

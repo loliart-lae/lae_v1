@@ -56,13 +56,41 @@ setInterval(function () {
                 }
 
                 if (data.streaming != null) {
-                    if (data.streaming.id != nowShow) {
-                        mdui.snackbar({
-                            message: '节目 ' + data.streaming.name + ' 已开始。',
-                            position: 'right-bottom'
-                        })
-                        nowShow = data.streaming.id
+                    if (window.location.pathname != '/dashboard/global') {
+                        if (data.streaming.id != nowShow) {
+                            $('#streaming_div').removeClass('animate__zoomOutRight')
+                            $('#streaming_div').addClass('animate__zoomInRight')
+                            $('#streaming_div').css('height', 'auto')
+                            mdui.snackbar({
+                                message: '节目 ' + data.streaming.name + ' 已开始。',
+                                position: 'right-bottom'
+                            })
+                            nowShow = data.streaming.id
+                        }
+                    } else {
+                        $('.global-time-river').addClass('mdui-text-color-green')
+                        if (data.streaming.id != nowShow) {
+                            $('#streaming_div').removeClass('animate__zoomOutRight')
+                            $('#streaming_div').addClass('animate__zoomInRight')
+                            $('#streaming_div').css('height', 'auto')
+                            mdui.snackbar({
+                                message: '节目 ' + data.streaming.name + ' 已开始。',
+                                position: 'right-bottom'
+                            })
+                            nowShow = data.streaming.id
+                        }
                     }
+
+
+                } else {
+                    nowShow = null
+                    $('.global-time-river').removeClass('mdui-text-color-green')
+                    $('#streaming_div').removeClass('animate__zoomInRight')
+                    $('#streaming_div').addClass('animate__zoomOutRight')
+                    $('#streaming_div').animate({
+                        height: 0
+                    })
+
                 }
             },
             error: function (data) {
