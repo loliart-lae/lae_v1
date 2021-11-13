@@ -8,7 +8,7 @@
 <div id="streaming_div">
     <div class="mdui-typo-headline">{{ $live->name }}</div>
 
-    <video id="streaming" style="width:100%;border-radius:10px" controls></video>
+    <video id="streaming" style="width:100%;border-radius:5px" controls></video>
 </div>
 
 <script>
