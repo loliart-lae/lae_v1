@@ -5,10 +5,16 @@
 @section('content')
 
 @if (!is_null($live))
-<div id="streaming_div">
-    <div class="mdui-typo-headline">{{ $live->name }}</div>
-
-    <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls></video>
+<div class="mdui-row">
+    <div class="mdui-col-xs-12 mdui-col-sm-8" id="streaming_div">
+        <div class="mdui-typo-headline">{{ $live->name }}</div>
+        <video id="streaming" style="border-radius:5px;margin-top:10px" controls></video>
+    </div>
+    <div class="mdui-col-xs-12 mdui-col-sm-4">
+        <ul id="comments">
+            <li></li>
+        </ul>
+    </div>
 </div>
 
 <script>
