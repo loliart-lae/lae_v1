@@ -48,7 +48,7 @@
 
             <div class="mdui-m-l-1 mdui-m-r-1">
                 <h4><a href="{{ route('main') }}"
-                        class="umami--click--user-toggle-timeriver">我的时间河</a>&nbsp;|&nbsp;全站时间河&nbsp;|&nbsp;<a
+                        class="umami--click--user-toggle-timeriver">我的时间河</a>&nbsp;|&nbsp;<span class="global-time-river">全站时间河</span>&nbsp;|&nbsp;<a
                         href="{{ route('articles') }}">博文</a></h4>
                 @include('include._feed')
             </div>

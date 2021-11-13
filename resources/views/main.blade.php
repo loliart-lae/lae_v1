@@ -17,9 +17,8 @@
             </div>
             <button class="mdui-btn mdui-color-theme mdui-ripple">发布</button>
         </form>
-
         <div class="mdui-m-l-1 mdui-m-r-1">
-            <h4>我的时间河&nbsp;|&nbsp;<a href="{{ route('global') }}">全站时间河</a>&nbsp;|&nbsp;<a
+            <h4>我的时间河&nbsp;|&nbsp;<a class="global-time-river" href="{{ route('global') }}">全站时间河</a>&nbsp;|&nbsp;<a
                     href="{{ route('articles') }}">博文</a></h4>
             @include('include._feed')
         </div>

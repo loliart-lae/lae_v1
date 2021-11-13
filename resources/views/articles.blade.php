@@ -10,7 +10,8 @@
 
     @auth
         <div class="mdui-typo">
-            <h4><a href="{{ route('main') }}">我的时间河</a>&nbsp;|&nbsp;<a href="{{ route('global') }}">全站时间河</a>&nbsp;|&nbsp;博文
+            <h4><a href="{{ route('main') }}">我的时间河</a>&nbsp;|&nbsp;<a class="global-time-river"
+                    href="{{ route('global') }}">全站时间河</a>&nbsp;|&nbsp;博文
             </h4>
         </div>
     @endauth
