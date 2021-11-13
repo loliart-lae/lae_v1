@@ -118,9 +118,9 @@ class LiveController extends Controller
         $liveTimePeriod = new LiveTimePeriod();
         $live = $liveTimePeriod->where('id', $id)->firstOrFail();
         if ($live->user_id == Auth::id()) {
-            $minutes = Carbon::now()->diffInMinutes(Carbon::parse($live->end_at), false);
+            $minutes = Carbon::now()->diffInMinutes(Carbon::parse($live->start_at), false);
             if ($minutes <= 1) {
-                return redirect()->route('live.index')->with('status', '你无法修改以前的安排。');
+                return redirect()->route('live.index')->with('status', '你无法修改以前与一开始的安排。');
             }
 
             $liveTimePeriod->where('id', $id)->update([
@@ -141,7 +141,7 @@ class LiveController extends Controller
         $liveTimePeriod = new LiveTimePeriod();
         $liveTimePeriod = $liveTimePeriod->where('id', $id)->firstOrFail();
         if ($liveTimePeriod->user_id == Auth::id()) {
-            $minutes = Carbon::now()->diffInMinutes(Carbon::parse($liveTimePeriod->end_at), false);
+            $minutes = Carbon::now()->diffInMinutes(Carbon::parse($liveTimePeriod->start_at), false);
             if ($minutes <= 1) {
                 return redirect()->route('live.index')->with('status', '你只能删除未来的安排。');
             }

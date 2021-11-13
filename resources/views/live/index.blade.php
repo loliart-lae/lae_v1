@@ -32,7 +32,7 @@
                             <td>{{ $live->end_at }}</td>
 
                             <td class="mdui-typo">
-                                @if ((new \Illuminate\Support\Carbon)->diffInMinutes((new \Illuminate\Support\Carbon)->parse($live->end_at), false) < 0)
+                                @if ((new \Illuminate\Support\Carbon)->diffInMinutes((new \Illuminate\Support\Carbon)->parse($live->start_at), false) < 0)
                                     -
                                 @elseif ($live->user_id == Auth::id())
                                     <a href="{{ route('live.edit', $live->id) }}">修改</a>
