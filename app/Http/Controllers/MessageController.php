@@ -30,7 +30,7 @@ class MessageController extends Controller
 
         $balance = Auth::user()->balance;
 
-        $streaming = LiveTimePeriod::where('status', 1)->select(['name', 'status', 'start_at', 'end_at'])->first();
+        $streaming = LiveTimePeriod::where('status', 1)->select(['name', 'status', 'start_at', 'end_at', 'id'])->first();
         return response()->json(['status' => 'success', 'data' => $message_data, 'balance' => $balance, 'streaming' => $streaming]);
     }
 }
