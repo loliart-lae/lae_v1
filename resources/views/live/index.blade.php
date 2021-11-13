@@ -17,6 +17,7 @@
                 <tr>
                     <th>#</th>
                     <th>名称</th>
+                    <th>出演</th>
                     <th>开始时间</th>
                     <th>结束时间</th>
                 </tr>
@@ -29,6 +30,13 @@
                     <td><a
                             href="@if ((new \Illuminate\Support\Carbon)->diffInMinutes((new \Illuminate\Support\Carbon)->parse($live->start_at), false) < 0)#@elseif ($live->user_id == Auth::id()) {{ route('live.edit', $live->id) }} @endif">{{
                             $live->name }}</td>
+
+                    <td>@if (is_null($live->user->website))
+                        {{ $live->user->name }}
+                        @else
+                        <a target="_blank" href="{{ $live->user->website }}">{{ $live->user->name }}</a>
+                        @endif
+                    </td>
                     <td>{{ $live->start_at }}</td>
                     <td>{{ $live->end_at }}</td>
                 </tr>
