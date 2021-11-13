@@ -6,3 +6,4 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/ifvisible/1.0.6/ifvisible.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/hls.js/1.0.8-0.canary.7807/hls.light.min.js"></script>
+<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
