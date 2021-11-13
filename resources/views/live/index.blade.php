@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', '流媒体节目表')
+@section('title', '流媒体安排表')
 
 @section('content')
-<div class="mdui-typo-display-1">流媒体节目表</div>
+<div class="mdui-typo-display-1">流媒体安排表</div>
 
 <div class="mdui-m-t-1">
     <a href="{{ route('live.create') }}"
-        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-live">新建 节目安排</a>
+        class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--goto-create-live">新建 安排</a>
 </div>
 
 <div class="mdui-m-t-3">
