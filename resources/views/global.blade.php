@@ -9,7 +9,7 @@
             <div id="streaming_div" class="mdui-typo">
                 <div class="mdui-typo-headline"><a href="{{ route('streaming') }}">{{ $live->name }}</a></div>
 
-                <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls muted autoplay></video>
+                <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls muted autoplay playsinline></video>
             </div>
 
             <script>

@@ -8,7 +8,7 @@
 <div class="mdui-row">
     <div class="mdui-col-xs-12 mdui-col-sm-8" id="streaming_div">
         <div class="mdui-typo-headline">{{ $live->name }}</div>
-        <video id="streaming" style="border-radius:5px;margin-top:10px" controls></video>
+        <video id="streaming" style="border-radius:5px;margin-top:10px" controls muted autoplay playsinline></video>
     </div>
     <div class="mdui-col-xs-12 mdui-col-sm-4">
         <ul id="comments">
@@ -26,14 +26,8 @@
             var hls = new Hls()
             hls.loadSource(url)
             hls.attachMedia(video_streaming)
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video_streaming.play()
-            })
         } else if (video_streaming.canPlayType('application/vnd.apple.mpegurl')) {
             video_streaming.src = url
-            video_streaming.addEventListener('canplay', function() {
-                video_streaming.play()
-            })
         }
 </script>
 @else
