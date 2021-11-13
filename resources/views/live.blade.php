@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '博文')
+@section('title', $live->name)
 
 @section('content')
 
