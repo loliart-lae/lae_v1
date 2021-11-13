@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Http;
 
 class LiveController extends Controller
 {
+
+    public function streaming() {
+        $live = LiveTimePeriod::where('status', 1)->first();
+
+        return view('live', compact('live'));
+    }
     /**
      * Display a listing of the resource.
      *
