@@ -48,6 +48,11 @@
                         mdui-tooltip="{content: '回到主层级', delay: 1000}" href="#">
                         <i class="mdui-icon material-icons-outlined">grid_view</i>
                     </a>
+
+                    <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" style="display: none" id="streaming_tool_btn"
+                        mdui-tooltip="{content: '流媒体', delay: 1000}" href="{{ route('global') }}">
+                        <i class="mdui-icon material-icons-outlined">cast</i>
+                    </a>
                 @endif
 
             @endauth
