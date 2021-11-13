@@ -47,23 +47,22 @@ class LiveController extends Controller
             'start_at' => 'required',
             'end_at' => 'required',
         ]);
-        // dd($request->end_at);
-        // dd(Carbon::parse($request->end_at)->toTimeString());
+
         if (!Carbon::parse($request->start_at)->isToday() && !Carbon::parse($request->end_at)->isToday()) {
             return redirect()->back()->with('status', '不在时间内。');
         }
-
 
         // 检测时间差
         $minutes = Carbon::parse($request->start_at)->diffInMinutes(Carbon::parse($request->end_at), false);
         if (!$minutes || $minutes > 90) {
             return redirect()->back()->with('status', '单个节目时长不能大于 90 分钟。');
-        } elseif ($minutes <= 10) {
+        } elseif ($minutes <= 10 || $minutes == 0) {
             return redirect()->back()->with('status', '节目时长不能小于 10 分钟。');
         }
 
         // 检测当前区间是否被占用
-        $liveTimePeriod_where = $liveTimePeriod->where('name', $request->name)->whereBetween('created_at', [Carbon::today()->toDateTimeString(), Carbon::tomorrow()->toDateTimeString()])->where('end_at', '>', Carbon::parse($request->end_at)->toTimeString());
+        $liveTimePeriod_where = $liveTimePeriod->where('name', $request->name)->where('end_at', '>=', Carbon::parse($request->end_at)->toTimeString())->where('start_at', '>=', Carbon::parse($request->start_at)->toTimeString())->whereBetween('created_at', [Carbon::today()->toDateTimeString(), Carbon::tomorrow()->toDateTimeString()]);
+
         if ($liveTimePeriod_where->exists()) {
             return redirect()->back()->with('status', '名称或者时间段已被占用，或者无法安排。');
         }
