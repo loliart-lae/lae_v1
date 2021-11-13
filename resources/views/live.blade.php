@@ -20,8 +20,7 @@
 <script>
     var video_streaming = document.getElementById('streaming')
         var Hls = window.Hls
-        var url =
-            '//{{ config('app.domain') }}/streaming/aeTimeRiver.m3u8'
+        var url = '{{ config('app.streaming_play_url') }}'
         if (Hls.isSupported()) {
             var hls = new Hls()
             hls.loadSource(url)
