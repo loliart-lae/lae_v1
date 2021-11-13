@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Models\LiveTimePeriod;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
@@ -27,8 +28,9 @@ class MessageController extends Controller
         $message_data = $message->where('user_id', Auth::id())->where('read', 0)->get();
         $message->where('user_id', Auth::id())->where('read', 0)->update(['read' => 1]);
 
-        // 我也不清楚为什么要这样写，但是不这样写会报错
-        $balance = User::where('id', Auth::id())->firstOrFail()->balance;
-        return response()->json(['status' => 'success', 'data' => $message_data, 'balance' => $balance]);
+        $balance = Auth::user()->balance;
+
+        $streaming = LiveTimePeriod::where('status', 1)->select(['name', 'status', 'start_at', 'end_at'])->first();
+        return response()->json(['status' => 'success', 'data' => $message_data, 'balance' => $balance, 'streaming' => $streaming]);
     }
 }
