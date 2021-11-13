@@ -9,7 +9,7 @@
             <div id="streaming_div" class="mdui-typo">
                 <div class="mdui-typo-headline"><a href="{{ route('streaming') }}">{{ $live->name }}</a></div>
 
-                <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls></video>
+                <video id="streaming" style="width:100%;border-radius:5px;margin-top:10px" controls muted autoplay></video>
             </div>
 
             <script>
@@ -21,14 +21,8 @@
                     var hls = new Hls()
                     hls.loadSource(url)
                     hls.attachMedia(video_streaming)
-                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                        video_streaming.play()
-                    })
                 } else if (video_streaming.canPlayType('application/vnd.apple.mpegurl')) {
                     video_streaming.src = url
-                    video_streaming.addEventListener('canplay', function() {
-                        video_streaming.play()
-                    })
                 }
             </script>
         @endif
