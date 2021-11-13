@@ -8,7 +8,7 @@ setInterval(function () {
         localStorage.setItem('startTime', startTime)
     }
     current = localStorage.getItem('startTime')
-    if (startTime - current >= 2000) {
+    if (startTime - current >= 10000) {
         // 立即更新localStorage，然后获取通知
         localStorage.setItem('startTime', startTime)
 
