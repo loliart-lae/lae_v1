@@ -16,7 +16,8 @@ class UserBalanceController extends Controller
      */
     public function index()
     {
-        return view('user.charge');
+        $orders = Order::where('user_id', Auth::id())->simplePaginate(100);
+        return view('user.charge', compact('orders'));
     }
 
     /**
@@ -77,7 +78,7 @@ class UserBalanceController extends Controller
         // API下单请求参数拼接
         $pay_url = 'isHtml=' . $data['isHtml'] . "&mid=" . config('billing.mid') . "&payId=" . $data['payId'] . '&type=' . $data['type'] . '&sign=' . $sign . '&param=' . $data['param'] . "&price=" . $data['price'] . '&notifyUrl=' . $data['notifyUrl'] . '&returnUrl=' . $data['returnUrl'];
 
-        return redirect()->to(config('billing.api_url') . '?' . $pay_url);
+        return redirect()->to(config('billing.api_url') . '/' . config('billing.pay_method') . '?' . $pay_url);
     }
 
     /**
@@ -192,5 +193,9 @@ class UserBalanceController extends Controller
     public function thankyou(Request $request, Order $order)
     {
         return view('thankyou');
+    }
+
+    public function check($order_id) {
+
     }
 }
