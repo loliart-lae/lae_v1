@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Http\Controllers\CyberPanelController;
 use App\Models\Server;
 use App\Models\Tunnel;
 use App\Models\Forward;
@@ -23,9 +22,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Http\Controllers\CyberPanelController;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use App\Http\Controllers\PterodactylController;
 use App\Http\Controllers\VirtualMachineController;
+use App\Http\Controllers\ProjectActivityController;
 
 class CostJob implements ShouldQueue
 {
@@ -105,6 +106,8 @@ class CostJob implements ShouldQueue
                 ];
                 dispatch(new LxdJob($config));
                 Message::send('容器 ' . $lxd->name . ' 因为积分不足而自动删除。', $lxd->project->user_id);
+                ProjectActivityController::save($project_id, '容器 ' . $lxd->name . ' 因为积分不足而自动删除。');
+
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $lxd->server_id;
@@ -138,6 +141,8 @@ class CostJob implements ShouldQueue
 
                 dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
                 Message::send('共享的 Windows 远程桌面' . $remote_desktop->username . ' 因为积分不足而自动删除。', $remote_desktop->project->user_id);
+                ProjectActivityController::save($project_id, '共享的 Windows 远程桌面 ' . $remote_desktop->name . ' 因为积分不足而自动删除。');
+
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $remote_desktop->server_id;
@@ -164,6 +169,8 @@ class CostJob implements ShouldQueue
                 // 扣费失败，删除账号
                 Tunnel::where('id', $tunnel->id)->delete();
                 Message::send('穿透隧道' . $tunnel->name . ' 因为积分不足而自动删除。', $tunnel->project->user_id);
+                ProjectActivityController::save($project_id, '静态托管 ' . $tunnel->name . ' 因为积分不足而自动删除。');
+
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $tunnel->server_id;
@@ -199,7 +206,9 @@ class CostJob implements ShouldQueue
                     'token' => $staticPage->server->token
                 ];
                 dispatch(new StaticPageJob($config));
-                Message::send('静态页面' . $staticPage->name . ' 因为积分不足而自动删除。', $staticPage->project->user_id);
+                Message::send('静态托管' . $staticPage->name . ' 因为积分不足而自动删除。', $staticPage->project->user_id);
+                ProjectActivityController::save($project_id, '静态托管 ' . $staticPage->name . ' 因为积分不足而自动删除。');
+
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $staticPage->server_id;
@@ -232,6 +241,8 @@ class CostJob implements ShouldQueue
                 ];
                 dispatch(new EasyPanelJob($config));
                 Message::send('EasyPanel 主机' . $easyPanelVirtualHost->name . ' 因为积分不足而自动删除。', $easyPanelVirtualHost->project->user_id);
+                ProjectActivityController::save($project_id, 'EasyPanel 主机 ' . $easyPanelVirtualHost->name . ' 因为积分不足而自动删除。');
+
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $easyPanelVirtualHost->server_id;
@@ -255,6 +266,7 @@ class CostJob implements ShouldQueue
                 $pterodactylController = new PterodactylController();
                 $pterodactylController->deleteServerById($pterodactylServer->server_id);
                 Message::send('游戏服务器 ' . $pterodactylServer->name . ' 因为积分不足而自动删除。', $project_id);
+                ProjectActivityController::save($project_id, '游戏服务器 ' . $pterodactylServer->name . ' 因为积分不足而自动删除。');
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = config('app.pterodactyl_server_id');
@@ -278,7 +290,8 @@ class CostJob implements ShouldQueue
                 $VirtualMachineController = new VirtualMachineController();
                 $VirtualMachineController->deleteVm($vm->id);
                 $VirtualMachineController->deleteUser($vm->server_id, $vm->user_id);
-                Message::send('虚拟机 ' . $vm->name . ' 因为积分不足而自动删除。', $project_id);
+                Message::send('虚拟机 ' . $vm->name . ' 因为积分不足而自动删除。', $vm->user_id);
+                ProjectActivityController::save($project_id, '虚拟机 ' . $vm->name . ' 因为积分不足而自动删除。');
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $vm->server_id;
@@ -303,6 +316,7 @@ class CostJob implements ShouldQueue
                 $cyberPanelController = new CyberPanelController();
                 if ($cyberPanelController->deleteWebsite($cp->id)) {
                     Message::send('CyberPanel 虚拟主机' . $cp->name . ' 因为积分不足而自动删除。', $project_id);
+                    ProjectActivityController::save($project_id, 'CyberPanel 虚拟主机 ' . $cp->name . ' 因为积分不足而自动删除。');
                 }
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
