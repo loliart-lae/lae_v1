@@ -103,6 +103,7 @@
 </div>
 <script>
     var $container = $('#masonry')
+    var url = window.location.pathname
 
     function masonry_resize() {
         $container.masonry({
@@ -115,6 +116,15 @@
             masonry_resize()
         }, 500)
     })
+
+    clearInterval(resize_poll)
+    var resize_poll = setInterval(function() {
+        if (window.location.pathname != url) {
+            clearInterval(resize_poll)
+        } else {
+            masonry_resize()
+        }
+    }, 500)
 
     // $('.smoove').smoove({
     //     offset: '3%'
