@@ -8,16 +8,13 @@
 
     @foreach ($feed_items as $status)
     <div class="poll mdui-col-sm-4 mdui-col-xs-12 mdui-m-t-1">
-        <div class="mdui-card mdui-hoverable user_{{ $status->user->id }}_status" style="margin-top: 5px">
+        <div class="mdui-card mdui-hoverable user_{{ $status->user_id }}_status" style="margin-top: 5px">
             <div class="mdui-card-header">
                 <img class="mdui-card-header-avatar"
                     src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
+
                 <div class="mdui-card-header-title">
-                    @if (is_null($status->user->website))
-                    {{ $status->user->name }}
-                    @else
-                    <a target="_blank" href="{{ $status->user->website }}">{{ $status->user->name }}</a>
-                    @endif
+                    <a href="{{ route('user.show', $status->user_id) }}">{{ $status->user->name }}</a>
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div style="display: inline;
