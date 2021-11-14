@@ -19,6 +19,7 @@
         "laravel-validation-rules/colour": "^1.5",
         "laravel/framework": "^8.40",
         "laravel/horizon": "^5.7",
+        "laravel/octane": "^1.0",
         "laravel/scout": "^9.2",
         "laravel/socialite": "^5.2",
         "laravel/telescope": "^4.6",
@@ -29,6 +30,7 @@
         "renatomarinho/laravel-page-speed": "^2.0",
         "saleh7/proxmox-ve_php_api": "^1.0",
         "spatie/laravel-pjax": "^2.1",
+        "spiral/roadrunner": "^2.5",
         "symfony/yaml": "^5.3",
         "wangningkai/laravel-editor-md": "^1.1"
     },
