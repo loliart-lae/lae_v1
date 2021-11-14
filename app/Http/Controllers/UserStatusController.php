@@ -21,14 +21,14 @@ class UserStatusController extends Controller
      */
     public function index(Request $request)
     {
-        $feed_items = Auth::user()->feed()->simplePaginate(30);
+        $feed_items = Auth::user()->feed()->simplePaginate(100);
         $display = 0;
         return view('main', compact('feed_items', 'display'));
     }
 
     public function timeRiver(Request $request)
     {
-        $feed_items = Auth::user()->feed()->simplePaginate(30);
+        $feed_items = Auth::user()->feed()->simplePaginate(100);
         $display = 0;
         return view('main', compact('feed_items', 'display'));
     }
@@ -38,7 +38,7 @@ class UserStatusController extends Controller
         if (Auth::check()) {
             $feed_items = UserStatus::orderBy('created_at', 'desc')->with(['like' => function ($query) {
                 $query->where('user_id', Auth::id());
-            }, 'user', 'replies'])->simplePaginate(30);
+            }, 'user', 'replies'])->simplePaginate(100);
 
             $user = $user->find(Auth::id());
             $followings = $user->followings->toArray();
