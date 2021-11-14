@@ -11,7 +11,7 @@
     </style>
     <div class="mdui-typo-display-1">充值</div>
 
-    <p>汇率：1 人民币 = {{ config('billing.exchange_rate') }} 积分</p>
+    <p>比例: 1 人民币 = {{ config('billing.exchange_rate') }} 积分</p>
     <br /> <br />
     <span class="mdui-typo-headline">输入充值金额</span>
     <div class="mdui-textfield">
