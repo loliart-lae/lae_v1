@@ -14,7 +14,9 @@
                     src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
 
                 <div class="mdui-card-header-title">
-                    <a href="{{ route('user.show', $status->user_id) }}">{{ $status->user->name }}</a>
+                    <a
+                        href="@auth{{ route('user.show', $status->user_id) }}@else{{ route('global.user.show', $status->user_id) }}@endauth">{{
+                        $status->user->name }}</a>
                     <small> /
                         {{ $status->created_at->diffForHumans() }}</small>
                     <div style="display: inline;
