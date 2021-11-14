@@ -29,11 +29,9 @@
             <img class="mdui-card-header-avatar"
                 src="{{ config('app.gravatar_url') }}/{{ md5(strtolower($status->user->email)) }}" />
             <div class="mdui-card-header-title">
-                @if (is_null($status->user->website))
-                {{ $status->user->name }}
-                @else
-                <a href="{{ $status->user->website }}">{{ $status->user->name }}</a>
-                @endif
+                <a href="@auth{{ route('user.show', $status->user_id) }}@else{{ route('global.user.show',
+                    $status->user_id) }}@endauth">{{ $status->user->name }}</a>
+
                 <small> /
                     {{ $status->created_at->diffForHumans() }}</small>
                 <div
@@ -112,11 +110,9 @@
                 <div class="mdui-clearfix">
                     <div class="mdui-float-left">
                         {{ $i }}.
-                        @if (is_null($status_reply->user->website))
-                        {{ $status_reply->user->name }}
-                        @else
-                        <a target="_blank" href="{{ $status_reply->user->website }}">{{ $status_reply->user->name }}</a>
-                        @endif
+                        <a target="_blank" href="@auth{{ route('user.show', $status_reply->user_id) }}@else{{ route('global.user.show',
+                            $status_reply->user_id) }}@endauth">{{ $status_reply->user->name }}
+                        </a>
                         说：
                     </div>
                     <div class="mdui-float-right">
