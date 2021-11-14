@@ -19,17 +19,20 @@
         <input class="mdui-textfield-input umami--input--charge-balance" type="number" id="balance" value="1" required />
     </div>
 
-    <label class="mdui-radio" class="umami--click--use-wechat-pay">
-        <input type="radio" name="payment" value="wechat" checked />
-        <i class="mdui-radio-icon"></i>
-        微信支付
-    </label>
-    &nbsp;&nbsp;&nbsp;
-    <label class="mdui-radio" class="umami--click--use-alipay">
-        <input type="radio" name="payment" value="alipay" />
-        <i class="mdui-radio-icon"></i>
-        支付宝
-    </label>
+    <div class="mdui-m-t-1">
+        <label class="mdui-radio" class="umami--click--use-wechat-pay">
+            <input type="radio" name="payment" value="wechat" checked />
+            <i class="mdui-radio-icon"></i>
+            微信支付
+        </label>
+        &nbsp;&nbsp;&nbsp;
+        <label class="mdui-radio" class="umami--click--use-alipay">
+            <input type="radio" name="payment" value="alipay" />
+            <i class="mdui-radio-icon"></i>
+            支付宝
+        </label>
+    </div>
+
 
     <br /> <br />
     <p>注意：积分是虚拟物品，不支持退款。请合理充值。</p>
