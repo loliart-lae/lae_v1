@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\UserBalanceLog;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class UserBalanceController extends Controller
 {
@@ -54,7 +55,7 @@ class UserBalanceController extends Controller
 
         // 创建订单
         $order->user_id = Auth::id();
-        $order->payment = 'wechat';
+        $order->payment = $request->payment;
         $order->balance = $request->balance;
         $order->save();
         $order_id = date("YmdHms") . Auth::id() . $order->id;
@@ -68,17 +69,38 @@ class UserBalanceController extends Controller
             "price" => $request->balance,
             "notifyUrl" => config('billing.notify'),
             "returnUrl" => config('billing.return'),
-            "isHtml" => 1,
+            "isHtml" => 0,
         );
 
         // 加密参数获取签名,签名顺序以及计算方式为 md5(mid+payId+param+type+price+商户密钥)
         $sign = md5(config('billing.mid') . $data['payId'] . $data['param'] . $data['type'] . $data['price'] . config('billing.key'));
         $data["sign"] = $sign;
 
-        // API下单请求参数拼接
-        $pay_url = 'isHtml=' . $data['isHtml'] . "&mid=" . config('billing.mid') . "&payId=" . $data['payId'] . '&type=' . $data['type'] . '&sign=' . $sign . '&param=' . $data['param'] . "&price=" . $data['price'] . '&notifyUrl=' . $data['notifyUrl'] . '&returnUrl=' . $data['returnUrl'];
+        // API下单请求参数
+        $response = Http::post(config('billing.api_url') . '/' . config('billing.pay_method'), [
+            'isHtml' => 0,
+            'mid' => config('billing.mid'),
+            'payId' => $data['payId'],
+            'type' => $data['type'],
+            'sign' => $sign,
+            'param' => $data['param'],
+            'price' => $data['price'],
+            'notifyUrl' => $data['notifyUrl'],
+            'returnUrl' => $data['returnUrl'],
+        ])->json();
 
-        return redirect()->to(config('billing.api_url') . '/' . config('billing.pay_method') . '?' . $pay_url);
+        $order->where('id', $order->id)->update([
+            'cloud_id' => $response['data']['orderId']
+        ]);
+
+        return response()->json([
+            'status' => $response['code'],
+            'data' => [
+                'price' => $response['data']['reallyPrice'],
+                'url' => $response['data']['payUrl'],
+                'order_id' => $response['data']['orderId']
+            ]
+        ]);
     }
 
     /**
@@ -147,45 +169,14 @@ class UserBalanceController extends Controller
                 return 'success';
             } else {
                 // 充值
-                $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
+                $userBalanceLog->charge($order_data->user_id, $order_data->balance * config('billing.exchange_rate'));
 
                 // 标记订单为成功
                 $order_where->update([
                     'status' => 'paid'
                 ]);
+
                 return 'success';
-            }
-        }
-    }
-
-    public function return(Request $request, Order $order, UserBalanceLog $userBalanceLog)
-    {
-        // 检查订单是否存在
-        $order_where = $order->where('order_id', $request->payId);
-
-        $order_data = $order->where('order_id', $request->payId)->firstOrFail();
-
-        if (!$order_where->exists()) {
-            return 'not found';
-        }
-
-        $sign = md5(config('billing.mid') . $request->payId . $request->param . $request->type . $request->price . $request->reallyPrice .  config('billing.key'));
-
-        if ($sign != $request->sign) {
-            return redirect()->route('billing.index')->with('status', 'Error: 订单验证失败。');
-        } else {
-            if ($order_data->status == 'paid') {
-                // 不做任何操作
-                return view('thankyou');
-            } else {
-                // 充值
-                $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
-
-                // 标记订单为成功
-                $order_where->update([
-                    'status' => 'paid'
-                ]);
-                return view('thankyou');
             }
         }
     }
@@ -195,7 +186,35 @@ class UserBalanceController extends Controller
         return view('thankyou');
     }
 
-    public function check($order_id) {
+    public function check(Request $request, Order $order, UserBalanceLog $userBalanceLog)
+    {
+        // 检查订单是否存在
+        $order_where = $order->where('cloud_id', $request->order_id);
+        $order_data = $order_where->first();
 
+        if (is_null($order_data)) {
+            return response()->json(['status' => 0]);
+        }
+
+        $response = Http::get(config('billing.api_url') . '/checkOrder', [
+            'orderId' => $request->order_id
+        ])->json();
+
+        // dd($response);
+
+        if ($response['code'] == 1) {
+            if ($order_data->status == 'paid') {
+                // 处理已支付的情况
+            } else {
+                $order_where->update([
+                    'status' => 'paid'
+                ]);
+                $userBalanceLog->charge(Auth::id(), $order_data->balance * config('billing.exchange_rate'));
+            }
+
+            return response()->json(['status' => 1]);
+        } else {
+            return response()->json(['status' => 0]);
+        }
     }
 }
