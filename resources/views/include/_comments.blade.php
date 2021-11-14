@@ -47,7 +47,7 @@
             <div class="mdui-card-header-subtitle">{{ $status->user->bio ?? null }}</div>
         </div>
         <div class="mdui-card-content mdui-p-t-1">
-            <div id="log_{{ $status->id }}">正在载入...</div>
+            <div id="log_{{ $status->id }}">Wait for rendering...</div>
             <textarea id="log_{{ $status->id }}_content" style="display:none;">{!! e($status->content) !!}</textarea>
             <script>
                 setTimeout(function() {
