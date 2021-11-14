@@ -98,9 +98,9 @@
 </div>
 
 <script>
-    $('.smoove').smoove({
-        offset: '3%'
-    })
+    // $('.smoove').smoove({
+    //     offset: '3%'
+    // })
 </script>
 
 @endsection
