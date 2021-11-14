@@ -66,7 +66,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id)->firstOrFail();
-        $status = UserStatus::where('user_id', $id)->simplePaginate(100);
+        $status = UserStatus::where('user_id', $id)->latest()->simplePaginate(100);
         return view('user.show', compact('user', 'status'));
     }
 
