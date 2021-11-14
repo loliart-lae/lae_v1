@@ -17,7 +17,7 @@ class UserBalanceController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('user_id', Auth::id())->latest()->limit(100);
+        $orders = Order::where('user_id', Auth::id())->latest()->limit(100)->get();
         return view('user.charge', compact('orders'));
     }
 
