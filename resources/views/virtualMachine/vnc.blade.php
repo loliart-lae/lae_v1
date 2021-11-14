@@ -32,7 +32,7 @@
                 withCredentials: true
             },
             crossDomain: true,
-            url: 'https://sd.zz.pve.awa.im:2083/cookie.php',
+            url: '{{ $data['domain'] }}',
             data: {
                 domain: "sd.zz.pve.awa.im",
                 ticket: '{!! $data['ticket'] !!}'
