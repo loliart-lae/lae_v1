@@ -90,6 +90,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
 
     Route::get('/billing/return', [Controllers\UserBalanceController::class, 'return']);
+    Route::post('/billing/check', [Controllers\UserBalanceController::class, 'check'])->name('billing.check');
     Route::get('/billing/thankyou', [Controllers\UserBalanceController::class, 'thankyou'])->name('billing.thankyou');
     Route::resource('/billing', Controllers\UserBalanceController::class);
     Route::get('/user/messages', [Controllers\UserController::class, 'messages'])->name('user.messages');
