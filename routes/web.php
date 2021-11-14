@@ -70,6 +70,8 @@ Route::prefix('/')->group(function () {
     Route::get('/pterodactyl/auth/callback/{token}', [Controllers\PterodactylController::class, 'callback'])->name('pterodactyl.callback');
 
     Route::get('/serverMonitor/public/{id}', [Controllers\ServerMonitorController::class, 'public'])->name('serverMonitor.public')->middleware('throttle:60,1');
+
+    Route::get('/user/{id}', [Controllers\UserController::class, 'show'])->name('global.user.show');
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
