@@ -20,6 +20,10 @@
         margin: 0;
         padding: 0;
     }
+
+    .ae-title img {
+       width: 60%;
+    }
 </style>
 <div>
     <div class="mdui-row mdui-typo">
