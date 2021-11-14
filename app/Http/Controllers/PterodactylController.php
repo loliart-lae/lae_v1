@@ -452,7 +452,7 @@ class PterodactylController extends Controller
 
         $cache_name = 'oae_pterodactyl_user_' . $pterodactylUser->id;
         if (Cache::has($cache_name)) {
-            if (Cache::get($cache_name, 1) == 5) {
+            if (Cache::get($cache_name, 1) >= 5) {
                 // 重置Token
                 $pterodactylUser->where('token', $token)->update([
                     'token' => UuidV6::uuid6()->toString(),
