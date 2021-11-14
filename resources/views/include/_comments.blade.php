@@ -189,11 +189,11 @@
 
 <script>
     $('.smoove').smoove({
-            offset: '3%'
-        })
+        offset: '3%'
+    })
 </script>
-@auth
 
+@auth
 <script>
     function toggleLike(id) {
                 $.ajax({
