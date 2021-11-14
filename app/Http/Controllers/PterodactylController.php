@@ -460,12 +460,13 @@ class PterodactylController extends Controller
                 $msg = '十分钟内登录次数过多，Token已被重置。';
             } else {
                 Cache::increment($cache_name);
+                // Cache::put($cache_name, 1, 600);
             }
         } else {
             Cache::put($cache_name, 1, 600);
         }
 
-        Log::debug("Cache: " . Cache::has($cache_name));
+        Log::debug("Cache: " . Cache::get($cache_name));
 
         $msg = null;
 
