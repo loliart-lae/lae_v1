@@ -33,7 +33,7 @@
     <button type="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple umami--click--do-charge">充值</button>
 </form>
 
-<div class="mdui-typo-display-1">充值记录</div>
+<div class="mdui-typo-display-1 mdui-m-t-3">充值记录</div>
 <div class="mdui-table-fluid mdui-m-t-1">
     <table class="mdui-table mdui-table-hoverable">
         <thead>
