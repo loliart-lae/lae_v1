@@ -48,7 +48,7 @@ return [
     |
     */
 
-    'https' => env('OCTANE_HTTPS', false),
+    'https' => env('OCTANE_HTTPS', true),
 
     /*
     |--------------------------------------------------------------------------
