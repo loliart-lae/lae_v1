@@ -8,6 +8,7 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\UserBalanceLog;
 use App\Models\UserSiteArticle;
+use App\Models\UserStatus;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -64,7 +65,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id)->firstOrFail();
+        $status = UserStatus::where('user_id', $id)->simplePaginate(100);
+        return view('user.show', compact('user', 'status'));
     }
 
     /**
