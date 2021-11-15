@@ -256,6 +256,7 @@ class VirtualMachineController extends Controller
             'ticket' => $ticket,
             'name' => $virtualMachine_data->name,
             'domain' => $virtualMachine_data->server->domain,
+            'id' => $virtualMachine_data->id
         ];
 
         ProjectActivityController::save($virtualMachine_data->project_id, '进入了虚拟机: ' . $virtualMachine_data->name . '的控制台。');

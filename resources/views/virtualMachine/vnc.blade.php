@@ -19,11 +19,11 @@
         }
 
     </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 </head>
 
 <body>
-    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script>
         // 设置 cookie
         $.ajax({
@@ -35,17 +35,25 @@
             url: '{{ $data['domain'] }}',
             data: {
                 domain: "sd.zz.pve.awa.im",
-                ticket: '{!! $data['ticket'] !!}'
+                ticket: {!! '"' . $data['ticket'] . '",' !!}
             },
-            success: function(data, status) {
-                // 虽然不知道为什么要刷新，但是不刷新就是有问题
-                let cookie_name = 'ae_vnc_{{ $data['vm_id'] }}'
-                if (!$.cookie(cookie_name)) {
-                    $.cookie(cookie_name, true);
-                    window.location.reload();
-                }
+            success: function() {
+                set()
+            },
+            error: function() {
+                set()
             }
+
         });
+
+        function set() {
+            // 虽然不知道为什么要刷新，但是不刷新就是有问题
+            let cookie_name = 'ae_vnc_{{ $data['id'] }}'
+            if (!$.cookie(cookie_name)) {
+                $.cookie(cookie_name, '1');
+                window.location.reload();
+            }
+        }
     </script>
 
     <iframe allowfullscreen
