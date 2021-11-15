@@ -27,6 +27,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.1/base64.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    @livewireStyles
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto">
@@ -49,8 +50,8 @@
                         <i class="mdui-icon material-icons-outlined">grid_view</i>
                     </a>
 
-                    <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" style="display: none" id="streaming_tool_btn"
-                        mdui-tooltip="{content: '流媒体', delay: 1000}" href="{{ route('global') }}">
+                    <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" style="display: none"
+                        id="streaming_tool_btn" mdui-tooltip="{content: '流媒体', delay: 1000}" href="{{ route('global') }}">
                         <i class="mdui-icon material-icons-outlined">cast</i>
                     </a>
                 @endif
@@ -213,6 +214,7 @@
     </script>
 
     @include('extend.footer')
+    @livewireScripts
 </body>
 
 </html>
