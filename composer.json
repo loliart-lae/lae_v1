@@ -24,6 +24,7 @@
         "laravel/socialite": "^5.2",
         "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
+        "livewire/livewire": "^2.7",
         "overtrue/laravel-follow": "^3.0",
         "overtrue/laravel-socialite": "~3.0",
         "protoqol/prequel": "^1.22",
