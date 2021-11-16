@@ -212,3 +212,17 @@ a {
     position: absolute;
     right: 30px;
 }
+
+#main-drawer {
+    width: 300px !important;
+}
+
+@media (min-width: 1024px) {
+    .mdui-drawer-close {
+        transform: translateX(-300px);
+        -moz-transform: translateX(-300px);
+        -ms-transform: translateX(-300px);
+        -o-transform: translateX(-300px);
+        -webkit-transform: translateX(-300px);
+    }
+}
