@@ -13,7 +13,7 @@
             right: -100%;
             top: 0;
             z-index: 2001;
-            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)
+            transition: all .5 ease-in-out
         }
 
         #sideload .control {
@@ -24,12 +24,11 @@
         #sideload iframe {
             width: 97%;
             height: 100vh;
-            background: #7a7a7a87;
             position: fixed;
             right: 0;
             top: 0;
             z-index: 2001;
-            transition: all 0.5s ease-in-out
+            transition: all .5s cubic-bezier(0.65, 0.05, 0.36, 1)
         }
 
     </style>
@@ -155,7 +154,7 @@
     </div>
 
     <textarea id="load_vnc_content"
-        style="display: none">   <div id="sideload" class="mdui-shadow-24"><div class="control" onclick="closeSideload()"></div>
+        style="display: none">   <div id="sideload"><div class="control" onclick="closeSideload()"></div>
                                             <iframe src="about:blank" id="load_vnc_href" style="border:0;margin:0;padding:0"></iframe></div></textarea>
 
     <script>
