@@ -107,8 +107,8 @@
 
         <form method="POST" action="{{ route('projects.charge', $project_info->id) }}">
             <div class="mdui-dialog-content">
-                <p>注意：你无法将你的全部积分汇款至项目。
-                </p>
+                <span>注意：你无法将你的全部积分汇款至项目。
+                </span>
 
                 @csrf
                 <div class="mdui-textfield mdui-textfield-floating-label">
