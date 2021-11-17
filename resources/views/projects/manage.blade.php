@@ -3,7 +3,7 @@
 @section('title', $project_info->name)
 
 @section('content')
-    <div class="mdui-typo-display-2">有关 {{ $project_info->name }}</div>
+    <div class="mdui-typo-display-2">{{ $project_info->name }}</div>
     <div class="mdui-typo-body-1-opacity">{{ $project_info->description }}</div>
 
     <br />
@@ -87,7 +87,7 @@
         <div class="mdui-dialog-title">邀请<span class="invite_call"></span>至<span class="selected_project_name"></span>
         </div>
         <form method="POST" action="{{ route('invite.store', $project_info->id) }}">
-            <div class="mdui-dialog-content">请填写对方邮箱，邀请信将发送到站内信中。<br />
+            <div class="mdui-dialog-content">请填写对方邮箱，邀请信将发送到对方的”邀请列表“中。<br />
 
                 @csrf
                 <div class="mdui-textfield mdui-textfield-floating-label">
@@ -107,18 +107,18 @@
 
         <form method="POST" action="{{ route('projects.charge', $project_info->id) }}">
             <div class="mdui-dialog-content">
-                <p>注意：你无法将你的全部积分汇款至项目。你拥有 {{ Auth::user()->balance }} 积分，但最多只能汇入 {{ Auth::user()->balance - 1 }} 积分。
+                <p>注意：你无法将你的全部积分汇款至项目。
                 </p>
 
                 @csrf
                 <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">输入积分</label>
+                    <label class="mdui-textfield-label">汇入量</label>
                     <input class="mdui-textfield-input" type="text" name="value" required />
                 </div>
             </div>
             <div class="mdui-dialog-actions">
                 <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
-                <button type="submit" class="mdui-btn mdui-ripple">充值</button>
+                <button type="submit" class="mdui-btn mdui-ripple">汇入</button>
             </div>
         </form>
     </div>
@@ -132,7 +132,7 @@
             </div>
             <div class="mdui-dialog-actions">
                 <button class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
-                <button type="submit" class="mdui-btn mdui-ripple">确认解散！</button>
+                <button type="submit" class="mdui-btn mdui-ripple">解散</button>
             </div>
         </form>
     </div>
@@ -149,7 +149,7 @@
     <script>
         function balance_low() {
             mdui.snackbar({
-                message: '注意！<br />积分过少会导致您的数据处于危险状态，如果该项目的积分无法支撑服务扣费，那么您的服务将会被逐一删除，并且不会保留任何数据。如果您想长久使用，应保持积分处于充足状态。',
+                message: '注意！<br />积分过少会导致您的数据处于危险状态，如果该项目的积分无法支撑服务扣费，那么您的服务将会被逐一删除，并且不会保留任何数据。',
                 position: 'right-bottom'
             });
 
