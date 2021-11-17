@@ -112,7 +112,7 @@
         @else
             <div class="mdui-text-center mdui-typo-display-1-opacity">Open App Engine</div>
             <script>
-                document.title = '接下来想要干什么？'
+                document.title = window.util.text.c('接下来想要干什么？')
             </script>
         @endguest
     </div>
