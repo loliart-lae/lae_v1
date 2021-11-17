@@ -38,7 +38,12 @@
                 ticket: {!! '"' . $data['ticket'] . '",' !!}
             },
             success: function() {
+                let html = `<iframe allowfullscreen
+        src="https://{{ $data['host'] }}:8006/?console=kvm&novnc=1&vmid={{ $data['vm_id'] }}&node={{ $data['node'] }}"
+        frameborder="0" scrolling="no"></iframe>`
                 set()
+                $('body').append(html)
+
             },
             error: function() {
                 set()
@@ -55,10 +60,6 @@
             }
         }
     </script>
-
-    <iframe allowfullscreen
-        src="https://{{ $data['host'] }}:8006/?console=kvm&novnc=1&vmid={{ $data['vm_id'] }}&node={{ $data['node'] }}"
-        frameborder="0" scrolling="no"></iframe>
 
 </body>
 
