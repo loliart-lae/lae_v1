@@ -51,8 +51,8 @@ class Kernel extends ConsoleKernel
             // 计算 静态托管 空间占用
             dispatch(new StaticPageJob(['method' => 'count']))->onQueue('default');
 
-            //更新 用户 WordPress 站点
-            dispatch(new FetchWordPressSiteJob())->onQueue('wp_fetch');
+            // 更新 用户 WordPress 站点
+            // dispatch(new FetchWordPressSiteJob())->onQueue('wp_fetch');
         })->everyFiveMinutes();
 
         // 生成 metrics
