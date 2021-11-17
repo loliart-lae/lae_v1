@@ -111,7 +111,7 @@
 
         @else
             <div class="mdui-text-center mdui-typo-display-1-opacity">
-                接下来...
+                <span class="material-icons">north_west</span>打开抽屉以继续您的工作。
             </div>
             <script>
                 document.title = window.util.text.c('接下来想要干什么？')
