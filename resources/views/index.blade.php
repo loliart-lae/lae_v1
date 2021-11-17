@@ -110,7 +110,9 @@
             <p>如果你有想法想对我说，欢迎发送邮件至 <a href="mailto:im@ivampiresp.com">im@ivampiresp.com</a>，我会认真阅读每一份邮件！</p>
 
         @else
-            <div class="mdui-text-center mdui-typo-display-1-opacity">Open App Engine</div>
+            <div class="mdui-text-center mdui-typo-display-1-opacity">
+                接下来...
+            </div>
             <script>
                 document.title = window.util.text.c('接下来想要干什么？')
             </script>
