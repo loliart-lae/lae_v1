@@ -47,7 +47,7 @@
             </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--game-server" href="{{ route('fastVisit.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">forward</span>
                 <div class="mdui-list-item-content">快捷访问</div>
             </a>
 
