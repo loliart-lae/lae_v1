@@ -13,7 +13,7 @@
             right: -100%;
             top: 0;
             z-index: 2001;
-            transition: all .9s cubic-bezier(0.4, 0, 0.2, 1)
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1)
         }
 
         #sideload .mask {
