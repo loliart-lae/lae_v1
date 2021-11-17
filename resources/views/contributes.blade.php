@@ -140,4 +140,15 @@
         </div>
     </div>
 
+    <div class="mdui-container mdui-m-b-5 mdui-p-t-5 load-hidden">
+        <div class="mdui-typo">
+            <p class="mdui-typo-caption-opacity mdui-text-center">
+                {{ config('app.name') }}, <a class="umami--click--lae-github-repo"
+                    href="https://github.com/loliart-lae/lae">Github</a><br />
+                Crafted with 💗 by <a class="umami--click--contributes"
+                    href="{{ route('contributes') }}">Contributors</a><br />
+                Powered by LoliArt & Yistars
+            </p>
+        </div>
+    </div>
 @endsection
