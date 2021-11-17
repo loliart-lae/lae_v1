@@ -4,6 +4,36 @@
 
 @section('content')
 
+    <style>
+        #sideload {
+            width: 100%;
+            height: 100vh;
+            background: #7a7a7a87;
+            position: fixed;
+            right: -100%;
+            top: 0;
+            z-index: 2001;
+            transition: all 0.5s ease-in-out
+        }
+
+        #sideload .control {
+            width: 10%;
+            height: 100%;
+        }
+
+        #sideload iframe {
+            width: 90%;
+            height: 100vh;
+            background: #7a7a7a87;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 2001;
+            transition: all 0.5s ease-in-out
+        }
+
+    </style>
+
     <script>
         var this_vm, this_vm_cpu_percent, this_vm_memory, this_vm_memory_percent
     </script>
@@ -25,11 +55,11 @@
 
                 @if ($virtualMachine->project->id !== $last_project_id)
                     @php($last_project_id = $virtualMachine->project->id)
-                    <h1 class="mdui-typo-display-1 mdui-col-xs-12 mdui-p-t-2" style="margin:0;position: relative;top:10px">
+                    <h1 class="mdui-typo-display-1 mdui-col-xs-12 mdui-p-t-2" style="margin:0;position: relative;top:8px">
                         {{ $virtualMachine->project->name }}</h1>
                 @endif
                 <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12">
-                    <div class="mdui-card mdui-m-t-2 mdui-hoverable">
+                    <div class="mdui-card mdui-m-t-2 mdui-shadow-0" style="border: 1px solid #f1f1f1">
                         <div class="mdui-card-primary">
                             <div class="mdui-typo">
                                 <div class="mdui-row">
@@ -104,7 +134,9 @@
                         <div class="mdui-card-actions">
                             <span onclick="power({{ $virtualMachine->id }})"
                                 class="power-btn-{{ $virtualMachine->id }} mdui-btn mdui-ripple @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">电源</span>
-                            <button id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
+                            {{-- <button id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
+                                class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button> --}}
+                            <button id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  onclick="sideload('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-edit">编辑</a>
@@ -121,8 +153,42 @@
         </div>
 
     </div>
+
+
     <script>
         mdui.mutation()
+
+        function sideload(url) {
+            if (url == null) {
+                return false;
+            }
+            mdui.$.showOverlay()
+
+            $('body').append(`
+            <div id="sideload" class="mdui-shadow-24">
+                <div class="control" onclick="closeSideload()"></div>
+                <iframe src="${url}" style="border:0;margin:0;padding:0"></iframe>
+            </div>
+            `)
+
+            setTimeout(function() {
+                $('#sideload').css('right', '0%')
+            }, 100)
+        }
+
+        // sideload()
+
+        function closeSideload() {
+            mdui.$.hideOverlay()
+            $('#sideload').css('right', '-100%')
+
+            $('#sideload iframe').css('width', '0')
+
+
+            setTimeout(function() {
+                $('#sideload').remove()
+            }, 500)
+        }
 
         function power(id) {
             let url = '{{ url()->current() }}'

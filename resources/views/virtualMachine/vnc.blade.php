@@ -15,7 +15,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background: rgb(36, 36, 36);
+            background: rgb(26, 26, 26);
         }
 
     </style>
@@ -45,7 +45,7 @@
 
             },
             error: function() {
-                window.location = '{{ config('app.url') }}'
+                document.write(`<h1 style="color: white;text-align: center;">暂时无法打开VNC</h1>`)
             }
 
         });
