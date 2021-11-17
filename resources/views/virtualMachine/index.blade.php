@@ -8,7 +8,7 @@
         #sideload {
             width: 100%;
             height: 100vh;
-            background: #7a7a7a87;
+            background: transparent;
             position: fixed;
             right: -100%;
             top: 0;
@@ -134,10 +134,8 @@
                         <div class="mdui-card-actions">
                             <span onclick="power({{ $virtualMachine->id }})"
                                 class="power-btn-{{ $virtualMachine->id }} mdui-btn mdui-ripple @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">电源</span>
-                            {{-- <button id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  onclick="window.open('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
-                                class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button> --}}
-                            <button id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  onclick="sideload('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
-                                class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</button>
+                            <a id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  href="javascript: sideload('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
+                                class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</a>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-edit">编辑</a>
                             <button
@@ -154,29 +152,27 @@
 
     </div>
 
+    <textarea id="load_vnc_content" style="display: none">   <div id="sideload" class="mdui-shadow-24"><div class="control" onclick="closeSideload()"></div>
+                    <iframe src="about:blank" id="load_vnc_href" style="border:0;margin:0;padding:0"></iframe></div></textarea>
 
     <script>
+        $('#sideload').remove()
+
         mdui.mutation()
 
         function sideload(url) {
+
             if (url == null) {
                 return false;
             }
             mdui.$.showOverlay()
-
-            $('body').append(`
-            <div id="sideload" class="mdui-shadow-24">
-                <div class="control" onclick="closeSideload()"></div>
-                <iframe src="${url}" style="border:0;margin:0;padding:0"></iframe>
-            </div>
-            `)
+            $('body').append($('#load_vnc_content').text())
+            $('#load_vnc_href').attr('src', url)
 
             setTimeout(function() {
                 $('#sideload').css('right', '0%')
             }, 100)
         }
-
-        // sideload()
 
         function closeSideload() {
             mdui.$.hideOverlay()
@@ -207,15 +203,11 @@
                             $(btn).removeClass('mdui-text-color-red')
                             $(btn).addClass('mdui-text-color-green')
                             $('#vnc_btn_' + id).removeAttr('disabled')
-                            $('#vnc_btn_' + id).click(function() {
-                                window.open(url + '/' + id)
-                            })
                         } else {
                             $(btn).removeClass('mdui-text-color-yellow')
                             $(btn).removeClass('mdui-text-color-green')
                             $(btn).addClass('mdui-text-color-red')
                             $('#vnc_btn_' + id).attr('disabled', 'disabled')
-                            $('#vnc_btn_' + id).removeAttr('onclick')
                         }
                     } else {
                         mdui.snackbar({
