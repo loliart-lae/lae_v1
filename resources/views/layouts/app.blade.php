@@ -191,6 +191,8 @@
 
     @include('extend.footer')
     @livewireScripts
+
+    <div class="mdui-m-t-5 mdui-m-b-5"></div>
 </body>
 
 </html>
