@@ -7,9 +7,6 @@
         <div class="mdui-typo-headline">夜空，因为谁而亮起。</div>
         <br />
         <div class="mdui-typo-title-opacity">散落的雨滴，何尝不是一种美丽。</div>
-        <br />
-        <div class="mdui-typo-subheading-opacity">我们都在，这里等你，</div>
-
 
     @else
         <div class="mdui-typo mdui-p-t-4">
