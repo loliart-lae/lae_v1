@@ -39,9 +39,9 @@ Route::prefix('/')->group(function () {
         return view('contributes');
     })->name('contributes');
 
-    Route::get('dream', function () {
-        return view('invites.dream');
-    })->name('dream1');
+    // Route::get('dream', function () {
+    //     return view('invites.dream');
+    // })->name('dream1');
 
     Route::get('webSSH', function () {
         return view('webSSH');
