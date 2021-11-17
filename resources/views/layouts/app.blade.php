@@ -87,8 +87,8 @@
 
     <div class="mdui-fab-wrapper mdui-fab-hide accelerato" id="bottom-fab">
         <button class="mdui-fab mdui-ripple mdui-color-theme">
-            <i class="mdui-icon material-icons">add</i>
-            <i class="mdui-icon mdui-fab-opened material-icons">menu</i>
+            <i class="mdui-icon material-icons material-icons">hardware</i>
+            <i class="mdui-icon mdui-fab-opened material-icons">handyman</i>
         </button>
         <div class="mdui-fab-dial">
             <a href="{{ route('projects.index') }}" class="mdui-fab mdui-fab-mini mdui-ripple"><i
