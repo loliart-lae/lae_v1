@@ -26,10 +26,10 @@
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
-            {{-- <a class="mdui-list-item mdui-ripple umami--click--server-monitor" href="{{ route('serverMonitor.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">bar_chart</span>
-                <div class="mdui-list-item-content">资源图表</div>
-            </a> --}}
+            <a class="mdui-list-item mdui-ripple umami--click--server-monitor" href="{{ route('lxd.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">all_inbox</span>
+                <div class="mdui-list-item-content">应用容器</div>
+            </a>
 
             <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">developer_board</span>
