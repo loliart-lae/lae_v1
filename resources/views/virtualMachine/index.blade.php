@@ -11,22 +11,22 @@
             background: transparent;
             position: fixed;
             right: -100%;
-            top: 0;
+            bottom: -100%;
             z-index: 2001;
             transition: all .5 ease-in-out
         }
 
         #sideload .control {
-            width: 3%;
+            width: 5%;
             height: 100%;
         }
 
         #sideload iframe {
-            width: 97%;
+            width: 95%;
             height: 100vh;
             position: fixed;
             right: 0;
-            top: 0;
+            bottom: -100%;
             z-index: 2001;
             transition: all .5s cubic-bezier(0.65, 0.05, 0.36, 1)
         }
@@ -155,7 +155,7 @@
 
     <textarea id="load_vnc_content"
         style="display: none">   <div id="sideload"><div class="control" onclick="closeSideload()"></div>
-                                            <iframe src="about:blank" id="load_vnc_href" style="border:0;margin:0;padding:0"></iframe></div></textarea>
+                                                <iframe src="about:blank" id="load_vnc_href" style="border:0;margin:0;padding:0"></iframe></div></textarea>
 
     <script>
         let last_vnc_url
@@ -182,13 +182,15 @@
                 $('#load_vnc_href').attr('src', url)
             } else {
                 // $('#sideload iframe').css('height', '100%')
-                $('#load_vnc_href').css('width', '97%')
+                $('#load_vnc_href').css('width', '95%')
             }
             mdui.$.showOverlay()
 
             setTimeout(function() {
                 $('#sideload').css('right', '0%')
-                $('#sideload').css('top', '0%')
+                $('#sideload').css('bottom', '0%')
+                $('#sideload iframe').css('bottom', '0')
+
             }, 100)
 
             last_vnc_url = url
@@ -197,9 +199,9 @@
         function closeSideload() {
             mdui.$.hideOverlay()
             $('#sideload').css('right', '-100%')
-            $('#sideload').css('top', '-100%')
 
             $('#sideload iframe').css('width', '0')
+            $('#sideload iframe').css('bottom', '-100%')
         }
 
         function power(id) {
