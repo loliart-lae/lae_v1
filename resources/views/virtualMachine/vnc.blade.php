@@ -41,24 +41,14 @@
                 let html = `<iframe allowfullscreen
         src="https://{{ $data['host'] }}:8006/?console=kvm&novnc=1&vmid={{ $data['vm_id'] }}&node={{ $data['node'] }}"
         frameborder="0" scrolling="no"></iframe>`
-                set()
                 $('body').append(html)
 
             },
             error: function() {
-                set()
+                window.location = '{{ config('app.url') }}'
             }
 
         });
-
-        function set() {
-            // 虽然不知道为什么要刷新，但是不刷新就是有问题
-            let cookie_name = 'ae_vnc_{{ $data['id'] }}'
-            if (!$.cookie(cookie_name)) {
-                $.cookie(cookie_name, '1');
-                window.location.reload();
-            }
-        }
     </script>
 
 </body>
