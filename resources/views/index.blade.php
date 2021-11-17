@@ -111,14 +111,8 @@
 
         @else
             <div class="mdui-text-center mdui-typo-display-1-opacity">Open App Engine</div>
-            <a id="goto-main" style="display: none" href="{{ route('main') }}"></a>
             <script>
-                mdui.mutation()
-                $(document).ready(function() {
-                    setTimeout(function() {
-                        $('#goto-main').click()
-                    }, 500)
-                })
+                document.title = '接下来想要干什么？'
             </script>
         @endguest
     </div>

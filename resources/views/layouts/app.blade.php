@@ -39,7 +39,7 @@
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
                 mdui-drawer="{target: '#main-drawer', swipe: true, overlay:true}"><i
                     class="mdui-icon material-icons-outlined">menu</i></span>
-            <a href="@auth {{ route('main') }} @else / @endauth" class="mdui-typo-title"
+            <a href="/" class="mdui-typo-title"
                 style="font-weight: 400;">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @auth
@@ -48,11 +48,6 @@
                     <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" id="backMain"
                         mdui-tooltip="{content: '回到主层级', delay: 1000}" href="#">
                         <i class="mdui-icon material-icons-outlined">grid_view</i>
-                    </a>
-
-                    <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" style="display: none"
-                        id="streaming_tool_btn" mdui-tooltip="{content: '流媒体', delay: 1000}" href="{{ route('global') }}">
-                        <i class="mdui-icon material-icons-outlined">cast</i>
                     </a>
                 @endif
 
@@ -112,7 +107,7 @@
                     class="mdui-icon material-icons">groups</i>
             </a>
 
-            <a href="{{ route('main') }}" class="mdui-fab mdui-fab-mini mdui-ripple"><i
+            <a href="/" class="mdui-fab mdui-fab-mini mdui-ripple"><i
                     class="mdui-icon material-icons">home</i>
             </a>
 
@@ -203,13 +198,6 @@
                 </div>
             </div>`)
             $('#topic').css('margin-bottom', '10px')
-        }
-    </script>
-
-    <script>
-        if (!ifvisible.now()) {
-            // 重新载入Pjax
-            $.pjax.reload('.pjax-container')
         }
     </script>
 

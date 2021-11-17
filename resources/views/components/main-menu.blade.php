@@ -5,14 +5,6 @@
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">home</span>
                 <div class="mdui-list-item-content">{{ config('app.name') }}</div>
             </a>
-            <a class="mdui-list-item mdui-ripple umami--click--public-timeRiver" href="{{ route('timeRiver') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">stream</span>
-                <div class="mdui-list-item-content">时间河流</div>
-            </a>
-            <a class="mdui-list-item mdui-ripple umami--click--public-article" href="{{ route('articles.index') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">article</span>
-                <div class="mdui-list-item-content">博客文章</div>
-            </a>
             <a class="mdui-list-item mdui-rippl umami--click--guest-login" href="{{ route('login') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">login</span>
                 <div class="mdui-list-item-content">登录或注册</div>
@@ -22,11 +14,6 @@
                 <div class="mdui-list-item-content">我们的初心</div>
             </a>
         @else
-            <a class="mdui-list-item mdui-ripple umami--click--main-link" href="{{ route('main') }}">
-                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">stream</span>
-                <div class="mdui-list-item-content">{{ config('app.name') }}</div>
-            </a>
-
             <a class="mdui-list-item mdui-ripple umami--click--user-index" href="{{ route('user.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">account_circle</span>
                 <div class="mdui-list-item-content"><small>
@@ -39,71 +26,52 @@
                 <div class="mdui-list-item-content">项目管理</div>
             </a>
 
-            <a class="mdui-list-item mdui-ripple umami--click--server-monitor" href="{{ route('serverMonitor.index') }}">
+            {{-- <a class="mdui-list-item mdui-ripple umami--click--server-monitor" href="{{ route('serverMonitor.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">bar_chart</span>
                 <div class="mdui-list-item-content">资源图表</div>
+            </a> --}}
+
+            <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">developer_board</span>
+                <div class="mdui-list-item-content">云虚拟机</div>
             </a>
 
-            <div class="mdui-collapse-item parent-menu">
-                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                    <span class="mdui-list-item-icon mdui-icon material-icons-outlined">developer_board</span>
-                    <div class="mdui-list-item-content">云端计算</div>
-                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                </div>
-                <div class="mdui-collapse-item-body mdui-list">
-                    <a class="mdui-list-item mdui-ripple umami--click--ae" href="{{ route('lxd.index') }}">
-                        <div class="mdui-list-item-content">应用容器</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--vm" href="{{ route('virtualMachine.index') }}">
-                        <div class="mdui-list-item-content">云虚拟机</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--gameServer"
-                        href="{{ route('gameServer.index') }}">
-                        <div class="mdui-list-item-content">游戏服务</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--shared-windows"
-                        href="{{ route('remote_desktop.index') }}">
-                        <div class="mdui-list-item-content">共享的 Windows</div>
-                    </a>
-                </div>
-            </div>
+            <a class="mdui-list-item mdui-ripple umami--click--game-server" href="{{ route('gameServer.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">games</span>
+                <div class="mdui-list-item-content">Game Server</div>
+            </a>
 
-            <div class="mdui-collapse-item parent-menu">
-                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                    <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
-                    <div class="mdui-list-item-content">访问调度</div>
-                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-                </div>
-                <div class="mdui-collapse-item-body mdui-list">
-                    <a class="mdui-list-item mdui-ripple umami--click--tunnel" href="{{ route('tunnels.index') }}">
-                        <div class="mdui-list-item-content">穿透隧道</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--fastVisit" href="{{ route('fastVisit.index') }}">
-                        <div class="mdui-list-item-content">快捷访问</div>
-                    </a>
-                </div>
-            </div>
+            <a class="mdui-list-item mdui-ripple umami--click--game-server" href="{{ route('tunnels.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
+                <div class="mdui-list-item-content">穿透隧道</div>
+            </a>
 
-            <div class="mdui-collapse-item parent-menu">
+            <a class="mdui-list-item mdui-ripple umami--click--game-server" href="{{ route('fastVisit.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">swap_horiz</span>
+                <div class="mdui-list-item-content">快捷访问</div>
+            </a>
+
+            <a class="mdui-list-item mdui-ripple umami--click--staticPage" href="{{ route('staticPage.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">storages</span>
+                <div class="mdui-list-item-content">静态站点</div>
+            </a>
+            <a class="mdui-list-item mdui-ripple umami--click--cyberpanel" href="{{ route('cyberPanel.index') }}">
+                <span class="mdui-list-item-icon mdui-icon material-icons-outlined">public</span>
+                <div class="mdui-list-item-content">CyberPanel 站点</div>
+            </a>
+
+            {{-- <div class="mdui-collapse-item parent-menu">
                 <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
                     <span class="mdui-list-item-icon mdui-icon material-icons-outlined">public</span>
                     <div class="mdui-list-item-content">Web 服务</div>
                     <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                 </div>
-                <div class="mdui-collapse-item-body mdui-list">
-                    <a class="mdui-list-item mdui-ripple umami--click--staticPage"
-                        href="{{ route('staticPage.index') }}">
-                        <div class="mdui-list-item-content">静态站点</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--cyberpanel"
-                        href="{{ route('cyberPanel.index') }}">
-                        <div class="mdui-list-item-content">CyberPanel 站点</div>
-                    </a>
-                    <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
+                <div class="mdui-collapse-item-body mdui-list"> --}}
+            {{-- <a class="mdui-list-item mdui-ripple umami--click--easypanel" href="{{ route('easyPanel.index') }}">
                         <div class="mdui-list-item-content">EasyPanel 站点</div>
-                    </a>
-                </div>
-            </div>
+                    </a> --}}
+            {{-- </div>
+            </div> --}}
 
             {{-- <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
                 href="{{ route('bridge.index') }}">
@@ -111,11 +79,11 @@
                 <div class="mdui-list-item-content">Transfer Bridge</div>
             </a> --}}
 
-            <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
+            {{-- <a class="mdui-collapse-item-header mdui-list-item mdui-ripple umami--click--bridge"
                 href="{{ route('live.index') }}">
                 <span class="mdui-list-item-icon mdui-icon material-icons-outlined">ondemand_video</span>
                 <div class="mdui-list-item-content">流媒体节目</div>
-            </a>
+            </a> --}}
 
             @php($admins = config('admin.admin_users'))
             @if (in_array(Auth::user()->email, $admins))

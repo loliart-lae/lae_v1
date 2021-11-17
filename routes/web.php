@@ -47,11 +47,11 @@ Route::prefix('/')->group(function () {
         return view('webSSH');
     })->name('webSSH');
 
-    Route::get('/timeRiver', [Controllers\UserStatusController::class, 'global'])->name('timeRiver');
-    Route::get('/timeRiver/{id}', [Controllers\UserStatusController::class, 'show'])->name('timeRiver.show');
+    // Route::get('/timeRiver', [Controllers\UserStatusController::class, 'global'])->name('timeRiver');
+    // Route::get('/timeRiver/{id}', [Controllers\UserStatusController::class, 'show'])->name('timeRiver.show');
 
-    Route::get('/article/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
-    Route::get('/article/search', [Controllers\UserStatusController::class, 'article_search'])->name('articles.search');
+    // Route::get('/article/index', [Controllers\UserStatusController::class, 'public_articles'])->name('articles.index');
+    // Route::get('/article/search', [Controllers\UserStatusController::class, 'article_search'])->name('articles.search');
 
     Route::post('/tunnel/auth/{id}', [Controllers\TunnelController::class, 'auth'])->middleware('throttle: 1000, 1');
 
@@ -69,23 +69,23 @@ Route::prefix('/')->group(function () {
 
     Route::get('/pterodactyl/auth/callback/{token}', [Controllers\PterodactylController::class, 'callback'])->name('pterodactyl.callback');
 
-    Route::get('/serverMonitor/public/{id}', [Controllers\ServerMonitorController::class, 'public'])->name('serverMonitor.public')->middleware('throttle:60,1');
+    // Route::get('/serverMonitor/public/{id}', [Controllers\ServerMonitorController::class, 'public'])->name('serverMonitor.public')->middleware('throttle:60,1');
 
-    Route::get('/user/{id}', [Controllers\UserController::class, 'show'])->name('global.user.show');
+    // Route::get('/user/{id}', [Controllers\UserController::class, 'show'])->name('global.user.show');
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get('/', [Controllers\UserStatusController::class, 'index'])->name('main');
+    Route::resource('/user', Controllers\UserController::class);
 
     Route::put('/user/generateToken', [Controllers\UserController::class, 'generateToken'])->name('user.generateToken');
-    Route::put('/user/toggleFollow', [Controllers\UserController::class, 'toggleFollow'])->name('user.toggleFollow');
+    // Route::put('/user/toggleFollow', [Controllers\UserController::class, 'toggleFollow'])->name('user.toggleFollow');
 
-    Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
-    Route::get('/articles', [Controllers\UserStatusController::class, 'article'])->name('articles');
-    Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->middleware('throttle:60,1')->name('status.like');
-    Route::resource('/status', Controllers\UserStatusController::class);
-    Route::put('/status/{id}/reply', [Controllers\UserStatusController::class, 'reply'])->name('status.reply');
-    Route::delete('/status/reply/{id}', [Controllers\UserStatusController::class, 'destroy_reply'])->name('status.reply.destroy');
+    // Route::get('/global', [Controllers\UserStatusController::class, 'global'])->name('global');
+    // Route::get('/articles', [Controllers\UserStatusController::class, 'article'])->name('articles');
+    // Route::put('/status/like', [Controllers\UserStatusController::class, 'like'])->middleware('throttle:60,1')->name('status.like');
+    // Route::resource('/status', Controllers\UserStatusController::class);
+    // Route::put('/status/{id}/reply', [Controllers\UserStatusController::class, 'reply'])->name('status.reply');
+    // Route::delete('/status/reply/{id}', [Controllers\UserStatusController::class, 'destroy_reply'])->name('status.reply.destroy');
 
 
 
@@ -96,7 +96,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/user/messages', [Controllers\UserController::class, 'messages'])->name('user.messages');
     Route::get('/user/balanceLog', [Controllers\UserController::class, 'balanceLog'])->name('user.balanceLog');
 
-    Route::resource('/user', Controllers\UserController::class);
 
     Route::get('invites', [Controllers\ProjectInviteController::class, 'invites'])->name('invites.list');
     Route::post('invites/{id}/accept', [Controllers\ProjectInviteController::class, 'accept'])->name('invites.accept');
