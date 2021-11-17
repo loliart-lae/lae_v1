@@ -65,7 +65,7 @@
                         {{ $virtualMachine->project->name }}</h1>
                 @endif
                 <div class="mdui-col-lg-6 mdui-col-md-6 mdui-col-xs-12">
-                    <div class="mdui-card mdui-m-t-2 mdui-shadow-0" style="border: 1px solid #f1f1f1">
+                    <div class="mdui-card mdui-m-t-2 mdui-shadow-0" style="border: 1px solid #c7c7c782">
                         <div class="mdui-card-primary">
                             <div class="mdui-typo">
                                 <div class="mdui-row">
