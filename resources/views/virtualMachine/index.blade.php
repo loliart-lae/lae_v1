@@ -17,12 +17,12 @@
         }
 
         #sideload .control {
-            width: 10%;
+            width: 3%;
             height: 100%;
         }
 
         #sideload iframe {
-            width: 90%;
+            width: 97%;
             height: 100vh;
             background: #7a7a7a87;
             position: fixed;
@@ -134,7 +134,7 @@
                         <div class="mdui-card-actions">
                             <span onclick="power({{ $virtualMachine->id }})"
                                 class="power-btn-{{ $virtualMachine->id }} mdui-btn mdui-ripple @if ($virtualMachine->status == 1) mdui-text-color-green @else mdui-text-color-red @endif">电源</span>
-                            <a id="vnc_btn_{{ $virtualMachine->id }}" @if ($virtualMachine->status)  href="javascript: sideload('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @else disabled @endif
+                            <a id="vnc_btn_{{ $virtualMachine->id }}" href="javascript: sideload('{{ route('virtualMachine.show', $virtualMachine->id) }}')" @if ($virtualMachine->status) @else disabled @endif
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-show">显示 VNC</a>
                             <a href="{{ route('virtualMachine.edit', $virtualMachine->id) }}"
                                 class="mdui-btn mdui-ripple umami--click--virtualMachine-edit">编辑</a>
