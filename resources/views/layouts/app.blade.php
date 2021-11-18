@@ -34,13 +34,13 @@
     <x-body-script />
     <script src="{{ mix('js/util.js') }}"></script>
 
-    <header class="mdui-appbar mdui-appbar-fixed">
+    <div id="top-space" class="animate_height"></div>
+    <header class="mdui-appbar mdui-appbar-fixed" id="top-appbar">
         <div class="mdui-toolbar mdui-color-theme">
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
                 mdui-drawer="{target: '#main-drawer', swipe: true, overlay:true}"><i
                     class="mdui-icon material-icons-outlined">menu</i></span>
-            <a href="/" class="mdui-typo-title"
-                style="font-weight: 400;">{{ config('app.name') }}</a>
+            <a href="/" class="mdui-typo-title" style="font-weight: 400;">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @auth
 
@@ -65,6 +65,7 @@
                 <x-tool-menu />
             @endauth
         </div>
+        <x-projects-tab />
     </header>
 
     <div class="mdui-drawer mdui-color-white mdui-drawer-close mdui-drawer-full-height" id="main-drawer">
@@ -91,15 +92,14 @@
             <i class="mdui-icon mdui-fab-opened material-icons">handyman</i>
         </button>
         <div class="mdui-fab-dial">
-            <a href="{{ route('projects.index') }}" class="mdui-fab mdui-fab-mini mdui-ripple"><i
+            <a href="{{ route('projects.index') }}" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i
                     class="mdui-icon material-icons">groups</i>
             </a>
 
-            <a href="/" class="mdui-fab mdui-fab-mini mdui-ripple"><i
-                    class="mdui-icon material-icons">home</i>
+            <a href="/" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">home</i>
             </a>
 
-            <a href="#" class="mdui-fab mdui-fab-mini mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i>
+            <a href="#" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">arrow_upward</i>
             </a>
         </div>
     </div>

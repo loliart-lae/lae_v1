@@ -10,7 +10,6 @@
 
     @else
         <div class="mdui-typo mdui-p-t-4">
-
             <div class="mdui-text-center mdui-typo-display-1-opacity">
                 <span class="material-icons">north_west</span>打开抽屉以继续您的工作。
             </div>
