@@ -65,6 +65,11 @@ $(document).on("pjax:complete", function (event) {
 
     mainMenu.top_app()
 
+    let title = document.title
+    title = title.replace(' - ' + $('#app-name').text(), '')
+
+    $('#top-title').text(title)
+
     mdui.mutation()
 })
 
