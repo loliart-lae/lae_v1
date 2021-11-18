@@ -65,7 +65,9 @@
                 <x-tool-menu />
             @endauth
         </div>
-        <x-projects-tab />
+        @auth
+            <x-projects-tab />
+        @endauth
     </header>
 
     <div class="mdui-drawer mdui-color-white mdui-drawer-close mdui-drawer-full-height" id="main-drawer">
@@ -96,10 +98,12 @@
                     class="mdui-icon material-icons">groups</i>
             </a>
 
-            <a href="/" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">home</i>
+            <a href="/" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i
+                    class="mdui-icon material-icons">home</i>
             </a>
 
-            <a href="#" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">arrow_upward</i>
+            <a href="#" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme"><i
+                    class="mdui-icon material-icons">arrow_upward</i>
             </a>
         </div>
     </div>
