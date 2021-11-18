@@ -1,3 +1,5 @@
+$('#top-space').height($('#top-appbar').height() / 3)
+
 var nowShow = null;
 
 setInterval(function () {

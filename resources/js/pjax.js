@@ -1,3 +1,6 @@
+var top_tab_height = $('#top-tab').height()
+var top_space = $('#top-space').height()
+
 var mainMenu = {
     update: function () {
         let url = window.location.protocol + '//' + window.location.host + window.location.pathname
@@ -6,8 +9,22 @@ var mainMenu = {
             $("#main-list a[href='" + url + "']").addClass('mdui-list-item-active')
             $("#backMain").attr('href', url)
         }
+    },
+    top_app: function () {
+        if (window.location.pathname != '/') {
+            $('#top-tab').css('min-height', 0)
+            $('#top-tab').css('height', 0)
+            $('#top-space').css('min-height', 0)
+            $('#top-space').css('height', 0)
+        } else {
+            $('#top-tab').css('min-height', top_tab_height)
+            $('#top-tab').css('height', top_tab_height)
+            $('#top-space').css('min-height', top_space)
+            $('#top-space').css('height', top_space)
+        }
     }
 }
+
 
 $.ajaxSetup({
     headers: {
@@ -46,6 +63,8 @@ $(document).on("pjax:complete", function (event) {
     $('#turn').css('animation-play-state', 'paused')
     $('#thisLink').attr('href', window.location.href)
 
+    mainMenu.top_app()
+
     mdui.mutation()
 })
 
@@ -77,3 +96,5 @@ $(window).scroll(function () {
     }
 
 })
+
+mainMenu.top_app()
