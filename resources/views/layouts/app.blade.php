@@ -40,7 +40,7 @@
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
                 mdui-drawer="{target: '#main-drawer', swipe: true, overlay:true}"><i
                     class="mdui-icon material-icons-outlined">menu</i></span>
-            <a href="/" class="mdui-typo-title" style="font-weight: 400;">{{ config('app.name') }}</a>
+            <a href="/" class="mdui-typo-title" style="font-weight: 400;" id="top-title">{{ config('app.name') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @auth
 
@@ -86,7 +86,10 @@
         </div>
     </div>
 
-    <a href="#" id="thisLink" style="display: none"></a>
+    <div style="display: none">
+        <a href="#" id="thisLink"></a>
+        <span id="app-name">{{ config('app.name') }}</span>
+    </div>
 
     <div class="mdui-fab-wrapper mdui-fab-hide accelerato" id="bottom-fab">
         <button class="mdui-fab mdui-ripple mdui-color-theme">
