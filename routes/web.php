@@ -75,6 +75,8 @@ Route::prefix('/')->group(function () {
 });
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+    Route::get('/user/messages', [Controllers\UserController::class, 'messages'])->name('user.messages');
+    Route::get('/user/balanceLog', [Controllers\UserController::class, 'balanceLog'])->name('user.balanceLog');
     Route::resource('/user', Controllers\UserController::class);
 
     Route::put('/user/generateToken', [Controllers\UserController::class, 'generateToken'])->name('user.generateToken');
@@ -93,9 +95,6 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('/billing/check', [Controllers\UserBalanceController::class, 'check'])->name('billing.check');
     Route::get('/billing/thankyou', [Controllers\UserBalanceController::class, 'thankyou'])->name('billing.thankyou');
     Route::resource('/billing', Controllers\UserBalanceController::class);
-    Route::get('/user/messages', [Controllers\UserController::class, 'messages'])->name('user.messages');
-    Route::get('/user/balanceLog', [Controllers\UserController::class, 'balanceLog'])->name('user.balanceLog');
-
 
     Route::get('invites', [Controllers\ProjectInviteController::class, 'invites'])->name('invites.list');
     Route::post('invites/{id}/accept', [Controllers\ProjectInviteController::class, 'accept'])->name('invites.accept');
