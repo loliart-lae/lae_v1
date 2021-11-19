@@ -242,6 +242,7 @@ a {
 }
 
 .kanban-title-board {
+    font-weight: 400 !important;
     color: rgba(0,0,0,.87)
 }
 @media (prefers-color-scheme: dark) {
