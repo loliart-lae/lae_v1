@@ -52,7 +52,7 @@ class CostJob implements ShouldQueue
         ini_set('memory_limit', '1024M');
         DB::connection()->disableQueryLog();
 
-        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->get();
+        $lxdContainers = LxdContainer::with(['template', 'server', 'forward', 'project'])->cursor();
         $forward = new Forward();
         foreach ($lxdContainers as $lxd) {
             // 金额
@@ -107,7 +107,6 @@ class CostJob implements ShouldQueue
                 dispatch(new LxdJob($config));
                 Message::send('容器 ' . $lxd->name . ' 因为积分不足而自动删除。', $lxd->project->user_id);
                 ProjectActivityController::save($project_id, '容器 ' . $lxd->name . ' 因为积分不足而自动删除。');
-
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $lxd->server_id;
@@ -119,7 +118,7 @@ class CostJob implements ShouldQueue
         unset($lxdContainers);
         unset($forward);
 
-        $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->get();
+        $remote_desktops = RemoteDesktop::with(['server', 'project'])->where('status', 'active')->cursor();
         // 获取远程桌面并计费
         foreach ($remote_desktops as $remote_desktop) {
             // 金额
@@ -142,7 +141,6 @@ class CostJob implements ShouldQueue
                 dispatch(new RemoteDesktopJob($config))->onQueue('remote_desktop');;
                 Message::send('共享的 Windows 远程桌面' . $remote_desktop->username . ' 因为积分不足而自动删除。', $remote_desktop->project->user_id);
                 ProjectActivityController::save($project_id, '共享的 Windows 远程桌面 ' . $remote_desktop->name . ' 因为积分不足而自动删除。');
-
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $remote_desktop->server_id;
@@ -153,7 +151,7 @@ class CostJob implements ShouldQueue
         }
         unset($remote_desktops);
 
-        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->get();
+        $tunnels = Tunnel::with(['server', 'project'])->where('protocol', '!=', 'xtcp')->cursor();
         // 获取Frp Tunnel 并计费
         foreach ($tunnels as $tunnel) {
             // 金额
@@ -170,7 +168,6 @@ class CostJob implements ShouldQueue
                 Tunnel::where('id', $tunnel->id)->delete();
                 Message::send('穿透隧道' . $tunnel->name . ' 因为积分不足而自动删除。', $tunnel->project->user_id);
                 ProjectActivityController::save($project_id, '静态托管 ' . $tunnel->name . ' 因为积分不足而自动删除。');
-
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $tunnel->server_id;
@@ -181,7 +178,7 @@ class CostJob implements ShouldQueue
         }
         unset($tunnels);
 
-        $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->get();
+        $staticPages = StaticPage::with(['server', 'project'])->where('status', 'active')->cursor();
         // 获取 StaticPage 并计费
         foreach ($staticPages as $staticPage) {
             // 金额
@@ -208,7 +205,6 @@ class CostJob implements ShouldQueue
                 dispatch(new StaticPageJob($config));
                 Message::send('静态托管' . $staticPage->name . ' 因为积分不足而自动删除。', $staticPage->project->user_id);
                 ProjectActivityController::save($project_id, '静态托管 ' . $staticPage->name . ' 因为积分不足而自动删除。');
-
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $staticPage->server_id;
@@ -219,7 +215,7 @@ class CostJob implements ShouldQueue
         }
         unset($staticPages);
 
-        $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->get();
+        $easyPanelVirtualHosts = EasyPanelVirtualHost::with(['server', 'project', 'template'])->where('status', 'active')->cursor();
         // 获取 EasyPanel 并计费
         foreach ($easyPanelVirtualHosts as $easyPanelVirtualHost) {
             // 金额
@@ -242,7 +238,6 @@ class CostJob implements ShouldQueue
                 dispatch(new EasyPanelJob($config));
                 Message::send('EasyPanel 主机' . $easyPanelVirtualHost->name . ' 因为积分不足而自动删除。', $easyPanelVirtualHost->project->user_id);
                 ProjectActivityController::save($project_id, 'EasyPanel 主机 ' . $easyPanelVirtualHost->name . ' 因为积分不足而自动删除。');
-
             } else {
                 $serverBalanceCount = new ServerBalanceCount();
                 $serverBalanceCount->server_id = $easyPanelVirtualHost->server_id;
@@ -253,7 +248,7 @@ class CostJob implements ShouldQueue
         }
         unset($easyPanelVirtualHosts);
 
-        $pterodactylServers = PterodactylServer::with(['template'])->get();
+        $pterodactylServers = PterodactylServer::with(['template'])->cursor();
         // 获取 Pterodactyl 并计费
         foreach ($pterodactylServers as $pterodactylServer) {
             // 金额
@@ -277,7 +272,7 @@ class CostJob implements ShouldQueue
         }
         unset($pterodactylServers);
 
-        $vms = VirtualMachine::with(['template', 'server', 'project'])->get();
+        $vms = VirtualMachine::with(['template', 'server', 'project'])->cursor();
         // 获取 Virtual Machine 并计费
         foreach ($vms as $vm) {
             // 金额
@@ -303,7 +298,7 @@ class CostJob implements ShouldQueue
         unset($vms);
 
 
-        $cps = CyberPanelSite::with(['package', 'project'])->get();
+        $cps = CyberPanelSite::with(['package', 'project'])->cursor();
         // 获取 CyberPanel 并计费
         foreach ($cps as $cp) {
             // 金额
