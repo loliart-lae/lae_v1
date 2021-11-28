@@ -13,6 +13,13 @@
             <div class="mdui-text-center mdui-typo-display-1-opacity">
                 <span class="material-icons">north_west</span>打开抽屉以继续您的工作。
             </div>
+
+            <div class="mdui-text-center mdui-typo-caption-opacity">
+                我们意识到了LAE目前存在的问题，并且我们正在编码新的平台。
+                <br />
+                这需要一段时间给我们打磨，以给大家营造出最好的体验。
+            </div>
+
         </div>
 
         <script>
