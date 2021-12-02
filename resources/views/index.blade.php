@@ -3,12 +3,20 @@
 @section('title', '今日')
 
 @section('content')
-    @guest
-        <div class="mdui-typo-headline">夜空，因为谁而亮起。</div>
-        <br />
-        <div class="mdui-typo-title-opacity">散落的雨滴，何尝不是一种美丽。</div>
+    <div class="mdui-panel-item mdui-panel-item-open">
+        <div class="mdui-panel-item-header">迁移通知</div>
+        <div class="mdui-panel-item-body">
+            <p>Light App Engine 正在迁移到新的平台。</p>
+            您的用户数据将可能会做出如下改变:
+            <ol>
+                <li>项目将改为团队，原有项目的积分将会被退回到项目所有者的用户积分中。</li>
+                <li>用户将不会被删除，积分会被转换为新平台的“余额”，并反向换算。</li>
+                <li>由于两者平台之间改动较大，实例数据将不能互通。请提前备份好实例的数据。</li>
+            </ol>
 
-    @else
+        </div>
+    </div>
+    @auth
         <div class="mdui-typo mdui-p-t-4">
             <div class="mdui-text-center mdui-typo-display-1-opacity">
                 <span class="material-icons">north_west</span>打开抽屉以继续您的工作。
@@ -25,6 +33,6 @@
         <script>
             document.title = window.util.text.c('接下来想要干什么？')
         </script>
-    @endguest
+    @endauth
 
 @endsection
