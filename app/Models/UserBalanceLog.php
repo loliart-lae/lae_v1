@@ -20,7 +20,7 @@ class UserBalanceLog extends Model
     {
         $user = new User();
         $user_balance = $user->where('id', $user_id)->firstOrFail()->balance;
-        $lock = Cache::lock("user_balance_" . $user_id, $user_balance);
+        $lock = Cache::lock("user_balance_" . $user_id, 10);
 
         try {
             $lock->block(5);
@@ -53,7 +53,7 @@ class UserBalanceLog extends Model
         $user = new User();
         $user_balance = $user->where('id', $user_id)->firstOrFail()->balance;
 
-        $lock = Cache::lock("user_balance_" . $user_id, $user_balance);
+        $lock = Cache::lock("user_balance_" . $user_id, 10);
         try {
             $lock->block(5);
 
